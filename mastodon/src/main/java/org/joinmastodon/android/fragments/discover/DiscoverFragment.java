@@ -51,6 +51,7 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 	private DiscoverAccountsFragment accountsFragment;
 	private SearchFragment searchFragment;
 	private LocalTimelineFragment localTimelineFragment;
+	private FederatedTimelineFragment federatedTimelineFragment;
 
 	private String accountID;
 	private Runnable searchDebouncer=this::onSearchChangedDebounced;
@@ -72,15 +73,16 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 		tabLayout=view.findViewById(R.id.tabbar);
 		pager=view.findViewById(R.id.pager);
 
-		tabViews=new FrameLayout[5];
+		tabViews=new FrameLayout[6];
 		for(int i=0;i<tabViews.length;i++){
 			FrameLayout tabView=new FrameLayout(getActivity());
 			tabView.setId(switch(i){
-				case 0 -> R.id.discover_posts;
-				case 1 -> R.id.discover_hashtags;
-				case 2 -> R.id.discover_news;
-				case 3 -> R.id.discover_local_timeline;
-				case 4 -> R.id.discover_users;
+				case 0 -> R.id.discover_local_timeline;
+				case 1 -> R.id.discover_federated_timeline;
+				case 2 -> R.id.discover_hashtags;
+				case 3 -> R.id.discover_posts;
+				case 4 -> R.id.discover_news;
+				case 5 -> R.id.discover_users;
 				default -> throw new IllegalStateException("Unexpected value: "+i);
 			});
 			tabView.setVisibility(View.GONE);
@@ -106,7 +108,7 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 			}
 		});
 
-		if(postsFragment==null){
+		if(localTimelineFragment==null){
 			Bundle args=new Bundle();
 			args.putString("account", accountID);
 			args.putBoolean("__is_tab", true);
@@ -126,9 +128,13 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 			localTimelineFragment=new LocalTimelineFragment();
 			localTimelineFragment.setArguments(args);
 
+			federatedTimelineFragment=new FederatedTimelineFragment();
+			federatedTimelineFragment.setArguments(args);
+
 			getChildFragmentManager().beginTransaction()
 					.add(R.id.discover_posts, postsFragment)
 					.add(R.id.discover_local_timeline, localTimelineFragment)
+					.add(R.id.discover_federated_timeline, federatedTimelineFragment)
 					.add(R.id.discover_hashtags, hashtagsFragment)
 					.add(R.id.discover_news, newsFragment)
 					.add(R.id.discover_users, accountsFragment)
@@ -139,11 +145,12 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 			@Override
 			public void onConfigureTab(@NonNull TabLayout.Tab tab, int position){
 				tab.setText(switch(position){
-					case 0 -> R.string.posts;
-					case 1 -> R.string.hashtags;
-					case 2 -> R.string.news;
-					case 3 -> R.string.local_timeline;
-					case 4 -> R.string.for_you;
+					case 0 -> R.string.local_timeline;
+					case 1 -> R.string.federated_timeline;
+					case 2 -> R.string.hashtags;
+					case 3 -> R.string.posts;
+					case 4 -> R.string.news;
+					case 5 -> R.string.for_you;
 					default -> throw new IllegalStateException("Unexpected value: "+position);
 				});
 				tab.view.textView.setAllCaps(true);
@@ -217,8 +224,8 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 	}
 
 	public void loadData(){
-		if(postsFragment!=null && !postsFragment.loaded && !postsFragment.dataLoading)
-			postsFragment.loadData();
+		if(localTimelineFragment!=null && !localTimelineFragment.loaded && !localTimelineFragment.dataLoading)
+			localTimelineFragment.loadData();
 	}
 
 	private void onSearchEditFocusChanged(View v, boolean hasFocus){
@@ -254,11 +261,12 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 
 	private Fragment getFragmentForPage(int page){
 		return switch(page){
-			case 0 -> postsFragment;
-			case 1 -> hashtagsFragment;
-			case 2 -> newsFragment;
-			case 3 -> localTimelineFragment;
-			case 4 -> accountsFragment;
+			case 0 -> localTimelineFragment;
+			case 1 -> federatedTimelineFragment;
+			case 2 -> hashtagsFragment;
+			case 3 -> postsFragment;
+			case 4 -> newsFragment;
+			case 5 -> accountsFragment;
 			default -> throw new IllegalStateException("Unexpected value: "+page);
 		};
 	}

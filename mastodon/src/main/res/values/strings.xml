@@ -218,6 +218,7 @@
 	<string name="alt_text_subtitle">Alt text describes your photos for people with low or no vision. Try to only include enough detail to understand the context.</string>
 	<string name="alt_text_hint">e.g. A dog looking around suspiciously with narrowed eyes at the camera.</string>
 	<string name="visibility_public">Public</string>
+	<string name="visibility_unlisted">Unlisted</string>
 	<string name="visibility_followers_only">Followers only</string>
 	<string name="visibility_private">Only people I mention</string>
 	<string name="search_all">All</string>
@@ -307,10 +308,12 @@
 	<string name="downloading">Downloading…</string>
 	<string name="no_app_to_handle_action">There\'s no app to handle this action</string>
 	<string name="local_timeline">Community</string>
+	<string name="federated_timeline">Federation</string>
 	<string name="trending_posts_info_banner">These are the posts gaining traction in your corner of Mastodon.</string>
 	<string name="trending_hashtags_info_banner">These are the hashtags gaining traction in your corner of Mastodon.</string>
 	<string name="trending_links_info_banner">These are the news stories being shared the most in your corner of Mastodon.</string>
 	<string name="local_timeline_info_banner">These are the most recent posts by the people who use the same Mastodon server as you.</string>
+	<string name="federated_timeline_info_banner">These are the most recent posts by the people in your federation.</string>
 	<string name="dismiss">Dismiss</string>
 	<string name="see_new_posts">See new posts</string>
 	<string name="load_missing_posts">Load missing posts</string>
