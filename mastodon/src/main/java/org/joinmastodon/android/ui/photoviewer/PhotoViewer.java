@@ -19,6 +19,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Environment;
 import android.os.SystemClock;
@@ -39,6 +40,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -48,12 +50,14 @@ import android.widget.Toolbar;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.MastodonAPIController;
 import org.joinmastodon.android.model.Attachment;
+import org.joinmastodon.android.ui.ImageDescriptionSheet;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -69,6 +73,7 @@ import me.grishka.appkit.imageloader.requests.UrlImageLoaderRequest;
 import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.utils.CubicBezierInterpolator;
 import me.grishka.appkit.utils.V;
+import me.grishka.appkit.views.BottomSheet;
 import me.grishka.appkit.views.FragmentRootLinearLayout;
 import okio.BufferedSink;
 import okio.Okio;
@@ -97,6 +102,7 @@ public class PhotoViewer implements ZoomPanView.Listener{
 	private TextView videoTimeView;
 	private ImageButton videoPlayPauseButton;
 	private View videoControls;
+	private MenuItem imageDescriptionButton;
 	private boolean uiVisible=true;
 	private AudioManager.OnAudioFocusChangeListener audioFocusListener=this::onAudioFocusChanged;
 	private Runnable uiAutoHider=()->{
@@ -174,11 +180,24 @@ public class PhotoViewer implements ZoomPanView.Listener{
 		toolbarWrap=uiOverlay.findViewById(R.id.toolbar_wrap);
 		toolbar=uiOverlay.findViewById(R.id.toolbar);
 		toolbar.setNavigationOnClickListener(v->onStartSwipeToDismissTransition(0));
-		toolbar.getMenu().add(R.string.download).setIcon(R.drawable.ic_fluent_arrow_download_24_regular).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		toolbar.setOnMenuItemClickListener(item->{
-			saveCurrentFile();
-			return true;
-		});
+		imageDescriptionButton = toolbar.getMenu()
+				.add(R.string.image_description)
+				.setIcon(R.drawable.ic_fluent_image_alt_text_24_regular)
+				.setVisible(attachments.get(pager.getCurrentItem()).description != null
+						&& !attachments.get(pager.getCurrentItem()).description.isEmpty())
+				.setOnMenuItemClickListener(item -> {
+					new ImageDescriptionSheet(activity,attachments.get(pager.getCurrentItem())).show();
+					return true;
+				});
+		imageDescriptionButton.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		toolbar.getMenu()
+				.add(R.string.download)
+				.setIcon(R.drawable.ic_fluent_arrow_download_24_regular)
+				.setOnMenuItemClickListener(item -> {
+					saveCurrentFile();
+					return true;
+				})
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		uiOverlay.setAlpha(0f);
 		videoControls=uiOverlay.findViewById(R.id.video_player_controls);
 		videoSeekBar=uiOverlay.findViewById(R.id.seekbar);
@@ -374,6 +393,8 @@ public class PhotoViewer implements ZoomPanView.Listener{
 	private void onPageChanged(int index){
 		currentIndex=index;
 		Attachment att=attachments.get(index);
+		imageDescriptionButton.setVisible(att.description != null && !att.description.isEmpty());
+		toolbar.invalidate();
 		V.setVisibilityAnimated(videoControls, att.type==Attachment.Type.VIDEO ? View.VISIBLE : View.GONE);
 		if(att.type==Attachment.Type.VIDEO){
 			videoSeekBar.setSecondaryProgress(0);
