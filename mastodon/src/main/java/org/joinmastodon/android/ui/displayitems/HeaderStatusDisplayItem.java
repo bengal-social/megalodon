@@ -23,6 +23,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
+import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.report.ReportReasonChoiceFragment;
 import org.joinmastodon.android.model.Account;
@@ -137,6 +138,14 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				int id=menuItem.getItemId();
 				if(id==R.id.delete){
 					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
+				}else if(id==R.id.delete_and_redraft) {
+					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{
+						Bundle args=new Bundle();
+						args.putString("account", item.parentFragment.getAccountID());
+						args.putString("prefilledText", HtmlParser.parse(item.status.content, item.status.emojis, item.status.mentions, item.status.tags, item.parentFragment.getAccountID()).toString()); // demo
+						// TODO: restore re-drafted text and attachments
+						Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+					});
 				}else if(id==R.id.mute){
 					UiUtils.confirmToggleMuteUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.muting, r->{});
 				}else if(id==R.id.block){

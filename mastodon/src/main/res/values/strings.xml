@@ -339,4 +339,5 @@
 		<item quantity="other">%,d reblogs</item>
 	</plurals>
 	<string name="timestamp_via_app">%1$s via %2$s</string>
+    <string name="delete_and_redraft">Delete and re-draft</string>
 </resources>
