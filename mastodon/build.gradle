@@ -9,8 +9,8 @@ android {
 		applicationId "org.joinmastodon.android.sk"
 		minSdk 23
 		targetSdk 31
-		versionCode 8
-		versionName '1.1.1-dev+fork.8'
+		versionCode 9
+		versionName '1.1.1-dev+fork.9'
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 
