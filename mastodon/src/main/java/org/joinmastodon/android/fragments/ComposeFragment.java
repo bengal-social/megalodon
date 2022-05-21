@@ -453,7 +453,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			if(savedInstanceState==null){
 				mainEditText.setText(initialText);
 				mainEditText.setSelection(mainEditText.length());
-				if(!TextUtils.isEmpty(replyTo.spoilerText) && AccountSessionManager.getInstance().isSelf(accountID, replyTo.account)){
+				// TODO: setting for preserving cw always / only when replying to own posts
+				// && AccountSessionManager.getInstance().isSelf(accountID, replyTo.account)
+				if(!TextUtils.isEmpty(replyTo.spoilerText)){
 					hasSpoiler=true;
 					spoilerEdit.setVisibility(View.VISIBLE);
 					spoilerEdit.setText(replyTo.spoilerText);
