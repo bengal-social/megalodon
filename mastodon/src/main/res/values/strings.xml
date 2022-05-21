@@ -47,6 +47,7 @@
 	</plurals>
 	<string name="posts">Posts</string>
 	<string name="posts_and_replies">Posts and Replies</string>
+	<string name="pinned_posts">Pinned</string>
 	<string name="media">Media</string>
 	<string name="profile_about">About</string>
 	<string name="button_follow">Follow</string>
@@ -129,6 +130,14 @@
 	<string name="confirm_delete_title">Delete Post</string>
 	<string name="confirm_delete">Are you sure you want to delete this post?</string>
 	<string name="deleting">Deleting…</string>
+	<string name="pin_post">Pin to profile</string>
+	<string name="confirm_pin_post_title">Pin post to profile</string>
+	<string name="confirm_pin_post">Do you want to pin this post to your profile?</string>
+	<string name="pinning">Pinning post…</string>
+	<string name="unpin_post">Unpin from profile</string>
+	<string name="confirm_unpin_post_title">Unpin post from profile</string>
+	<string name="confirm_unpin_post">Are you sure you want to unpin this post?</string>
+	<string name="unpinning">Unpinning post…</string>
 	<string name="notification_channel_audio_player">Audio playback</string>
 	<string name="play">Play</string>
 	<string name="pause">Pause</string>
@@ -209,6 +218,7 @@
 	<string name="compose_hint">Type or paste what\'s on your mind</string>
 	<string name="content_warning">Content warning</string>
 	<string name="add_image_description">Add image description…</string>
+	<string name="image_description">Image description</string>
 	<string name="retry_upload">Retry upload</string>
 	<string name="image_upload_failed">Image failed to upload</string>
 	<string name="video_upload_failed">Video failed to upload</string>
@@ -218,6 +228,7 @@
 	<string name="alt_text_subtitle">Alt text describes your photos for people with low or no vision. Try to only include enough detail to understand the context.</string>
 	<string name="alt_text_hint">e.g. A dog looking around suspiciously with narrowed eyes at the camera.</string>
 	<string name="visibility_public">Public</string>
+	<string name="visibility_unlisted">Unlisted</string>
 	<string name="visibility_followers_only">Followers only</string>
 	<string name="visibility_private">Only people I mention</string>
 	<string name="search_all">All</string>
@@ -307,10 +318,12 @@
 	<string name="downloading">Downloading…</string>
 	<string name="no_app_to_handle_action">There\'s no app to handle this action</string>
 	<string name="local_timeline">Community</string>
+	<string name="federated_timeline">Federation</string>
 	<string name="trending_posts_info_banner">These are the posts gaining traction in your corner of Mastodon.</string>
 	<string name="trending_hashtags_info_banner">These are the hashtags gaining traction in your corner of Mastodon.</string>
 	<string name="trending_links_info_banner">These are the news stories being shared the most in your corner of Mastodon.</string>
 	<string name="local_timeline_info_banner">These are the most recent posts by the people who use the same Mastodon server as you.</string>
+	<string name="federated_timeline_info_banner">These are the most recent posts by the people in your federation.</string>
 	<string name="dismiss">Dismiss</string>
 	<string name="see_new_posts">See new posts</string>
 	<string name="load_missing_posts">Load missing posts</string>
