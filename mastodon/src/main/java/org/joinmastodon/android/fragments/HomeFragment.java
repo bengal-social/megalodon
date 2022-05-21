@@ -255,9 +255,14 @@ public class HomeFragment extends AppKitFragment implements OnBackPressedListene
 	@Override
 	public boolean onBackPressed(){
 		if(currentTab==R.id.tab_profile)
-			return profileFragment.onBackPressed();
+			if (profileFragment.onBackPressed()) return true;
 		if(currentTab==R.id.tab_search)
-			return searchFragment.onBackPressed();
+			if (searchFragment.onBackPressed()) return true;
+		if (currentTab!=R.id.tab_home) {
+			tabBar.selectTab(R.id.tab_home);
+			onTabSelected(R.id.tab_home);
+			return true;
+		}
 		return false;
 	}
 
