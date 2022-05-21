@@ -43,7 +43,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 	}
 
 	public static class Holder extends StatusDisplayItem.Holder<FooterStatusDisplayItem>{
-		private final TextView reply, boost, favorite;
+		private final TextView reply, boost, favorite, bookmark;
 		private final ImageView share;
 
 		private final View.AccessibilityDelegate buttonAccessibilityDelegate=new View.AccessibilityDelegate(){
@@ -60,22 +60,27 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			reply=findViewById(R.id.reply);
 			boost=findViewById(R.id.boost);
 			favorite=findViewById(R.id.favorite);
+			bookmark=findViewById(R.id.bookmark);
 			share=findViewById(R.id.share);
 			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.N){
 				UiUtils.fixCompoundDrawableTintOnAndroid6(reply);
 				UiUtils.fixCompoundDrawableTintOnAndroid6(boost);
 				UiUtils.fixCompoundDrawableTintOnAndroid6(favorite);
+				UiUtils.fixCompoundDrawableTintOnAndroid6(bookmark);
 			}
 			View reply=findViewById(R.id.reply_btn);
 			View boost=findViewById(R.id.boost_btn);
 			View favorite=findViewById(R.id.favorite_btn);
 			View share=findViewById(R.id.share_btn);
+			View bookmark=findViewById(R.id.bookmark_btn);
 			reply.setOnClickListener(this::onReplyClick);
 			reply.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			boost.setOnClickListener(this::onBoostClick);
 			boost.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			favorite.setOnClickListener(this::onFavoriteClick);
 			favorite.setAccessibilityDelegate(buttonAccessibilityDelegate);
+			bookmark.setOnClickListener(this::onBookmarkClick);
+			bookmark.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			share.setOnClickListener(this::onShareClick);
 			share.setAccessibilityDelegate(buttonAccessibilityDelegate);
 		}
@@ -87,6 +92,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			bindButton(favorite, item.status.favouritesCount);
 			boost.setSelected(item.status.reblogged);
 			favorite.setSelected(item.status.favourited);
+			bookmark.setSelected(item.status.bookmarked);
 			boost.setEnabled(item.status.visibility==StatusPrivacy.PUBLIC || item.status.visibility==StatusPrivacy.UNLISTED
 					|| (item.status.visibility==StatusPrivacy.PRIVATE && item.status.account.id.equals(AccountSessionManager.getInstance().getAccount(item.accountID).self.id)));
 		}
@@ -120,6 +126,11 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			bindButton(favorite, item.status.favouritesCount);
 		}
 
+		private void onBookmarkClick(View v){
+			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setBookmarked(item.status, !item.status.bookmarked);
+			bookmark.setSelected(item.status.bookmarked);
+		}
+
 		private void onShareClick(View v){
 			Intent intent=new Intent(Intent.ACTION_SEND);
 			intent.setType("text/plain");
@@ -134,6 +145,8 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 				return R.string.button_reblog;
 			if(id==R.id.favorite_btn)
 				return R.string.button_favorite;
+			if(id==R.id.bookmark_btn)
+				return R.string.button_bookmark;
 			if(id==R.id.share_btn)
 				return R.string.button_share;
 			return 0;

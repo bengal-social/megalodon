@@ -278,6 +278,7 @@
 	<string name="button_reblog">Reblog</string>
 	<string name="button_favorite">Favorite</string>
 	<string name="button_share">Share</string>
+	<string name="button_bookmark">Bookmark</string>
 	<string name="media_no_description">Media without description</string>
 	<string name="add_media">Add media</string>
 	<string name="add_poll">Add a poll</string>

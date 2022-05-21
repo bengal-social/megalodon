@@ -92,6 +92,7 @@
 	<color name="highlight_over_light">#18000000</color>
 
 	<color name="favorite_selected">@color/warning_500</color>
+	<color name="bookmark_selected">@color/success_500</color>
 	<color name="boost_selected">@color/primary_500</color>
 
 	<color name="shortcut_icon_background">@color/gray_100</color>
