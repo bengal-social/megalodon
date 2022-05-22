@@ -522,7 +522,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		if(isOwnProfile){
 			for(int i=0;i<menu.size();i++){
 				MenuItem item=menu.getItem(i);
-				item.setVisible(item.getItemId()==R.id.share);
+				item.setVisible(item.getItemId()==R.id.share || item.getItemId()==R.id.bookmarks);
 			}
 			return;
 		}
@@ -542,11 +542,16 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		int id=item.getItemId();
-		if(id==R.id.share){
-			Intent intent=new Intent(Intent.ACTION_SEND);
+		if(id==R.id.share) {
+			Intent intent = new Intent(Intent.ACTION_SEND);
 			intent.setType("text/plain");
 			intent.putExtra(Intent.EXTRA_TEXT, account.url);
 			startActivity(Intent.createChooser(intent, item.getTitle()));
+		}else if(id==R.id.bookmarks) {
+			Bundle args=new Bundle();
+			args.putString("account", accountID);
+			args.putParcelable("profileAccount", Parcels.wrap(account));
+			Nav.go(getActivity(), BookmarksListFragment.class, args);
 		}else if(id==R.id.mute){
 			confirmToggleMuted();
 		}else if(id==R.id.block){
