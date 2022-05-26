@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.provider.OpenableColumns;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -44,6 +45,8 @@ import org.joinmastodon.android.api.requests.statuses.DeleteStatus;
 import org.joinmastodon.android.api.requests.statuses.GetStatusByID;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.StatusDeletedEvent;
+import org.joinmastodon.android.fragments.BaseStatusListFragment;
+import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.HashtagTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
@@ -53,6 +56,7 @@ import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.text.CustomEmojiSpan;
+import org.joinmastodon.android.ui.text.HtmlParser;
 import org.joinmastodon.android.ui.text.SpacerSpan;
 import org.parceler.Parcels;
 
@@ -62,6 +66,8 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -350,6 +356,60 @@ public class UiUtils{
 					.wrapProgress(activity, R.string.deleting, false)
 					.exec(accountID);
 		});
+	}
+
+	public static void confirmDeleteAndRedraftPost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback){
+		showConfirmationAlert(activity, R.string.confirm_delete_and_redraft_title, R.string.confirm_delete_and_redraft, R.string.delete_and_redraft, ()->{
+			new DeleteStatus(status.id)
+					.setCallback(new Callback<>(){
+						@Override
+						public void onSuccess(Status result){
+							resultCallback.accept(result);
+							AccountSessionManager.getInstance().getAccount(accountID).getCacheController().deleteStatus(status.id);
+							E.post(new StatusDeletedEvent(status.id, accountID));
+							UiUtils.redraftStatus(status, accountID, activity);
+						}
+
+						@Override
+						public void onError(ErrorResponse error){
+							error.showToast(activity);
+						}
+					})
+					.wrapProgress(activity, R.string.deleting, false)
+					.exec(accountID);
+		});
+	}
+
+	public static void redraftStatus(Status status, String accountID, Activity activity) {
+		Bundle args=new Bundle();
+		args.putString("account", accountID);
+		args.putBoolean("hasDraft", true);
+		args.putString("prefilledText", HtmlParser.parse(status.content, status.emojis, status.mentions, status.tags, accountID).toString());
+		args.putString("spoilerText", status.spoilerText);
+		if(status.poll!=null){
+			args.putInt("pollDuration", (int)status.poll.expiresAt.minus(status.createdAt.getEpochSecond(), ChronoUnit.SECONDS).getEpochSecond());
+			ArrayList<String> opts=status.poll.options.stream().map(o -> o.title).collect(Collectors.toCollection(ArrayList::new));
+			args.putStringArrayList("pollOptions", opts);
+		}
+		if(!status.mediaAttachments.isEmpty()){
+			ArrayList<Parcelable> serializedAttachments=status.mediaAttachments.stream()
+					.map(att -> Parcels.wrap(ComposeFragment.redraftAttachment(att)))
+					.collect(Collectors.toCollection(ArrayList::new));
+			args.putParcelableArrayList("attachments", serializedAttachments);
+		}
+		Callback<Status> cb=new Callback<>(){
+			@Override public void onError(ErrorResponse error) {
+				onSuccess(null);
+				error.showToast(activity);
+			}
+			@Override public void onSuccess(Status status) {
+				if (status!=null) args.putParcelable("replyTo", Parcels.wrap(status));
+				Nav.go(activity, ComposeFragment.class, args);
+			}
+		};
+
+		if(status.inReplyToId!=null) new GetStatusByID(status.inReplyToId).setCallback(cb).exec(accountID);
+		else cb.onSuccess(null);
 	}
 
 	public static void setRelationshipToActionButton(Relationship relationship, Button button){

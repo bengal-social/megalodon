@@ -332,4 +332,10 @@
 		<item quantity="one">%,d Reblog</item>
 		<item quantity="other">%,d Reblogs</item>
 	</plurals>
+    <string name="delete_and_redraft">Löschen und neu erstellen</string>
+    <string name="delete_and_redraft">L</string>
+	<string name="confirm_delete_and_redraft_title">Beitrag löschen und neu erstellen</string>
+	<string name="confirm_delete_and_redraft_title">B</string>
+	<string name="confirm_delete_and_redraft">Bist du dir sicher, dass du den Beitrag löschen und neu erstellen möchtest?</string>
+	<string name="confirm_delete_and_redraft">Bist du dir sicher, dass du den Beitrag löschen möchtest?</string>
 </resources>
