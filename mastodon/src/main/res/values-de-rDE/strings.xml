@@ -122,8 +122,11 @@
 	<string name="action_vote">Abstimmen</string>
 	<string name="tap_to_reveal">Zum Anzeigen tippen</string>
 	<string name="delete">Löschen</string>
+	<string name="delete_and_redraft">Löschen und neu erstellen</string>
 	<string name="confirm_delete_title">Beitrag löschen</string>
+	<string name="confirm_delete_and_redraft_title">Beitrag löschen und neu erstellen</string>
 	<string name="confirm_delete">Bist du dir sicher, dass du den Beitrag löschen möchtest?</string>
+	<string name="confirm_delete_and_redraft">Bist du dir sicher, dass du den Beitrag löschen und neu erstellen möchtest?</string>
 	<string name="deleting">Wird gelöscht…</string>
 	<string name="pin_post">An Profil anheften</string>
 	<string name="confirm_pin_post_title">Beitrag an Profil anheften</string>
@@ -343,10 +346,4 @@
 		<item quantity="one">%,d Reblog</item>
 		<item quantity="other">%,d Reblogs</item>
 	</plurals>
-    <string name="delete_and_redraft">Löschen und neu erstellen</string>
-    <string name="delete_and_redraft">L</string>
-	<string name="confirm_delete_and_redraft_title">Beitrag löschen und neu erstellen</string>
-	<string name="confirm_delete_and_redraft_title">B</string>
-	<string name="confirm_delete_and_redraft">Bist du dir sicher, dass du den Beitrag löschen und neu erstellen möchtest?</string>
-	<string name="confirm_delete_and_redraft">Bist du dir sicher, dass du den Beitrag löschen möchtest?</string>
 </resources>
