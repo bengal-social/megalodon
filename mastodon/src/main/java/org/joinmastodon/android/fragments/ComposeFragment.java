@@ -213,6 +213,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			replyTo=Parcels.unwrap(getArguments().getParcelable("replyTo"));
 			statusVisibility=replyTo.visibility;
 		}
+
+		if(getArguments().containsKey("visibility")){
+			statusVisibility=(StatusPrivacy) getArguments().getSerializable("visibility");
+		}
+
 		if(savedInstanceState!=null){
 			statusVisibility=(StatusPrivacy) savedInstanceState.getSerializable("visibility");
 		}
