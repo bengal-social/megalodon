@@ -139,6 +139,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
 				}else if(id==R.id.pin || id==R.id.unpin){
 					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s->{});
+				}else if(id==R.id.delete_and_redraft) {
+					UiUtils.confirmDeleteAndRedraftPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
 				}else if(id==R.id.mute){
 					UiUtils.confirmToggleMuteUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.muting, r->{});
 				}else if(id==R.id.block){
