@@ -137,10 +137,10 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				int id=menuItem.getItemId();
 				if(id==R.id.delete){
 					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
-				}else if(id==R.id.pin || id==R.id.unpin){
-					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s->{});
 				}else if(id==R.id.delete_and_redraft) {
 					UiUtils.confirmDeleteAndRedraftPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
+				}else if(id==R.id.pin || id==R.id.unpin){
+					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s->{});
 				}else if(id==R.id.mute){
 					UiUtils.confirmToggleMuteUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.muting, r->{});
 				}else if(id==R.id.block){
@@ -254,6 +254,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			Menu menu=optionsMenu.getMenu();
 			boolean isOwnPost=AccountSessionManager.getInstance().isSelf(item.parentFragment.getAccountID(), account);
 			menu.findItem(R.id.delete).setVisible(item.status!=null && isOwnPost);
+			menu.findItem(R.id.delete_and_redraft).setVisible(item.status!=null && isOwnPost);
 			menu.findItem(R.id.pin).setVisible(item.status!=null && isOwnPost && !item.status.pinned);
 			menu.findItem(R.id.unpin).setVisible(item.status!=null && isOwnPost && item.status.pinned);
 			menu.findItem(R.id.open_in_browser).setVisible(item.status!=null);
