@@ -1,3 +1,5 @@
+![Pink version of the Mastodon for Android launcher icon](mastodon/src/main/res/mipmap-xhdpi/ic_launcher_round.png)
+
 # Mastodon for Android Fork
 
 ## Changes
