@@ -1,8 +1,4 @@
-# Forked Mastodon for Android
-
-This is the repository for an officially forked Android app for Mastodon.
-
-Learn more about the official app in the [blog post](https://blog.joinmastodon.org/2022/02/official-mastodon-for-android-app-is-coming-soon/).
+# Mastodon for Android Fork
 
 ## Changes
 
@@ -17,6 +13,19 @@ Learn more about the official app in the [blog post](https://blog.joinmastodon.o
 * [Make back button return to the home tab before exiting the app](https://github.com/sk22/mastodon-android-fork/tree/feature/back-returns-home) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/118))
 * [Implement a bookmark button and list](https://github.com/sk22/mastodon-android-fork/tree/feature/bookmarks) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/22))
 * [Implement deleting and re-drafting](https://github.com/sk22/mastodon-android-fork/tree/feature/delete-redraft) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/21))
+
+## Fork-specific changes
+
+* Custom app name
+* Custom icon: Modulate upstream icon's hue by `161%` using ImageMagick
+
+  ```bash
+  mogrify -modulate 100,100,161 mastodon/src/main/res/mipmap-*/ic_launcher*.png
+  ```
+
+* Custom primary color: Hue of all `primary` colors in `colors.xml` is rotated
+  by `109.8°` (equivalent of `161%`, done by hand using
+  [PineTools](https://pinetools.com/shift-hue-color))
 
 ## Building
 
