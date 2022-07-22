@@ -7,7 +7,7 @@
 	<string name="error">错误</string>
 	<string name="not_a_mastodon_instance">%s 似乎不是Mastodon实例。</string>
 	<string name="ok">确定</string>
-	<string name="preparing_auth">正在准备身份认证…</string>
+	<string name="preparing_auth">正在准备身份验证…</string>
 	<string name="finishing_auth">正在完成身份认证…</string>
 	<string name="user_boosted">%s 转发了</string>
 	<string name="in_reply_to">回复 %s</string>
@@ -63,7 +63,7 @@
 	<string name="field_content">内容</string>
 	<string name="saving">正在保存…</string>
 	<string name="post_from_user">来自 %s 的嘟文</string>
-	<string name="poll_option_hint">"选项 %d"</string>
+	<string name="poll_option_hint">选项 %d</string>
 	<plurals name="x_minutes">
 		<item quantity="other">%d 分钟</item>
 	</plurals>
@@ -149,7 +149,7 @@
 	<string name="report_reason_spam">垃圾信息</string>
 	<string name="report_reason_spam_subtitle">恶意链接、虚假互动或重复回复</string>
 	<string name="report_reason_violation">违反社区规则</string>
-	<string name="report_reason_violation_subtitle">你发现它违反了特定的规则</string>
+	<string name="report_reason_violation_subtitle">你意识到它违反了特定的规则</string>
 	<string name="report_reason_other">其他原因</string>
 	<string name="report_reason_other_subtitle">以上理由都不适用</string>
 	<string name="report_choose_rule">违反了哪些规则？</string>
@@ -164,12 +164,12 @@
 	<string name="unfollow_user">不再关注 %s</string>
 	<string name="unfollow">取消关注</string>
 	<string name="mute_user_explain">你不会在你的主页里看到他们的嘟文和转发，他们也不会知道你隐藏了他们。</string>
-	<string name="block_user_explain">他们不能再关注你或看到你的嘟文，但他们能知道他们是否被屏蔽。</string>
+	<string name="block_user_explain">他们不能再关注你或看到你的嘟文，但他们可以知道他们是否被屏蔽。</string>
 	<string name="report_personal_title">不想看到这个？</string>
 	<string name="report_personal_subtitle">如果在Mastodon看到不喜欢的东西，可以尝试移除它。</string>
 	<string name="back">返回</string>
 	<string name="instance_catalog_title">Mastodon由来自不同服务器的用户组成。</string>
-	<string name="instance_catalog_subtitle">根据你的兴趣、地区或其他目的挑选一个服务器。无论你选择哪个服务器，你都可以跟所有人交流。</string>
+	<string name="instance_catalog_subtitle">根据你的兴趣、地区或其他目的挑选一个服务器。无论你选择哪个服务器，你都可以跟所有人联系。</string>
 	<string name="search_communities">搜索或输入网址</string>
 	<string name="instance_rules_title">一些基本规则</string>
 	<string name="instance_rules_subtitle">请花一分钟来审阅规则，这是由管理员 %s 设置和执行的。</string>
@@ -230,7 +230,7 @@
 		<item quantity="other">你不能添加超过 %d 个媒体附件</item>
 	</plurals>
 	<string name="media_attachment_unsupported_type">文件 %s 是不支持的类型</string>
-	<string name="media_attachment_too_big">文件 %1$s 的大小超出了 %2$s MB的限制</string>
+	<string name="media_attachment_too_big">文件 %1$s 的大小超出 %2$s MB的限制</string>
 	<string name="settings_theme">外观</string>
 	<string name="theme_auto">自动</string>
 	<string name="theme_light">浅色</string>
@@ -250,7 +250,7 @@
 	<string name="notify_reblog">转发我的嘟文</string>
 	<string name="notify_mention">提及我</string>
 	<string name="settings_boring">更多</string>
-	<string name="settings_account">账户设置</string>
+	<string name="settings_account">帐户设置</string>
 	<string name="settings_contribute">贡献给Mastodon</string>
 	<string name="settings_tos">使用条款</string>
 	<string name="settings_privacy_policy">隐私政策</string>
@@ -315,7 +315,7 @@
 	<string name="button_follow_pending">已发送关注请求</string>
 	<string name="follows_you">已关注你</string>
 	<string name="manually_approves_followers">手动批准关注请求</string>
-	<string name="current_account">当前账户</string>
+	<string name="current_account">当前账号</string>
 	<string name="log_out_account">退出 %s</string>
 	<!-- translators: %,d is a valid placeholder, it formats the number with locale-dependent grouping separators -->
 	<plurals name="x_followers">
