@@ -19,13 +19,13 @@
 ## Fork-specific changes
 
 * Custom app name
-* Custom icon: Modulate upstream icon's hue by `161%` using ImageMagick
+* Custom icon: Modulate upstream icon using ImageMagick
 
   ```bash
-  mogrify -modulate 100,100,161 mastodon/src/main/res/mipmap-*/ic_launcher*.png
+  mogrify -modulate 90,100,140 mastodon/src/main/res/mipmap-*/ic_launcher*.png
   ```
 
-* Custom primary color: Hue of all `primary` colors in `colors.xml` is rotated
+* Custom primary color: Hue of all `primary` colors in `colors.xml` is rotated, on basis of upstream Mastodon's [old branding](https://github.com/mastodon/mastodon-android/commit/74f03026cfcfcfd23237c38ff47d2b2a98a6f92a#diff-59134ec2a1cf3761f80b0ecccbbf8b9e433d9780d2f5c5d6ac3ac8cc254e808f)
   by `109.8°` (equivalent of `161%`, done by hand using
   [PineTools](https://pinetools.com/shift-hue-color))
 
