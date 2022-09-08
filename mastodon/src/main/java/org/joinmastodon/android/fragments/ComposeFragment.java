@@ -54,17 +54,20 @@ import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.ProgressListener;
 import org.joinmastodon.android.api.requests.statuses.CreateStatus;
+import org.joinmastodon.android.api.requests.statuses.EditStatus;
 import org.joinmastodon.android.api.requests.statuses.UploadAttachment;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.StatusCountersUpdatedEvent;
 import org.joinmastodon.android.events.StatusCreatedEvent;
+import org.joinmastodon.android.events.StatusUpdatedEvent;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Attachment;
 import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.EmojiCategory;
 import org.joinmastodon.android.model.Instance;
 import org.joinmastodon.android.model.Mention;
+import org.joinmastodon.android.model.Poll;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.model.StatusPrivacy;
 import org.joinmastodon.android.ui.ComposeAutocompleteViewController;
@@ -175,6 +178,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private Instance instance;
 	private boolean attachmentsErrorShowing;
 
+	private Status editingStatus;
+	private boolean pollChanged;
+	private boolean creatingView;
+
 	public static DraftMediaAttachment redraftAttachment(Attachment att) {
 		DraftMediaAttachment draft=new DraftMediaAttachment();
 		draft.serverAttachment=att;
@@ -194,6 +201,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		instanceDomain=session.domain;
 		customEmojis=AccountSessionManager.getInstance().getCustomEmojis(instanceDomain);
 		instance=AccountSessionManager.getInstance().getInstanceInfo(instanceDomain);
+		if(getArguments().containsKey("editStatus")){
+			editingStatus=Parcels.unwrap(getArguments().getParcelable("editStatus"));
+		}
 		if(instance==null){
 			Nav.finish(this);
 			return;
@@ -239,6 +249,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	@Override
 	public View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+		creatingView=true;
 		emojiKeyboard=new CustomEmojiPopupKeyboard(getActivity(), customEmojis, instanceDomain);
 		emojiKeyboard.setListener(this::onCustomEmojiClick);
 
@@ -317,6 +328,16 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			}
 			updatePollOptionHints();
 			pollDurationView.setText(getString(R.string.compose_poll_duration, pollDurationStr));
+		}else if(savedInstanceState==null && editingStatus!=null && editingStatus.poll!=null){
+			pollBtn.setSelected(true);
+			mediaBtn.setEnabled(false);
+			pollWrap.setVisibility(View.VISIBLE);
+			for(Poll.Option eopt:editingStatus.poll.options){
+				DraftPollOption opt=createDraftPollOption();
+				opt.edit.setText(eopt.title);
+			}
+			updatePollOptionHints();
+			pollDurationView.setText(getString(R.string.compose_poll_duration, pollDurationStr));
 		}else{
 			pollDurationView.setText(getString(R.string.compose_poll_duration, pollDurationStr=getResources().getQuantityString(R.plurals.x_days, 1, 1)));
 		}
@@ -328,6 +349,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		spoilerEdit.setBackground(spoilerBg);
 		if((savedInstanceState!=null && savedInstanceState.getBoolean("hasSpoiler", false)) || hasSpoiler){
 			spoilerEdit.setVisibility(View.VISIBLE);
+			spoilerBtn.setSelected(true);
+		}else if(editingStatus!=null && !TextUtils.isEmpty(editingStatus.spoilerText)){
+			spoilerEdit.setVisibility(View.VISIBLE);
+			spoilerEdit.setText(getArguments().getString("sourceSpoiler", editingStatus.spoilerText));
 			spoilerBtn.setSelected(true);
 		}
 
@@ -353,6 +378,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		View autocompleteView=autocompleteViewController.getView();
 		autocompleteView.setVisibility(View.GONE);
 		mainEditTextWrap.addView(autocompleteView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, V.dp(178), Gravity.TOP));
+
+		creatingView=false;
 
 		return view;
 	}
@@ -455,9 +482,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 			@Override
 			public void afterTextChanged(Editable s){
-				updateCharCounter(s);
+				updateCharCounter();
 			}
 		});
+		spoilerEdit.addTextChangedListener(new SimpleTextWatcher(e->updateCharCounter()));
 		if(replyTo!=null){
 			replyText.setText(getString(R.string.in_reply_to, replyTo.account.displayName));
 			ArrayList<String> mentions=new ArrayList<>();
@@ -475,45 +503,58 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			if(savedInstanceState==null){
 				mainEditText.setText(initialText);
 				mainEditText.setSelection(mainEditText.length());
-				// TODO: setting for preserving cw always / only when replying to own posts
-				// && AccountSessionManager.getInstance().isSelf(accountID, replyTo.account)
 				if(!TextUtils.isEmpty(replyTo.spoilerText)){
-					insertSpoiler(replyTo.spoilerText);
 					hasSpoiler=true;
+					spoilerEdit.setVisibility(View.VISIBLE);
+					spoilerEdit.setText(replyTo.spoilerText);
+					spoilerBtn.setSelected(true);
 				}
 			}
 		}else{
 			replyText.setVisibility(View.GONE);
 		}
 		if(savedInstanceState==null){
-			String prefilledText=getArguments().getString("prefilledText");
-			if(!TextUtils.isEmpty(prefilledText)){
-				mainEditText.setText(prefilledText);
+			if(editingStatus!=null){
+				initialText=getArguments().getString("sourceText", "");
+				mainEditText.setText(initialText);
 				mainEditText.setSelection(mainEditText.length());
-				initialText=prefilledText;
-			}
-			String spoilerText=getArguments().getString("spoilerText");
-			if(!TextUtils.isEmpty(spoilerText)) insertSpoiler(spoilerText);
-			ArrayList<Uri> mediaUris=getArguments().getParcelableArrayList("mediaAttachments");
-			if(mediaUris!=null && !mediaUris.isEmpty()){
-				for(Uri uri:mediaUris){
-					addMediaAttachment(uri, null);
+				if(!editingStatus.mediaAttachments.isEmpty()){
+					attachmentsView.setVisibility(View.VISIBLE);
+					for(Attachment att:editingStatus.mediaAttachments){
+						DraftMediaAttachment da=new DraftMediaAttachment();
+						da.serverAttachment=att;
+						da.description=att.description;
+						da.uri=Uri.parse(att.previewUrl);
+						attachmentsView.addView(createMediaAttachmentView(da));
+						attachments.add(da);
+					}
+					pollBtn.setEnabled(false);
+				}
+			}else{
+				String prefilledText=getArguments().getString("prefilledText");
+				if(!TextUtils.isEmpty(prefilledText)){
+					mainEditText.setText(prefilledText);
+					mainEditText.setSelection(mainEditText.length());
+					initialText=prefilledText;
+				}
+				ArrayList<Uri> mediaUris=getArguments().getParcelableArrayList("mediaAttachments");
+				if(mediaUris!=null && !mediaUris.isEmpty()){
+					for(Uri uri:mediaUris){
+						addMediaAttachment(uri, null);
+					}
 				}
 			}
 		}
-	}
 
-	private void insertSpoiler(String text) {
-		hasSpoiler=true;
-		if (text!=null) spoilerEdit.setText(text);
-		spoilerEdit.setVisibility(View.VISIBLE);
-		spoilerBtn.setSelected(true);
+		if(editingStatus!=null){
+			updateCharCounter();
+		}
 	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
 		publishButton=new Button(getActivity());
-		publishButton.setText(R.string.publish);
+		publishButton.setText(editingStatus==null ? R.string.publish : R.string.save);
 		publishButton.setOnClickListener(this::onPublishClick);
 		LinearLayout wrap=new LinearLayout(getActivity());
 		wrap.setOrientation(LinearLayout.HORIZONTAL);
@@ -536,7 +577,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		wrap.addView(publishButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		wrap.setPadding(V.dp(16), V.dp(4), V.dp(16), V.dp(8));
 		wrap.setClipToPadding(false);
-		MenuItem item=menu.add(R.string.publish);
+		MenuItem item=menu.add(editingStatus==null ? R.string.publish : R.string.save);
 		item.setActionView(wrap);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		updatePublishButtonState();
@@ -554,7 +595,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	}
 
 	@SuppressLint("NewApi")
-	private void updateCharCounter(CharSequence text){
+	private void updateCharCounter(){
+		CharSequence text=mainEditText.getText();
+
 		String countableText=TwitterTextEmojiRegex.VALID_EMOJI_PATTERN.matcher(
 				MENTION_PATTERN.matcher(
 						URL_PATTERN.matcher(text).replaceAll("$2xxxxxxxxxxxxxxxxxxxxxxx")
@@ -566,6 +609,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			charCount++;
 		}
 
+		if(hasSpoiler){
+			charCount+=spoilerEdit.length();
+		}
 		charCounter.setText(String.valueOf(charLimit-charCount));
 		trimmedCharCount=text.toString().trim().length();
 		updatePublishButtonState();
@@ -578,11 +624,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			if(opt.edit.length()>0)
 				nonEmptyPollOptionsCount++;
 		}
-		if(publishButton!=null){
-			publishButton.setEnabled((trimmedCharCount>0 || !attachments.isEmpty()) && charCount<=charLimit
-					&& uploadingAttachment==null && failedAttachments.isEmpty() && queuedAttachments.isEmpty()
-					&& (pollOptions.isEmpty() || nonEmptyPollOptionsCount>1));
-		}
+		publishButton.setEnabled((trimmedCharCount>0 || !attachments.isEmpty()) && charCount<=charLimit && uploadingAttachment==null && failedAttachments.isEmpty() && queuedAttachments.isEmpty()
+				&& (pollOptions.isEmpty() || nonEmptyPollOptionsCount>1));
 	}
 
 	private void onCustomEmojiClick(Emoji emoji){
@@ -638,34 +681,54 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		sendProgress.setVisibility(View.VISIBLE);
 		sendError.setVisibility(View.GONE);
 
-		new CreateStatus(req, uuid)
-				.setCallback(new Callback<>(){
-					@Override
-					public void onSuccess(Status result){
-						wm.removeView(sendingOverlay);
-						sendingOverlay=null;
-						E.post(new StatusCreatedEvent(result));
-						if(replyTo!=null){
-							replyTo.repliesCount++;
-							E.post(new StatusCountersUpdatedEvent(replyTo));
-						}
-						Nav.finish(ComposeFragment.this);
+		Callback<Status> resCallback=new Callback<>(){
+			@Override
+			public void onSuccess(Status result){
+				wm.removeView(sendingOverlay);
+				sendingOverlay=null;
+				if(editingStatus==null){
+					E.post(new StatusCreatedEvent(result));
+					if(replyTo!=null){
+						replyTo.repliesCount++;
+						E.post(new StatusCountersUpdatedEvent(replyTo));
 					}
+				}else{
+					E.post(new StatusUpdatedEvent(result));
+				}
+				Nav.finish(ComposeFragment.this);
+			}
 
-					@Override
-					public void onError(ErrorResponse error){
-						wm.removeView(sendingOverlay);
-						sendingOverlay=null;
-						sendProgress.setVisibility(View.GONE);
-						sendError.setVisibility(View.VISIBLE);
-						publishButton.setEnabled(true);
-						error.showToast(getActivity());
-					}
-				})
-				.exec(accountID);
+			@Override
+			public void onError(ErrorResponse error){
+				wm.removeView(sendingOverlay);
+				sendingOverlay=null;
+				sendProgress.setVisibility(View.GONE);
+				sendError.setVisibility(View.VISIBLE);
+				publishButton.setEnabled(true);
+				error.showToast(getActivity());
+			}
+		};
+
+		if(editingStatus!=null){
+			new EditStatus(req, editingStatus.id)
+					.setCallback(resCallback)
+					.exec(accountID);
+		}else{
+			new CreateStatus(req, uuid)
+					.setCallback(resCallback)
+					.exec(accountID);
+		}
 	}
 
 	private boolean hasDraft(){
+		if(editingStatus!=null){
+			if(!mainEditText.getText().toString().equals(initialText))
+				return true;
+			List<String> existingMediaIDs=editingStatus.mediaAttachments.stream().map(a->a.id).collect(Collectors.toList());
+			if(!existingMediaIDs.equals(attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList())))
+				return true;
+			return pollChanged;
+		}
 		boolean pollFieldsHaveContent=false;
 		for(DraftPollOption opt:pollOptions)
 			pollFieldsHaveContent|=opt.edit.length()>0;
@@ -716,7 +779,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	private void confirmDiscardDraftAndFinish(){
 		new M3AlertDialogBuilder(getActivity())
-				.setTitle(R.string.discard_draft)
+				.setTitle(editingStatus==null ? R.string.discard_draft : R.string.discard_changes)
 				.setPositiveButton(R.string.discard, (dialog, which)->Nav.finish(this))
 				.setNegativeButton(R.string.cancel, null)
 				.show();
@@ -996,7 +1059,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			pollOptionsView.startDragging(option.view);
 			return true;
 		});
-		option.edit.addTextChangedListener(new SimpleTextWatcher(e->updatePublishButtonState()));
+		option.edit.addTextChangedListener(new SimpleTextWatcher(e->{
+			if(!creatingView)
+				pollChanged=true;
+			updatePublishButtonState();
+		}));
 		option.edit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(instance.configuration!=null && instance.configuration.polls!=null && instance.configuration.polls.maxCharactersPerOption>0 ? instance.configuration.polls.maxCharactersPerOption : 50)});
 
 		pollOptionsView.addView(option.view);
@@ -1016,6 +1083,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private void onSwapPollOptions(int oldIndex, int newIndex){
 		pollOptions.add(newIndex, pollOptions.remove(oldIndex));
 		updatePollOptionHints();
+		pollChanged=true;
 	}
 
 	private void showPollDurationMenu(){
@@ -1039,6 +1107,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				default -> throw new IllegalStateException("Unexpected value: "+item.getItemId());
 			};
 			pollDurationView.setText(getString(R.string.compose_poll_duration, pollDurationStr=item.getTitle().toString()));
+			pollChanged=true;
 			return true;
 		});
 		menu.show();
@@ -1055,6 +1124,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerEdit.setText("");
 			spoilerBtn.setSelected(false);
 			mainEditText.requestFocus();
+			updateCharCounter();
 		}
 	}
 
