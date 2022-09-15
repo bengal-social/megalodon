@@ -371,6 +371,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				attachmentsView.addView(createMediaAttachmentView(att));
 			}
 		}
+
+		if(editingStatus!=null && editingStatus.visibility!=null) {
+			statusVisibility=editingStatus.visibility;
+		}
 		updateVisibilityIcon();
 
 		autocompleteViewController=new ComposeAutocompleteViewController(getActivity(), accountID);
