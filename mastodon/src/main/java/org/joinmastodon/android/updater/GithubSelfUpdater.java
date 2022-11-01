@@ -20,7 +20,7 @@ public abstract class GithubSelfUpdater{
 	}
 
 	public static boolean needSelfUpdating(){
-		return BuildConfig.BUILD_TYPE.equals("githubRelease");
+		return BuildConfig.BUILD_TYPE.equals("githubRelease") || BuildConfig.BUILD_TYPE.equals("debug");
 	}
 
 	public abstract void maybeCheckForUpdates();

@@ -94,8 +94,8 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 	public void maybeCheckForUpdates(){
 		if(state!=UpdateState.NO_UPDATE && state!=UpdateState.UPDATE_AVAILABLE)
 			return;
-		long timeSinceLastCheck=System.currentTimeMillis()-getPrefs().getLong("lastCheck", 0);
-		if(timeSinceLastCheck>CHECK_PERIOD){
+		long timeSinceLastCheck=System.currentTimeMillis()-getPrefs().getLong("lastCheck", CHECK_PERIOD);
+		if(timeSinceLastCheck>=CHECK_PERIOD){
 			setState(UpdateState.CHECKING);
 			MastodonAPIController.runInBackground(this::actuallyCheckForUpdates);
 		}
@@ -109,18 +109,25 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 		try(Response resp=call.execute()){
 			JsonObject obj=JsonParser.parseReader(resp.body().charStream()).getAsJsonObject();
 			String tag=obj.get("tag_name").getAsString();
-			Matcher matcher=Pattern.compile("v(\\d+)\\.(\\d+)\\.(\\d+)").matcher(tag);
+			Matcher matcher=Pattern.compile("v(\\d+)\\.(\\d+)\\.(\\d+)\\+fork\\.(\\d+)").matcher(tag);
 			if(!matcher.find()){
 				Log.w(TAG, "actuallyCheckForUpdates: release tag has wrong format: "+tag);
 				return;
 			}
-			int newMajor=Integer.parseInt(matcher.group(1)), newMinor=Integer.parseInt(matcher.group(2)), newRevision=Integer.parseInt(matcher.group(3));
-			String[] currentParts=BuildConfig.VERSION_NAME.split("\\.");
-			int curMajor=Integer.parseInt(currentParts[0]), curMinor=Integer.parseInt(currentParts[1]), curRevision=Integer.parseInt(currentParts[2]);
+			int newMajor=Integer.parseInt(matcher.group(1)),
+				newMinor=Integer.parseInt(matcher.group(2)),
+				newRevision=Integer.parseInt(matcher.group(3)),
+				newForkNumber=Integer.parseInt(matcher.group(4));
+
+			String[] currentParts=BuildConfig.VERSION_NAME.split("[.+]");
+			int curMajor=Integer.parseInt(currentParts[0]),
+				curMinor=Integer.parseInt(currentParts[1]),
+				curRevision=Integer.parseInt(currentParts[2]),
+				curForkNumber=Integer.parseInt(currentParts[4]);
 			long newVersion=((long)newMajor << 32) | ((long)newMinor << 16) | newRevision;
 			long curVersion=((long)curMajor << 32) | ((long)curMinor << 16) | curRevision;
-			if(newVersion>curVersion || BuildConfig.DEBUG){
-				String version=newMajor+"."+newMinor+"."+newRevision;
+			if(newVersion>curVersion || newForkNumber>curForkNumber || BuildConfig.DEBUG){
+				String version=newMajor+"."+newMinor+"."+newRevision+"+fork."+newForkNumber;
 				Log.d(TAG, "actuallyCheckForUpdates: new version: "+version);
 				for(JsonElement el:obj.getAsJsonArray("assets")){
 					JsonObject asset=el.getAsJsonObject();
