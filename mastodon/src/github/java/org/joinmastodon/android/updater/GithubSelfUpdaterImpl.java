@@ -103,7 +103,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 
 	private void actuallyCheckForUpdates(){
 		Request req=new Request.Builder()
-				.url("https://api.github.com/repos/mastodon/mastodon-android/releases/latest")
+				.url("https://api.github.com/repos/sk22/mastodon-android-fork/releases/latest")
 				.build();
 		Call call=MastodonAPIController.getHttpClient().newCall(req);
 		try(Response resp=call.execute()){
