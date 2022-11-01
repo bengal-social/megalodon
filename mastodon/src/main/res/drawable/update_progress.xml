@@ -2,11 +2,11 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@android:id/progress">
 		<shape
-			android:innerRadius="18dp"
+			android:innerRadius="16dp"
 			android:shape="ring"
 			android:thickness="4dp"
 			android:useLevel="true">
-			<solid android:color="@color/gray_100"/>
+			<solid android:color="?colorSearchHint"/>
 		</shape>
 	</item>
 </layer-list>
