@@ -127,7 +127,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 			}
 			int curMajor=Integer.parseInt(matcher.group(1)),
 				curMinor=Integer.parseInt(matcher.group(2)),
-				curRevision=Integer.parseInt(matcher.group(3));
+				curRevision=Integer.parseInt(matcher.group(3)),
 				curForkNumber=Integer.parseInt(matcher.group(4));
 			long newVersion=((long)newMajor << 32) | ((long)newMinor << 16) | newRevision;
 			long curVersion=((long)curMajor << 32) | ((long)curMinor << 16) | curRevision;
