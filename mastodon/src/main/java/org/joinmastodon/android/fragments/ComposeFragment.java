@@ -185,7 +185,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private ImageView sendError;
 	private View sendingOverlay;
 	private WindowManager wm;
-	private StatusPrivacy statusVisibility=StatusPrivacy.UNLISTED;
+	private StatusPrivacy statusVisibility=StatusPrivacy.PUBLIC;
 	private ComposeAutocompleteSpan currentAutocompleteSpan;
 	private FrameLayout mainEditTextWrap;
 	private ComposeAutocompleteViewController autocompleteViewController;
