@@ -4,6 +4,8 @@
 
 > A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
 
+[![Download button](https://img.shields.io/badge/dynamic/json?color=ae218a&label=download%20apk&prefix=mastodos%20&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/mastodon-android-fork/releases/latest/download/mastodos.apk)
+
 ## Changes
 
 ### Features
