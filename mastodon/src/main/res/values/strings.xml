@@ -275,7 +275,7 @@
 	<string name="settings_privacy_policy">Privacy policy</string>
 	<string name="settings_spicy">The spicy zone</string>
 	<string name="settings_clear_cache">Clear media cache</string>
-	<string name="settings_app_version">Mastodon for Android v%1$s (%2$d)</string>
+	<string name="settings_app_version">Mastodos v%1$s (%2$d)</string>
 	<string name="media_cache_cleared">Media cache cleared</string>
 	<string name="confirm_log_out">Are you sure you want to sign out?</string>
 	<string name="sensitive_content">Sensitive content</string>
@@ -396,9 +396,9 @@
 	<string name="upload_error_connection_lost">Your device lost connection to the internet</string>
 	<string name="upload_processing">Processing…</string>
 	<!-- %s is version like 1.2.3 -->
-	<string name="update_available">Mastodon for Android %s is ready to download.</string>
+	<string name="update_available">Mastodos %s is ready to download.</string>
 	<!-- %s is version like 1.2.3 -->
-	<string name="update_ready">Mastodon for Android %s is downloaded and ready to install.</string>
+	<string name="update_ready">Mastodos %s is downloaded and ready to install.</string>
 	<!-- %s is file size -->
 	<string name="download_update">Download (%s)</string>
 	<string name="install_update">Install</string>
