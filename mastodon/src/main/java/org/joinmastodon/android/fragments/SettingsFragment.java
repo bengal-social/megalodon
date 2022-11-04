@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -71,6 +72,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	private PushSubscription pushSubscription;
 
 	private ImageView themeTransitionWindowView;
+	private TextItem checkForUpdateItem;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -118,6 +120,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new TextItem(R.string.settings_privacy_policy, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms")));
 
 		items.add(new RedHeaderItem(R.string.settings_spicy));
+		if (GithubSelfUpdater.needSelfUpdating()) {
+			checkForUpdateItem = new TextItem(R.string.check_for_update, GithubSelfUpdater.getInstance()::checkForUpdates);
+			items.add(checkForUpdateItem);
+		}
 		items.add(new TextItem(R.string.settings_clear_cache, this::clearImageCache));
 		items.add(new TextItem(R.string.log_out, this::confirmLogOut));
 
@@ -326,11 +332,21 @@ public class SettingsFragment extends MastodonToolbarFragment{
 
 	@Subscribe
 	public void onSelfUpdateStateChanged(SelfUpdateStateChangedEvent ev){
-		if(items.get(0) instanceof UpdateItem item){
-			RecyclerView.ViewHolder holder=list.findViewHolderForAdapterPosition(0);
-			if(holder instanceof UpdateViewHolder uvh){
-				uvh.bind(item);
-			}
+		checkForUpdateItem.loading = ev.state == GithubSelfUpdater.UpdateState.CHECKING;
+		if (list.findViewHolderForAdapterPosition(items.indexOf(checkForUpdateItem)) instanceof TextViewHolder tvh) tvh.rebind();
+		
+		UpdateItem updateItem = null;
+		if(items.get(0) instanceof UpdateItem item0) {
+			updateItem = item0;
+		} else if (ev.state != GithubSelfUpdater.UpdateState.CHECKING
+				&& ev.state != GithubSelfUpdater.UpdateState.NO_UPDATE) {
+			updateItem = new UpdateItem();
+			items.add(0, updateItem);
+			list.setAdapter(new SettingsAdapter());
+		}
+
+		if(updateItem != null && list.findViewHolderForAdapterPosition(0) instanceof UpdateViewHolder uvh){
+			uvh.bind(updateItem);
 		}
 	}
 
@@ -398,10 +414,16 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	private class TextItem extends Item{
 		private String text;
 		private Runnable onClick;
+		private boolean loading;
 
-		public TextItem(@StringRes int text, Runnable onClick){
+		public TextItem(@StringRes int text, Runnable onClick) {
+			this(text, onClick, false);
+		}
+
+		public TextItem(@StringRes int text, Runnable onClick, boolean loading){
 			this.text=getString(text);
 			this.onClick=onClick;
+			this.loading=loading;
 		}
 
 		@Override
@@ -630,14 +652,18 @@ public class SettingsFragment extends MastodonToolbarFragment{
 
 	private class TextViewHolder extends BindableViewHolder<TextItem> implements UsableRecyclerView.Clickable{
 		private final TextView text;
+		private final ProgressBar progress;
+
 		public TextViewHolder(){
 			super(getActivity(), R.layout.item_settings_text, list);
-			text=(TextView) itemView;
+			text = itemView.findViewById(R.id.text);
+			progress = itemView.findViewById(R.id.progress);
 		}
 
 		@Override
 		public void onBind(TextItem item){
 			text.setText(item.text);
+			progress.animate().alpha(item.loading ? 1 : 0);
 		}
 
 		@Override
@@ -692,8 +718,9 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		@Override
 		public void onBind(UpdateItem item){
 			GithubSelfUpdater updater=GithubSelfUpdater.getInstance();
-			GithubSelfUpdater.UpdateInfo info=updater.getUpdateInfo();
 			GithubSelfUpdater.UpdateState state=updater.getState();
+			if (state == GithubSelfUpdater.UpdateState.CHECKING) return;
+			GithubSelfUpdater.UpdateInfo info=updater.getUpdateInfo();
 			if(state!=GithubSelfUpdater.UpdateState.DOWNLOADED){
 				text.setText(getString(R.string.update_available, info.version));
 				button.setText(getString(R.string.download_update, UiUtils.formatFileSize(getActivity(), info.size, false)));

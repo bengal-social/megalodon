@@ -23,6 +23,8 @@ public abstract class GithubSelfUpdater{
 		return BuildConfig.BUILD_TYPE.equals("githubRelease") || BuildConfig.BUILD_TYPE.equals("debug");
 	}
 
+	public abstract void checkForUpdates();
+
 	public abstract void maybeCheckForUpdates();
 
 	public abstract GithubSelfUpdater.UpdateState getState();
