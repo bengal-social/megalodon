@@ -26,6 +26,8 @@ import org.joinmastodon.android.api.MastodonAPIController;
 import org.joinmastodon.android.events.SelfUpdateStateChangedEvent;
 
 import java.io.File;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -99,6 +101,12 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 			setState(UpdateState.CHECKING);
 			MastodonAPIController.runInBackground(this::actuallyCheckForUpdates);
 		}
+	}
+
+	@Override
+	public void checkForUpdates() {
+		setState(UpdateState.CHECKING);
+		MastodonAPIController.runInBackground(this::actuallyCheckForUpdates);
 	}
 
 	private void actuallyCheckForUpdates(){
