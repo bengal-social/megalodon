@@ -38,7 +38,7 @@ import okhttp3.Response;
 
 @Keep
 public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
-	private static final long CHECK_PERIOD=24*3600*1000L;
+	private static final long CHECK_PERIOD=6*3600*1000L;
 	private static final String TAG="GithubSelfUpdater";
 
 	private UpdateState state=UpdateState.NO_UPDATE;
