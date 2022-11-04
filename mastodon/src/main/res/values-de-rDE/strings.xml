@@ -393,5 +393,6 @@
 	<!-- %s is file size -->
 	<string name="download_update">Download (%s)</string>
 	<string name="install_update">Installieren</string>
-  <string name="check_for_update">Auf Update prüfen</string>
+	<string name="check_for_update">Auf Update prüfen</string>
+	<string name="no_update_available">Kein Update verfügbar</string>
 </resources>

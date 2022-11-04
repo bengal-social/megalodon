@@ -348,6 +348,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		if(updateItem != null && list.findViewHolderForAdapterPosition(0) instanceof UpdateViewHolder uvh){
 			uvh.bind(updateItem);
 		}
+
+		if (ev.state == GithubSelfUpdater.UpdateState.NO_UPDATE) {
+			Toast.makeText(getActivity(), R.string.no_update_available, Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private static abstract class Item{
