@@ -154,6 +154,38 @@
 				android:layout_gravity="center_horizontal"
 				android:visibility="gone"/>
 
+			<LinearLayout
+				android:id="@+id/sensitive_item"
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:gravity="center_vertical"
+				android:layoutDirection="locale"
+				android:paddingLeft="16dp"
+				android:paddingRight="16dp"
+				android:paddingTop="12dp"
+				android:paddingBottom="12dp"
+				android:background="?android:selectableItemBackground"
+				android:visibility="gone">
+
+				<ImageView
+					android:id="@+id/sensitive_icon"
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_marginEnd="32dp"
+					android:src="@drawable/ic_fluent_flag_24_selector"
+					android:tint="?android:textColorPrimary"
+					android:importantForAccessibility="no"/>
+
+				<TextView
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:textSize="16sp"
+					android:singleLine="true"
+					android:text="@string/mark_media_as_sensitive" />
+			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
 
