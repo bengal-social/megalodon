@@ -16,8 +16,8 @@
 * [Add image description button and viewer](https://github.com/sk22/mastodon-android-fork/tree/feature/display-alt-text) ([Pull request](https://github.com/mastodon/mastodon-android/pull/129))
 * [Implement pinning posts and displaying pinned posts](https://github.com/sk22/mastodon-android-fork/tree/feature/pin-posts) ([Pull request](https://github.com/mastodon/mastodon-android/pull/140))
 * [Implement a bookmark button and list](https://github.com/sk22/mastodon-android-fork/tree/feature/bookmarks) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/22))
-* [Add “Mark media as sensitive” option](https://github.com/sk22/mastodon-android-fork/tree/feature/mark-media-as-sensitive)
 * [Add “Check for update” button in addition to integrated update checker](https://github.com/sk22/mastodon-android-fork/commits/feature/check-for-update-button)
+* [Add “Mark media as sensitive” option](https://github.com/sk22/mastodon-android-fork/tree/feature/mark-media-as-sensitive)
 
 ### Behavior
 
