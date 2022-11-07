@@ -278,6 +278,7 @@
 	<string name="button_share">Share</string>
 	<string name="media_no_description">Media without description</string>
 	<string name="add_media">Add media</string>
+	<string name="mark_media_as_sensitive">Mark media as sensitive</string>
 	<string name="add_poll">Add a poll</string>
 	<string name="emoji">Emoji</string>
 	<string name="post_visibility">Post visibility</string>

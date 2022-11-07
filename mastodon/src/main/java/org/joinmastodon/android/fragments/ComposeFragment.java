@@ -160,11 +160,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	private Button publishButton;
 	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn;
+	private ImageView sensitiveIcon;
 	private ComposeMediaLayout attachmentsView;
 	private TextView replyText;
 	private ReorderableLinearLayout pollOptionsView;
 	private View pollWrap;
 	private View addPollOptionBtn;
+	private View sensitiveItem;
 	private TextView pollDurationView;
 
 	private ArrayList<DraftPollOption> pollOptions=new ArrayList<>();
@@ -180,6 +182,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private String pollDurationStr;
 	private EditText spoilerEdit;
 	private boolean hasSpoiler;
+	private boolean sensitive;
 	private ProgressBar sendProgress;
 	private ImageView sendError;
 	private View sendingOverlay;
@@ -281,6 +284,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		emojiBtn=view.findViewById(R.id.btn_emoji);
 		spoilerBtn=view.findViewById(R.id.btn_spoiler);
 		visibilityBtn=view.findViewById(R.id.btn_visibility);
+		sensitiveIcon=view.findViewById(R.id.sensitive_icon);
+		sensitiveItem=view.findViewById(R.id.sensitive_item);
 		replyText=view.findViewById(R.id.reply_text);
 
 		mediaBtn.setOnClickListener(v->openFilePicker());
@@ -288,6 +293,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		emojiBtn.setOnClickListener(v->emojiKeyboard.toggleKeyboardPopup(mainEditText));
 		spoilerBtn.setOnClickListener(v->toggleSpoiler());
 		visibilityBtn.setOnClickListener(this::onVisibilityClick);
+		sensitiveItem.setOnClickListener(v->toggleSensitive());
 		emojiKeyboard.setOnIconChangedListener(new PopupKeyboard.OnIconChangeListener(){
 			@Override
 			public void onIconChanged(int icon){
@@ -352,6 +358,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerBtn.setSelected(true);
 		}
 
+		sensitive = savedInstanceState != null && savedInstanceState.getBoolean("sensitive", false);
+		sensitiveIcon.setSelected(sensitive);
+
 		if(savedInstanceState!=null && savedInstanceState.containsKey("attachments")){
 			ArrayList<Parcelable> serializedAttachments=savedInstanceState.getParcelableArrayList("attachments");
 			for(Parcelable a:serializedAttachments){
@@ -370,7 +379,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		if(editingStatus!=null && editingStatus.visibility!=null) {
 			statusVisibility=editingStatus.visibility;
 		}
+
 		updateVisibilityIcon();
+		updateSensitivity();
 
 		autocompleteViewController=new ComposeAutocompleteViewController(getActivity(), accountID);
 		autocompleteViewController.setCompletionSelectedListener(this::onAutocompleteOptionSelected);
@@ -404,6 +415,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			}
 			outState.putSerializable("visibility", statusVisibility);
 		}
+		outState.putBoolean("sensitive", sensitive);
 	}
 
 	@Override
@@ -661,6 +673,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		CreateStatus.Request req=new CreateStatus.Request();
 		req.status=text;
 		req.visibility=statusVisibility;
+		req.sensitive=sensitive;
 		if(!attachments.isEmpty()){
 			req.mediaIds=attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList());
 		}
@@ -866,6 +879,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			uploadNextQueuedAttachment();
 		}
 		updatePublishButtonState();
+		updateSensitivity();
 		if(getMediaAttachmentsCount()==MAX_ATTACHMENTS)
 			mediaBtn.setEnabled(false);
 		return true;
@@ -1040,6 +1054,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		updatePublishButtonState();
 		pollBtn.setEnabled(attachments.isEmpty());
 		mediaBtn.setEnabled(true);
+		updateSensitivity();
 	}
 
 	private void onRetryOrCancelMediaUploadClick(View v){
@@ -1235,13 +1250,27 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerEdit.setVisibility(View.VISIBLE);
 			spoilerBtn.setSelected(true);
 			spoilerEdit.requestFocus();
+			updateSensitivity();
 		}else{
 			spoilerEdit.setVisibility(View.GONE);
 			spoilerEdit.setText("");
 			spoilerBtn.setSelected(false);
 			mainEditText.requestFocus();
 			updateCharCounter();
+			sensitiveIcon.setVisibility(getMediaAttachmentsCount() > 0 ? View.VISIBLE : View.GONE);
 		}
+		updateSensitivity();
+	}
+
+	private void toggleSensitive() {
+		sensitive=!sensitive;
+		sensitiveIcon.setSelected(sensitive);
+	}
+
+	private void updateSensitivity() {
+		sensitiveItem.setVisibility(View.GONE);
+		if (!attachments.isEmpty() && !hasSpoiler) sensitiveItem.setVisibility(View.VISIBLE);
+		if (attachments.isEmpty()) sensitive = false;
 	}
 
 	private int getMediaAttachmentsCount(){

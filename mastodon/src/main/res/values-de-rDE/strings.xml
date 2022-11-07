@@ -272,6 +272,7 @@
 	<string name="button_share">Teilen</string>
 	<string name="media_no_description">Medien ohne Beschreibung</string>
 	<string name="add_media">Medien hinzufügen</string>
+	<string name="mark_media_as_sensitive">Medien als NSFW markieren</string>
 	<string name="add_poll">Umfrage hinzufügen</string>
 	<string name="emoji">Emoji</string>
 	<string name="post_visibility">Sichtbarkeit des Beitrages</string>
