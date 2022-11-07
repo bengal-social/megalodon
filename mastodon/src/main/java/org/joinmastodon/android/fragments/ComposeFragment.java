@@ -358,7 +358,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerBtn.setSelected(true);
 		}
 
-		sensitive = savedInstanceState != null && savedInstanceState.getBoolean("sensitive", false);
+		sensitive = editingStatus != null ? editingStatus.sensitive
+				: (savedInstanceState != null && savedInstanceState.getBoolean("sensitive", false));
 		sensitiveIcon.setSelected(sensitive);
 
 		if(savedInstanceState!=null && savedInstanceState.containsKey("attachments")){
@@ -381,7 +382,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		}
 
 		updateVisibilityIcon();
-		updateSensitivity();
 
 		autocompleteViewController=new ComposeAutocompleteViewController(getActivity(), accountID);
 		autocompleteViewController.setCompletionSelectedListener(this::onAutocompleteOptionSelected);
@@ -562,6 +562,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				}
 			}
 		}
+
+		updateSensitive();
 
 		if(editingStatus!=null){
 			updateCharCounter();
@@ -879,7 +881,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			uploadNextQueuedAttachment();
 		}
 		updatePublishButtonState();
-		updateSensitivity();
+		updateSensitive();
 		if(getMediaAttachmentsCount()==MAX_ATTACHMENTS)
 			mediaBtn.setEnabled(false);
 		return true;
@@ -1054,7 +1056,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		updatePublishButtonState();
 		pollBtn.setEnabled(attachments.isEmpty());
 		mediaBtn.setEnabled(true);
-		updateSensitivity();
+		updateSensitive();
 	}
 
 	private void onRetryOrCancelMediaUploadClick(View v){
@@ -1250,7 +1252,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerEdit.setVisibility(View.VISIBLE);
 			spoilerBtn.setSelected(true);
 			spoilerEdit.requestFocus();
-			updateSensitivity();
 		}else{
 			spoilerEdit.setVisibility(View.GONE);
 			spoilerEdit.setText("");
@@ -1259,7 +1260,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			updateCharCounter();
 			sensitiveIcon.setVisibility(getMediaAttachmentsCount() > 0 ? View.VISIBLE : View.GONE);
 		}
-		updateSensitivity();
+		updateSensitive();
 	}
 
 	private void toggleSensitive() {
@@ -1267,7 +1268,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		sensitiveIcon.setSelected(sensitive);
 	}
 
-	private void updateSensitivity() {
+	private void updateSensitive() {
 		sensitiveItem.setVisibility(View.GONE);
 		if (!attachments.isEmpty() && !hasSpoiler) sensitiveItem.setVisibility(View.VISIBLE);
 		if (attachments.isEmpty()) sensitive = false;
