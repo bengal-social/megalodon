@@ -315,10 +315,12 @@
 	<string name="downloading">wird heruntergeladen …</string>
 	<string name="no_app_to_handle_action">Es gibt keine App, um diese Aktion auszuführen</string>
 	<string name="local_timeline">Community</string>
+	<string name="federated_timeline">Föderation</string>
 	<string name="trending_posts_info_banner">Dies sind Beiträge, die auf deinem Mastodon-Server gerade angesagt sind.</string>
 	<string name="trending_hashtags_info_banner">Dies sind Hashtags, die auf deinem Mastodon-Server gerade angesagt sind.</string>
 	<string name="trending_links_info_banner">Dies sind journalistische Nachrichten, die auf deinem Mastodon-Server gerade am häufigsten geteilt werden.</string>
 	<string name="local_timeline_info_banner">Dies sind die neuesten Beiträge der Leute, die den gleichen Mastodon-Server verwenden wie du.</string>
+	<string name="federated_timeline_info_banner">Dies sind die neusten Beiträge der Leute, die in der Föderation deines Servers sind.</string>
 	<string name="dismiss">Verwerfen</string>
 	<string name="see_new_posts">Neue Beiträge anzeigen</string>
 	<string name="load_missing_posts">Weitere Beiträge laden</string>
