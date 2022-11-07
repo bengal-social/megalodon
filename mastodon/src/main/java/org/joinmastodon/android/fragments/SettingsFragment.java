@@ -115,7 +115,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 
 		items.add(new HeaderItem(R.string.settings_boring));
 		items.add(new TextItem(R.string.settings_account, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/auth/edit")));
-		items.add(new TextItem(R.string.settings_contribute, ()->UiUtils.launchWebBrowser(getActivity(), "https://github.com/mastodon/mastodon-android")));
 		items.add(new TextItem(R.string.settings_tos, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms")));
 		items.add(new TextItem(R.string.settings_privacy_policy, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms")));
 
@@ -124,6 +123,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			checkForUpdateItem = new TextItem(R.string.check_for_update, GithubSelfUpdater.getInstance()::checkForUpdates);
 			items.add(checkForUpdateItem);
 		}
+		items.add(new TextItem(R.string.settings_contribute, ()->UiUtils.launchWebBrowser(getActivity(), "https://github.com/mastodon/mastodon-android")));
 		items.add(new TextItem(R.string.settings_clear_cache, this::clearImageCache));
 		items.add(new TextItem(R.string.log_out, this::confirmLogOut));
 
