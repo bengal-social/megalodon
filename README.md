@@ -16,6 +16,8 @@
 * [Add image description button and viewer](https://github.com/sk22/mastodon-android-fork/tree/feature/display-alt-text) ([Pull request](https://github.com/mastodon/mastodon-android/pull/129))
 * [Implement pinning posts and displaying pinned posts](https://github.com/sk22/mastodon-android-fork/tree/feature/pin-posts) ([Pull request](https://github.com/mastodon/mastodon-android/pull/140))
 * [Implement a bookmark button and list](https://github.com/sk22/mastodon-android-fork/tree/feature/bookmarks) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/22))
+* [Add “Mark media as sensitive” option](https://github.com/sk22/mastodon-android-fork/tree/feature/mark-media-as-sensitive)
+* [Add “Check for update” button in addition to integrated update checker](https://github.com/sk22/mastodon-android-fork/commits/feature/check-for-update-button)
 
 ### Behavior
 
@@ -23,6 +25,13 @@
 * [Always preserve content warnings when replying](https://github.com/sk22/mastodon-android-fork/tree/feature/always-preserve-cw) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/113))
 * [Display full image when adding image description](https://github.com/sk22/mastodon-android-fork/tree/feature/compose-image-description-full-image) ([Pull request](https://github.com/mastodon/mastodon-android/pull/182))
 * [Implement deleting and re-drafting](https://github.com/sk22/mastodon-android-fork/tree/feature/delete-redraft) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/21))
+* [Set spoiler height independently to content height](https://github.com/sk22/mastodon-android-fork/commits/spoiler-height-independent) ([Fixes issue](https://github.com/mastodon/mastodon-android/issues/166))
+
+### Installation
+
+To install this app on your Android device, download the [latest release from GitHub](https://github.com/sk22/mastodon-android-fork/releases/latest/download/mastodos.apk) and open it. You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/mastodon-android-fork/releases) page.
+
+Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodon-android)’s automatic update checker. Mastodos will check for new updates available on GitHub and offer to download and install them. You can also manually press “Check for updates” at the bottom of the settings page!
 
 ### Branding
 
