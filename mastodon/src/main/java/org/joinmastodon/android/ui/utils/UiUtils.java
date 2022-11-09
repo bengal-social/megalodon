@@ -498,6 +498,11 @@ public class UiUtils{
 	}
 
 	public static void setRelationshipToActionButton(Relationship relationship, Button button){
+		setRelationshipToActionButton(relationship, button, false);
+	}
+
+	public static void setRelationshipToActionButton(Relationship relationship, Button button, boolean keepText){
+		CharSequence textBefore = keepText ? button.getText() : null;
 		boolean secondaryStyle;
 		if(relationship.blocking){
 			button.setText(R.string.button_blocked);
@@ -516,6 +521,8 @@ public class UiUtils{
 			secondaryStyle=true;
 		}
 
+		if (keepText) button.setText(textBefore);
+
 		button.setEnabled(!relationship.blockedBy);
 		int attr=secondaryStyle ? R.attr.secondaryButtonStyle : android.R.attr.buttonStyle;
 		TypedArray ta=button.getContext().obtainStyledAttributes(new int[]{attr});
@@ -532,17 +539,20 @@ public class UiUtils{
 		ta.recycle();
 	}
 
-	public static void performToggleAccountNotifications(Activity activity, Account account, String accountID, Relationship relationship, Button button, Consumer<Relationship> resultCallback) {
+	public static void performToggleAccountNotifications(Activity activity, Account account, String accountID, Relationship relationship, Button button, Consumer<Boolean> progressCallback, Consumer<Relationship> resultCallback) {
+		progressCallback.accept(true);
 		new SetAccountFollowed(account.id, true, relationship.showingReblogs, !relationship.notifying)
 				.setCallback(new Callback<>() {
 					@Override
 					public void onSuccess(Relationship result) {
 						resultCallback.accept(result);
+						progressCallback.accept(false);
 						Toast.makeText(activity, activity.getString(result.notifying ? R.string.user_post_notifications_on : R.string.user_post_notifications_off, '@'+account.username), Toast.LENGTH_SHORT).show();
 					}
 
 					@Override
 					public void onError(ErrorResponse error) {
+						progressCallback.accept(false);
 						error.showToast(activity);
 					}
 				}).exec(accountID);

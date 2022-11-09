@@ -171,20 +171,40 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_below="@id/profile_counters"
-						android:layout_alignParentEnd="true"
-						android:clipToPadding="false"
-						android:padding="16dp">
-
-						<Button
-							android:id="@+id/notify_btn"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:layout_marginRight="8dp"
-							android:paddingHorizontal="8dp"
-							android:drawableStart="@drawable/ic_fluent_alert_24_selector"
-							style="@style/Widget.Mastodon.Button.Secondary_LightOnDark" />
+						android:layout_alignParentEnd="true">
 
 						<FrameLayout
+							android:clipToPadding="false"
+							android:paddingVertical="16dp"
+							android:paddingLeft="16dp"
+							android:paddingRight="4dp"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content">
+							<org.joinmastodon.android.ui.views.ProgressBarButton
+								android:id="@+id/notify_btn"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="8dp"
+								android:drawableStart="@drawable/ic_fluent_alert_24_selector" />
+
+							<ProgressBar
+								android:id="@+id/notify_progress"
+								style="?android:progressBarStyleSmall"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center"
+								android:elevation="10dp"
+								android:indeterminate="true"
+								android:indeterminateTint="?colorButtonText"
+								android:outlineProvider="none"
+								android:visibility="gone" />
+						</FrameLayout>
+
+						<FrameLayout
+							android:clipToPadding="false"
+							android:paddingVertical="16dp"
+							android:paddingRight="16dp"
+							android:paddingLeft="4dp"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content">
 							<org.joinmastodon.android.ui.views.ProgressBarButton
