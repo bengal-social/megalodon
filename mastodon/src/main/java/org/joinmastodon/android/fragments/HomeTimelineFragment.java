@@ -162,6 +162,7 @@ public class HomeTimelineFragment extends StatusListFragment{
 	}
 
 	private void loadNewPosts(){
+		if (!GlobalUserPreferences.loadNewPosts) return;
 		dataLoading=true;
 		// The idea here is that we request the timeline such that if there are fewer than `limit` posts,
 		// we'll get the currently topmost post as last in the response. This way we know there's no gap

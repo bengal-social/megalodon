@@ -254,6 +254,7 @@
 	<string name="settings_behavior">App-Verhalten</string>
 	<string name="settings_show_replies">Antworten anzeigen</string>
 	<string name="settings_show_boosts">Geteilte Beiträge anzeigen</string>
+	<string name="settings_load_new_posts">Automatisch neue Beiträge laden</string>
 	<string name="settings_gif">Spiele animierte GIFs, Avatare und Emojis ab</string>
 	<string name="settings_custom_tabs">In-App-Browser verwenden</string>
 	<string name="settings_notifications">Benachrichtigungen</string>
