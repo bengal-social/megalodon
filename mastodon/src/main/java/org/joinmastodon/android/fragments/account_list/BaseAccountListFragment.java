@@ -353,7 +353,7 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 					bindRelationship();
 				});
 			}else if(id==R.id.hide_boosts){
-				new SetAccountFollowed(account.id, true, !relationship.showingReblogs)
+				new SetAccountFollowed(account.id, true, !relationship.showingReblogs, relationship.notifying)
 						.setCallback(new Callback<>(){
 							@Override
 							public void onSuccess(Relationship result){

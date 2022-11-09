@@ -310,6 +310,8 @@
 	<string name="open_in_browser">Open in browser</string>
 	<string name="hide_boosts_from_user">Hide reblogs from %s</string>
 	<string name="show_boosts_from_user">Show reblogs from %s</string>
+	<string name="user_post_notifications_on">Notifying about posts by %s</string>
+	<string name="user_post_notifications_off">No longer notifying about posts by %s</string>
 	<string name="signup_reason">why do you want to join?</string>
 	<string name="signup_reason_note">This will help us review your application.</string>
 	<string name="clear">Clear</string>

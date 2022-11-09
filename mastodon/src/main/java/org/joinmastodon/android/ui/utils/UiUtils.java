@@ -532,6 +532,22 @@ public class UiUtils{
 		ta.recycle();
 	}
 
+	public static void performToggleAccountNotifications(Activity activity, Account account, String accountID, Relationship relationship, Button button, Consumer<Relationship> resultCallback) {
+		new SetAccountFollowed(account.id, true, relationship.showingReblogs, !relationship.notifying)
+				.setCallback(new Callback<>() {
+					@Override
+					public void onSuccess(Relationship result) {
+						resultCallback.accept(result);
+						Toast.makeText(activity, activity.getString(result.notifying ? R.string.user_post_notifications_on : R.string.user_post_notifications_off, '@'+account.username), Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onError(ErrorResponse error) {
+						error.showToast(activity);
+					}
+				}).exec(accountID);
+	}
+
 	public static void performAccountAction(Activity activity, Account account, String accountID, Relationship relationship, Button button, Consumer<Boolean> progressCallback, Consumer<Relationship> resultCallback){
 		if(relationship.blocking){
 			confirmToggleBlockUser(activity, accountID, account, true, resultCallback);
@@ -539,7 +555,7 @@ public class UiUtils{
 			confirmToggleMuteUser(activity, accountID, account, true, resultCallback);
 		}else{
 			progressCallback.accept(true);
-			new SetAccountFollowed(account.id, !relationship.following && !relationship.requested, true)
+			new SetAccountFollowed(account.id, !relationship.following && !relationship.requested, true, false)
 					.setCallback(new Callback<>(){
 						@Override
 						public void onSuccess(Relationship result){

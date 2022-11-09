@@ -99,6 +99,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	private View avatarBorder;
 	private TextView name, username, bio, followersCount, followersLabel, followingCount, followingLabel, postsCount, postsLabel;
 	private ProgressBarButton actionButton;
+	private Button notifyButton;
 	private ViewPager2 pager;
 	private NestedRecyclerScrollView scrollView;
 	private AccountTimelineFragment postsFragment, postsWithRepliesFragment, pinnedPostsFragment, mediaFragment;
@@ -181,6 +182,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		postsLabel=content.findViewById(R.id.posts_label);
 		postsBtn=content.findViewById(R.id.posts_btn);
 		actionButton=content.findViewById(R.id.profile_action_btn);
+		notifyButton=content.findViewById(R.id.notify_btn);
 		pager=content.findViewById(R.id.pager);
 		scrollView=content.findViewById(R.id.scroller);
 		tabbar=content.findViewById(R.id.tabbar);
@@ -258,6 +260,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		});
 
 		actionButton.setOnClickListener(this::onActionButtonClick);
+		notifyButton.setOnClickListener(this::onNotifyButtonClick);
 		avatar.setOnClickListener(this::onAvatarClick);
 		cover.setOnClickListener(this::onCoverClick);
 		refreshLayout.setOnRefreshListener(this);
@@ -460,6 +463,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 
 		if(AccountSessionManager.getInstance().isSelf(accountID, account)){
 			actionButton.setText(R.string.edit_profile);
+			notifyButton.setVisibility(View.GONE);
 		}else{
 			actionButton.setVisibility(View.GONE);
 		}
@@ -577,7 +581,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 				updateRelationship();
 			});
 		}else if(id==R.id.hide_boosts){
-			new SetAccountFollowed(account.id, true, !relationship.showingReblogs)
+			new SetAccountFollowed(account.id, true, !relationship.showingReblogs, relationship.notifying)
 					.setCallback(new Callback<>(){
 						@Override
 						public void onSuccess(Relationship result){
@@ -625,6 +629,8 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		UiUtils.setRelationshipToActionButton(relationship, actionButton);
 		actionProgress.setIndeterminateTintList(actionButton.getTextColors());
 		followsYouView.setVisibility(relationship.followedBy ? View.VISIBLE : View.GONE);
+		notifyButton.setVisibility(relationship.following ? View.VISIBLE : View.GONE);
+		notifyButton.setSelected(relationship.notifying);
 	}
 
 	private void onScrollChanged(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY){
@@ -857,6 +863,10 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		att.meta.width=drawable.getIntrinsicWidth();
 		att.meta.height=drawable.getIntrinsicHeight();
 		return Collections.singletonList(att);
+	}
+
+	private void onNotifyButtonClick(View v) {
+		UiUtils.performToggleAccountNotifications(getActivity(), account, accountID, relationship, actionButton, this::updateRelationship);
 	}
 
 	private void onAvatarClick(View v){
