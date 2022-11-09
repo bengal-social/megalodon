@@ -7,6 +7,7 @@ public class GlobalUserPreferences{
 	public static boolean playGifs;
 	public static boolean useCustomTabs;
 	public static boolean trueBlackTheme;
+	public static boolean loadNewPosts;
 	public static ThemePreference theme;
 
 	private static SharedPreferences getPrefs(){
@@ -18,6 +19,7 @@ public class GlobalUserPreferences{
 		playGifs=prefs.getBoolean("playGifs", true);
 		useCustomTabs=prefs.getBoolean("useCustomTabs", true);
 		trueBlackTheme=prefs.getBoolean("trueBlackTheme", false);
+		loadNewPosts=prefs.getBoolean("loadNewPosts", true);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 	}
 
@@ -25,6 +27,7 @@ public class GlobalUserPreferences{
 		getPrefs().edit()
 				.putBoolean("playGifs", playGifs)
 				.putBoolean("useCustomTabs", useCustomTabs)
+				.putBoolean("loadNewPosts", loadNewPosts)
 				.putBoolean("trueBlackTheme", trueBlackTheme)
 				.putInt("theme", theme.ordinal())
 				.apply();

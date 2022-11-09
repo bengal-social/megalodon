@@ -24,6 +24,7 @@ import android.widget.Toolbar;
 import com.squareup.otto.Subscribe;
 
 import org.joinmastodon.android.E;
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.timelines.GetHomeTimeline;
 import org.joinmastodon.android.api.session.AccountSessionManager;
@@ -154,6 +155,7 @@ public class HomeTimelineFragment extends StatusListFragment{
 	}
 
 	private void loadNewPosts(){
+		if (!GlobalUserPreferences.loadNewPosts) return;
 		dataLoading=true;
 		// The idea here is that we request the timeline such that if there are fewer than `limit` posts,
 		// we'll get the currently topmost post as last in the response. This way we know there's no gap
