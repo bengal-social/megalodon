@@ -422,17 +422,17 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			outState.putStringArrayList("pollOptions", opts);
 			outState.putInt("pollDuration", pollDuration);
 			outState.putString("pollDurationStr", pollDurationStr);
-			outState.putBoolean("hasSpoiler", hasSpoiler);
-			if(!attachments.isEmpty()){
-				ArrayList<Parcelable> serializedAttachments=new ArrayList<>(attachments.size());
-				for(DraftMediaAttachment att:attachments){
-					serializedAttachments.add(Parcels.wrap(att));
-				}
-				outState.putParcelableArrayList("attachments", serializedAttachments);
-			}
-			outState.putSerializable("visibility", statusVisibility);
 		}
+		outState.putBoolean("hasSpoiler", hasSpoiler);
 		outState.putBoolean("sensitive", sensitive);
+		if(!attachments.isEmpty()){
+			ArrayList<Parcelable> serializedAttachments=new ArrayList<>(attachments.size());
+			for(DraftMediaAttachment att:attachments){
+				serializedAttachments.add(Parcels.wrap(att));
+			}
+			outState.putParcelableArrayList("attachments", serializedAttachments);
+		}
+		outState.putSerializable("visibility", statusVisibility);
 	}
 
 	@Override
@@ -557,6 +557,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 						da.serverAttachment=att;
 						da.description=att.description;
 						da.uri=Uri.parse(att.previewUrl);
+						da.state=AttachmentUploadState.DONE;
 						attachmentsView.addView(createMediaAttachmentView(da));
 						attachments.add(da);
 					}
