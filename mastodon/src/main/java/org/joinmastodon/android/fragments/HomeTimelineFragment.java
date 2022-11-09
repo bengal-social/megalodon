@@ -74,6 +74,13 @@ public class HomeTimelineFragment extends StatusListFragment{
 		loadData();
 	}
 
+	private List<Status> filterPosts(List<Status> items) {
+		return items.stream().filter(i ->
+				(GlobalUserPreferences.showReplies || i.inReplyToId == null) &&
+						(GlobalUserPreferences.showBoosts || i.reblog == null)
+		).collect(Collectors.toList());
+	}
+
 	@Override
 	protected void doLoadData(int offset, int count){
 		AccountSessionManager.getInstance()
@@ -83,11 +90,7 @@ public class HomeTimelineFragment extends StatusListFragment{
 					public void onSuccess(CacheablePaginatedResponse<List<Status>> result){
 						if(getActivity()==null)
 							return;
-						List<Status> filteredItems = result.items.stream().filter(i ->
-								(GlobalUserPreferences.showReplies || i.inReplyToId == null) &&
-								(GlobalUserPreferences.showBoosts || i.reblog == null)
-						).collect(Collectors.toList());
-
+						List<Status> filteredItems = filterPosts(result.items);
 						onDataLoaded(filteredItems, !result.items.isEmpty());
 						maxID=result.maxID;
 						if(result.isFromCache())
@@ -170,6 +173,7 @@ public class HomeTimelineFragment extends StatusListFragment{
 					public void onSuccess(List<Status> result){
 						currentRequest=null;
 						dataLoading=false;
+						result = filterPosts(result);
 						if(result.isEmpty() || getActivity()==null)
 							return;
 						Status last=result.get(result.size()-1);
