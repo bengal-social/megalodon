@@ -284,6 +284,8 @@
 	<string name="open_in_browser">Beitrag im Browser öffnen</string>
 	<string name="hide_boosts_from_user">Verberge geteilte Beiträge von %s</string>
 	<string name="show_boosts_from_user">Zeige geteilte Beiträge von %s</string>
+	<string name="user_post_notifications_on">Benachrichtigungen über neue Beiträge von %s aktiviert</string>
+	<string name="user_post_notifications_off">Benachrichtigungen über neue Beiträge von %s deaktiviert</string>
 	<string name="signup_reason">Weshalb möchtest du beitreten?</string>
 	<string name="signup_reason_note">Dies wird uns dabei helfen, deine Anmeldungsanfrage besser zu verarbeiten.</string>
 	<string name="clear">Löschen</string>

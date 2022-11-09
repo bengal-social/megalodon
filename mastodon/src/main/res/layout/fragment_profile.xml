@@ -166,31 +166,46 @@
 						</LinearLayout>
 					</LinearLayout>
 
-					<FrameLayout
+					<LinearLayout
 						android:id="@+id/profile_action_btn_wrap"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_alignParentEnd="true"
 						android:layout_below="@id/profile_counters"
-						android:padding="16dp"
-						android:clipToPadding="false">
-						<org.joinmastodon.android.ui.views.ProgressBarButton
-							android:id="@+id/profile_action_btn"
+						android:layout_alignParentEnd="true"
+						android:clipToPadding="false"
+						android:padding="16dp">
+
+						<Button
+							android:id="@+id/notify_btn"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							tools:text="Edit Profile"/>
-						<ProgressBar
-							android:id="@+id/action_progress"
+							android:layout_marginRight="8dp"
+							android:paddingHorizontal="8dp"
+							android:drawableStart="@drawable/ic_fluent_alert_24_selector"
+							style="@style/Widget.Mastodon.Button.Secondary_LightOnDark" />
+
+						<FrameLayout
 							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:layout_gravity="center"
-							android:indeterminate="true"
-							style="?android:progressBarStyleSmall"
-							android:elevation="10dp"
-							android:outlineProvider="none"
-							android:indeterminateTint="?colorButtonText"
-							android:visibility="gone"/>
-					</FrameLayout>
+							android:layout_height="wrap_content">
+							<org.joinmastodon.android.ui.views.ProgressBarButton
+								android:id="@+id/profile_action_btn"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								tools:text="Edit Profile" />
+
+							<ProgressBar
+								android:id="@+id/action_progress"
+								style="?android:progressBarStyleSmall"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center"
+								android:elevation="10dp"
+								android:indeterminate="true"
+								android:indeterminateTint="?colorButtonText"
+								android:outlineProvider="none"
+								android:visibility="gone" />
+						</FrameLayout>
+					</LinearLayout>
 
 					<TextView
 						android:id="@+id/name"
