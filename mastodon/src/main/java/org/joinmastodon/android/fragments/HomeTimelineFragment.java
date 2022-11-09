@@ -77,7 +77,7 @@ public class HomeTimelineFragment extends StatusListFragment{
 	private List<Status> filterPosts(List<Status> items) {
 		return items.stream().filter(i ->
 				(GlobalUserPreferences.showReplies || i.inReplyToId == null) &&
-						(GlobalUserPreferences.showBoosts || i.reblog == null)
+				(GlobalUserPreferences.showBoosts || i.reblog == null)
 		).collect(Collectors.toList());
 	}
 
