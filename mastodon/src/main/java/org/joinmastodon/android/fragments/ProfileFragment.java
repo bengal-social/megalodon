@@ -98,8 +98,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	private CoverImageView cover;
 	private View avatarBorder;
 	private TextView name, username, bio, followersCount, followersLabel, followingCount, followingLabel, postsCount, postsLabel;
-	private ProgressBarButton actionButton;
-	private Button notifyButton;
+	private ProgressBarButton actionButton, notifyButton;
 	private ViewPager2 pager;
 	private NestedRecyclerScrollView scrollView;
 	private AccountTimelineFragment postsFragment, postsWithRepliesFragment, mediaFragment;
@@ -110,7 +109,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	private float titleTransY;
 	private View postsBtn, followersBtn, followingBtn;
 	private EditText nameEdit, bioEdit;
-	private ProgressBar actionProgress;
+	private ProgressBar actionProgress, notifyProgress;
 	private FrameLayout[] tabViews;
 	private TabLayoutMediator tabLayoutMediator;
 	private TextView followsYouView;
@@ -190,6 +189,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		nameEdit=content.findViewById(R.id.name_edit);
 		bioEdit=content.findViewById(R.id.bio_edit);
 		actionProgress=content.findViewById(R.id.action_progress);
+		notifyProgress=content.findViewById(R.id.notify_progress);
 		fab=content.findViewById(R.id.fab);
 		followsYouView=content.findViewById(R.id.follows_you);
 
@@ -455,9 +455,9 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		UiUtils.loadCustomEmojiInTextView(name);
 		UiUtils.loadCustomEmojiInTextView(bio);
 
+		notifyButton.setVisibility(View.GONE);
 		if(AccountSessionManager.getInstance().isSelf(accountID, account)){
 			actionButton.setText(R.string.edit_profile);
-			notifyButton.setVisibility(View.GONE);
 		}else{
 			actionButton.setVisibility(View.GONE);
 		}
@@ -615,11 +615,14 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	private void updateRelationship(){
 		invalidateOptionsMenu();
 		actionButton.setVisibility(View.VISIBLE);
-		UiUtils.setRelationshipToActionButton(relationship, actionButton);
-		actionProgress.setIndeterminateTintList(actionButton.getTextColors());
-		followsYouView.setVisibility(relationship.followedBy ? View.VISIBLE : View.GONE);
 		notifyButton.setVisibility(relationship.following ? View.VISIBLE : View.GONE);
+		UiUtils.setRelationshipToActionButton(relationship, actionButton);
+		UiUtils.setRelationshipToActionButton(relationship, notifyButton, true);
+		actionProgress.setIndeterminateTintList(actionButton.getTextColors());
+		notifyProgress.setIndeterminateTintList(notifyButton.getTextColors());
+		followsYouView.setVisibility(relationship.followedBy ? View.VISIBLE : View.GONE);
 		notifyButton.setSelected(relationship.notifying);
+		notifyButton.setContentDescription(getString(relationship.notifying ? R.string.user_post_notifications_on : R.string.user_post_notifications_off, '@'+account.username));
 	}
 
 	private void onScrollChanged(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY){
@@ -683,6 +686,12 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		actionButton.setTextVisible(!visible);
 		actionProgress.setVisibility(visible ? View.VISIBLE : View.GONE);
 		actionButton.setClickable(!visible);
+	}
+
+	private void setNotifyProgressVisible(boolean visible){
+		notifyButton.setTextVisible(!visible);
+		notifyProgress.setVisibility(visible ? View.VISIBLE : View.GONE);
+		notifyButton.setClickable(!visible);
 	}
 
 	private void loadAccountInfoAndEnterEditMode(){
@@ -854,7 +863,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	}
 
 	private void onNotifyButtonClick(View v) {
-		UiUtils.performToggleAccountNotifications(getActivity(), account, accountID, relationship, actionButton, this::updateRelationship);
+		UiUtils.performToggleAccountNotifications(getActivity(), account, accountID, relationship, actionButton, this::setNotifyProgressVisible, this::updateRelationship);
 	}
 
 	private void onAvatarClick(View v){
