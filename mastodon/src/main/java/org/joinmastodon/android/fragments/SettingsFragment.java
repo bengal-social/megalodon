@@ -104,10 +104,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.useCustomTabs=i.checked;
 			GlobalUserPreferences.save();
 		}));
-		items.add(new SwitchItem(R.string.settings_load_new_posts, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.loadNewPosts, i->{
-			GlobalUserPreferences.loadNewPosts=i.checked;
-			GlobalUserPreferences.save();
-		}));
 
 		items.add(new HeaderItem(R.string.home_timeline));
 		items.add(new SwitchItem(R.string.settings_show_replies, R.drawable.ic_fluent_chat_multiple_24_regular, GlobalUserPreferences.showReplies, i->{
@@ -116,6 +112,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}));
 		items.add(new SwitchItem(R.string.settings_show_boosts, R.drawable.ic_fluent_arrow_repeat_all_24_regular, GlobalUserPreferences.showBoosts, i->{
 			GlobalUserPreferences.showBoosts=i.checked;
+			GlobalUserPreferences.save();
+		}));
+		items.add(new SwitchItem(R.string.settings_load_new_posts, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.loadNewPosts, i->{
+			GlobalUserPreferences.loadNewPosts=i.checked;
 			GlobalUserPreferences.save();
 		}));
 
