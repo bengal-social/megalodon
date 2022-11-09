@@ -71,6 +71,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import androidx.annotation.AttrRes;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.DiffUtil;
@@ -296,10 +297,11 @@ public class UiUtils{
 		Nav.go((Activity)context, ProfileFragment.class, args);
 	}
 
-	public static void openHashtagTimeline(Context context, String accountID, String hashtag){
+	public static void openHashtagTimeline(Context context, String accountID, String hashtag, @Nullable Boolean following){
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
 		args.putString("hashtag", hashtag);
+		if (following != null) args.putBoolean("following", following);
 		Nav.go((Activity)context, HashtagTimelineFragment.class, args);
 	}
 

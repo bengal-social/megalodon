@@ -11,6 +11,7 @@ public class Hashtag extends BaseModel{
 	public String name;
 	@RequiredField
 	public String url;
+	public boolean following;
 	public List<History> history;
 
 	@Override
@@ -18,6 +19,7 @@ public class Hashtag extends BaseModel{
 		return "Hashtag{"+
 				"name='"+name+'\''+
 				", url='"+url+'\''+
+				", following="+following+
 				", history="+history+
 				'}';
 	}
