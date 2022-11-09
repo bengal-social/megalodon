@@ -19,6 +19,7 @@
 * [Add “Check for update” button in addition to integrated update checker](https://github.com/sk22/mastodon-android-fork/commits/feature/check-for-update-button)
 * [Add “Mark media as sensitive” option](https://github.com/sk22/mastodon-android-fork/tree/feature/mark-media-as-sensitive)
 * [Add settings to hide replies and reposts from the timeline](https://github.com/sk22/mastodon-android-fork/tree/feature/filter-home-timeline) ([Pull request](https://github.com/mastodon/mastodon-android/pull/317))
+* [Follow and unfollow hashtags](https://github.com/sk22/mastodon-android-fork/commit/7d38f031f197aa6cefaf53e39d929538689c1e4e) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/233))
 
 ### Behavior
 
