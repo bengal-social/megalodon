@@ -34,7 +34,7 @@ public class LinkSpan extends CharacterStyle {
 		switch(getType()){
 			case URL -> UiUtils.openURL(context, accountID, link);
 			case MENTION -> UiUtils.openProfileByID(context, accountID, link);
-			case HASHTAG -> UiUtils.openHashtagTimeline(context, accountID, link);
+			case HASHTAG -> UiUtils.openHashtagTimeline(context, accountID, link, null);
 		}
 	}
 

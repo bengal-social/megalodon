@@ -100,7 +100,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult>{
 				args.putParcelable("profileAccount", Parcels.wrap(res.account));
 				Nav.go(getActivity(), ProfileFragment.class, args);
 			}
-			case HASHTAG -> UiUtils.openHashtagTimeline(getActivity(), accountID, res.hashtag.name);
+			case HASHTAG -> UiUtils.openHashtagTimeline(getActivity(), accountID, res.hashtag.name, res.hashtag.following);
 			case STATUS -> {
 				Status status=res.status.getContentStatus();
 				Bundle args=new Bundle();
