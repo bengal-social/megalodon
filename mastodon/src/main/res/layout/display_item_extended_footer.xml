@@ -12,37 +12,43 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<Button
-			android:id="@+id/reblogs"
+		<LinearLayout
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:padding="8dp"
-			android:textSize="14sp"
-			android:minHeight="48dp"
-			android:textColor="?android:textColorSecondary"
-			android:background="@drawable/bg_text_button"
-			android:fontFamily="sans-serif"
-			android:drawableStart="@drawable/ic_fluent_arrow_repeat_all_20_regular"
-			android:drawablePadding="8dp"
-			android:drawableTint="?android:textColorSecondary"
-			tools:text="4 reblogs"/>
+			android:layout_height="wrap_content">
 
-		<Button
-			android:id="@+id/favorites"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:padding="8dp"
-			android:textSize="14sp"
-			android:minHeight="48dp"
-			android:textColor="?android:textColorSecondary"
-			android:background="@drawable/bg_text_button"
-			android:fontFamily="sans-serif"
-			android:drawableStart="@drawable/ic_fluent_star_20_regular"
-			android:drawablePadding="8dp"
-			android:drawableTint="?android:textColorSecondary"
-			tools:text="12 favorites"/>
+			<Button
+				android:id="@+id/reblogs"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:padding="8dp"
+				android:textSize="14sp"
+				android:minHeight="48dp"
+				android:textColor="?android:textColorSecondary"
+				android:background="@drawable/bg_text_button"
+				android:fontFamily="sans-serif"
+				android:drawableStart="@drawable/ic_fluent_arrow_repeat_all_20_regular"
+				android:drawablePadding="8dp"
+				android:drawableTint="?android:textColorSecondary"
+				tools:text="4 reblogs"/>
+
+			<Button
+				android:id="@+id/favorites"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:padding="8dp"
+				android:textSize="14sp"
+				android:minHeight="48dp"
+				android:textColor="?android:textColorSecondary"
+				android:background="@drawable/bg_text_button"
+				android:fontFamily="sans-serif"
+				android:drawableStart="@drawable/ic_fluent_star_20_regular"
+				android:drawablePadding="8dp"
+				android:drawableTint="?android:textColorSecondary"
+				tools:text="12 favorites"/>
+
+		</LinearLayout>
 
 		<Button
 			android:id="@+id/edit_history"
@@ -55,10 +61,10 @@
 			android:textColor="?android:textColorSecondary"
 			android:background="@drawable/bg_text_button"
 			android:fontFamily="sans-serif"
-			android:drawableStart="@drawable/ic_fluent_edit_20_regular"
+			android:drawableStart="@drawable/ic_fluent_history_20_regular"
 			android:drawablePadding="8dp"
 			android:drawableTint="?android:textColorSecondary"
-			tools:text="edited"/>
+			tools:text="Dec 12, 2021, 12:42 PM"/>
 
 	</org.joinmastodon.android.ui.views.AutoOrientationLinearLayout>
 
