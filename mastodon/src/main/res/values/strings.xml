@@ -126,11 +126,8 @@
 	<string name="action_vote">Vote</string>
 	<string name="tap_to_reveal">Tap to reveal</string>
 	<string name="delete">Delete</string>
-	<string name="delete_and_redraft">Delete and re-draft</string>
 	<string name="confirm_delete_title">Delete Post</string>
-	<string name="confirm_delete_and_redraft_title">Delete and re-draft Post</string>
 	<string name="confirm_delete">Are you sure you want to delete this post?</string>
-	<string name="confirm_delete_and_redraft">Are you sure you want to delete and re-draft this post?</string>
 	<string name="deleting">Deleting…</string>
 	<string name="notification_channel_audio_player">Audio playback</string>
 	<string name="play">Play</string>

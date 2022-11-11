@@ -22,7 +22,6 @@ import android.text.Layout;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -175,14 +174,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private Instance instance;
 	private boolean attachmentsErrorShowing;
 
-	public static DraftMediaAttachment redraftAttachment(Attachment att) {
-		DraftMediaAttachment draft=new DraftMediaAttachment();
-		draft.serverAttachment=att;
-		draft.description=att.description;
-		draft.uri=Uri.parse(att.url);
-		return draft;
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -295,18 +286,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		pollDurationView.setOnClickListener(v->showPollDurationMenu());
 
 		pollOptions.clear();
-		ArrayList<String> restoredPollOptions=(savedInstanceState!=null ? savedInstanceState : getArguments())
-				.getStringArrayList("pollOptions");
-		if(restoredPollOptions!=null){
-			if(savedInstanceState==null){
-				// restoring from arguments
-				pollDuration=getArguments().getInt("pollDuration");
-				pollDurationStr=DateUtils.formatElapsedTime(pollDuration); // getResources().getQuantityString(R.plurals.x_hours, pollDuration/3600);
-			}
+		if(savedInstanceState!=null && savedInstanceState.containsKey("pollOptions")){
 			pollBtn.setSelected(true);
 			mediaBtn.setEnabled(false);
 			pollWrap.setVisibility(View.VISIBLE);
-			for(String oldText:restoredPollOptions){
+			for(String oldText:savedInstanceState.getStringArrayList("pollOptions")){
 				DraftPollOption opt=createDraftPollOption();
 				opt.edit.setText(oldText);
 			}
@@ -326,9 +310,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerBtn.setSelected(true);
 		}
 
-		ArrayList<Parcelable> serializedAttachments=(savedInstanceState!=null ? savedInstanceState : getArguments())
-				.getParcelableArrayList("attachments");
-		if(serializedAttachments!=null){
+		if(savedInstanceState!=null && savedInstanceState.containsKey("attachments")){
+			ArrayList<Parcelable> serializedAttachments=savedInstanceState.getParcelableArrayList("attachments");
 			for(Parcelable a:serializedAttachments){
 				DraftMediaAttachment att=Parcels.unwrap(a);
 				attachmentsView.addView(createMediaAttachmentView(att));
@@ -471,7 +454,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				mainEditText.setText(initialText);
 				mainEditText.setSelection(mainEditText.length());
 				if(!TextUtils.isEmpty(replyTo.spoilerText) && AccountSessionManager.getInstance().isSelf(accountID, replyTo.account)){
-					insertSpoiler(replyTo.spoilerText);
+					hasSpoiler=true;
+					spoilerEdit.setVisibility(View.VISIBLE);
+					spoilerEdit.setText(replyTo.spoilerText);
+					spoilerBtn.setSelected(true);
 				}
 			}
 		}else{
@@ -484,8 +470,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				mainEditText.setSelection(mainEditText.length());
 				initialText=prefilledText;
 			}
-			String spoilerText=getArguments().getString("spoilerText");
-			if(!TextUtils.isEmpty(spoilerText)) insertSpoiler(spoilerText);
 			ArrayList<Uri> mediaUris=getArguments().getParcelableArrayList("mediaAttachments");
 			if(mediaUris!=null && !mediaUris.isEmpty()){
 				for(Uri uri:mediaUris){
@@ -493,13 +477,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				}
 			}
 		}
-	}
-
-	private void insertSpoiler(String text) {
-		hasSpoiler=true;
-		if (text!=null) spoilerEdit.setText(text);
-		spoilerEdit.setVisibility(View.VISIBLE);
-		spoilerBtn.setSelected(true);
 	}
 
 	@Override
@@ -570,11 +547,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			if(opt.edit.length()>0)
 				nonEmptyPollOptionsCount++;
 		}
-		if(publishButton!=null){
-			publishButton.setEnabled((trimmedCharCount>0 || !attachments.isEmpty()) && charCount<=charLimit
-					&& uploadingAttachment==null && failedAttachments.isEmpty() && queuedAttachments.isEmpty()
-					&& (pollOptions.isEmpty() || nonEmptyPollOptionsCount>1));
-		}
+		publishButton.setEnabled((trimmedCharCount>0 || !attachments.isEmpty()) && charCount<=charLimit && uploadingAttachment==null && failedAttachments.isEmpty() && queuedAttachments.isEmpty()
+				&& (pollOptions.isEmpty() || nonEmptyPollOptionsCount>1));
 	}
 
 	private void onCustomEmojiClick(Emoji emoji){
@@ -661,10 +635,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		boolean pollFieldsHaveContent=false;
 		for(DraftPollOption opt:pollOptions)
 			pollFieldsHaveContent|=opt.edit.length()>0;
-		return getArguments().getBoolean("hasDraft", false)
-				|| (mainEditText.length()>0 && !mainEditText.getText().toString().equals(initialText))
-				|| !attachments.isEmpty() || uploadingAttachment!=null || !queuedAttachments.isEmpty()
-				|| !failedAttachments.isEmpty() || pollFieldsHaveContent;
+		return (mainEditText.length()>0 && !mainEditText.getText().toString().equals(initialText)) || !attachments.isEmpty()
+				|| uploadingAttachment!=null || !queuedAttachments.isEmpty() || !failedAttachments.isEmpty() || pollFieldsHaveContent;
 	}
 
 	@Override
