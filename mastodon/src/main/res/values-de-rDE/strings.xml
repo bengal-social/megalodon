@@ -377,4 +377,5 @@
 	<!-- %s is file size -->
 	<string name="download_update">Download (%s)</string>
 	<string name="install_update">Installieren</string>
+	<string name="list_timelines">Listen</string>
 </resources>
