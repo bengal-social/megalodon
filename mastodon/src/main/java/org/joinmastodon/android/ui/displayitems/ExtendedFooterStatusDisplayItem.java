@@ -9,6 +9,8 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.joinmastodon.android.R;
@@ -45,18 +47,19 @@ public class ExtendedFooterStatusDisplayItem extends StatusDisplayItem{
 	}
 
 	public static class Holder extends StatusDisplayItem.Holder<ExtendedFooterStatusDisplayItem>{
-		private final TextView time, favoritesCount, reblogsCount, lastEditTime;
-		private final View favorites, reblogs, editHistory;
+		private final TextView time;
+		private final Button favorites, reblogs, editHistory;
+		private final ImageView visibility;
+		private final Context context;
 
 		public Holder(Context context, ViewGroup parent){
 			super(context, R.layout.display_item_extended_footer, parent);
+			this.context = context;
 			reblogs=findViewById(R.id.reblogs);
 			favorites=findViewById(R.id.favorites);
 			editHistory=findViewById(R.id.edit_history);
 			time=findViewById(R.id.timestamp);
-			favoritesCount=findViewById(R.id.favorites_count);
-			reblogsCount=findViewById(R.id.reblogs_count);
-			lastEditTime=findViewById(R.id.last_edited);
+			visibility=findViewById(R.id.visibility);
 
 			reblogs.setOnClickListener(v->startAccountListFragment(StatusReblogsListFragment.class));
 			favorites.setOnClickListener(v->startAccountListFragment(StatusFavoritesListFragment.class));
@@ -67,11 +70,11 @@ public class ExtendedFooterStatusDisplayItem extends StatusDisplayItem{
 		@Override
 		public void onBind(ExtendedFooterStatusDisplayItem item){
 			Status s=item.status;
-			favoritesCount.setText(String.format("%,d", s.favouritesCount));
-			reblogsCount.setText(String.format("%,d", s.reblogsCount));
+			favorites.setText(context.getResources().getQuantityString(R.plurals.x_favorites, (int)(s.favouritesCount%1000), s.favouritesCount));
+			reblogs.setText(context.getResources().getQuantityString(R.plurals.x_reblogs, (int)(s.reblogsCount%1000), s.reblogsCount));
 			if(s.editedAt!=null){
 				editHistory.setVisibility(View.VISIBLE);
-				lastEditTime.setText(item.parentFragment.getString(R.string.last_edit_at_x, UiUtils.formatRelativeTimestampAsMinutesAgo(itemView.getContext(), s.editedAt)));
+				editHistory.setText(UiUtils.formatRelativeTimestampAsMinutesAgo(itemView.getContext(), s.editedAt));
 			}else{
 				editHistory.setVisibility(View.GONE);
 			}
@@ -81,6 +84,12 @@ public class ExtendedFooterStatusDisplayItem extends StatusDisplayItem{
 			}else{
 				time.setText(timeStr);
 			}
+			visibility.setImageResource(switch (s.visibility) {
+				case PUBLIC -> R.drawable.ic_fluent_earth_20_regular;
+				case UNLISTED -> R.drawable.ic_fluent_people_20_regular;
+				case PRIVATE -> R.drawable.ic_fluent_people_checkmark_20_regular;
+				case DIRECT -> R.drawable.ic_at_symbol;
+			});
 		}
 
 		@Override

@@ -2,150 +2,92 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
+	android:padding="8dp"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+	android:layout_height="wrap_content"
+	android:background="?colorBackgroundLightest">
 
-	<RelativeLayout
-		android:id="@+id/reblogs"
+	<org.joinmastodon.android.ui.views.AutoOrientationLinearLayout
+		android:id="@+id/button_bar"
 		android:layout_width="match_parent"
-		android:layout_height="64dp"
-		android:paddingLeft="16dp"
-		android:paddingRight="16dp"
-		android:paddingTop="12dp"
-		android:paddingBottom="12dp"
-		android:background="?android:selectableItemBackground">
+		android:layout_height="wrap_content">
 
-		<ImageView
-			android:id="@+id/icon"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			android:layout_alignParentStart="true"
-			android:layout_centerVertical="true"
-			android:src="@drawable/ic_fluent_arrow_repeat_all_24_regular"
-			android:tint="?android:textColorSecondary"
-			android:importantForAccessibility="no"/>
-
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="match_parent"
+		<Button
+			android:id="@+id/reblogs"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="32dp"
-			android:layout_toEndOf="@id/icon"
-			android:minHeight="22dp"
-			android:singleLine="true"
-			android:text="@string/post_info_reblogs"
-			android:textAppearance="@style/m3_body_large" />
-
-		<TextView
-			android:id="@+id/reblogs_count"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/title"
-			android:layout_alignStart="@id/title"
-			android:singleLine="true"
-			android:textAppearance="@style/m3_body_medium"
+			android:gravity="center"
+			android:padding="8dp"
+			android:textSize="14sp"
+			android:minHeight="48dp"
 			android:textColor="?android:textColorSecondary"
-			tools:text="123 456"/>
+			android:background="@drawable/bg_text_button"
+			android:fontFamily="sans-serif"
+			android:drawableStart="@drawable/ic_fluent_arrow_repeat_all_20_regular"
+			android:drawablePadding="8dp"
+			android:drawableTint="?android:textColorSecondary"
+			tools:text="4 reblogs"/>
 
-	</RelativeLayout>
-
-	<RelativeLayout
-		android:id="@+id/favorites"
-		android:layout_width="match_parent"
-		android:layout_height="64dp"
-		android:paddingLeft="16dp"
-		android:paddingRight="16dp"
-		android:paddingTop="12dp"
-		android:paddingBottom="12dp"
-		android:background="?android:selectableItemBackground">
-
-		<ImageView
-			android:id="@+id/icon"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			android:layout_alignParentStart="true"
-			android:layout_centerVertical="true"
-			android:src="@drawable/ic_fluent_star_24_regular"
-			android:tint="?android:textColorSecondary"
-			android:importantForAccessibility="no"/>
-
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="match_parent"
+		<Button
+			android:id="@+id/favorites"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="32dp"
-			android:layout_toEndOf="@id/icon"
-			android:minHeight="22dp"
-			android:singleLine="true"
-			android:text="@string/post_info_favorites"
-			android:textAppearance="@style/m3_body_large" />
-
-		<TextView
-			android:id="@+id/favorites_count"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/title"
-			android:layout_alignStart="@id/title"
-			android:singleLine="true"
-			android:textAppearance="@style/m3_body_medium"
+			android:gravity="center"
+			android:padding="8dp"
+			android:textSize="14sp"
+			android:minHeight="48dp"
 			android:textColor="?android:textColorSecondary"
-			tools:text="123 456"/>
+			android:background="@drawable/bg_text_button"
+			android:fontFamily="sans-serif"
+			android:drawableStart="@drawable/ic_fluent_star_20_regular"
+			android:drawablePadding="8dp"
+			android:drawableTint="?android:textColorSecondary"
+			tools:text="12 favorites"/>
 
-	</RelativeLayout>
-
-	<RelativeLayout
-		android:id="@+id/edit_history"
-		android:layout_width="match_parent"
-		android:layout_height="64dp"
-		android:paddingLeft="16dp"
-		android:paddingRight="16dp"
-		android:paddingTop="12dp"
-		android:paddingBottom="12dp"
-		android:background="?android:selectableItemBackground">
-
-		<ImageView
-			android:id="@+id/icon"
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			android:layout_alignParentStart="true"
-			android:layout_centerVertical="true"
-			android:src="@drawable/ic_fluent_edit_24_regular"
-			android:tint="?android:textColorSecondary"
-			android:importantForAccessibility="no"/>
-
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="match_parent"
+		<Button
+			android:id="@+id/edit_history"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="32dp"
-			android:layout_toEndOf="@id/icon"
-			android:minHeight="22dp"
-			android:singleLine="true"
-			android:text="@string/edit_history"
-			android:textAppearance="@style/m3_body_large" />
-
-		<TextView
-			android:id="@+id/last_edited"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/title"
-			android:layout_alignStart="@id/title"
-			android:singleLine="true"
-			android:textAppearance="@style/m3_body_medium"
+			android:gravity="center"
+			android:padding="8dp"
+			android:textSize="14sp"
+			android:minHeight="48dp"
 			android:textColor="?android:textColorSecondary"
-			tools:text="123 456"/>
+			android:background="@drawable/bg_text_button"
+			android:fontFamily="sans-serif"
+			android:drawableStart="@drawable/ic_fluent_edit_20_regular"
+			android:drawablePadding="8dp"
+			android:drawableTint="?android:textColorSecondary"
+			tools:text="edited"/>
 
-	</RelativeLayout>
+	</org.joinmastodon.android.ui.views.AutoOrientationLinearLayout>
 
-	<TextView
-		android:id="@+id/timestamp"
+	<LinearLayout
+		android:orientation="horizontal"
+		android:gravity="center"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="16dp"
-		android:minHeight="20dp"
-		android:gravity="center_vertical"
-		android:textSize="14sp"
-		android:textColor="?android:textColorSecondary"
-		tools:text="Dec 12, 2021, 12:42 PM via Mastodon for Android"/>
+		android:layout_marginHorizontal="8dp"
+		android:minHeight="48dp">
+
+		<ImageView
+			android:id="@+id/visibility"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:src="@drawable/ic_fluent_earth_20_regular"
+			android:tint="?android:textColorSecondary" />
+
+		<TextView
+			android:id="@+id/timestamp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8dp"
+			android:minHeight="20dp"
+			android:gravity="center_vertical"
+			android:textSize="14sp"
+			android:textColor="?android:textColorSecondary"
+			tools:text="Dec 12, 2021, 12:42 PM via Mastodon for Android"/>
+
+	</LinearLayout>
 
 </LinearLayout>
