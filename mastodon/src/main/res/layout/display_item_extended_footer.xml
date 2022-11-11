@@ -61,7 +61,7 @@
 			android:textColor="?android:textColorSecondary"
 			android:background="@drawable/bg_text_button"
 			android:fontFamily="sans-serif"
-			android:drawableStart="@drawable/ic_fluent_edit_20_regular"
+			android:drawableStart="@drawable/ic_fluent_history_20_regular"
 			android:drawablePadding="8dp"
 			android:drawableTint="?android:textColorSecondary"
 			tools:text="Dec 12, 2021, 12:42 PM"/>
