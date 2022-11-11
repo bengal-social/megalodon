@@ -667,8 +667,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		if(!attachments.isEmpty()){
 			req.mediaIds=attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList());
 		}
-		if(replyTo!=null){
-			req.inReplyToId=replyTo.id;
+		if(replyTo!=null || editingStatus.inReplyToId!=null){
+			req.inReplyToId=editingStatus!=null ? editingStatus.inReplyToId : replyTo.id;
 		}
 		if(!pollOptions.isEmpty()){
 			req.poll=new CreateStatus.Request.Poll();
