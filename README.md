@@ -31,6 +31,7 @@
 * [Display full image when adding image description](https://github.com/sk22/mastodon-android-fork/commits/feature/compose-image-description-full-image) ([Pull request](https://github.com/mastodon/mastodon-android/pull/182))
 * [Set spoiler height independently to content height](https://github.com/sk22/mastodon-android-fork/commits/spoiler-height-independent) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/166))
 * [Custom extended footer redesign](https://github.com/sk22/mastodon-android-fork/commits/compact-extended-footer)
+* [Option to hide interaction numbers](https://github.com/sk22/mastodon-android-fork/commits/settings/hide-interaction-numbers)
 
 ### Installation
 
