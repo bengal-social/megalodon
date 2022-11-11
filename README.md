@@ -8,7 +8,7 @@
 
 ## Key features
 
-### Unlisted posting
+### **Unlisted posting**
 
 **Allows you to post publicly without having your post show up in trends, hashtags or public timelines (i.e., in the tabs “Local”, “Community” and “Posts”).**
 
@@ -16,7 +16,7 @@ When posting with Unlisted visibility, your posts will be publicly accessible th
   
 The Mastodon documentation has some more information about [Unlisted posting](https://docs.joinmastodon.org/user/posting/#unlisted) and [Public timelines](https://docs.joinmastodon.org/user/network/#timelines).
 
-### Enable the Federated timeline
+### **Enable the Federated timeline**
 
 **This allows you to chronologically see all Public posts from people on all other Fediverse instances your home instance is connected to.**
 
@@ -24,23 +24,33 @@ Despite being one of the main features of federated social media, the Federated 
   
 That’s one of the reasons why choosing a small, **well-moderated instance is important**. Instance admins and moderators should always make sure to ban abusive users and stop federating with instances who platform them. On well-moderated instances, the Federated timeline can be a welcoming place to meet new people!
 
-### Image description viewer
+### **Image description viewer**
 
 **Allows you to quickly check whether an image or video has an alternative text attached to it.**
 
 This is important to **ensure the content you’re sharing is as accessible as possible** to people who can’t see the images and rely on software to read back the provided content descriptions. Thankfully, it’s quite common for people on the Fediverse to provide such alt texts, and hopefully things stay this way!
 
-### Pinning posts
+### **Pinning posts**
 
 **This lets you can highlight important posts on your profile. A dedicated “Pinned” tab in people’s profiles shows all the posts they pinned.**
 
 On the Fediverse, it’s quite common for people to pin posts they want others to read before following them. You can pin/unpin posts yourself by clicking the `⋯` button in the top right corner of your posts.
 
-### Bookmarks
+### **Bookmarks**
 
 **They allow for quickly saving posts and viewing them through the Bookmarks button on the top right of your profile.**
 
 To bookmark a post, press the button between the Favorite and Share buttons on the bottom of the post. Bookmarks are saved privately, so the post authors won’t know you saved their post – the list of bookmarked posts is only visible to you.
+
+## Installation
+
+**Press the download button above to download the APK. Open the downloaded file on your Android device to install it. Mastodos will automatically notify you about new updates inside the app.**
+
+To install this app on your Android device, download the [latest release from GitHub](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk) and open it. You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/mastodos/releases) page.
+
+Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodon-android)’s automatic update checker. Mastodos will check for new updates available on GitHub and offer to download and install them. You can also manually press “Check for updates” at the bottom of the settings page!
+
+---
 
 ## Detailed changes
 
@@ -68,12 +78,6 @@ To bookmark a post, press the button between the Favorite and Share buttons on t
 * [Set spoiler height independently to content height](https://github.com/sk22/mastodos/commits/spoiler-height-independent) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/166))
 * [Custom extended footer redesign](https://github.com/sk22/mastodos/commits/compact-extended-footer)
 * [Option to hide interaction numbers](https://github.com/sk22/mastodos/commits/settings/hide-interaction-numbers)
-
-### Installation
-
-To install this app on your Android device, download the [latest release from GitHub](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk) and open it. You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/mastodos/releases) page.
-
-Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodon-android)’s automatic update checker. Mastodos will check for new updates available on GitHub and offer to download and install them. You can also manually press “Check for updates” at the bottom of the settings page!
 
 ### Branding
 
