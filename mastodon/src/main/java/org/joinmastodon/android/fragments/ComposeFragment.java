@@ -712,6 +712,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					E.post(new StatusUpdatedEvent(result));
 				}
 				Nav.finish(ComposeFragment.this);
+				if (getArguments().getBoolean("navigateToStatus", false)) {
+					Bundle args=new Bundle();
+					args.putString("account", accountID);
+					args.putParcelable("status", Parcels.wrap(result));
+					if(replyTo!=null) args.putParcelable("inReplyToAccount", Parcels.wrap(replyTo));
+					Nav.go(getActivity(), ThreadFragment.class, args);
+				}
 			}
 
 			@Override

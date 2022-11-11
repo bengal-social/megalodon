@@ -26,6 +26,7 @@ import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
+import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.fragments.report.ReportReasonChoiceFragment;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Attachment;
@@ -141,7 +142,14 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					final Bundle args=new Bundle();
 					args.putString("account", item.parentFragment.getAccountID());
 					args.putParcelable("editStatus", Parcels.wrap(item.status));
-					if (id==R.id.delete_and_redraft) args.putBoolean("redraftStatus", true);
+					if (id==R.id.delete_and_redraft) {
+						args.putBoolean("redraftStatus", true);
+						if (item.parentFragment instanceof ThreadFragment thread && !thread.isItemEnabled(item.status.id)) {
+							// ("enabled" = clickable; opened status is not clickable)
+							// request navigation to the re-drafted status if status is currently opened
+							args.putBoolean("navigateToStatus", true);
+						}
+					}
 					if(TextUtils.isEmpty(item.status.content) && TextUtils.isEmpty(item.status.spoilerText)){
 						Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 					}else{
