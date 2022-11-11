@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">مَاستودُون</string>
-	<string name="get_started">ابدأ</string>
-	<string name="log_in">تسجيل الدخول</string>
+	<string name="get_started">الخطوات الأولى</string>
+	<string name="log_in">تسجيلُ الدخول</string>
 	<string name="next">التالي</string>
 	<string name="loading_instance">يَجري الحُصُول على معلومات المَثيل…</string>
 	<string name="error">خطأ</string>
@@ -17,7 +16,7 @@
 	<string name="user_sent_follow_request">أرسَلَ طَلَبًا لِمُتابَعَتِك</string>
 	<string name="user_favorited">فَضَّلَ مَنشُورَك</string>
 	<string name="notification_boosted">أعادَ تَدوينَ مَنشُورَك</string>
-	<string name="poll_ended">انتهى استطلاع الرأي</string>
+	<string name="poll_ended">انتهى استطلاعُ الرأي</string>
 	<string name="time_seconds">%d ثا</string>
 	<string name="time_minutes">%d د</string>
 	<string name="time_hours">%d سا</string>
@@ -227,7 +226,7 @@
 	<string name="report_personal_title">لاترغب في مشاهدة هذا؟</string>
 	<string name="report_personal_subtitle">عندما ترى ما لا يعجبك في ماستدون، يمكنك إزالة صاحبها من تجربتك كمستخدم.</string>
 	<string name="back">العودة</string>
-	<string name="instance_catalog_title">ماستدون مكون من مستخدمين منقسمين عبر خوادم مختلفة.</string>
+	<string name="instance_catalog_title">يتكوّن ماستدون من مستخدمين موزّعين عبر خوادم مختلفة.</string>
 	<string name="instance_catalog_subtitle">اختر خادمًا بناءً على اهتماماتك، منطقتك أو يمكنك حتى اختيارُ مجتمعٍ ذي غرضٍ عام. وسيضل بامكانك التواصل مع المستخدمين من الخوادم الأخرى.</string>
 	<string name="search_communities">ابحث عن خادم أو أدخل رابطه</string>
 	<string name="instance_rules_title">بعض القواعد الأساسية</string>
@@ -261,8 +260,6 @@
 	<string name="content_warning">تحذير من المحتوى</string>
 	<string name="add_image_description">أضف وصفًا للصورة…</string>
 	<string name="retry_upload">حاول الرفع مجددًا</string>
-	<string name="image_upload_failed">فشل رفع الصورة</string>
-	<string name="video_upload_failed">فشل رفع الفيديو</string>
 	<string name="edit_image">حرّر الصورة</string>
 	<string name="save">احفظ</string>
 	<string name="add_alt_text">أضف نصًا بديلًا</string>
@@ -278,10 +275,11 @@
 	<string name="skip">تخطى</string>
 	<string name="notification_type_follow">متابعُون جُدُد</string>
 	<string name="notification_type_favorite">المفضلة</string>
+	<string name="notification_type_reblog">المعاد تدوينها</string>
 	<string name="notification_type_mention">الذِكر</string>
 	<string name="notification_type_poll">استطلاع رأي</string>
 	<string name="choose_account">اختر حسابًا</string>
-	<string name="err_not_logged_in">سجل الدخول إلى حساب ماستودون أولًا</string>
+	<string name="err_not_logged_in">يرجى تسجيل الدخول إلى حساب ماستدون أولًا</string>
 	<plurals name="cant_add_more_than_x_attachments">
 		<item quantity="zero">يجب عليك إرفاق ملف</item>
 		<item quantity="one">لا يمكنك إرفاق ملف</item>
@@ -301,14 +299,14 @@
 	<string name="settings_gif">تشغيل الصور الرمزية المتحركة والرموز التعبيرية المتحركة</string>
 	<string name="settings_custom_tabs">استخدم المتصفح المضمن</string>
 	<string name="settings_notifications">الإشعارات</string>
-	<string name="notify_me_when">أشعِرني بـ</string>
-	<string name="notify_anyone">أيُّ شخصٍ</string>
-	<string name="notify_follower">مُتابِعٌ</string>
+	<string name="notify_me_when">أشعِرني عند قيام</string>
+	<string name="notify_anyone">أيَّ شخصٍ</string>
+	<string name="notify_follower">مُتابِع</string>
 	<string name="notify_followed">شخص أُتابِعُه</string>
 	<string name="notify_none">لَا أحد</string>
 	<string name="notify_favorites">بِالإعْجاب بِمَنشوري</string>
-	<string name="notify_follow">متابعتي</string>
-	<string name="notify_reblog">إعادة تدوين مَنشوري</string>
+	<string name="notify_follow">بمتابعتي</string>
+	<string name="notify_reblog">بإعادة تدوين مَنشوري</string>
 	<string name="notify_mention">ذكرني</string>
 	<string name="settings_boring">المنطِقَةُ المُملَّة</string>
 	<string name="settings_account">إعدادات الحساب</string>
@@ -317,7 +315,7 @@
 	<string name="settings_privacy_policy">سياسة الخصوصية</string>
 	<string name="settings_spicy">المنطِقَةُ اللَّاذِعَة</string>
 	<string name="settings_clear_cache">امسح التخزين المؤقت للوسائط</string>
-	<string name="settings_app_version">تطبيق ماستودون لأندرويد نسخة %1$s (%2$d)</string>
+	<string name="settings_app_version">تطبيق ماستدون لأندرويد نسخة %1$s (%2$d)</string>
 	<string name="media_cache_cleared">مُسح التخزين المؤقت للوسائط</string>
 	<string name="confirm_log_out">أمتأكد من الخروج؟</string>
 	<string name="sensitive_content">محتوى حساس</string>
@@ -344,6 +342,8 @@
 	<string name="unfollowed_user">ألغ متابعة %s</string>
 	<string name="followed_user">أنت تتابع %s</string>
 	<string name="open_in_browser">افتح في المتصفح</string>
+	<string name="hide_boosts_from_user">اخف ما أعاد %s تدوينه</string>
+	<string name="show_boosts_from_user">أظهر ما أعاد %s تدوينه</string>
 	<string name="signup_reason">لماذا ترغب في الانضمام؟</string>
 	<string name="signup_reason_note">هذا سوف يساعدنا في مراجعة تطبيقك.</string>
 	<string name="clear">امسح</string>
@@ -389,4 +389,50 @@
 		<item quantity="many">%,d متابَعًا</item>
 		<item quantity="other">%,d متابَع</item>
 	</plurals>
+	<plurals name="x_favorites">
+		<item quantity="zero">دون تفضيلات</item>
+		<item quantity="one">تفضيل واحد</item>
+		<item quantity="two">تفضيلان</item>
+		<item quantity="few">%,d تفضيلات</item>
+		<item quantity="many">%,d تفضيلًا</item>
+		<item quantity="other">%,d تفضيل</item>
+	</plurals>
+	<plurals name="x_reblogs">
+		<item quantity="zero">لا إعادات تدوين</item>
+		<item quantity="one">إعاد تدوين واحدة</item>
+		<item quantity="two">إعادتا تدوين</item>
+		<item quantity="few">%,d إعادات تدوين</item>
+		<item quantity="many">%,d إعادة تدوين</item>
+		<item quantity="other">%,d إعادة تدوين</item>
+	</plurals>
+	<string name="timestamp_via_app">%1$s عبر %2$s</string>
+	<string name="time_now">الآن</string>
+	<string name="post_info_reblogs">إعادات التدوين</string>
+	<string name="post_info_favorites">المفضلة</string>
+	<string name="last_edit_at_x">آخر تعديل %s</string>
+	<string name="time_just_now">للتوّ</string>
+	<string name="edited_timestamp">عُدّل في %s</string>
+	<string name="edit_original_post">المنشور الأصلي</string>
+	<string name="edit_text_edited">تم تعديل النص</string>
+	<string name="edit_spoiler_added">تم إضافة تحذير المحتوى</string>
+	<string name="edit_spoiler_edited">تم تعديل تحذير المحتوى</string>
+	<string name="edit_spoiler_removed">تم حذف تحذير المحتوى</string>
+	<string name="edit_poll_added">تمت إضافة استطلاع للرأي</string>
+	<string name="edit_poll_edited">تم تعديل الاستطلاع</string>
+	<string name="edit_poll_removed">تمت إزالة الاستطلاع</string>
+	<string name="edit_media_added">تمت إضافة الوسائط</string>
+	<string name="edit_media_removed">تمت إزالة الوسائط</string>
+	<string name="edit_media_reordered">تمت إعادة ترتيب الوسائط</string>
+	<string name="edit_marked_sensitive">مُعَين كحساس</string>
+	<string name="edit_marked_not_sensitive">مُعَين كمنشور غير حساس</string>
+	<string name="edit_multiple_changed">عُدّل المنشور</string>
+	<string name="edit">تعديل</string>
+	<string name="discard_changes">تجاهل التغييرات؟</string>
+	<string name="upload_failed">فشلت عملية التحميل</string>
+	<string name="file_upload_time_remaining">%s متبقية</string>
+	<string name="upload_error_connection_lost">فقد جهازك الاتصال بالإنترنت</string>
+	<string name="upload_processing">قيد المعالجة…</string>
+	<!-- %s is version like 1.2.3 -->
+	<!-- %s is version like 1.2.3 -->
+	<!-- %s is file size -->
 </resources>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Mastodon</string>
 	<string name="get_started">Nola hasi</string>
 	<string name="log_in">Hasi saioa</string>
 	<string name="next">Hurrengoa</string>
 	<string name="loading_instance">Instantziaren informazioa eskuratzen…</string>
 	<string name="error">Errorea</string>
-	<string name="not_a_mastodon_instance">%s ex dirudi Mastodon instantzia bat.</string>
+	<string name="not_a_mastodon_instance">%s(e)k ez dirudi Mastodon instantzia bat denik.</string>
 	<string name="ok">Ados</string>
 	<string name="preparing_auth">Autentifikaziorako prestatzen…</string>
 	<string name="finishing_auth">Autentikazioa bukatzen…</string>
@@ -185,8 +184,6 @@
 	<string name="content_warning">Edukiaren abisua</string>
 	<string name="add_image_description">Gehitu irudiaren deskribapena…</string>
 	<string name="retry_upload">Saiatu berriro igotzen</string>
-	<string name="image_upload_failed">Irudia ezin izan da kargatu</string>
-	<string name="video_upload_failed">Bideoa ezin izan da kargatu</string>
 	<string name="edit_image">Editatu irudia</string>
 	<string name="save">Gorde</string>
 	<string name="add_alt_text">Gehitu ordezko testua</string>
@@ -259,4 +256,7 @@
 	<string name="file_saved">Fitxategia gorde da</string>
 	<string name="downloading">Jeisten…</string>
 	<!-- translators: %,d is a valid placeholder, it formats the number with locale-dependent grouping separators -->
+	<!-- %s is version like 1.2.3 -->
+	<!-- %s is version like 1.2.3 -->
+	<!-- %s is file size -->
 </resources>
