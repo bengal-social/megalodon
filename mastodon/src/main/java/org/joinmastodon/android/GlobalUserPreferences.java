@@ -25,7 +25,7 @@ public class GlobalUserPreferences{
 		showReplies=prefs.getBoolean("showReplies", true);
 		showBoosts=prefs.getBoolean("showBoosts", true);
 		loadNewPosts=prefs.getBoolean("loadNewPosts", true);
-		showInteractionCounts=prefs.getBoolean("showInteractionCounts", true);
+		showInteractionCounts=prefs.getBoolean("showInteractionCounts", false);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 	}
 
