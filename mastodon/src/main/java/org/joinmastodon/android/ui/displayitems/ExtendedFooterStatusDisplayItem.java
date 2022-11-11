@@ -48,7 +48,7 @@ public class ExtendedFooterStatusDisplayItem extends StatusDisplayItem{
 
 	public static class Holder extends StatusDisplayItem.Holder<ExtendedFooterStatusDisplayItem>{
 		private final TextView time;
-		private final Button favorites, reblogs, editHistory;
+		private final Button favorites, reblogs, editHistory, applicationName;
 		private final ImageView visibility;
 		private final Context context;
 
@@ -58,8 +58,9 @@ public class ExtendedFooterStatusDisplayItem extends StatusDisplayItem{
 			reblogs=findViewById(R.id.reblogs);
 			favorites=findViewById(R.id.favorites);
 			editHistory=findViewById(R.id.edit_history);
-			time=findViewById(R.id.timestamp);
+			applicationName=findViewById(R.id.application_name);
 			visibility=findViewById(R.id.visibility);
+			time=findViewById(R.id.timestamp);
 
 			reblogs.setOnClickListener(v->startAccountListFragment(StatusReblogsListFragment.class));
 			favorites.setOnClickListener(v->startAccountListFragment(StatusFavoritesListFragment.class));
@@ -79,11 +80,20 @@ public class ExtendedFooterStatusDisplayItem extends StatusDisplayItem{
 				editHistory.setVisibility(View.GONE);
 			}
 			String timeStr=TIME_FORMATTER.format(item.status.createdAt.atZone(ZoneId.systemDefault()));
-			if(item.status.application!=null && !TextUtils.isEmpty(item.status.application.name)){
-				time.setText(item.parentFragment.getString(R.string.timestamp_via_app, timeStr, item.status.application.name));
-			}else{
+			
+			if (item.status.application!=null && !TextUtils.isEmpty(item.status.application.name)) {
+				time.setText(item.parentFragment.getString(R.string.timestamp_via_app, timeStr, ""));
+				applicationName.setText(item.status.application.name);
+				if (item.status.application.website != null && item.status.application.website.toLowerCase().startsWith("https://")) {
+					applicationName.setOnClickListener(e -> UiUtils.openURL(context, null, item.status.application.website));
+				} else {
+					applicationName.setEnabled(false);
+				}
+			} else {
 				time.setText(timeStr);
+				applicationName.setVisibility(View.GONE);
 			}
+
 			visibility.setImageResource(switch (s.visibility) {
 				case PUBLIC -> R.drawable.ic_fluent_earth_20_regular;
 				case UNLISTED -> R.drawable.ic_fluent_people_20_regular;
