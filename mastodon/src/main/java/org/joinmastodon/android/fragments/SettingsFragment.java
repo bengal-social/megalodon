@@ -102,6 +102,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.useCustomTabs=i.checked;
 			GlobalUserPreferences.save();
 		}));
+		items.add(new SwitchItem(R.string.settings_show_interaction_counts, R.drawable.ic_fluent_number_row_24_regular, GlobalUserPreferences.showInteractionCounts, i->{
+			GlobalUserPreferences.showInteractionCounts=i.checked;
+			GlobalUserPreferences.save();
+		}));
 
 		items.add(new HeaderItem(R.string.settings_notifications));
 		items.add(notificationPolicyItem=new NotificationPolicyItem());

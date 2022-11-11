@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
@@ -92,7 +93,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void bindButton(TextView btn, long count){
-			if(count>0 && !item.hideCounts){
+			if(GlobalUserPreferences.showInteractionCounts && count>0 && !item.hideCounts){
 				btn.setText(DecimalFormat.getIntegerInstance().format(count));
 				btn.setCompoundDrawablePadding(V.dp(8));
 			}else{
