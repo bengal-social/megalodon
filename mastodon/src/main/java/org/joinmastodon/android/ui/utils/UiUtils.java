@@ -44,6 +44,7 @@ import org.joinmastodon.android.api.requests.statuses.DeleteStatus;
 import org.joinmastodon.android.api.requests.statuses.GetStatusByID;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.StatusDeletedEvent;
+import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.HashtagTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
@@ -378,9 +379,12 @@ public class UiUtils{
 							.exec(accountID);
 				});
 	}
-
 	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback){
-		showConfirmationAlert(activity, R.string.confirm_delete_title, R.string.confirm_delete, R.string.delete, ()->{
+		confirmDeletePost(activity, accountID, status, resultCallback, false);
+	}
+
+	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback, boolean forRedraft){
+		showConfirmationAlert(activity, forRedraft ? R.string.confirm_delete_and_redraft_title : R.string.confirm_delete_title, forRedraft ? R.string.confirm_delete_and_redraft : R.string.confirm_delete, forRedraft ? R.string.delete_and_redraft : R.string.delete, ()->{
 			new DeleteStatus(status.id)
 					.setCallback(new Callback<>(){
 						@Override

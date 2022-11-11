@@ -192,6 +192,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private boolean attachmentsErrorShowing;
 
 	private Status editingStatus;
+	private boolean redraftStatus;
 	private boolean pollChanged;
 	private boolean creatingView;
 	private boolean ignoreSelectionChanges=false;
@@ -210,6 +211,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		instance=AccountSessionManager.getInstance().getInstanceInfo(instanceDomain);
 		if(getArguments().containsKey("editStatus")){
 			editingStatus=Parcels.unwrap(getArguments().getParcelable("editStatus"));
+			redraftStatus=getArguments().getBoolean("redraftStatus");
 		}
 		if(instance==null){
 			Nav.finish(this);
@@ -561,7 +563,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
 		publishButton=new Button(getActivity());
-		publishButton.setText(editingStatus==null ? R.string.publish : R.string.save);
+		publishButton.setText(editingStatus==null || redraftStatus ? R.string.publish : R.string.save);
 		publishButton.setOnClickListener(this::onPublishClick);
 		LinearLayout wrap=new LinearLayout(getActivity());
 		wrap.setOrientation(LinearLayout.HORIZONTAL);
@@ -722,7 +724,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			}
 		};
 
-		if(editingStatus!=null){
+		if(editingStatus!=null && !redraftStatus){
 			new EditStatus(req, editingStatus.id)
 					.setCallback(resCallback)
 					.exec(accountID);

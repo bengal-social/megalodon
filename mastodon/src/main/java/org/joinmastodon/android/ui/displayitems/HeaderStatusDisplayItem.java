@@ -137,10 +137,11 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			optionsMenu.setOnMenuItemClickListener(menuItem->{
 				Account account=item.user;
 				int id=menuItem.getItemId();
-				if(id==R.id.edit){
+				if(id==R.id.edit || id==R.id.delete_and_redraft) {
 					final Bundle args=new Bundle();
 					args.putString("account", item.parentFragment.getAccountID());
 					args.putParcelable("editStatus", Parcels.wrap(item.status));
+					if (id==R.id.delete_and_redraft) args.putBoolean("redraftStatus", true);
 					if(TextUtils.isEmpty(item.status.content) && TextUtils.isEmpty(item.status.spoilerText)){
 						Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 					}else{
@@ -150,7 +151,13 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 									public void onSuccess(GetStatusSourceText.Response result){
 										args.putString("sourceText", result.text);
 										args.putString("sourceSpoiler", result.spoilerText);
-										Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+										if (id==R.id.delete_and_redraft) {
+											UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{
+												Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+											}, true);
+										} else {
+											Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+										}
 									}
 
 									@Override
@@ -163,14 +170,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					}
 				}else if(id==R.id.delete){
 					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
-				}else if(id==R.id.delete_and_redraft) {
-					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{
-						Bundle args=new Bundle();
-						args.putString("account", item.parentFragment.getAccountID());
-						args.putString("prefilledText", HtmlParser.parse(item.status.content, item.status.emojis, item.status.mentions, item.status.tags, item.parentFragment.getAccountID()).toString()); // demo
-						// TODO: restore re-drafted text and attachments
-						Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
-					});
 				}else if(id==R.id.mute){
 					UiUtils.confirmToggleMuteUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.muting, r->{});
 				}else if(id==R.id.block){
