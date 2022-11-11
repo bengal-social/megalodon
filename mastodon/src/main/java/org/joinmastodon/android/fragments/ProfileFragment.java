@@ -536,6 +536,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 				MenuItem item=menu.getItem(i);
 				item.setVisible(item.getItemId()==R.id.share || item.getItemId()==R.id.bookmarks);
 			}
+			menu.findItem(R.id.favorites_list).setVisible(true);
 			return;
 		}
 		menu.findItem(R.id.mute).setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
@@ -564,6 +565,11 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			args.putString("account", accountID);
 			args.putParcelable("profileAccount", Parcels.wrap(account));
 			Nav.go(getActivity(), BookmarksListFragment.class, args);
+		}else if(id==R.id.favorites_list) {
+			Bundle args=new Bundle();
+			args.putString("account", accountID);
+			args.putParcelable("profileAccount", Parcels.wrap(account));
+			Nav.go(getActivity(), FavoritesListFragment.class, args);
 		}else if(id==R.id.mute){
 			confirmToggleMuted();
 		}else if(id==R.id.block){
