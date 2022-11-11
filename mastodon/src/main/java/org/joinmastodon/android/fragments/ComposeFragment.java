@@ -513,7 +513,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					spoilerBtn.setSelected(true);
 				}
 			}
-		}else{
+		}else if (editingStatus==null || editingStatus.inReplyToId==null){
+			// TODO: remove workaround after https://github.com/mastodon/mastodon-android/issues/341 gets fixed
 			replyText.setVisibility(View.GONE);
 		}
 		if(savedInstanceState==null){
