@@ -14,6 +14,6 @@ public class CreateOAuthApp extends MastodonAPIRequest<Application>{
 		public String clientName="Mastodos";
 		public String redirectUris=AccountSessionManager.REDIRECT_URI;
 		public String scopes=AccountSessionManager.SCOPE;
-		public String website="https://github.com/sk22/mastodon-android-fork";
+		public String website="https://sk22.github.io/mastodos";
 	}
 }
