@@ -69,6 +69,7 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Follow and unfollow hashtags](https://github.com/sk22/mastodos/commit/7d38f031f197aa6cefaf53e39d929538689c1e4e) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/233))
 * [Notification bell for posts](https://github.com/sk22/mastodos/commit/b166ca705eb9169025ef32bbe6315b42491b57ea) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/81))
 * [Lists view (viewing only, for now)](https://github.com/sk22/mastodos/commits/list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
+* [List favorited posts](https://github.com/sk22/mastodos/commits/feature/favs-list)
 
 ### Behavior
 
