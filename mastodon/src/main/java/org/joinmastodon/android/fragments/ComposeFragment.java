@@ -27,7 +27,6 @@ import android.text.Layout;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -196,18 +195,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private boolean attachmentsErrorShowing;
 
 	private Status editingStatus;
+	private boolean redraftStatus;
 	private boolean pollChanged;
 	private boolean creatingView;
 	private boolean ignoreSelectionChanges=false;
 	private Runnable updateUploadEtaRunnable;
-
-	public static DraftMediaAttachment redraftAttachment(Attachment att) {
-		DraftMediaAttachment draft=new DraftMediaAttachment();
-		draft.serverAttachment=att;
-		draft.description=att.description;
-		draft.uri=Uri.parse(att.url);
-		return draft;
-	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -222,6 +214,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		instance=AccountSessionManager.getInstance().getInstanceInfo(instanceDomain);
 		if(getArguments().containsKey("editStatus")){
 			editingStatus=Parcels.unwrap(getArguments().getParcelable("editStatus"));
+			redraftStatus=getArguments().getBoolean("redraftStatus");
 		}
 		if(instance==null){
 			Nav.finish(this);
@@ -328,18 +321,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		pollDurationView.setOnClickListener(v->showPollDurationMenu());
 
 		pollOptions.clear();
-		ArrayList<String> restoredPollOptions=(savedInstanceState!=null ? savedInstanceState : getArguments())
-				.getStringArrayList("pollOptions");
-		if(restoredPollOptions!=null){
-			if(savedInstanceState==null){
-				// restoring from arguments
-				pollDuration=getArguments().getInt("pollDuration");
-				pollDurationStr=DateUtils.formatElapsedTime(pollDuration); // getResources().getQuantityString(R.plurals.x_hours, pollDuration/3600);
-			}
+		if(savedInstanceState!=null && savedInstanceState.containsKey("pollOptions")){
 			pollBtn.setSelected(true);
 			mediaBtn.setEnabled(false);
 			pollWrap.setVisibility(View.VISIBLE);
-			for(String oldText:restoredPollOptions){
+			for(String oldText:savedInstanceState.getStringArrayList("pollOptions")){
 				DraftPollOption opt=createDraftPollOption();
 				opt.edit.setText(oldText);
 			}
@@ -374,13 +360,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerBtn.setSelected(true);
 		}
 
-		sensitive = editingStatus != null ? editingStatus.sensitive
-				: (savedInstanceState != null && savedInstanceState.getBoolean("sensitive", false));
-		sensitiveIcon.setSelected(sensitive);
-
-		ArrayList<Parcelable> serializedAttachments=(savedInstanceState!=null ? savedInstanceState : getArguments())
-				.getParcelableArrayList("attachments");
-		if(serializedAttachments!=null){
+		if(savedInstanceState!=null && savedInstanceState.containsKey("attachments")){
+			ArrayList<Parcelable> serializedAttachments=savedInstanceState.getParcelableArrayList("attachments");
 			for(Parcelable a:serializedAttachments){
 				DraftMediaAttachment att=Parcels.unwrap(a);
 				attachmentsView.addView(createMediaAttachmentView(att));
@@ -540,7 +521,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					spoilerBtn.setSelected(true);
 				}
 			}
-		}else{
+		}else if (editingStatus==null || editingStatus.inReplyToId==null){
+			// TODO: remove workaround after https://github.com/mastodon/mastodon-android/issues/341 gets fixed
 			replyText.setVisibility(View.GONE);
 		}
 		if(savedInstanceState==null){
@@ -592,7 +574,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
 		publishButton=new Button(getActivity());
-		publishButton.setText(editingStatus==null ? R.string.publish : R.string.save);
+		publishButton.setText(editingStatus==null || redraftStatus ? R.string.publish : R.string.save);
 		publishButton.setOnClickListener(this::onPublishClick);
 		LinearLayout wrap=new LinearLayout(getActivity());
 		wrap.setOrientation(LinearLayout.HORIZONTAL);
@@ -697,8 +679,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		if(!attachments.isEmpty()){
 			req.mediaIds=attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList());
 		}
-		if(replyTo!=null){
-			req.inReplyToId=replyTo.id;
+		if(replyTo!=null || editingStatus.inReplyToId!=null){
+			req.inReplyToId=editingStatus!=null ? editingStatus.inReplyToId : replyTo.id;
 		}
 		if(!pollOptions.isEmpty()){
 			req.poll=new CreateStatus.Request.Poll();
@@ -741,6 +723,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					E.post(new StatusUpdatedEvent(result));
 				}
 				Nav.finish(ComposeFragment.this);
+				if (getArguments().getBoolean("navigateToStatus", false)) {
+					Bundle args=new Bundle();
+					args.putString("account", accountID);
+					args.putParcelable("status", Parcels.wrap(result));
+					if(replyTo!=null) args.putParcelable("inReplyToAccount", Parcels.wrap(replyTo));
+					Nav.go(getActivity(), ThreadFragment.class, args);
+				}
 			}
 
 			@Override
@@ -754,7 +743,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			}
 		};
 
-		if(editingStatus!=null){
+		if(editingStatus!=null && !redraftStatus){
 			new EditStatus(req, editingStatus.id)
 					.setCallback(resCallback)
 					.exec(accountID);

@@ -26,6 +26,7 @@ import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
+import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.fragments.report.ReportReasonChoiceFragment;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Attachment;
@@ -137,10 +138,18 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			optionsMenu.setOnMenuItemClickListener(menuItem->{
 				Account account=item.user;
 				int id=menuItem.getItemId();
-				if(id==R.id.edit){
+				if(id==R.id.edit || id==R.id.delete_and_redraft) {
 					final Bundle args=new Bundle();
 					args.putString("account", item.parentFragment.getAccountID());
 					args.putParcelable("editStatus", Parcels.wrap(item.status));
+					if (id==R.id.delete_and_redraft) {
+						args.putBoolean("redraftStatus", true);
+						if (item.parentFragment instanceof ThreadFragment thread && !thread.isItemEnabled(item.status.id)) {
+							// ("enabled" = clickable; opened status is not clickable)
+							// request navigation to the re-drafted status if status is currently opened
+							args.putBoolean("navigateToStatus", true);
+						}
+					}
 					if(TextUtils.isEmpty(item.status.content) && TextUtils.isEmpty(item.status.spoilerText)){
 						Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 					}else{
@@ -150,7 +159,13 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 									public void onSuccess(GetStatusSourceText.Response result){
 										args.putString("sourceText", result.text);
 										args.putString("sourceSpoiler", result.spoilerText);
-										Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+										if (id==R.id.delete_and_redraft) {
+											UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{
+												Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+											}, true);
+										} else {
+											Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+										}
 									}
 
 									@Override
@@ -163,8 +178,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					}
 				}else if(id==R.id.delete){
 					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
-				}else if(id==R.id.delete_and_redraft) {
-					UiUtils.confirmDeleteAndRedraftPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
 				}else if(id==R.id.pin || id==R.id.unpin){
 					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s->{});
 				}else if(id==R.id.mute){

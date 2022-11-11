@@ -19,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Parcelable;
 import android.provider.OpenableColumns;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -58,10 +57,8 @@ import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.model.Status;
-import org.joinmastodon.android.model.StatusPrivacy;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.text.CustomEmojiSpan;
-import org.joinmastodon.android.ui.text.HtmlParser;
 import org.joinmastodon.android.ui.text.SpacerSpan;
 import org.parceler.Parcels;
 
@@ -72,8 +69,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -87,10 +82,6 @@ import androidx.annotation.StringRes;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
-
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
@@ -403,9 +394,12 @@ public class UiUtils{
 							.exec(accountID);
 				});
 	}
-
 	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback){
-		showConfirmationAlert(activity, R.string.confirm_delete_title, R.string.confirm_delete, R.string.delete, ()->{
+		confirmDeletePost(activity, accountID, status, resultCallback, false);
+	}
+
+	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback, boolean forRedraft){
+		showConfirmationAlert(activity, forRedraft ? R.string.confirm_delete_and_redraft_title : R.string.confirm_delete_title, forRedraft ? R.string.confirm_delete_and_redraft : R.string.confirm_delete, forRedraft ? R.string.delete_and_redraft : R.string.delete, ()->{
 			new DeleteStatus(status.id)
 					.setCallback(new Callback<>(){
 						@Override
@@ -450,61 +444,6 @@ public class UiUtils{
 							.exec(accountID);
 				}
 		);
-	}
-
-	public static void confirmDeleteAndRedraftPost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback){
-		showConfirmationAlert(activity, R.string.confirm_delete_and_redraft_title, R.string.confirm_delete_and_redraft, R.string.delete_and_redraft, ()->{
-			new DeleteStatus(status.id)
-					.setCallback(new Callback<>(){
-						@Override
-						public void onSuccess(Status result){
-							resultCallback.accept(result);
-							AccountSessionManager.getInstance().getAccount(accountID).getCacheController().deleteStatus(status.id);
-							E.post(new StatusDeletedEvent(status.id, accountID));
-							UiUtils.redraftStatus(status, accountID, activity);
-						}
-
-						@Override
-						public void onError(ErrorResponse error){
-							error.showToast(activity);
-						}
-					})
-					.wrapProgress(activity, R.string.deleting, false)
-					.exec(accountID);
-		});
-	}
-
-	public static void redraftStatus(Status status, String accountID, Activity activity) {
-		Bundle args=new Bundle();
-		args.putString("account", accountID);
-		args.putBoolean("hasDraft", true);
-		args.putString("prefilledText", HtmlParser.parse(status.content, status.emojis, status.mentions, status.tags, accountID).toString());
-		args.putString("spoilerText", status.spoilerText);
-		args.putSerializable("visibility", status.visibility);
-		if(status.poll!=null){
-			args.putInt("pollDuration", (int)status.poll.expiresAt.minus(status.createdAt.getEpochSecond(), ChronoUnit.SECONDS).getEpochSecond());
-			ArrayList<String> opts=status.poll.options.stream().map(o -> o.title).collect(Collectors.toCollection(ArrayList::new));
-			args.putStringArrayList("pollOptions", opts);
-		}
-		if(!status.mediaAttachments.isEmpty()){
-			ArrayList<Parcelable> serializedAttachments=status.mediaAttachments.stream()
-					.map(att -> Parcels.wrap(ComposeFragment.redraftAttachment(att)))
-					.collect(Collectors.toCollection(ArrayList::new));
-			args.putParcelableArrayList("attachments", serializedAttachments);
-		}
-		Callback<Status> cb=new Callback<>(){
-			@Override public void onError(ErrorResponse error) {
-				onSuccess(null);
-				error.showToast(activity);
-			}
-			@Override public void onSuccess(Status status) {
-				if (status!=null) args.putParcelable("replyTo", Parcels.wrap(status));
-				Nav.go(activity, ComposeFragment.class, args);
-			}
-		};
-
-		if(status.inReplyToId!=null) new GetStatusByID(status.inReplyToId).setCallback(cb).exec(accountID);
-		else cb.onSuccess(null);
 	}
 
 	public static void setRelationshipToActionButton(Relationship relationship, Button button){
