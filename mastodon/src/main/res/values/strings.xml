@@ -327,7 +327,7 @@
 	<string name="file_saved">File saved</string>
 	<string name="downloading">Downloading…</string>
 	<string name="no_app_to_handle_action">There\'s no app to handle this action</string>
-	<string name="local_timeline">Community</string>
+	<string name="local_timeline">Local</string>
 	<string name="federated_timeline">Federation</string>
 	<string name="trending_posts_info_banner">These are the posts gaining traction in your corner of Mastodon.</string>
 	<string name="trending_hashtags_info_banner">These are the hashtags gaining traction in your corner of Mastodon.</string>

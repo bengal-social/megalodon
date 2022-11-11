@@ -321,7 +321,7 @@
 	<string name="file_saved">Datei gespeichert</string>
 	<string name="downloading">wird heruntergeladen …</string>
 	<string name="no_app_to_handle_action">Es gibt keine App, um diese Aktion auszuführen</string>
-	<string name="local_timeline">Community</string>
+	<string name="local_timeline">Lokal</string>
 	<string name="federated_timeline">Föderation</string>
 	<string name="trending_posts_info_banner">Dies sind Beiträge, die auf deinem Mastodon-Server gerade angesagt sind.</string>
 	<string name="trending_hashtags_info_banner">Dies sind Hashtags, die auf deinem Mastodon-Server gerade angesagt sind.</string>
