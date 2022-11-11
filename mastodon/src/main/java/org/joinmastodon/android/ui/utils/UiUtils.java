@@ -54,7 +54,6 @@ import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.model.Status;
-import org.joinmastodon.android.model.StatusPrivacy;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.text.CustomEmojiSpan;
 import org.joinmastodon.android.ui.text.HtmlParser;
@@ -81,10 +80,6 @@ import androidx.annotation.StringRes;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
-
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
@@ -391,7 +386,6 @@ public class UiUtils{
 		args.putBoolean("hasDraft", true);
 		args.putString("prefilledText", HtmlParser.parse(status.content, status.emojis, status.mentions, status.tags, accountID).toString());
 		args.putString("spoilerText", status.spoilerText);
-		args.putSerializable("visibility", status.visibility);
 		if(status.poll!=null){
 			args.putInt("pollDuration", (int)status.poll.expiresAt.minus(status.createdAt.getEpochSecond(), ChronoUnit.SECONDS).getEpochSecond());
 			ArrayList<String> opts=status.poll.options.stream().map(o -> o.title).collect(Collectors.toCollection(ArrayList::new));
