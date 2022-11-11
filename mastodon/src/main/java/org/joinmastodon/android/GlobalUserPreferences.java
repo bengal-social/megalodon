@@ -10,6 +10,7 @@ public class GlobalUserPreferences{
 	public static boolean showReplies;
 	public static boolean showBoosts;
 	public static boolean loadNewPosts;
+	public static boolean showInteractionCounts;
 	public static ThemePreference theme;
 
 	private static SharedPreferences getPrefs(){
@@ -24,6 +25,7 @@ public class GlobalUserPreferences{
 		showReplies=prefs.getBoolean("showReplies", true);
 		showBoosts=prefs.getBoolean("showBoosts", true);
 		loadNewPosts=prefs.getBoolean("loadNewPosts", true);
+		showInteractionCounts=prefs.getBoolean("showInteractionCounts", true);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 	}
 
@@ -35,6 +37,7 @@ public class GlobalUserPreferences{
 				.putBoolean("showBoosts", showBoosts)
 				.putBoolean("loadNewPosts", loadNewPosts)
 				.putBoolean("trueBlackTheme", trueBlackTheme)
+				.putBoolean("showInteractionCounts", showInteractionCounts)
 				.putInt("theme", theme.ordinal())
 				.apply();
 	}

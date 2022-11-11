@@ -257,6 +257,7 @@
 	<string name="settings_load_new_posts">Automatisch neue Beiträge laden</string>
 	<string name="settings_gif">Spiele animierte GIFs, Avatare und Emojis ab</string>
 	<string name="settings_custom_tabs">In-App-Browser verwenden</string>
+	<string name="settings_show_interaction_counts">Interaktions-Anzahlen anzeigen</string>
 	<string name="settings_notifications">Benachrichtigungen</string>
 	<string name="notify_me_when">Benachrichtige mich, wenn</string>
 	<string name="notify_anyone">irgendjemand</string>
