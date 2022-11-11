@@ -671,10 +671,10 @@ public class UiUtils{
 		return GlobalUserPreferences.theme==GlobalUserPreferences.ThemePreference.DARK;
 	}
 
-	public static void openURL(Context context, String accountID, String url){
+	public static void openURL(Context context, @Nullable String accountID, String url){
 		Uri uri=Uri.parse(url);
-		String accountDomain=AccountSessionManager.getInstance().getAccount(accountID).domain;
-		if("https".equals(uri.getScheme()) && accountDomain.equalsIgnoreCase(uri.getAuthority())){
+		String accountDomain=accountID != null ? AccountSessionManager.getInstance().getAccount(accountID).domain : null;
+		if(accountDomain!=null && "https".equals(uri.getScheme()) && accountDomain.equalsIgnoreCase(uri.getAuthority())){
 			List<String> path=uri.getPathSegments();
 			// Match URLs like https://mastodon.social/@Gargron/108132679274083591
 			if(path.size()==2 && path.get(0).matches("^@[a-zA-Z0-9_]+$") && path.get(1).matches("^[0-9]+$")){
