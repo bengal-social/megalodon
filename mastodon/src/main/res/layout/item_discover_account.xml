@@ -11,11 +11,11 @@
 		android:id="@+id/cover"
 		android:layout_width="match_parent"
 		android:layout_height="128dp"
-		android:layout_marginLeft="4dp"
 		android:layout_marginTop="4dp"
+		android:layout_marginLeft="4dp"
 		android:layout_marginRight="4dp"
 		android:scaleType="centerCrop"
-		tools:src="#0f0" />
+		tools:src="#0f0"/>
 
 	<View
 		android:id="@+id/avatar_border"
@@ -112,54 +112,52 @@
 			android:id="@+id/followers_btn"
 			android:layout_width="wrap_content"
 			android:layout_height="48dp"
-			android:layout_marginStart="12dp"
 			android:layout_marginTop="16dp"
-			android:gravity="center_horizontal"
-			android:orientation="vertical">
-
+			android:layout_marginStart="12dp"
+			android:orientation="vertical"
+			android:gravity="center_horizontal">
 			<TextView
 				android:id="@+id/followers_count"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textAppearance="@style/m3_title_large"
-				tools:text="123" />
+				tools:text="123"/>
 
 			<TextView
 				android:id="@+id/followers_label"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textAppearance="@style/m3_title_small"
-				tools:text="following" />
+				tools:text="following"/>
 		</LinearLayout>
 
 		<LinearLayout
 			android:id="@+id/following_btn"
 			android:layout_width="wrap_content"
 			android:layout_height="48dp"
-			android:layout_marginStart="12dp"
 			android:layout_marginTop="16dp"
-			android:gravity="center_horizontal"
-			android:orientation="vertical">
-
+			android:layout_marginStart="12dp"
+			android:orientation="vertical"
+			android:gravity="center_horizontal">
 			<TextView
 				android:id="@+id/following_count"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textAppearance="@style/m3_title_large"
-				tools:text="123" />
+				tools:text="123"/>
 
 			<TextView
 				android:id="@+id/following_label"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textAppearance="@style/m3_title_small"
-				tools:text="following" />
+				tools:text="following"/>
 		</LinearLayout>
 
 		<Space
 			android:layout_width="0px"
 			android:layout_height="1px"
-			android:layout_weight="1" />
+			android:layout_weight="1"/>
 
 		<FrameLayout
 			android:id="@+id/reject_btn_wrap"
@@ -168,7 +166,8 @@
 			android:layout_marginTop="8dp"
 			android:clipToPadding="false"
 			android:paddingHorizontal="4dp"
-			android:paddingVertical="8dp">
+			android:paddingVertical="8dp"
+			android:visibility="gone">
 
 			<org.joinmastodon.android.ui.views.ProgressBarButton
 				android:id="@+id/reject_btn"
@@ -198,7 +197,8 @@
 			android:layout_marginTop="8dp"
 			android:clipToPadding="false"
 			android:paddingHorizontal="4dp"
-			android:paddingVertical="8dp">
+			android:paddingVertical="8dp"
+			android:visibility="gone">
 
 			<org.joinmastodon.android.ui.views.ProgressBarButton
 				android:id="@+id/accept_btn"
@@ -225,28 +225,27 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
-			android:clipToPadding="false"
 			android:padding="8dp"
-			android:visibility="gone">
+			android:clipToPadding="false">
 
 			<org.joinmastodon.android.ui.views.ProgressBarButton
 				android:id="@+id/action_btn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:singleLine="true"
-				tools:text="@string/follow_back" />
+				tools:text="@string/follow_back"/>
 
 			<ProgressBar
 				android:id="@+id/action_progress"
-				style="?android:progressBarStyleSmall"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:elevation="10dp"
 				android:indeterminate="true"
-				android:indeterminateTint="?colorButtonText"
+				style="?android:progressBarStyleSmall"
+				android:elevation="10dp"
 				android:outlineProvider="none"
-				android:visibility="gone" />
+				android:indeterminateTint="?colorButtonText"
+				android:visibility="gone"/>
 		</FrameLayout>
 	</LinearLayout>
 
