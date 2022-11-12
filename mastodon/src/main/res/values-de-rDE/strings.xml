@@ -406,4 +406,6 @@
 	<string name="no_update_available">Kein Update verfügbar</string>
 	<string name="list_timelines">Listen</string>
 	<string name="favorited_posts">Favorisierte Beiträge</string>
+	<string name="accept_follow_request">Folgeanfrage akzeptieren</string>
+	<string name="reject_follow_request">Folgeanfrage ablehnen</string>
 </resources>

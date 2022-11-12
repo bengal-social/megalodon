@@ -9,6 +9,7 @@ import com.squareup.otto.Subscribe;
 import org.joinmastodon.android.E;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.session.AccountSessionManager;
+import org.joinmastodon.android.events.NotificationDeletedEvent;
 import org.joinmastodon.android.events.PollUpdatedEvent;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.PaginatedResponse;
@@ -78,7 +79,7 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 				items.add(0, titleItem);
 			return items;
 		}else if(titleItem!=null){
-			AccountCardStatusDisplayItem card=new AccountCardStatusDisplayItem(n.id, this, n.account);
+			AccountCardStatusDisplayItem card=new AccountCardStatusDisplayItem(n.id, this, n.account, n);
 			return Arrays.asList(titleItem, card);
 		}else{
 			return Collections.emptyList();
@@ -178,6 +179,30 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 				updatePoll(ntf.id, ntf.status, ev.poll);
 			}
 		}
+	}
+
+	@Subscribe
+	public void onNotificationDeleted(NotificationDeletedEvent ev) {
+		Notification notification = getNotificationByID(ev.id);
+		if(notification==null)
+			return;
+		data.remove(notification);
+		int index=-1;
+		for(int i=0;i<displayItems.size();i++){
+			if(ev.id.equals(displayItems.get(i).parentID)){
+				index=i;
+				break;
+			}
+		}
+		if(index==-1)
+			return;
+		int lastIndex;
+		for(lastIndex=index;lastIndex<displayItems.size();lastIndex++){
+			if(!displayItems.get(lastIndex).parentID.equals(ev.id))
+				break;
+		}
+		displayItems.subList(index, lastIndex).clear();
+		adapter.notifyItemRangeRemoved(index, lastIndex-index);
 	}
 
 }
