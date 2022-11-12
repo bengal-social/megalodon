@@ -70,7 +70,7 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Add settings to hide replies and reposts from the timeline](https://github.com/sk22/mastodos/commits/feature/filter-home-timeline) ([Pull request](https://github.com/mastodon/mastodon-android/pull/317))
 * [Follow and unfollow hashtags](https://github.com/sk22/mastodos/commit/7d38f031f197aa6cefaf53e39d929538689c1e4e) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/233))
 * [Notification bell for posts](https://github.com/sk22/mastodos/commit/b166ca705eb9169025ef32bbe6315b42491b57ea) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/81))
-* [Lists view (viewing only, for now)](https://github.com/sk22/mastodos/commits/list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
+* [Viewing lists and adding/removing users from lists](https://github.com/sk22/mastodos/commits/list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
 * [List favorited posts](https://github.com/sk22/mastodos/commits/feature/favs-list)
 * [Accept/reject follow requests](https://github.com/sk22/mastodos/commits/feature/follow-requests)
 
