@@ -346,6 +346,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerEdit.setVisibility(View.VISIBLE);
 			spoilerBtn.setSelected(true);
 		}else if(editingStatus!=null && !TextUtils.isEmpty(editingStatus.spoilerText)){
+			hasSpoiler=true;
 			spoilerEdit.setVisibility(View.VISIBLE);
 			spoilerEdit.setText(getArguments().getString("sourceSpoiler", editingStatus.spoilerText));
 			spoilerBtn.setSelected(true);
@@ -364,6 +365,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			for(DraftMediaAttachment att:attachments){
 				attachmentsView.addView(createMediaAttachmentView(att));
 			}
+		}
+
+		if(editingStatus!=null && editingStatus.visibility!=null) {
+			statusVisibility=editingStatus.visibility;
 		}
 		updateVisibilityIcon();
 
@@ -389,16 +394,16 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			outState.putStringArrayList("pollOptions", opts);
 			outState.putInt("pollDuration", pollDuration);
 			outState.putString("pollDurationStr", pollDurationStr);
-			outState.putBoolean("hasSpoiler", hasSpoiler);
-			if(!attachments.isEmpty()){
-				ArrayList<Parcelable> serializedAttachments=new ArrayList<>(attachments.size());
-				for(DraftMediaAttachment att:attachments){
-					serializedAttachments.add(Parcels.wrap(att));
-				}
-				outState.putParcelableArrayList("attachments", serializedAttachments);
-			}
-			outState.putSerializable("visibility", statusVisibility);
 		}
+		outState.putBoolean("hasSpoiler", hasSpoiler);
+		if(!attachments.isEmpty()){
+			ArrayList<Parcelable> serializedAttachments=new ArrayList<>(attachments.size());
+			for(DraftMediaAttachment att:attachments){
+				serializedAttachments.add(Parcels.wrap(att));
+			}
+			outState.putParcelableArrayList("attachments", serializedAttachments);
+		}
+		outState.putSerializable("visibility", statusVisibility);
 	}
 
 	@Override
@@ -523,6 +528,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 						da.serverAttachment=att;
 						da.description=att.description;
 						da.uri=Uri.parse(att.previewUrl);
+						da.state=AttachmentUploadState.DONE;
 						attachmentsView.addView(createMediaAttachmentView(da));
 						attachments.add(da);
 					}
@@ -548,6 +554,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 		if(editingStatus!=null){
 			updateCharCounter();
+			visibilityBtn.setEnabled(false);
 		}
 	}
 
