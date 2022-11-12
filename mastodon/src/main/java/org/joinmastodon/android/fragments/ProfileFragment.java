@@ -531,10 +531,11 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			return;
 		inflater.inflate(R.menu.profile, menu);
 		menu.findItem(R.id.share).setTitle(getString(R.string.share_user, account.getDisplayUsername()));
+		menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.lists_with_user, account.getDisplayUsername()));
 		if(isOwnProfile){
 			for(int i=0;i<menu.size();i++){
 				MenuItem item=menu.getItem(i);
-				item.setVisible(item.getItemId()==R.id.share || item.getItemId()==R.id.bookmarks);
+				item.setVisible(item.getItemId()==R.id.share || item.getItemId()==R.id.bookmarks || item.getItemId()==R.id.manage_user_lists);
 			}
 			menu.findItem(R.id.favorites_list).setVisible(true);
 			return;
@@ -542,10 +543,12 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		menu.findItem(R.id.mute).setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
 		menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
 		menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getDisplayUsername()));
-		if(relationship.following)
+		if(relationship.following) {
 			menu.findItem(R.id.hide_boosts).setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getDisplayUsername()));
-		else
+		}else {
 			menu.findItem(R.id.hide_boosts).setVisible(false);
+			menu.findItem(R.id.manage_user_lists).setVisible(false);
+		}
 		if(!account.isLocal())
 			menu.findItem(R.id.block_domain).setTitle(getString(relationship.domainBlocking ? R.string.unblock_domain : R.string.block_domain, account.getDomain()));
 		else
@@ -601,6 +604,12 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 					})
 					.wrapProgress(getActivity(), R.string.loading, false)
 					.exec(accountID);
+		}else if(id==R.id.manage_user_lists){
+			final Bundle args=new Bundle();
+			args.putString("account", accountID);
+			args.putString("profileAccount", profileAccountID);
+			args.putString("profileDisplayUsername", account.getDisplayUsername());
+			Nav.go(getActivity(), ListTimelinesFragment.class, args);
 		}
 		return true;
 	}

@@ -418,4 +418,5 @@
 	<string name="favorited_posts">Favorited posts</string>
 	<string name="accept_follow_request">Accept follow request</string>
 	<string name="reject_follow_request">Reject follow request</string>
+	<string name="lists_with_user">Lists with %s</string>
 </resources>

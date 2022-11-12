@@ -11,4 +11,7 @@ public class GetLists extends MastodonAPIRequest<List<ListTimeline>>{
     public GetLists() {
         super(HttpMethod.GET, "/lists", new TypeToken<>(){});
     }
+    public GetLists(String accountID) {
+        super(HttpMethod.GET, "/accounts/"+accountID+"/lists", new TypeToken<>(){});
+    }
 }

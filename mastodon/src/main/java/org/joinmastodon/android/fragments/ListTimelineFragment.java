@@ -3,6 +3,8 @@ package org.joinmastodon.android.fragments;
 import android.app.Activity;
 import android.media.MediaRouter;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -33,6 +35,13 @@ public class ListTimelineFragment extends StatusListFragment {
         listID=getArguments().getString("listID");
         listTitle=getArguments().getString("listTitle");
         setTitle(listTitle);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        // inflater.inflate(R.menu.list, menu);
     }
 
     @Override

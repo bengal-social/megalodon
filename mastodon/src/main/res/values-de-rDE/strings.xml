@@ -408,4 +408,5 @@
 	<string name="favorited_posts">Favorisierte Beiträge</string>
 	<string name="accept_follow_request">Folgeanfrage akzeptieren</string>
 	<string name="reject_follow_request">Folgeanfrage ablehnen</string>
+	<string name="lists_with_user">Listen mit %s</string>
 </resources>
