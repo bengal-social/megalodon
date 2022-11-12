@@ -6,6 +6,8 @@
 
 [![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk)
 
+---
+
 ## Key features
 
 ### **Unlisted posting**
@@ -16,7 +18,7 @@ When posting with Unlisted visibility, your posts will be publicly accessible th
   
 The Mastodon documentation has some more information about [Unlisted posting](https://docs.joinmastodon.org/user/posting/#unlisted) and [Public timelines](https://docs.joinmastodon.org/user/network/#timelines).
 
-### **Enable the Federated timeline**
+### **Federated timeline**
 
 **This allows you to chronologically see all Public posts from people on all other Fediverse instances your home instance is connected to.**
 
@@ -70,6 +72,7 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Notification bell for posts](https://github.com/sk22/mastodos/commit/b166ca705eb9169025ef32bbe6315b42491b57ea) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/81))
 * [Lists view (viewing only, for now)](https://github.com/sk22/mastodos/commits/list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
 * [List favorited posts](https://github.com/sk22/mastodos/commits/feature/favs-list)
+* [Accept/reject follow requests](https://github.com/sk22/mastodos/commits/feature/follow-requests)
 
 ### Behavior
 
