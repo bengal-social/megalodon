@@ -58,7 +58,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
             profileAccountId=args.getString("profileAccount");
             profileDisplayUsername=args.getString("profileDisplayUsername");
             setTitle(getString(R.string.lists_with_user, profileDisplayUsername));
-            setHasOptionsMenu(true);
+//            setHasOptionsMenu(true);
         }
     }
 
@@ -69,54 +69,29 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
             loadData();
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        Button saveButton=new Button(getActivity());
-        saveButton.setText(R.string.save);
-        saveButton.setOnClickListener(this::onSaveClick);
-        LinearLayout wrap=new LinearLayout(getActivity());
-        wrap.setOrientation(LinearLayout.HORIZONTAL);
-        wrap.addView(saveButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        wrap.setPadding(V.dp(16), V.dp(4), V.dp(16), V.dp(8));
-        wrap.setClipToPadding(false);
-        MenuItem item=menu.add(R.string.save);
-        item.setActionView(wrap);
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        Button saveButton=new Button(getActivity());
+//        saveButton.setText(R.string.save);
+//        saveButton.setOnClickListener(this::onSaveClick);
+//        LinearLayout wrap=new LinearLayout(getActivity());
+//        wrap.setOrientation(LinearLayout.HORIZONTAL);
+//        wrap.addView(saveButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//        wrap.setPadding(V.dp(16), V.dp(4), V.dp(16), V.dp(8));
+//        wrap.setClipToPadding(false);
+//        MenuItem item=menu.add(R.string.save);
+//        item.setActionView(wrap);
+//        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+//    }
 
-    private void onSaveClick(View view) {
-        List<String> addUserToLists = new ArrayList<>();
-        List<String> removeUserFromLists = new ArrayList<>();
-        for (Map.Entry<String, Boolean> entry : userInList.entrySet()) {
-            Boolean changedValue = entry.getValue();
-            String id = entry.getKey();
-            if (changedValue != null && !changedValue.equals(userInListBefore.get(id))) {
-                (changedValue ? addUserToLists : removeUserFromLists).add(id);
-            }
-        }
+    private void saveListMembership(String listId, boolean isMember) {
+        userInList.put(listId, isMember);
         List<String> accountIdList = Collections.singletonList(profileAccountId);
-        for (String listId : addUserToLists) {
-            inProgress++;
-            new AddAccountsToList(listId, accountIdList).setCallback(new SimpleCallback<>(this) {
-                @Override
-                public void onSuccess(Object o) { onRequestComplete(); }
-                @Override
-                public void onError(ErrorResponse error) { super.onError(error); onSuccess(null); }
-            }).exec(accountId);
-        }
-        for (String listId : removeUserFromLists) {
-            inProgress++;
-            new RemoveAccountsFromList(listId, accountIdList).setCallback(new SimpleCallback<>(this) {
-                @Override
-                public void onSuccess(Object o) { onRequestComplete(); }
-                @Override
-                public void onError(ErrorResponse error) { super.onError(error); onSuccess(null); }
-            }).exec(accountId);
-        }
-    }
-
-    private void onRequestComplete() {
-        if (--inProgress == 0) reload();
+        MastodonAPIRequest<Object> req = isMember ? new AddAccountsToList(listId, accountIdList) : new RemoveAccountsFromList(listId, accountIdList);
+        req.setCallback(new SimpleCallback<>(this) {
+            @Override
+            public void onSuccess(Object o) {}
+        }).exec(accountId);
     }
 
     @Override
@@ -129,7 +104,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
                     public void onSuccess(List<ListTimeline> lists) {
                         for (ListTimeline l : lists) userInListBefore.put(l.id, true);
                         userInList.putAll(userInListBefore);
-                        onDataLoaded(lists, false);
+                        if (profileAccountId == null || !lists.isEmpty()) onDataLoaded(lists, false);
                         if (profileAccountId == null) return;
 
                         currentRequest=new GetLists().setCallback(new SimpleCallback<>(ListTimelinesFragment.this) {
@@ -202,9 +177,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
         }
 
         private void onClickToggle(View view) {
-            if (view instanceof CheckBox cb) {
-                userInList.put(item.id, cb.isChecked());
-            }
+            saveListMembership(item.id, listToggle.isChecked());
         }
 
         @Override

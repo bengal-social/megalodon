@@ -532,10 +532,12 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		menu.findItem(R.id.mute).setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
 		menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
 		menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getDisplayUsername()));
-		if(relationship.following)
+		if(relationship.following) {
 			menu.findItem(R.id.hide_boosts).setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getDisplayUsername()));
-		else
+		}else {
 			menu.findItem(R.id.hide_boosts).setVisible(false);
+			menu.findItem(R.id.manage_user_lists).setVisible(false);
+		}
 		if(!account.isLocal())
 			menu.findItem(R.id.block_domain).setTitle(getString(relationship.domainBlocking ? R.string.unblock_domain : R.string.block_domain, account.getDomain()));
 		else
