@@ -40,9 +40,12 @@ import org.joinmastodon.android.api.requests.accounts.SetAccountBlocked;
 import org.joinmastodon.android.api.requests.accounts.SetAccountFollowed;
 import org.joinmastodon.android.api.requests.accounts.SetAccountMuted;
 import org.joinmastodon.android.api.requests.accounts.SetDomainBlocked;
+import org.joinmastodon.android.api.requests.follow_requests.AuthorizeFollowRequest;
+import org.joinmastodon.android.api.requests.follow_requests.RejectFollowRequest;
 import org.joinmastodon.android.api.requests.statuses.DeleteStatus;
 import org.joinmastodon.android.api.requests.statuses.GetStatusByID;
 import org.joinmastodon.android.api.session.AccountSessionManager;
+import org.joinmastodon.android.events.NotificationDeletedEvent;
 import org.joinmastodon.android.events.StatusDeletedEvent;
 import org.joinmastodon.android.fragments.HashtagTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
@@ -457,6 +460,38 @@ public class UiUtils{
 						}
 					})
 					.exec(accountID);
+		}
+	}
+
+
+	public static void handleFollowRequest(Activity activity, Account account, String accountID, String notificationID, boolean accepted, Relationship relationship, Consumer<Relationship> resultCallback) {
+		if (accepted) {
+			new AuthorizeFollowRequest(account.id).setCallback(new Callback<>() {
+				@Override
+				public void onSuccess(Relationship rel) {
+					resultCallback.accept(rel);
+				}
+
+				@Override
+				public void onError(ErrorResponse error) {
+					resultCallback.accept(relationship);
+					error.showToast(activity);
+				}
+			}).exec(accountID);
+		} else {
+			new RejectFollowRequest(account.id).setCallback(new Callback<>() {
+				@Override
+				public void onSuccess(Relationship rel) {
+					E.post(new NotificationDeletedEvent(notificationID));
+					resultCallback.accept(rel);
+				}
+
+				@Override
+				public void onError(ErrorResponse error) {
+					resultCallback.accept(relationship);
+					error.showToast(activity);
+				}
+			}).exec(accountID);
 		}
 	}
 
