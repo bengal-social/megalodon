@@ -378,4 +378,6 @@
 	<string name="download_update">Download (%s)</string>
 	<string name="install_update">Installieren</string>
 	<string name="list_timelines">Listen</string>
+	<string name="manage_user_lists">Listen</string>
+	<string name="lists_with_user">Listen mit %s</string>
 </resources>

@@ -521,10 +521,11 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			return;
 		inflater.inflate(R.menu.profile, menu);
 		menu.findItem(R.id.share).setTitle(getString(R.string.share_user, account.getDisplayUsername()));
+		menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.lists_with_user, account.getDisplayUsername()));
 		if(isOwnProfile){
 			for(int i=0;i<menu.size();i++){
 				MenuItem item=menu.getItem(i);
-				item.setVisible(item.getItemId()==R.id.share);
+				item.setVisible(item.getItemId()==R.id.share || item.getItemId()==R.id.manage_user_lists);
 			}
 			return;
 		}
@@ -580,6 +581,12 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 					})
 					.wrapProgress(getActivity(), R.string.loading, false)
 					.exec(accountID);
+		}else if(id==R.id.manage_user_lists){
+			final Bundle args=new Bundle();
+			args.putString("account", accountID);
+			args.putString("profileAccount", profileAccountID);
+			args.putString("profileDisplayUsername", account.getDisplayUsername());
+			Nav.go(getActivity(), ListTimelinesFragment.class, args);
 		}
 		return true;
 	}
