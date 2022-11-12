@@ -157,6 +157,35 @@
 			android:layout_weight="1"/>
 
 		<FrameLayout
+			android:id="@+id/reject_btn_wrap"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:clipToPadding="false"
+			android:paddingVertical="8dp"
+			android:visibility="gone">
+
+			<org.joinmastodon.android.ui.views.ProgressBarButton
+				android:id="@+id/reject_btn"
+				style="?secondaryButtonStyle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawableStart="@drawable/ic_fluent_dismiss_24_filled"
+				android:singleLine="true"/>
+
+			<ProgressBar
+				android:id="@+id/reject_progress"
+				style="?android:progressBarStyleSmall"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:elevation="10dp"
+				android:indeterminate="true"
+				android:outlineProvider="none"
+				android:visibility="gone"/>
+		</FrameLayout>
+
+		<FrameLayout
 			android:id="@+id/action_btn_wrap"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -169,6 +198,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:singleLine="true"
+				android:drawableStart="@drawable/ic_fluent_checkmark_24_filled"
 				tools:text="@string/follow_back"/>
 			<ProgressBar
 				android:id="@+id/action_progress"

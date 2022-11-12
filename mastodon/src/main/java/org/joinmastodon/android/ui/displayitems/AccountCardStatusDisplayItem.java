@@ -15,6 +15,7 @@ import android.widget.TextView;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.model.Account;
+import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.ui.OutlineProviders;
 import org.joinmastodon.android.ui.text.HtmlParser;
@@ -31,13 +32,15 @@ import me.grishka.appkit.utils.V;
 
 public class AccountCardStatusDisplayItem extends StatusDisplayItem{
 	private final Account account;
+	private final Notification.Type type;
 	public ImageLoaderRequest avaRequest, coverRequest;
 	public CustomEmojiHelper emojiHelper=new CustomEmojiHelper();
 	public CharSequence parsedName, parsedBio;
 
-	public AccountCardStatusDisplayItem(String parentID, BaseStatusListFragment parentFragment, Account account){
+	public AccountCardStatusDisplayItem(String parentID, BaseStatusListFragment parentFragment, Account account, Notification.Type type){
 		super(parentID, parentFragment);
 		this.account=account;
+		this.type=type;
 		if(!TextUtils.isEmpty(account.avatar))
 			avaRequest=new UrlImageLoaderRequest(account.avatar, V.dp(50), V.dp(50));
 		if(!TextUtils.isEmpty(account.header))
@@ -73,9 +76,9 @@ public class AccountCardStatusDisplayItem extends StatusDisplayItem{
 	public static class Holder extends StatusDisplayItem.Holder<AccountCardStatusDisplayItem> implements ImageLoaderViewHolder{
 		private final ImageView cover, avatar;
 		private final TextView name, username, bio, followersCount, followingCount, postsCount, followersLabel, followingLabel, postsLabel;
-		private final ProgressBarButton actionButton;
-		private final ProgressBar actionProgress;
-		private final View actionWrap;
+		private final ProgressBarButton actionButton, rejectButton;
+		private final ProgressBar actionProgress, rejectProgress;
+		private final View actionWrap, rejectWrap;
 
 		private Relationship relationship;
 
@@ -96,6 +99,9 @@ public class AccountCardStatusDisplayItem extends StatusDisplayItem{
 			actionButton=findViewById(R.id.action_btn);
 			actionProgress=findViewById(R.id.action_progress);
 			actionWrap=findViewById(R.id.action_btn_wrap);
+			rejectButton=findViewById(R.id.reject_btn);
+			rejectProgress=findViewById(R.id.reject_progress);
+			rejectWrap=findViewById(R.id.reject_btn_wrap);
 
 			View card=findViewById(R.id.card);
 			card.setOutlineProvider(OutlineProviders.roundedRect(6));
@@ -121,7 +127,23 @@ public class AccountCardStatusDisplayItem extends StatusDisplayItem{
 			relationship=item.parentFragment.getRelationship(item.account.id);
 			if(relationship==null){
 				actionWrap.setVisibility(View.GONE);
+			}else if(item.type == Notification.Type.FOLLOW_REQUEST){
+				actionWrap.setVisibility(View.VISIBLE);
+				rejectWrap.setVisibility(View.VISIBLE);
+
+				// i hate that i wasn't able to do this in xml
+				actionButton.setCompoundDrawableTintList(actionButton.getTextColors());
+				actionProgress.setIndeterminateTintList(actionButton.getTextColors());
+				actionButton.setContentDescription(item.parentFragment.getString(R.string.accept_follow_request));
+				rejectButton.setCompoundDrawableTintList(rejectButton.getTextColors());
+				rejectProgress.setIndeterminateTintList(rejectButton.getTextColors());
+				rejectButton.setContentDescription(item.parentFragment.getString(R.string.reject_follow_request));
+
+				actionButton.setOnClickListener(i -> {
+
+				});
 			}else{
+				actionButton.setCompoundDrawables(null, null, null, null);
 				actionWrap.setVisibility(View.VISIBLE);
 				UiUtils.setRelationshipToActionButton(relationship, actionButton);
 			}
