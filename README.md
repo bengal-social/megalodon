@@ -14,7 +14,7 @@
 
 **Allows you to post publicly without having your post show up in trends, hashtags or public timelines (i.e., in the tabs “Local”, “Community” and “Posts”).**
 
-When posting with Unlisted visibility, your posts will be publicly accessible through your profile and shown in people’s Home timelines only if they follow you or someone they follow reposted/replied to your post.
+When posting with Unlisted visibility, your posts will still be publicly accessible in your profile. They will also be shown in people’s Home timelines, but only if they follow you or someone they follow reposted/replied to your post.
   
 The Mastodon documentation has some more information about [Unlisted posting](https://docs.joinmastodon.org/user/posting/#unlisted) and [Public timelines](https://docs.joinmastodon.org/user/network/#timelines).
 
