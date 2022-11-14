@@ -419,4 +419,5 @@
 	<string name="accept_follow_request">Accept follow request</string>
 	<string name="reject_follow_request">Reject follow request</string>
 	<string name="lists_with_user">Lists with %s</string>
+	<string name="empty_list">This list is empty</string>
 </resources>
