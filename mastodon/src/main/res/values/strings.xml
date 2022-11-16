@@ -420,4 +420,5 @@
 	<string name="reject_follow_request">Reject follow request</string>
 	<string name="lists_with_user">Lists with %s</string>
 	<string name="empty_list">This list is empty</string>
+	<string name="settings_always_reveal_content_warnings">Always reveal content warnings</string>
 </resources>

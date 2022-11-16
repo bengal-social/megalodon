@@ -11,6 +11,7 @@ public class GlobalUserPreferences{
 	public static boolean showBoosts;
 	public static boolean loadNewPosts;
 	public static boolean showInteractionCounts;
+	public static boolean alwaysExpandContentWarnings;
 	public static ThemePreference theme;
 
 	private static SharedPreferences getPrefs(){
@@ -26,6 +27,7 @@ public class GlobalUserPreferences{
 		showBoosts=prefs.getBoolean("showBoosts", true);
 		loadNewPosts=prefs.getBoolean("loadNewPosts", true);
 		showInteractionCounts=prefs.getBoolean("showInteractionCounts", false);
+		alwaysExpandContentWarnings=prefs.getBoolean("alwaysExpandContentWarnings", false);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 	}
 
@@ -38,6 +40,7 @@ public class GlobalUserPreferences{
 				.putBoolean("loadNewPosts", loadNewPosts)
 				.putBoolean("trueBlackTheme", trueBlackTheme)
 				.putBoolean("showInteractionCounts", showInteractionCounts)
+				.putBoolean("alwaysExpandContentWarnings", alwaysExpandContentWarnings)
 				.putInt("theme", theme.ordinal())
 				.apply();
 	}

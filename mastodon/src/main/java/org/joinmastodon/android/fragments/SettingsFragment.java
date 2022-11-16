@@ -108,6 +108,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.showInteractionCounts=i.checked;
 			GlobalUserPreferences.save();
 		}));
+		items.add(new SwitchItem(R.string.settings_always_reveal_content_warnings, R.drawable.ic_fluent_chat_warning_24_regular, GlobalUserPreferences.alwaysExpandContentWarnings, i->{
+			GlobalUserPreferences.alwaysExpandContentWarnings=i.checked;
+			GlobalUserPreferences.save();
+		}));
 
 		items.add(new HeaderItem(R.string.home_timeline));
 		items.add(new SwitchItem(R.string.settings_show_replies, R.drawable.ic_fluent_chat_multiple_24_regular, GlobalUserPreferences.showReplies, i->{
