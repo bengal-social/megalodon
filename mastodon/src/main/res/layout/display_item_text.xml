@@ -3,23 +3,61 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:paddingLeft="16dp"
-	android:paddingRight="16dp"
 	android:paddingTop="10dp"
 	android:paddingBottom="12dp">
 
-	<org.joinmastodon.android.ui.views.LinkedTextView
-		android:id="@+id/text"
+	<LinearLayout
+		android:id="@+id/content"
+		android:orientation="vertical"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textSize="16sp"
-		android:textAppearance="@style/m3_body_large"/>
+		android:layout_height="wrap_content">
+
+		<LinearLayout
+			android:id="@+id/spoiler_header"
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="0.5dp"
+				android:background="?attr/colorPollVoted"/>
+
+			<TextView
+				android:id="@+id/spoiler_title_inline"
+				android:paddingHorizontal="16dp"
+				android:paddingVertical="12dp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="0dp"
+				android:textAppearance="@style/m3_title_medium"
+				android:background="?colorBackgroundLight"
+				tools:text="CW title"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="0.5dp"
+				android:layout_marginBottom="12dp"
+				android:background="?attr/colorPollVoted"/>
+		</LinearLayout>
+
+		<org.joinmastodon.android.ui.views.LinkedTextView
+			android:id="@+id/text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="16dp"
+			android:textSize="16sp"
+			android:textAppearance="@style/m3_body_large"
+			tools:text="setting up my mstdn"/>
+	</LinearLayout>
+
 
 	<LinearLayout
+		android:visibility="gone"
 		android:id="@+id/spoiler_overlay"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
+		android:paddingHorizontal="16dp"
 		android:orientation="vertical">
 
 		<TextView
