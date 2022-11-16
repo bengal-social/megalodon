@@ -73,6 +73,7 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Viewing lists and adding/removing users from lists](https://github.com/sk22/mastodos/commits/list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
 * [List favorited posts](https://github.com/sk22/mastodos/commits/feature/favs-list)
 * [Accept/reject follow requests](https://github.com/sk22/mastodos/commits/feature/follow-requests)
+* [Display content warning title above text](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
 
 ### Behavior
 
@@ -82,6 +83,7 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Set spoiler height independently to content height](https://github.com/sk22/mastodos/commits/spoiler-height-independent) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/166))
 * [Custom extended footer redesign](https://github.com/sk22/mastodos/commits/compact-extended-footer)
 * [Option to hide interaction numbers](https://github.com/sk22/mastodos/commits/settings/hide-interaction-numbers)
+* [Option to always reveal content warnings](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
 
 ### Branding
 
