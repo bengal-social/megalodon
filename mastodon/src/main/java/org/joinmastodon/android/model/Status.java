@@ -1,5 +1,6 @@
 package org.joinmastodon.android.model;
 
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.api.ObjectValidationException;
 import org.joinmastodon.android.api.RequiredField;
 import org.joinmastodon.android.events.StatusCountersUpdatedEvent;
@@ -78,7 +79,7 @@ public class Status extends BaseModel implements DisplayItemsParent{
 		if(reblog!=null)
 			reblog.postprocess();
 
-		spoilerRevealed=!sensitive;
+		spoilerRevealed=GlobalUserPreferences.alwaysExpandContentWarnings || !sensitive;
 	}
 
 	@Override
