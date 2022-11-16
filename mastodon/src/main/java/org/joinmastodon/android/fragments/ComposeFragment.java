@@ -409,8 +409,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			outState.putInt("pollDuration", pollDuration);
 			outState.putString("pollDurationStr", pollDurationStr);
 		}
-		outState.putBoolean("hasSpoiler", hasSpoiler);
 		outState.putBoolean("sensitive", sensitive);
+		outState.putBoolean("hasSpoiler", hasSpoiler);
 		if(!attachments.isEmpty()){
 			ArrayList<Parcelable> serializedAttachments=new ArrayList<>(attachments.size());
 			for(DraftMediaAttachment att:attachments){
