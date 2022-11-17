@@ -78,6 +78,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 		public void onBind(TextStatusDisplayItem item){
 			text.setText(item.text);
 			text.setTextIsSelectable(item.textSelectable);
+			spoilerTitleInline.setTextIsSelectable(item.textSelectable);
 			text.setInvalidateOnEveryFrame(false);
 			if(!TextUtils.isEmpty(item.status.spoilerText)){
 				spoilerTitle.setText(item.parsedSpoilerText);

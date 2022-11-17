@@ -14,6 +14,8 @@
 		<LinearLayout
 			android:id="@+id/spoiler_header"
 			android:orientation="vertical"
+			android:layout_marginTop="6dp"
+			android:layout_marginBottom="8dp"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content">
 			<View
@@ -24,10 +26,9 @@
 			<TextView
 				android:id="@+id/spoiler_title_inline"
 				android:paddingHorizontal="16dp"
-				android:paddingVertical="12dp"
+				android:paddingVertical="14dp"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="0dp"
 				android:textAppearance="@style/m3_title_medium"
 				android:background="?colorBackgroundLight"
 				tools:text="CW title"/>
@@ -35,7 +36,6 @@
 			<View
 				android:layout_width="match_parent"
 				android:layout_height="0.5dp"
-				android:layout_marginBottom="12dp"
 				android:background="?attr/colorPollVoted"/>
 		</LinearLayout>
 
