@@ -1,4 +1,4 @@
-package org.joinmastodon.android.api.requests.follow_requests;
+package org.joinmastodon.android.api.requests.accounts;
 
 import org.joinmastodon.android.api.MastodonAPIRequest;
 import org.joinmastodon.android.model.Relationship;

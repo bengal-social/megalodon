@@ -377,6 +377,7 @@
 	<!-- %s is file size -->
 	<string name="download_update">Download (%s)</string>
 	<string name="install_update">Installieren</string>
+	<string name="follow_requests">Folgeanfragen</string>
 	<string name="accept_follow_request">Folgeanfrage akzeptieren</string>
 	<string name="reject_follow_request">Folgeanfrage ablehnen</string>
 </resources>
