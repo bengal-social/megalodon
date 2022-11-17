@@ -62,14 +62,13 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 	public static class Holder extends StatusDisplayItem.Holder<TextStatusDisplayItem> implements ImageLoaderViewHolder{
 		private final LinkedTextView text;
 		private final TextView spoilerTitle, spoilerTitleInline;
-		private final View spoilerOverlay, content, spoilerHeader;
+		private final View spoilerOverlay, spoilerHeader;
 
 		public Holder(Activity activity, ViewGroup parent){
 			super(activity, R.layout.display_item_text, parent);
 			text=findViewById(R.id.text);
 			spoilerTitle=findViewById(R.id.spoiler_title);
 			spoilerTitleInline=findViewById(R.id.spoiler_title_inline);
-			content=findViewById(R.id.content);
 			spoilerHeader=findViewById(R.id.spoiler_header);
 			spoilerOverlay=findViewById(R.id.spoiler_overlay);
 			itemView.setOnClickListener(v->item.parentFragment.onRevealSpoilerClick(this));
