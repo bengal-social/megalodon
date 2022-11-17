@@ -9,8 +9,8 @@ android {
 		applicationId "org.joinmastodon.android.sk"
 		minSdk 23
 		targetSdk 33
-		versionCode 40
-		versionName "1.1.4+fork.40"
+		versionCode 41
+		versionName "1.1.4+fork.41"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		resConfigs "en", "ar-rSA", "bs-rBA", "ca-rES", "cs-rCZ", "de-rDE", "el-rGR", "es-rES",
 				"eu-rES", "fi-rFI", "fr-rFR", "gl-rES", "hr-rHR", "hy-rAM", "it-rIT", "iw-rIL",
