@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import org.joinmastodon.android.E;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetFollowRequests;
+import org.joinmastodon.android.api.requests.accounts.GetOwnAccount;
 import org.joinmastodon.android.events.FollowRequestHandledEvent;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.ui.SimpleViewHolder;
@@ -74,6 +75,16 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
 		inflater.inflate(R.menu.notifications, menu);
+
+		new GetOwnAccount().setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(Account account) {
+				if (!account.locked) menu.findItem(R.id.follow_requests).setVisible(false);
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {}
+		}).exec(accountID);
 	}
 
 	@Override
