@@ -19,6 +19,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content">
 			<View
+				android:id="@+id/border_top"
 				android:layout_width="match_parent"
 				android:layout_height="0.5dp"
 				android:background="?attr/colorPollVoted"/>
@@ -34,6 +35,7 @@
 				tools:text="CW title"/>
 
 			<View
+				android:id="@+id/border_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="0.5dp"
 				android:background="?attr/colorPollVoted"/>

@@ -5,8 +5,10 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.joinmastodon.android.R;
@@ -20,6 +22,7 @@ import org.joinmastodon.android.ui.views.LinkedTextView;
 import me.grishka.appkit.imageloader.ImageLoaderViewHolder;
 import me.grishka.appkit.imageloader.MovieDrawable;
 import me.grishka.appkit.imageloader.requests.ImageLoaderRequest;
+import me.grishka.appkit.utils.V;
 
 public class TextStatusDisplayItem extends StatusDisplayItem{
 	private CharSequence text;
@@ -61,8 +64,10 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 
 	public static class Holder extends StatusDisplayItem.Holder<TextStatusDisplayItem> implements ImageLoaderViewHolder{
 		private final LinkedTextView text;
+		private final LinearLayout spoilerHeader;
 		private final TextView spoilerTitle, spoilerTitleInline;
-		private final View spoilerOverlay, spoilerHeader;
+		private final View spoilerOverlay, borderTop, borderBottom;
+		private final Drawable backgroundColor, borderColor;
 
 		public Holder(Activity activity, ViewGroup parent){
 			super(activity, R.layout.display_item_text, parent);
@@ -71,7 +76,17 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			spoilerTitleInline=findViewById(R.id.spoiler_title_inline);
 			spoilerHeader=findViewById(R.id.spoiler_header);
 			spoilerOverlay=findViewById(R.id.spoiler_overlay);
+			borderTop=findViewById(R.id.border_top);
+			borderBottom=findViewById(R.id.border_bottom);
 			itemView.setOnClickListener(v->item.parentFragment.onRevealSpoilerClick(this));
+
+			TypedValue outValue=new TypedValue();
+			activity.getTheme().resolveAttribute(R.attr.colorBackgroundLight, outValue, true);
+			backgroundColor=activity.getDrawable(outValue.resourceId);
+//			activity.getTheme().resolveAttribute(R.attr.colorBackgroundLightest, outValue, true);
+//			backgroundColorInset=activity.getDrawable(outValue.resourceId);
+			activity.getTheme().resolveAttribute(R.attr.colorPollVoted, outValue, true);
+			borderColor=activity.getDrawable(outValue.resourceId);
 		}
 
 		@Override
@@ -80,6 +95,10 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			text.setTextIsSelectable(item.textSelectable);
 			spoilerTitleInline.setTextIsSelectable(item.textSelectable);
 			text.setInvalidateOnEveryFrame(false);
+			spoilerTitleInline.setBackground(item.inset ? null : backgroundColor);
+			spoilerTitleInline.setPadding(spoilerTitleInline.getPaddingLeft(), item.inset ? 0 : V.dp(14), spoilerTitleInline.getPaddingRight(), item.inset ? 0 : V.dp(14));
+			borderTop.setBackground(item.inset ? null : borderColor);
+			borderBottom.setBackground(item.inset ? null : borderColor);
 			if(!TextUtils.isEmpty(item.status.spoilerText)){
 				spoilerTitle.setText(item.parsedSpoilerText);
 				spoilerTitleInline.setText(item.parsedSpoilerText);
