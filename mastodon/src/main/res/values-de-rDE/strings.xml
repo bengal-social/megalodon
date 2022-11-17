@@ -406,11 +406,12 @@
 	<string name="no_update_available">Kein Update verfügbar</string>
 	<string name="list_timelines">Listen</string>
 	<string name="favorited_posts">Favorisierte Beiträge</string>
+	<string name="follow_requests">Folgeanfragen</string>
 	<string name="accept_follow_request">Folgeanfrage akzeptieren</string>
 	<string name="reject_follow_request">Folgeanfrage ablehnen</string>
 	<string name="lists_with_user">Listen mit %s</string>
 	<string name="privacy_policy_title">Mastodon und Ihre Privatsphäre</string>
 	<string name="privacy_policy_subtitle">Obwohl die Mastodon-App keine Daten sammelt, kann der Server, über den Sie sich anmelden, eine andere Richtlinie haben. Nehmen Sie sich eine Minute Zeit, um die Mastodon-Datenschutzrichtlinien und die Datenschutzrichtlinien Ihres Servers zu lesen und zu akzeptieren.</string>
 	<string name="i_agree">Ich stimme zu</string>
-    <string name="settings_always_reveal_content_warnings">Inhaltswarnungen immer ausklappen</string>
+	<string name="settings_always_reveal_content_warnings">Inhaltswarnungen immer ausklappen</string>
 </resources>

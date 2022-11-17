@@ -2,16 +2,22 @@ package org.joinmastodon.android.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import org.joinmastodon.android.E;
 import org.joinmastodon.android.R;
+import org.joinmastodon.android.api.requests.accounts.GetFollowRequests;
+import org.joinmastodon.android.events.FollowRequestHandledEvent;
+import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.ui.SimpleViewHolder;
 import org.joinmastodon.android.ui.tabs.TabLayout;
 import org.joinmastodon.android.ui.tabs.TabLayoutMediator;
@@ -20,8 +26,15 @@ import org.joinmastodon.android.ui.utils.UiUtils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.squareup.otto.Subscribe;
+
+import java.util.List;
+
+import me.grishka.appkit.Nav;
+import me.grishka.appkit.api.Callback;
+import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.fragments.BaseRecyclerFragment;
-import me.grishka.appkit.fragments.ToolbarFragment;
 import me.grishka.appkit.utils.V;
 
 public class NotificationsFragment extends MastodonToolbarFragment implements ScrollableToTop{
@@ -42,12 +55,34 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 			setRetainInstance(true);
 
 		accountID=getArguments().getString("account");
+		E.register(this);
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		E.unregister(this);
 	}
 
 	@Override
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
+		setHasOptionsMenu(true);
 		setTitle(R.string.notifications);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+		inflater.inflate(R.menu.notifications, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() != R.id.follow_requests) return false;
+		Bundle args=new Bundle();
+		args.putString("account", accountID);
+		Nav.go(getActivity(), FollowRequestsListFragment.class, args);
+		return true;
 	}
 
 	@Override
@@ -123,12 +158,30 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 		return view;
 	}
 
+	public void refreshFollowRequestsBadge() {
+		new GetFollowRequests(null, null, 1).setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(List<Account> accounts) {
+				getToolbar().getMenu().findItem(R.id.follow_requests).setIcon(accounts.isEmpty() ? R.drawable.ic_fluent_person_add_24_regular : R.drawable.ic_follow_requests_24_badged);
+			}
+
+			@Override
+			public void onError(ErrorResponse errorResponse) {}
+		}).exec(accountID);
+	}
+
+	@Subscribe
+	public void onFollowRequestHandled(FollowRequestHandledEvent ev) {
+		refreshFollowRequestsBadge();
+	}
+
 	@Override
 	public void scrollToTop(){
 		getFragmentForPage(pager.getCurrentItem()).scrollToTop();
 	}
 
 	public void loadData(){
+		refreshFollowRequestsBadge();
 		if(allNotificationsFragment!=null && !allNotificationsFragment.loaded && !allNotificationsFragment.dataLoading)
 			allNotificationsFragment.loadData();
 	}

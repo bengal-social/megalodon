@@ -56,6 +56,14 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 	}
 
 	@Override
+	public void onRefresh() {
+		super.onRefresh();
+		if (getParentFragment() instanceof NotificationsFragment notificationsFragment) {
+			notificationsFragment.refreshFollowRequestsBadge();
+		}
+	}
+
+	@Override
 	protected List<StatusDisplayItem> buildDisplayItems(Notification n){
 		String extraText=switch(n.type){
 			case FOLLOW -> getString(R.string.user_followed_you);

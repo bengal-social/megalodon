@@ -39,13 +39,14 @@ import org.joinmastodon.android.api.requests.accounts.SetAccountBlocked;
 import org.joinmastodon.android.api.requests.accounts.SetAccountFollowed;
 import org.joinmastodon.android.api.requests.accounts.SetAccountMuted;
 import org.joinmastodon.android.api.requests.accounts.SetDomainBlocked;
-import org.joinmastodon.android.api.requests.follow_requests.AuthorizeFollowRequest;
-import org.joinmastodon.android.api.requests.follow_requests.RejectFollowRequest;
+import org.joinmastodon.android.api.requests.accounts.AuthorizeFollowRequest;
+import org.joinmastodon.android.api.requests.accounts.RejectFollowRequest;
 import org.joinmastodon.android.api.requests.statuses.DeleteStatus;
 import org.joinmastodon.android.api.requests.statuses.GetStatusByID;
 import org.joinmastodon.android.api.requests.statuses.SetStatusPinned;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.StatusCountersUpdatedEvent;
+import org.joinmastodon.android.events.FollowRequestHandledEvent;
 import org.joinmastodon.android.events.NotificationDeletedEvent;
 import org.joinmastodon.android.events.StatusDeletedEvent;
 import org.joinmastodon.android.events.StatusUnpinnedEvent;
@@ -536,11 +537,12 @@ public class UiUtils{
 	}
 
 
-	public static void handleFollowRequest(Activity activity, Account account, String accountID, String notificationID, boolean accepted, Relationship relationship, Consumer<Relationship> resultCallback) {
+	public static void handleFollowRequest(Activity activity, Account account, String accountID, @Nullable String notificationID, boolean accepted, Relationship relationship, Consumer<Relationship> resultCallback) {
 		if (accepted) {
 			new AuthorizeFollowRequest(account.id).setCallback(new Callback<>() {
 				@Override
 				public void onSuccess(Relationship rel) {
+					E.post(new FollowRequestHandledEvent(accountID, true, account, rel));
 					resultCallback.accept(rel);
 				}
 
@@ -554,7 +556,8 @@ public class UiUtils{
 			new RejectFollowRequest(account.id).setCallback(new Callback<>() {
 				@Override
 				public void onSuccess(Relationship rel) {
-					E.post(new NotificationDeletedEvent(notificationID));
+					E.post(new FollowRequestHandledEvent(accountID, false, account, rel));
+					if (notificationID != null) E.post(new NotificationDeletedEvent(notificationID));
 					resultCallback.accept(rel);
 				}
 
