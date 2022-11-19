@@ -414,4 +414,5 @@
 	<string name="privacy_policy_subtitle">Obwohl die Mastodon-App keine Daten sammelt, kann der Server, über den Sie sich anmelden, eine andere Richtlinie haben. Nehmen Sie sich eine Minute Zeit, um die Mastodon-Datenschutzrichtlinien und die Datenschutzrichtlinien Ihres Servers zu lesen und zu akzeptieren.</string>
 	<string name="i_agree">Ich stimme zu</string>
 	<string name="settings_always_reveal_content_warnings">Inhaltswarnungen immer ausklappen</string>
+	<string name="disable_marquee">Laufschrift in Titelleisten deaktivieren</string>
 </resources>

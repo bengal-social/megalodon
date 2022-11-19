@@ -12,9 +12,10 @@ public class GlobalUserPreferences{
 	public static boolean loadNewPosts;
 	public static boolean showInteractionCounts;
 	public static boolean alwaysExpandContentWarnings;
+	public static boolean disableMarquee;
 	public static ThemePreference theme;
 
-	private static SharedPreferences getPrefs(){
+    private static SharedPreferences getPrefs(){
 		return MastodonApp.context.getSharedPreferences("global", Context.MODE_PRIVATE);
 	}
 
@@ -28,6 +29,7 @@ public class GlobalUserPreferences{
 		loadNewPosts=prefs.getBoolean("loadNewPosts", true);
 		showInteractionCounts=prefs.getBoolean("showInteractionCounts", false);
 		alwaysExpandContentWarnings=prefs.getBoolean("alwaysExpandContentWarnings", false);
+		disableMarquee=prefs.getBoolean("disableMarquee", false);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 	}
 
@@ -41,6 +43,7 @@ public class GlobalUserPreferences{
 				.putBoolean("trueBlackTheme", trueBlackTheme)
 				.putBoolean("showInteractionCounts", showInteractionCounts)
 				.putBoolean("alwaysExpandContentWarnings", alwaysExpandContentWarnings)
+				.putBoolean("disableMarquee", disableMarquee)
 				.putInt("theme", theme.ordinal())
 				.apply();
 	}
