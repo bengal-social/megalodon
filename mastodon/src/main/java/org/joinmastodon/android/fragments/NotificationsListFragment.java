@@ -34,6 +34,7 @@ import me.grishka.appkit.utils.V;
 
 public class NotificationsListFragment extends BaseStatusListFragment<Notification>{
 	private boolean onlyMentions;
+	private boolean onlyPosts;
 	private String maxID;
 
 	@Override
@@ -52,6 +53,7 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
 		onlyMentions=getArguments().getBoolean("onlyMentions", false);
+		onlyPosts=getArguments().getBoolean("onlyPosts", false);
 	}
 
 	@Override
@@ -97,7 +99,7 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 	protected void doLoadData(int offset, int count){
 		AccountSessionManager.getInstance()
 				.getAccount(accountID).getCacheController()
-				.getNotifications(offset>0 ? maxID : null, count, onlyMentions, refreshing, new SimpleCallback<>(this){
+				.getNotifications(offset>0 ? maxID : null, count, onlyMentions, onlyPosts, refreshing, new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(PaginatedResponse<List<Notification>> result){
 						if(getActivity()==null)

@@ -31,7 +31,7 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 	private FrameLayout[] tabViews;
 	private TabLayoutMediator tabLayoutMediator;
 
-	private NotificationsListFragment allNotificationsFragment, mentionsFragment;
+	private NotificationsListFragment allNotificationsFragment, mentionsFragment, postsFragment;
 
 	private String accountID;
 
@@ -57,12 +57,13 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 		tabLayout=view.findViewById(R.id.tabbar);
 		pager=view.findViewById(R.id.pager);
 
-		tabViews=new FrameLayout[2];
+		tabViews=new FrameLayout[3];
 		for(int i=0;i<tabViews.length;i++){
 			FrameLayout tabView=new FrameLayout(getActivity());
 			tabView.setId(switch(i){
 				case 0 -> R.id.notifications_all;
 				case 1 -> R.id.notifications_mentions;
+				case 2 -> R.id.notifications_posts;
 				default -> throw new IllegalStateException("Unexpected value: "+i);
 			});
 			tabView.setVisibility(View.GONE);
@@ -101,9 +102,15 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 			mentionsFragment=new NotificationsListFragment();
 			mentionsFragment.setArguments(args);
 
+			args=new Bundle(args);
+			args.putBoolean("onlyPosts", true);
+			postsFragment=new NotificationsListFragment();
+			postsFragment.setArguments(args);
+
 			getChildFragmentManager().beginTransaction()
 					.add(R.id.notifications_all, allNotificationsFragment)
 					.add(R.id.notifications_mentions, mentionsFragment)
+					.add(R.id.notifications_posts, postsFragment)
 					.commit();
 		}
 
@@ -113,6 +120,7 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 				tab.setText(switch(position){
 					case 0 -> R.string.all_notifications;
 					case 1 -> R.string.mentions;
+					case 2 -> R.string.posts;
 					default -> throw new IllegalStateException("Unexpected value: "+position);
 				});
 				tab.view.textView.setAllCaps(true);
@@ -143,6 +151,7 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 		return switch(page){
 			case 0 -> allNotificationsFragment;
 			case 1 -> mentionsFragment;
+			case 2 -> postsFragment;
 			default -> throw new IllegalStateException("Unexpected value: "+page);
 		};
 	}
@@ -163,7 +172,7 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 
 		@Override
 		public int getItemCount(){
-			return 2;
+			return 3;
 		}
 
 		@Override
