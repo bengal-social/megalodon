@@ -19,6 +19,7 @@ import android.view.WindowInsets;
 import android.widget.Toolbar;
 
 import org.joinmastodon.android.E;
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
 import org.joinmastodon.android.api.requests.polls.SubmitPollVote;
@@ -81,6 +82,10 @@ public abstract class BaseStatusListFragment<T extends DisplayItemsParent> exten
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		if(GlobalUserPreferences.disableMarquee){
+			setTitleMarqueeEnabled(false);
+			setSubtitleMarqueeEnabled(false);
+		}
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
 			setRetainInstance(true);
 	}
