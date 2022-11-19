@@ -35,6 +35,8 @@ import java.util.stream.Collectors;
 
 import androidx.recyclerview.widget.RecyclerView;
 import me.grishka.appkit.Nav;
+import me.grishka.appkit.api.Callback;
+import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.api.SimpleCallback;
 import me.grishka.appkit.utils.MergeRecyclerAdapter;
 import me.grishka.appkit.utils.V;
@@ -128,7 +130,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult>{
 		}else{
 			progressVisibilityListener.onProgressVisibilityChanged(true);
 			currentRequest=new GetSearchResults(currentQuery, null, true)
-					.setCallback(new SimpleCallback<>(this){
+					.setCallback(new Callback<>(){
 						@Override
 						public void onSuccess(SearchResults result){
 							ArrayList<SearchResult> results=new ArrayList<>();
@@ -148,6 +150,17 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult>{
 							unfilteredResults=results;
 							onDataLoaded(filterSearchResults(results), false);
 						}
+
+						@Override
+						public void onError(ErrorResponse error){
+							currentRequest=null;
+							Activity a=getActivity();
+							if(a==null)
+								return;
+							error.showToast(a);
+							if(progressVisibilityListener!=null)
+								progressVisibilityListener.onProgressVisibilityChanged(false);
+						}
 					})
 					.exec(accountID);
 		}
@@ -159,12 +172,11 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult>{
 			super.updateList();
 			return;
 		}
-		imgLoader.deactivate();
 		UiUtils.updateList(prevDisplayItems, displayItems, list, adapter, (i1, i2)->i1.parentID.equals(i2.parentID) && i1.index==i2.index && i1.getType()==i2.getType());
 		boolean recent=isInRecentMode();
 		if(recent!=headerAdapter.isVisible())
 			headerAdapter.setVisible(recent);
-		imgLoader.activate();
+		imgLoader.forceUpdateImages();
 		prevDisplayItems=null;
 	}
 
