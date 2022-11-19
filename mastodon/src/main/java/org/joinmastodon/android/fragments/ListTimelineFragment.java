@@ -41,6 +41,7 @@ public class ListTimelineFragment extends StatusListFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        // TODO: implement edit, delete
         // inflater.inflate(R.menu.list, menu);
     }
 
@@ -73,7 +74,6 @@ public class ListTimelineFragment extends StatusListFragment {
     private void onFabClick(View v){
         Bundle args=new Bundle();
         args.putString("account", accountID);
-        args.putString("prefilledText", listID+' ');
         Nav.go(getActivity(), ComposeFragment.class, args);
     }
 
