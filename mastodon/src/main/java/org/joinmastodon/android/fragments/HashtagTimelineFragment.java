@@ -66,8 +66,8 @@ public class HashtagTimelineFragment extends StatusListFragment{
 			new SetHashtagFollowed(hashtag, following).setCallback(new Callback<>() {
 				@Override
 				public void onSuccess(Hashtag i) {
+					if (i.following == following) Toast.makeText(getActivity(), getString(i.following ? R.string.followed_user : R.string.unfollowed_user, "#" + i.name), Toast.LENGTH_SHORT).show();
 					updateFollowingState(i.following);
-					Toast.makeText(getActivity(), getString(i.following ? R.string.followed_user : R.string.unfollowed_user, "#" + i.name), Toast.LENGTH_SHORT).show();
 				}
 
 				@Override
