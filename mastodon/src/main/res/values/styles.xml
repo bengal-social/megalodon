@@ -22,6 +22,7 @@
 		<item name="colorSecondary">#E9EDF2</item>
 		<item name="colorBackgroundLight">@color/gray_50</item>
 		<item name="colorBackgroundLightest">@color/gray_25</item>
+		<item name="colorBackgroundPopup">?colorBackgroundLightest</item>
 		<item name="colorDarkIcon">@color/gray_900</item>
 		<item name="colorWindowBackground">@color/white</item>
 		<item name="android:statusBarColor">@color/gray_50</item>
@@ -67,6 +68,7 @@
 		<item name="colorSecondary">#E9EDF2</item>
 		<item name="colorBackgroundLight">@color/gray_700</item>
 		<item name="colorBackgroundLightest">@color/gray_900</item>
+		<item name="colorBackgroundPopup">?colorBackgroundLightest</item>
 		<item name="colorDarkIcon">@color/gray_25</item>
 		<item name="colorWindowBackground">@color/gray_800</item>
 		<item name="android:statusBarColor">@color/gray_800</item>
@@ -101,6 +103,9 @@
 		<item name="colorWindowBackground">@color/black</item>
 		<item name="colorButtonText">@color/black</item>
 		<item name="colorPollVoted">@color/gray_800</item>
+		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorBackgroundLightest">@color/black</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
 	</style>
 
 	<style name="Theme.Mastodon.AutoLightDark" parent="Theme.Mastodon.Light"/>
