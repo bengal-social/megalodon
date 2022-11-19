@@ -4,6 +4,7 @@
 	<attr name="colorSecondary" format="color"/>
 	<attr name="colorBackgroundLight" format="color"/>
 	<attr name="colorBackgroundLightest" format="color"/>
+	<attr name="colorBackgroundPopup" format="color"/>
 	<attr name="colorDarkIcon" format="color"/>
 	<attr name="colorPollMostVoted" format="color"/>
 	<attr name="colorPollVoted" format="color"/>
