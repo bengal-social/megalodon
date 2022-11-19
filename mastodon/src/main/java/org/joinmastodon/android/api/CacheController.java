@@ -35,7 +35,7 @@ import me.grishka.appkit.utils.WorkerThread;
 
 public class CacheController{
 	private static final String TAG="CacheController";
-	private static final int DB_VERSION=2;
+	private static final int DB_VERSION=3;
 	private static final WorkerThread databaseThread=new WorkerThread("databaseThread");
 	private static final Handler uiHandler=new Handler(Looper.getMainLooper());
 
@@ -126,14 +126,15 @@ public class CacheController{
 		});
 	}
 
-	public void getNotifications(String maxID, int count, boolean onlyMentions, boolean forceReload, Callback<PaginatedResponse<List<Notification>>> callback){
+	public void getNotifications(String maxID, int count, boolean onlyMentions, boolean onlyPosts, boolean forceReload, Callback<PaginatedResponse<List<Notification>>> callback){
 		cancelDelayedClose();
 		databaseThread.postRunnable(()->{
 			try{
 				List<Filter> filters=AccountSessionManager.getInstance().getAccount(accountID).wordFilters.stream().filter(f->f.context.contains(Filter.FilterContext.NOTIFICATIONS)).collect(Collectors.toList());
 				if(!forceReload){
 					SQLiteDatabase db=getOrOpenDatabase();
-					try(Cursor cursor=db.query(onlyMentions ? "notifications_mentions" : "notifications_all", new String[]{"json"}, maxID==null ? null : "`id`<?", maxID==null ? null : new String[]{maxID}, null, null, "`id` DESC", count+"")){
+					String table=onlyPosts ? "notifications_posts" : onlyMentions ? "notifications_mentions" : "notifications_all";
+					try(Cursor cursor=db.query(table, new String[]{"json"}, maxID==null ? null : "`id`<?", maxID==null ? null : new String[]{maxID}, null, null, "`id` DESC", count+"")){
 						if(cursor.getCount()==count){
 							ArrayList<Notification> result=new ArrayList<>();
 							cursor.moveToFirst();
@@ -159,7 +160,7 @@ public class CacheController{
 						Log.w(TAG, "getNotifications: corrupted notification object in database", x);
 					}
 				}
-				new GetNotifications(maxID, count, onlyMentions ? EnumSet.of(Notification.Type.MENTION): EnumSet.allOf(Notification.Type.class))
+				new GetNotifications(maxID, count, onlyPosts ? EnumSet.of(Notification.Type.STATUS) : onlyMentions ? EnumSet.of(Notification.Type.MENTION): EnumSet.allOf(Notification.Type.class))
 						.setCallback(new Callback<>(){
 							@Override
 							public void onSuccess(List<Notification> result){
@@ -173,7 +174,7 @@ public class CacheController{
 									}
 									return true;
 								}).collect(Collectors.toList()), result.isEmpty() ? null : result.get(result.size()-1).id));
-								putNotifications(result, onlyMentions, maxID==null);
+								putNotifications(result, onlyMentions, onlyPosts, maxID==null);
 							}
 
 							@Override
@@ -191,9 +192,9 @@ public class CacheController{
 		}, 0);
 	}
 
-	private void putNotifications(List<Notification> notifications, boolean onlyMentions, boolean clear){
+	private void putNotifications(List<Notification> notifications, boolean onlyMentions, boolean onlyPosts, boolean clear){
 		runOnDbThread((db)->{
-			String table=onlyMentions ? "notifications_mentions" : "notifications_all";
+			String table=onlyPosts ? "notifications_posts" : onlyMentions ? "notifications_mentions" : "notifications_all";
 			if(clear)
 				db.delete(table, null, null);
 			ContentValues values=new ContentValues(3);
@@ -317,12 +318,16 @@ public class CacheController{
 							`type` INTEGER NOT NULL
 						)""");
 			createRecentSearchesTable(db);
+			createPostsNotificationsTable(db);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 			if(oldVersion==1){
 				createRecentSearchesTable(db);
+			}
+			if(oldVersion==2){
+				createPostsNotificationsTable(db);
 			}
 		}
 
@@ -332,6 +337,16 @@ public class CacheController{
 							`id` VARCHAR(50) NOT NULL PRIMARY KEY,
 							`json` TEXT NOT NULL,
 							`time` INTEGER NOT NULL
+						)""");
+		}
+
+		private void createPostsNotificationsTable(SQLiteDatabase db){
+			db.execSQL("""
+						CREATE TABLE `notifications_posts` (
+							`id` VARCHAR(25) NOT NULL PRIMARY KEY,
+							`json` TEXT NOT NULL,
+							`flags` INTEGER NOT NULL DEFAULT 0,
+							`type` INTEGER NOT NULL
 						)""");
 		}
 	}
