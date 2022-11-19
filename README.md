@@ -74,6 +74,9 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [List favorited posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/favs-list)
 * [Accept/reject follow requests](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/follow-requests)
 * [Display content warning title above text](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
+* [Add notifications tab for posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/posts-notifications-tab)
+* [Show visibility of original post when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/display-reply-visibility)
+* [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:true-black-improvements)
 
 ### Behavior
 
@@ -84,6 +87,7 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Custom extended footer redesign](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:compact-extended-footer)
 * [Option to hide interaction numbers](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:settings/hide-interaction-numbers)
 * [Option to always reveal content warnings](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
+* [Option to disable scrolling title bars](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:settings/disable-marquee)
 
 ### Branding
 
