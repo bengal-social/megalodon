@@ -13,6 +13,7 @@ import android.graphics.Outline;
 import android.graphics.PixelFormat;
 import android.graphics.RenderEffect;
 import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.icu.text.BreakIterator;
 import android.media.MediaMetadataRetriever;
@@ -502,6 +503,24 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		spoilerEdit.addTextChangedListener(new SimpleTextWatcher(e->updateCharCounter()));
 		if(replyTo!=null){
 			replyText.setText(getString(R.string.in_reply_to, replyTo.account.displayName));
+			int visibilityNameRes = switch (statusVisibility) {
+				case PUBLIC -> R.string.visibility_public;
+				case UNLISTED -> R.string.visibility_unlisted;
+				case PRIVATE -> R.string.visibility_followers_only;
+				case DIRECT -> R.string.visibility_private;
+			};
+			replyText.setContentDescription(getString(R.string.in_reply_to, replyTo.account.displayName) + ". " + getString(R.string.post_visibility) + ": " + getString(visibilityNameRes));
+			Drawable visibilityIcon = getActivity().getDrawable(switch(statusVisibility){
+				case PUBLIC -> R.drawable.ic_fluent_earth_20_regular;
+				case UNLISTED -> R.drawable.ic_fluent_people_community_20_regular;
+				case PRIVATE -> R.drawable.ic_fluent_people_checkmark_20_regular;
+				case DIRECT -> R.drawable.ic_at_symbol;
+			});
+			visibilityIcon.setBounds(0, 0, V.dp(20), V.dp(20));
+			Drawable replyArrow = getActivity().getDrawable(R.drawable.ic_fluent_arrow_reply_20_filled);
+			replyArrow.setBounds(0, 0, V.dp(20), V.dp(20));
+			replyText.setCompoundDrawables(replyArrow, null, visibilityIcon, null);
+
 			ArrayList<String> mentions=new ArrayList<>();
 			String ownID=AccountSessionManager.getInstance().getAccount(accountID).self.id;
 			if(!replyTo.account.id.equals(ownID))
