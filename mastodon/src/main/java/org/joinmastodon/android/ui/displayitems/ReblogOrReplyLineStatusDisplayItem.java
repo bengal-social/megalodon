@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ import org.joinmastodon.android.ui.utils.UiUtils;
 import java.util.List;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.Nullable;
+
 import me.grishka.appkit.imageloader.ImageLoaderViewHolder;
 import me.grishka.appkit.imageloader.requests.ImageLoaderRequest;
 
@@ -25,14 +28,16 @@ public class ReblogOrReplyLineStatusDisplayItem extends StatusDisplayItem{
 	@DrawableRes
 	private int icon;
 	private CustomEmojiHelper emojiHelper=new CustomEmojiHelper();
+	private View.OnClickListener handleClick;
 
-	public ReblogOrReplyLineStatusDisplayItem(String parentID, BaseStatusListFragment parentFragment, CharSequence text, List<Emoji> emojis, @DrawableRes int icon){
+	public ReblogOrReplyLineStatusDisplayItem(String parentID, BaseStatusListFragment parentFragment, CharSequence text, List<Emoji> emojis, @DrawableRes int icon, @Nullable View.OnClickListener handleClick){
 		super(parentID, parentFragment);
 		SpannableStringBuilder ssb=new SpannableStringBuilder(text);
 		HtmlParser.parseCustomEmoji(ssb, emojis);
 		this.text=ssb;
 		emojiHelper.setText(ssb);
 		this.icon=icon;
+		this.handleClick=handleClick;
 	}
 
 	@Override
@@ -61,6 +66,7 @@ public class ReblogOrReplyLineStatusDisplayItem extends StatusDisplayItem{
 		public void onBind(ReblogOrReplyLineStatusDisplayItem item){
 			text.setText(item.text);
 			text.setCompoundDrawablesRelativeWithIntrinsicBounds(item.icon, 0, 0, 0);
+			if(item.handleClick!=null) text.setOnClickListener(item.handleClick);
 			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.N)
 				UiUtils.fixCompoundDrawableTintOnAndroid6(text);
 		}
