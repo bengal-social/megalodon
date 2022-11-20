@@ -9,26 +9,29 @@
 
 	<ImageView
 		android:id="@+id/more"
-		android:layout_width="24dp"
-		android:layout_height="24dp"
+		android:layout_width="36dp"
+		android:layout_height="36dp"
 		android:layout_alignParentTop="true"
 		android:layout_alignParentEnd="true"
+		android:layout_marginTop="-6dp"
+		android:layout_marginRight="-8dp"
 		android:background="?android:selectableItemBackgroundBorderless"
-		android:scaleType="center"
-		android:tint="?android:textColorSecondary"
 		android:contentDescription="@string/more_options"
-		android:src="@drawable/ic_post_more" />
+		android:scaleType="center"
+		android:src="@drawable/ic_post_more"
+		android:tint="?android:textColorSecondary" />
 
 	<ImageView
 		android:id="@+id/visibility"
-		android:layout_width="24dp"
-		android:layout_height="20dp"
-		android:layout_alignParentEnd="true"
-		android:layout_below="@id/more"
+		android:layout_width="36dp"
+		android:layout_height="36dp"
+		android:layout_marginTop="-6dp"
+		android:layout_marginRight="6dp"
+		android:layout_toLeftOf="@id/more"
 		android:background="?android:selectableItemBackgroundBorderless"
 		android:scaleType="center"
-		android:tint="?android:textColorSecondary"
-		android:src="@drawable/ic_visibility" />
+		android:src="@drawable/ic_visibility"
+		android:tint="?android:textColorSecondary" />
 
 	<ImageView
 		android:id="@+id/avatar"
@@ -42,9 +45,9 @@
 		android:id="@+id/name_wrap"
 		android:layout_width="match_parent"
 		android:layout_height="24dp"
-		android:layout_toEndOf="@id/avatar"
-		android:layout_toStartOf="@id/more"
-		android:layout_marginEnd="8dp">
+		android:layout_marginEnd="8dp"
+		android:layout_toStartOf="@id/visibility"
+		android:layout_toEndOf="@id/avatar">
 
 		<TextView
 			android:id="@+id/name"
@@ -52,8 +55,8 @@
 			android:layout_height="24dp"
 			android:ellipsize="end"
 			android:singleLine="true"
-			android:textAppearance="@style/m3_title_medium"
 			android:textAlignment="viewStart"
+			android:textAppearance="@style/m3_title_medium"
 			tools:text="Eugen" />
 
 		<TextView
@@ -62,10 +65,10 @@
 			android:layout_height="24dp"
 			android:layout_marginStart="8dp"
 			android:ellipsize="end"
-			android:singleLine="true"
-			android:textAppearance="@style/m3_title_medium"
 			android:fontFamily="sans-serif"
+			android:singleLine="true"
 			android:textAlignment="viewStart"
+			android:textAppearance="@style/m3_title_medium"
 			tools:text="boosted your cat picture" />
 
 	</org.joinmastodon.android.ui.views.HeaderSubtitleLinearLayout>
@@ -74,8 +77,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="20dp"
 		android:layout_below="@id/name_wrap"
-		android:layout_toEndOf="@id/avatar"
+		android:layout_marginEnd="8dp"
 		android:layout_toStartOf="@id/visibility"
+		android:layout_toEndOf="@id/avatar"
 		android:layoutDirection="locale"
 		android:orientation="horizontal">
 
@@ -101,8 +105,8 @@
 			android:id="@+id/timestamp"
 			android:layout_width="wrap_content"
 			android:layout_height="20dp"
-			android:textAppearance="@style/m3_title_small"
 			android:singleLine="true"
+			android:textAppearance="@style/m3_title_small"
 			tools:text="3h" />
 
 	</org.joinmastodon.android.ui.views.HeaderSubtitleLinearLayout>
