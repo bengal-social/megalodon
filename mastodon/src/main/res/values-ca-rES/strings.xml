@@ -374,7 +374,5 @@
 	<!-- Missing strings -->
 	<string name="bookmarks">Marcadors</string>
 	<string name="pinned">Fixat</string>
-		<string name="pinned">Fixat</string>
-
-
+	<string name="pinned">Fixat</string>
 </resources>
