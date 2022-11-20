@@ -139,7 +139,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 				curForkNumber=Integer.parseInt(matcher.group(4));
 			long newVersion=((long)newMajor << 32) | ((long)newMinor << 16) | newRevision;
 			long curVersion=((long)curMajor << 32) | ((long)curMinor << 16) | curRevision;
-			if(newVersion>curVersion || newForkNumber>curForkNumber || BuildConfig.DEBUG){
+			if(newVersion>curVersion || newForkNumber>curForkNumber){
 				String version=newMajor+"."+newMinor+"."+newRevision+"+fork."+newForkNumber;
 				Log.d(TAG, "actuallyCheckForUpdates: new version: "+version);
 				for(JsonElement el:obj.getAsJsonArray("assets")){
