@@ -29,7 +29,7 @@
 						android:id="@+id/cover"
 						android:layout_width="match_parent"
 						android:layout_height="229dp"
-						android:background="#808080"
+						android:background="?colorWindowBackground"
 						android:contentDescription="@string/profile_header"
 						android:scaleType="centerCrop"/>
 
