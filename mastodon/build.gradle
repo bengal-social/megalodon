@@ -20,12 +20,14 @@ android {
 
 	buildTypes {
 		release {
-			minifyEnabled true
-			shrinkResources true
+//			minifyEnabled true
+//			shrinkResources true
+			debuggable true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 		debug{
 			debuggable true
+			versionNameSuffix '-debug'
 		}
 		appcenterPrivateBeta{
 			initWith release
