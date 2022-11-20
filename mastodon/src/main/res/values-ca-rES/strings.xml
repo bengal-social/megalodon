@@ -272,8 +272,8 @@
 	<string name="button_favorite">Marca com a preferit</string>
 	<string name="button_share">Comparteix</string>
 	<string name="media_no_description">Multimèdia sense descripció</string>
-	<string name="add_media">Afegir contingut multimèdia</string>
-	<string name="add_poll">Afegir una enquesta</string>
+	<string name="add_media">Afegeix contingut multimèdia</string>
+	<string name="add_poll">Afegeix una enquesta</string>
 	<string name="emoji">Emoji</string>
 	<string name="post_visibility">Visibilitat de la publicació</string>
 	<string name="home_timeline">Línia de temps principal</string>
@@ -300,8 +300,9 @@
 	<string name="downloading">Descarregant…</string>
 	<string name="no_app_to_handle_action">No hi ha cap aplicació que gestioni aquesta acció</string>
 	<string name="local_timeline">Comunitat</string>
-	<string name="federated_timeline">Federació</string>
-	<string name="trending_posts_info_banner">Aquestes son les publicacions que criden l\'atenció en el teu racó de Mastodon.</string>
+	<string name="federated_timeline">Federada</string>
+	<string name="federated_timeline_info_banner">Aquestes són les publicacions més recents de les persones que estan a tots els servidors federats.</string>
+	<string name="trending_posts_info_banner">Aquestes són les publicacions que criden l\'atenció en el teu racó de Mastodon.</string>
 	<string name="trending_hashtags_info_banner">Aquests són els hashtags que criden l\'atenció en el teu racó de Mastodon.</string>
 	<string name="trending_links_info_banner">Aquestes són les notícies que més es comparteixen en el teu racó de Mastodon.</string>
 	<string name="local_timeline_info_banner">Aquestes són les publicacions més recents de les persones que utilitzen el mateix servidor Mastodon que tu.</string>
