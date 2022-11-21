@@ -29,9 +29,9 @@
 						android:id="@+id/cover"
 						android:layout_width="match_parent"
 						android:layout_height="200dp"
-						android:background="?colorWindowBackground"
+						android:background="?profileHeaderBackground"
 						android:contentDescription="@string/profile_header"
-						android:scaleType="centerCrop"/>
+						android:scaleType="centerCrop" />
 
 					<TextView
 						android:id="@+id/follows_you"
