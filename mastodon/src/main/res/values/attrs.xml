@@ -15,6 +15,7 @@
 	<attr name="colorSearchHint" format="color"/>
 	<attr name="colorTabInactive" format="color"/>
 	<attr name="colorAccentLightest" format="color"/>
+	<attr name="profileHeaderBackground" format="color"/>
 
 	<attr name="primaryLargeButtonStyle" format="reference"/>
 	<attr name="secondaryLargeButtonStyle" format="reference"/>

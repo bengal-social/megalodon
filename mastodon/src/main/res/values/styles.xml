@@ -35,6 +35,7 @@
 		<item name="colorSearchHint">@color/gray_600</item>
 		<item name="colorTabInactive">@color/gray_400</item>
 		<item name="colorAccentLightest">@color/primary_100</item>
+		<item name="profileHeaderBackground">@color/gray_500</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_dark_on_light</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_light</item>
@@ -78,6 +79,7 @@
 		<item name="colorAccentLight">@color/primary_600</item>
 		<item name="colorAccentLightest">@color/primary_800</item>
 		<item name="colorTabInactive">@color/gray_400</item>
+		<item name="profileHeaderBackground">?colorWindowBackground</item>
 
 		<!-- TODO dark colors -->
 		<item name="colorSearchField">@color/gray_700</item>
