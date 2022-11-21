@@ -1,11 +1,16 @@
 package org.joinmastodon.android.fragments;
 
+import static android.content.Context.CLIPBOARD_SERVICE;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Outline;
@@ -14,6 +19,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
@@ -35,6 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import org.joinmastodon.android.GlobalUserPreferences;
@@ -445,6 +453,16 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			// noinspection SetTextI18n
 			username.setText('@'+account.acct+(isSelf ? ('@'+AccountSessionManager.getInstance().getAccount(accountID).domain) : ""));
 		}
+		username.setOnLongClickListener(l->{
+			ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+			Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+			ClipData clip = ClipData.newPlainText("Username", '@'+account.acct+'@'+AccountSessionManager.getInstance().getAccount(accountID).domain);
+			clipboard.setPrimaryClip(clip);
+			Toast.makeText(getActivity(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show();
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) v.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+			else v.vibrate(50);
+			return true;
+		});
 		CharSequence parsedBio=HtmlParser.parse(account.note, account.emojis, Collections.emptyList(), Collections.emptyList(), accountID);
 		if(TextUtils.isEmpty(parsedBio)){
 			bio.setVisibility(View.GONE);
