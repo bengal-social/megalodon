@@ -69,7 +69,7 @@ All downloads can be found on the [Releases](https://github.com/sk22/mastodos/re
 
 Variant with an integrated updater. If you download Mastodos from here (and not from an app store), just download the regular `mastodos.apk`.
 
-**`mastodon-1234abc.apk`**
+**`upstream-1234abc.apk`**
 
 This is an **unmodified version** of the official [Mastodon for Android](https://github.com/mastodon/mastodon-android) app the respective Mastodos release is based on. Should you find any bugs in Mastodos (which you will), try to see if it occurs with this variant, too. The last 7 digits of the file name are important to know which version of the official app you're using.
 
