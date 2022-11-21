@@ -210,9 +210,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_below="@id/name"
-						android:layout_marginStart="10dp"
-						android:layout_marginTop="0dp"
-						android:layout_marginBottom="-6dp"
+						android:layout_marginStart="16dp"
 						android:layout_toStartOf="@id/profile_action_btn_wrap"						>
 
 						<TextView
@@ -220,7 +218,6 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:background="?android:selectableItemBackground"
-							android:padding="6dp"
 							android:textAppearance="@style/m3_title_medium"
 							android:textColor="?android:textColorSecondary"
 							tools:text="\@Gargron" />
