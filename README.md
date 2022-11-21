@@ -95,7 +95,7 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * Pink primary color
 * Custom icon: Modulate upstream icon using ImageMagick
   ```bash
-  mogrify -modulate 90,100,140 mastodon/src/main/res/mipmap-*/ic_launcher*.png
+  mogrify -modulate 90,100,140 mastodon/src/main/res/mipmap-*/ic_launcher*.png mastodon/src/main/ic_launcher-playstore.png
   ```
 
 ## Building
