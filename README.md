@@ -6,7 +6,10 @@
 
 [![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk)
 
+![A pinker version of the official Mastodon banner](img/banner.png)
+
 ---
+
 
 ## Key features
 
@@ -51,6 +54,10 @@ To bookmark a post, press the button between the Favorite and Share buttons on t
 To install this app on your Android device, download the [latest release from GitHub](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk) and open it. You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/mastodos/releases) page.
 
 Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodon-android)’s automatic update checker. Mastodos will check for new updates available on GitHub and offer to download and install them. You can also manually press “Check for updates” at the bottom of the settings page!
+
+### Other sources
+
+* **[Izzy's F-Droid repository](https://apt.izzysoft.de/fdroid/repo)**: https://apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk
 
 ---
 
@@ -133,3 +140,7 @@ As this app is using Java 17 features, you need JDK 17 or newer to build it. Oth
 ## License
 
 This project is released under the [GPL-3 License](./LICENSE).
+
+## Links
+
+<a rel="me" href="https://floss.social/@mastodos">@mastodos​@floss.social</a>
