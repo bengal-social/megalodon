@@ -53,6 +53,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -295,6 +296,14 @@ public class InstanceCatalogFragment extends BaseRecyclerFragment<CatalogInstanc
 	private void proceedWithAuthOrSignup(Instance instance){
 		getActivity().getSystemService(InputMethodManager.class).hideSoftInputFromWindow(contentView.getWindowToken(), 0);
 		if(isSignup){
+			if(!instance.registrations){
+				new M3AlertDialogBuilder(getActivity())
+						.setTitle(R.string.error)
+						.setMessage(R.string.instance_signup_closed)
+						.setPositiveButton(R.string.ok, null)
+						.show();
+				return;
+			}
 			Bundle args=new Bundle();
 			args.putParcelable("instance", Parcels.wrap(instance));
 			Nav.go(getActivity(), InstanceRulesFragment.class, args);
@@ -478,7 +487,7 @@ public class InstanceCatalogFragment extends BaseRecyclerFragment<CatalogInstanc
 							instanceProgressDialog=null;
 							proceedWithAuthOrSignup(result);
 						}
-						if(domain.equals(currentSearchQuery) || currentSearchQuery.equals(redirects.get(domain)) || currentSearchQuery.equals(redirectsInverse.get(domain))){
+						if(Objects.equals(domain, currentSearchQuery) || Objects.equals(currentSearchQuery, redirects.get(domain)) || Objects.equals(currentSearchQuery, redirectsInverse.get(domain))){
 							boolean found=false;
 							for(CatalogInstance ci:filteredData){
 								if(ci.domain.equals(domain)){
