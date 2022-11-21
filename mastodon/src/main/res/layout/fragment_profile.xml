@@ -205,22 +205,32 @@
 						android:textAlignment="viewStart"
 						tools:text="Eugen" />
 
-					<TextView
-						android:id="@+id/username"
+					<FrameLayout
+						android:id="@+id/username_wrap"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_below="@id/name"
-						android:layout_marginStart="16dp"
-						android:layout_toStartOf="@id/profile_action_btn_wrap"
-						android:textAppearance="@style/m3_title_medium"
-						android:textColor="?android:textColorSecondary"
-						tools:text="\@Gargron"/>
+						android:layout_marginStart="10dp"
+						android:layout_marginTop="0dp"
+						android:layout_marginBottom="-6dp"
+						android:layout_toStartOf="@id/profile_action_btn_wrap"						>
+
+						<TextView
+							android:id="@+id/username"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:background="?android:selectableItemBackground"
+							android:padding="6dp"
+							android:textAppearance="@style/m3_title_medium"
+							android:textColor="?android:textColorSecondary"
+							tools:text="\@Gargron" />
+					</FrameLayout>
 
 					<org.joinmastodon.android.ui.views.LinkedTextView
 						android:id="@+id/bio"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_below="@id/username"
+						android:layout_below="@id/username_wrap"
 						android:layout_marginLeft="16dp"
 						android:layout_marginTop="8dp"
 						android:layout_marginRight="16dp"
@@ -249,7 +259,7 @@
 						android:id="@+id/bio_edit"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_below="@id/username"
+						android:layout_below="@id/username_wrap"
 						android:layout_marginLeft="16dp"
 						android:layout_marginTop="8dp"
 						android:layout_marginRight="16dp"
