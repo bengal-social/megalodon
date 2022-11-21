@@ -54,6 +54,24 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 
 ---
 
+## Release variants
+
+All downloads can be found on the [Releases](https://github.com/sk22/mastodos/releases) page.
+
+**`mastodos.apk`**
+
+Variant with an integrated updater. If you download Mastodos from here (and not from an app store), just download the regular `mastodos.apk`.
+
+**`mastodon-1234abc.apk`**
+
+This is an **unmodified version** of the official [Mastodon for Android](https://github.com/mastodon/mastodon-android) app the respective Mastodos release is based on. Should you find any bugs in Mastodos (which you will), try to see if it occurs with this variant, too. The last 7 digits of the file name are important to know which version of the official app you're using.
+
+<!-- **`mastodon-fdroid.apk`**
+
+Variant without the integrated updater. This is the variant to be published to F-Droid.org where an integrated updater is not necessary. -->
+
+---
+
 ## Detailed changes
 
 ### Features
@@ -76,7 +94,8 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Display content warning title above text](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
 * [Add notifications tab for posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/posts-notifications-tab)
 * [Show visibility of original post when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/display-reply-visibility)
-* [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:true-black-improvements)
+* [Clickable reply/boost line above posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:clickable-boost-reply-line)
+* [Long-click to copy username from profile](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/copy-username)
 
 ### Behavior
 
@@ -84,10 +103,15 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 * [Always preserve content warnings when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/always-preserve-cw) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/113))
 * [Display full image when adding image description](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/compose-image-description-full-image) ([Pull request](https://github.com/mastodon/mastodon-android/pull/182))
 * [Set spoiler height independently to content height](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:spoiler-height-independent) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/166))
-* [Custom extended footer redesign](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:compact-extended-footer)
 * [Option to hide interaction numbers](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:settings/hide-interaction-numbers)
 * [Option to always reveal content warnings](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
 * [Option to disable scrolling title bars](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:settings/disable-marquee)
+
+### Visual
+
+* [Custom extended footer redesign](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:compact-extended-footer)
+* [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:true-black-improvements)
+* [Profile header tweaks](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:ui/profile-header-tweaks)
 
 ### Branding
 
