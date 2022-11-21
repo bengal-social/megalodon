@@ -648,7 +648,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		notifyProgress.setIndeterminateTintList(notifyButton.getTextColors());
 		followsYouView.setVisibility(relationship.followedBy ? View.VISIBLE : View.GONE);
 		notifyButton.setSelected(relationship.notifying);
-		notifyButton.setContentDescription(getString(relationship.notifying ? R.string.user_post_notifications_on : R.string.user_post_notifications_off, '@'+account.username));
+		if (getActivity() != null) notifyButton.setContentDescription(getString(relationship.notifying ? R.string.user_post_notifications_on : R.string.user_post_notifications_off, '@'+account.username));
 	}
 
 	private void onScrollChanged(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY){
