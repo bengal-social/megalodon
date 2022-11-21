@@ -144,7 +144,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 				Log.d(TAG, "actuallyCheckForUpdates: new version: "+version);
 				for(JsonElement el:obj.getAsJsonArray("assets")){
 					JsonObject asset=el.getAsJsonObject();
-					if("application/vnd.android.package-archive".equals(asset.get("content_type").getAsString()) && "uploaded".equals(asset.get("state").getAsString())){
+					if("mastodos.apk".equals(asset.get("name")) && "application/vnd.android.package-archive".equals(asset.get("content_type").getAsString()) && "uploaded".equals(asset.get("state").getAsString())){
 						long size=asset.get("size").getAsLong();
 						String url=asset.get("browser_download_url").getAsString();
 
