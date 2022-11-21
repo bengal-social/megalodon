@@ -54,8 +54,8 @@
 
 					<FrameLayout
 						android:id="@+id/avatar_border"
-						android:layout_width="102dp"
-						android:layout_height="102dp"
+						android:layout_width="112dp"
+						android:layout_height="112dp"
 						android:layout_below="@id/cover"
 						android:layout_alignParentStart="true"
 						android:layout_marginTop="-40dp"
@@ -65,8 +65,8 @@
 
 						<ImageView
 							android:id="@+id/avatar"
-							android:layout_width="98dp"
-							android:layout_height="98dp"
+							android:layout_width="108dp"
+							android:layout_height="108dp"
 							android:layout_gravity="center"
 							android:scaleType="centerCrop"
 							android:contentDescription="@string/profile_picture"
@@ -170,26 +170,28 @@
 						android:id="@+id/profile_action_btn_wrap"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_alignParentEnd="true"
 						android:layout_below="@id/profile_counters"
-						android:padding="16dp"
-						android:clipToPadding="false">
+						android:layout_alignParentEnd="true"
+						android:clipToPadding="false"
+						android:padding="16dp">
+
 						<org.joinmastodon.android.ui.views.ProgressBarButton
 							android:id="@+id/profile_action_btn"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							tools:text="Edit Profile"/>
+							tools:text="Edit Profile" />
+
 						<ProgressBar
 							android:id="@+id/action_progress"
+							style="?android:progressBarStyleSmall"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_gravity="center"
-							android:indeterminate="true"
-							style="?android:progressBarStyleSmall"
 							android:elevation="10dp"
-							android:outlineProvider="none"
+							android:indeterminate="true"
 							android:indeterminateTint="?colorButtonText"
-							android:visibility="gone"/>
+							android:outlineProvider="none"
+							android:visibility="gone" />
 					</FrameLayout>
 
 					<TextView
@@ -199,10 +201,11 @@
 						android:layout_below="@id/avatar_border"
 						android:layout_alignParentStart="true"
 						android:layout_marginStart="16dp"
-						android:layout_marginTop="12dp"
+						android:layout_marginTop="17dp"
+						android:layout_marginBottom="0.4dp"
 						android:layout_toStartOf="@id/profile_action_btn_wrap"
-						android:textAppearance="@style/m3_headline_small"
 						android:textAlignment="viewStart"
+						android:textAppearance="@style/m3_headline_small"
 						tools:text="Eugen" />
 
 					<TextView
@@ -210,11 +213,13 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_below="@id/name"
-						android:layout_marginStart="16dp"
-						android:layout_toStartOf="@id/profile_action_btn_wrap"
+						android:layout_marginTop="2dp"
+						android:paddingHorizontal="16dp"
+						android:paddingTop="1dp"
+						android:paddingBottom="4dp"
 						android:textAppearance="@style/m3_title_medium"
 						android:textColor="?android:textColorSecondary"
-						tools:text="\@Gargron"/>
+						tools:text="\@Gargron" />
 
 					<org.joinmastodon.android.ui.views.LinkedTextView
 						android:id="@+id/bio"
@@ -222,7 +227,7 @@
 						android:layout_height="wrap_content"
 						android:layout_below="@id/username"
 						android:layout_marginLeft="16dp"
-						android:layout_marginTop="8dp"
+						android:layout_marginTop="4dp"
 						android:layout_marginRight="16dp"
 						android:textAppearance="@style/m3_body_large"
 						android:textSize="16sp"
