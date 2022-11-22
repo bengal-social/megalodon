@@ -6,8 +6,6 @@
 
 [![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk)
 
-![A pinker version of the official Mastodon banner](img/banner.png)
-
 ---
 
 
