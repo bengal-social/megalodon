@@ -1,4 +1,10 @@
-# Mastodos
+# Mastodos?
+
+Currently trying to find out whether I'll have to rename the project because of this. I will definitely need a new logo, though. Feel free to help me in https://github.com/sk22/mastodos/issues/15
+
+> The Mastodon name and logo are trademarks of Mastodon gGmbH. If you intend to redistribute a modified version of this app, use a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH.
+
+---
 
 > A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
 
