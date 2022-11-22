@@ -118,12 +118,8 @@ Variant without the integrated updater. This is the variant to be published to F
 
 ### Branding
 
-* App name “Mastodos”
-* Pink primary color
-* Custom icon: Modulate upstream icon using ImageMagick
-  ```bash
-  mogrify -modulate 90,100,140 mastodon/src/main/res/mipmap-*/ic_launcher*.png mastodon/src/main/ic_launcher-playstore.png
-  ```
+**TODO:** Find a name and come up with "a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH"...
+https://github.com/sk22/mastodos/issues/15
 
 ## Building
 
