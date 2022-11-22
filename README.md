@@ -118,7 +118,7 @@ Variant without the integrated updater. This is the variant to be published to F
 
 ### Branding
 
-**TODO:** Find a name and come up with "a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH"...
+**TODO:** Come up with "a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH"...
 https://github.com/sk22/mastodos/issues/15
 
 ## Building
