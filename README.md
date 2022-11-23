@@ -1,6 +1,6 @@
 # Mastodos?
 
-Currently trying to find out whether I'll have to rename the project. I will definitely need a new logo, though, since `The Mastodon name and logo are trademarks of Mastodon gGmbH. If you intend to redistribute a modified version of this app, use a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH.` Feel free to help me in https://github.com/sk22/mastodos/issues/15
+Currently trying to find out whether I'll have to rename the project. I will definitely need a new logo, though, since `The Mastodon name and logo are trademarks of Mastodon gGmbH. If you intend to redistribute a modified version of this app, use a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH.` Feel free to help me in [https://github.com/sk22/mastodos/issues/15](https://github.com/sk22/mastodos/issues/15)
 
 ---
 
@@ -123,7 +123,7 @@ Variant without the integrated updater. This is the variant to be published to F
 ### Branding
 
 **TODO:** Come up with "a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH"...
-https://github.com/sk22/mastodos/issues/15
+[https://github.com/sk22/mastodos/issues/15](https://github.com/sk22/mastodos/issues/15)
 
 ## Building
 
