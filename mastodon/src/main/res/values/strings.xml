@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name" translatable="false">Mastodos</string>
+	<string name="app_name" translatable="false">Megalodon</string>
 
 	<string name="get_started">Get started</string>
 	<string name="log_in">Log in</string>
@@ -279,7 +279,7 @@
 	<string name="settings_privacy_policy">Privacy policy</string>
 	<string name="settings_spicy">The spicy zone</string>
 	<string name="settings_clear_cache">Clear media cache</string>
-	<string name="settings_app_version">Mastodos v%1$s (%2$d)</string>
+	<string name="settings_app_version">Megalodon v%1$s (%2$d)</string>
 	<string name="media_cache_cleared">Media cache cleared</string>
 	<string name="confirm_log_out">Are you sure you want to sign out?</string>
 	<string name="sensitive_content">Sensitive content</string>
@@ -403,16 +403,16 @@
 	<string name="upload_error_connection_lost">Your device lost connection to the internet</string>
 	<string name="upload_processing">Processing…</string>
 	<!-- %s is version like 1.2.3 -->
-	<string name="update_available">Mastodos %s is ready to download.</string>
+	<string name="update_available">Megalodon %s is ready to download.</string>
 	<!-- %s is version like 1.2.3 -->
-	<string name="update_ready">Mastodos %s is downloaded and ready to install.</string>
+	<string name="update_ready">Megalodon %s is downloaded and ready to install.</string>
 	<!-- %s is file size -->
 	<string name="download_update">Download (%s)</string>
 	<string name="install_update">Install</string>
 	<string name="check_for_update">Check for update</string>
 	<string name="no_update_available">No update available</string>
 	<string name="privacy_policy_title">Mastodon and your privacy</string>
-	<string name="privacy_policy_subtitle">Although the Mastodon app does not collect any data, the server you sign up through may have a different policy. Take a minute to review and agree to the Mastodon app privacy policy and your server\'s privacy policy.</string>
+	<string name="privacy_policy_subtitle">Although the Megalodon app does not collect any data, the server you sign up through may have a different policy. Take a minute to review and agree to the Mastodon app privacy policy and your server\'s privacy policy.</string>
 	<string name="i_agree">I Agree</string>
 	<string name="list_timelines">Lists</string>
 	<string name="favorited_posts">Favorited posts</string>

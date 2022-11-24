@@ -1,12 +1,12 @@
-# Mastodos?
+# Megalodon
 
-Currently trying to find out whether I'll have to rename the project. I will definitely need a new logo, though, since `The Mastodon name and logo are trademarks of Mastodon gGmbH. If you intend to redistribute a modified version of this app, use a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH.` Feel free to help me in [https://github.com/sk22/mastodos/issues/15](https://github.com/sk22/mastodos/issues/15)
+Currently trying to find out whether I'll have to rename the project. I will definitely need a new logo, though, since `The Mastodon name and logo are trademarks of Mastodon gGmbH. If you intend to redistribute a modified version of this app, use a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH.` Feel free to help me in [https://github.com/sk22/megalodon/issues/15](https://github.com/sk22/megalodon/issues/15)
 
 ---
 
 > A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
 
-[![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk)
+[![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk)
 
 ---
 
@@ -49,11 +49,11 @@ To bookmark a post, press the button between the Favorite and Share buttons on t
 
 ## Installation
 
-**Press the download button above to download the APK. Open the downloaded file on your Android device to install it. Mastodos will automatically notify you about new updates inside the app.**
+**Press the download button above to download the APK. Open the downloaded file on your Android device to install it. Megalodon will automatically notify you about new updates inside the app.**
 
-To install this app on your Android device, download the [latest release from GitHub](https://github.com/sk22/mastodos/releases/latest/download/mastodos.apk) and open it. You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/mastodos/releases) page.
+To install this app on your Android device, download the [latest release from GitHub](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk) and open it. You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/megalodon/releases) page.
 
-Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodon-android)’s automatic update checker. Mastodos will check for new updates available on GitHub and offer to download and install them. You can also manually press “Check for updates” at the bottom of the settings page!
+Megalodon makes use of [Mastodon for Android](https://github.com/mastodon/mastodon-android)’s automatic update checker. Megalodon will check for new updates available on GitHub and offer to download and install them. You can also manually press “Check for updates” at the bottom of the settings page!
 
 ### Other sources
 
@@ -63,17 +63,17 @@ Mastodos makes use of [Mastodon for Android](https://github.com/mastodon/mastodo
 
 ## Release variants
 
-All downloads can be found on the [Releases](https://github.com/sk22/mastodos/releases) page.
+All downloads can be found on the [Releases](https://github.com/sk22/megalodon/releases) page.
 
-**`mastodos.apk`**
+**`megalodon.apk`**
 
-Variant with an integrated updater. If you download Mastodos from here (and not from an app store), just download the regular `mastodos.apk`.
+Variant with an integrated updater. If you download Megalodon from here (and not from an app store), just download the regular `megalodon.apk`.
 
 **`upstream-1234abc.apk`**
 
-This is an **unmodified version** of the official [Mastodon for Android](https://github.com/mastodon/mastodon-android) app the respective Mastodos release is based on. Should you find any bugs in Mastodos (which you will), try to see if it occurs with this variant, too. The last 7 digits of the file name are important to know which version of the official app you're using.
+This is an **unmodified version** of the official [Mastodon for Android](https://github.com/mastodon/mastodon-android) app the respective Megalodon release is based on. Should you find any bugs in Megalodon (which you will), try to see if it occurs with this variant, too. The last 7 digits of the file name are important to know which version of the official app you're using.
 
-<!-- **`mastodon-fdroid.apk`**
+<!-- **`megalodon-fdroid.apk`**
 
 Variant without the integrated updater. This is the variant to be published to F-Droid.org where an integrated updater is not necessary. -->
 
@@ -83,47 +83,47 @@ Variant without the integrated updater. This is the variant to be published to F
 
 ### Features
 
-* [Add “Unlisted” as a post visibility option](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/enable-unlisted)
+* [Add “Unlisted” as a post visibility option](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/enable-unlisted)
   ([Pull request](https://github.com/mastodon/mastodon-android/pull/103))
-* [Add “Federation” tab and change Discover tab order](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/add-federated-timeline) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/8))
-* [Add image description button and viewer](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/display-alt-text) ([Pull request](https://github.com/mastodon/mastodon-android/pull/129))
-* [Implement pinning posts and displaying pinned posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/pin-posts) ([Pull request](https://github.com/mastodon/mastodon-android/pull/140))
-* [Implement deleting and re-drafting](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/delete-redraft) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/21))
-* [Implement a bookmark button and list](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/bookmarks) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/22))
-* [Add “Check for update” button in addition to integrated update checker](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/check-for-update-button)
-* [Add “Mark media as sensitive” option](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/mark-media-as-sensitive)
-* [Add settings to hide replies and reposts from the timeline](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/filter-home-timeline) ([Pull request](https://github.com/mastodon/mastodon-android/pull/317))
-* [Follow and unfollow hashtags](https://github.com/sk22/mastodos/commit/7d38f031f197aa6cefaf53e39d929538689c1e4e) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/233))
-* [Notification bell for posts](https://github.com/sk22/mastodos/commit/b166ca705eb9169025ef32bbe6315b42491b57ea) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/81))
-* [Viewing lists and adding/removing users from lists](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
-* [List favorited posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/favs-list)
-* [Accept/reject follow requests](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/follow-requests)
-* [Display content warning title above text](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
-* [Add notifications tab for posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/posts-notifications-tab)
-* [Show visibility of original post when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/display-reply-visibility)
-* [Clickable reply/boost line above posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:clickable-boost-reply-line)
-* [Long-click to copy username from profile](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/copy-username)
+* [Add “Federation” tab and change Discover tab order](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/add-federated-timeline) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/8))
+* [Add image description button and viewer](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/display-alt-text) ([Pull request](https://github.com/mastodon/mastodon-android/pull/129))
+* [Implement pinning posts and displaying pinned posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/pin-posts) ([Pull request](https://github.com/mastodon/mastodon-android/pull/140))
+* [Implement deleting and re-drafting](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/delete-redraft) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/21))
+* [Implement a bookmark button and list](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/bookmarks) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/22))
+* [Add “Check for update” button in addition to integrated update checker](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/check-for-update-button)
+* [Add “Mark media as sensitive” option](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/mark-media-as-sensitive)
+* [Add settings to hide replies and reposts from the timeline](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/filter-home-timeline) ([Pull request](https://github.com/mastodon/mastodon-android/pull/317))
+* [Follow and unfollow hashtags](https://github.com/sk22/megalodon/commit/7d38f031f197aa6cefaf53e39d929538689c1e4e) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/233))
+* [Notification bell for posts](https://github.com/sk22/megalodon/commit/b166ca705eb9169025ef32bbe6315b42491b57ea) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/81))
+* [Viewing lists and adding/removing users from lists](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
+* [List favorited posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/favs-list)
+* [Accept/reject follow requests](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/follow-requests)
+* [Display content warning title above text](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/cw-above-text)
+* [Add notifications tab for posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/posts-notifications-tab)
+* [Show visibility of original post when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/display-reply-visibility)
+* [Clickable reply/boost line above posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:clickable-boost-reply-line)
+* [Long-click to copy username from profile](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/copy-username)
 
 ### Behavior
 
-* [Make back button return to the home tab before exiting the app](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/back-returns-home) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/118))
-* [Always preserve content warnings when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/always-preserve-cw) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/113))
-* [Display full image when adding image description](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/compose-image-description-full-image) ([Pull request](https://github.com/mastodon/mastodon-android/pull/182))
-* [Set spoiler height independently to content height](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:spoiler-height-independent) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/166))
-* [Option to hide interaction numbers](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:settings/hide-interaction-numbers)
-* [Option to always reveal content warnings](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:feature/cw-above-text)
-* [Option to disable scrolling title bars](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:settings/disable-marquee)
+* [Make back button return to the home tab before exiting the app](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/back-returns-home) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/118))
+* [Always preserve content warnings when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/always-preserve-cw) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/113))
+* [Display full image when adding image description](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/compose-image-description-full-image) ([Pull request](https://github.com/mastodon/mastodon-android/pull/182))
+* [Set spoiler height independently to content height](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:spoiler-height-independent) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/166))
+* [Option to hide interaction numbers](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:settings/hide-interaction-numbers)
+* [Option to always reveal content warnings](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/cw-above-text)
+* [Option to disable scrolling title bars](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:settings/disable-marquee)
 
 ### Visual
 
-* [Custom extended footer redesign](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:compact-extended-footer)
-* [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:true-black-improvements)
-* [Profile header tweaks](https://github.com/mastodon/mastodon-android/compare/master...sk22:mastodos:ui/profile-header-tweaks)
+* [Custom extended footer redesign](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:compact-extended-footer)
+* [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:true-black-improvements)
+* [Profile header tweaks](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:ui/profile-header-tweaks)
 
 ### Branding
 
 **TODO:** Come up with "a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH"...
-[https://github.com/sk22/mastodos/issues/15](https://github.com/sk22/mastodos/issues/15)
+[https://github.com/sk22/megalodon/issues/15](https://github.com/sk22/megalodon/issues/15)
 
 ## Building
 
@@ -139,4 +139,4 @@ This project is released under the [GPL-3 License](./LICENSE).
 
 ## Links
 
-<a rel="me" href="https://floss.social/@mastodos">@mastodos​@floss.social</a>
+<a rel="me" href="https://floss.social/@megalodon">@megalodon​@floss.social</a>

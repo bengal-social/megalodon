@@ -111,7 +111,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 
 	private void actuallyCheckForUpdates(){
 		Request req=new Request.Builder()
-				.url("https://api.github.com/repos/sk22/mastodos/releases/latest")
+				.url("https://api.github.com/repos/sk22/megalodon/releases/latest")
 				.build();
 		Call call=MastodonAPIController.getHttpClient().newCall(req);
 		try(Response resp=call.execute()){
@@ -144,7 +144,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 				Log.d(TAG, "actuallyCheckForUpdates: new version: "+version);
 				for(JsonElement el:obj.getAsJsonArray("assets")){
 					JsonObject asset=el.getAsJsonObject();
-					if("mastodos.apk".equals(asset.get("name")) && "application/vnd.android.package-archive".equals(asset.get("content_type").getAsString()) && "uploaded".equals(asset.get("state").getAsString())){
+					if("megalodon.apk".equals(asset.get("name")) && "application/vnd.android.package-archive".equals(asset.get("content_type").getAsString()) && "uploaded".equals(asset.get("state").getAsString())){
 						long size=asset.get("size").getAsLong();
 						String url=asset.get("browser_download_url").getAsString();
 
