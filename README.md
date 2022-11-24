@@ -2,8 +2,6 @@
 
 # Megalodon
 
----
-
 > A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
 
 [![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk)
@@ -61,6 +59,7 @@ Megalodon makes use of [Mastodon for Android](https://github.com/mastodon/mastod
 
 ---
 
+
 ## Release variants
 
 All downloads can be found on the [Releases](https://github.com/sk22/megalodon/releases) page.
@@ -78,6 +77,7 @@ This is an **unmodified version** of the official [Mastodon for Android](https:/
 Variant without the integrated updater. This is the variant to be published to F-Droid.org where an integrated updater is not necessary. -->
 
 ---
+
 
 ## Detailed changes
 
@@ -104,6 +104,7 @@ Variant without the integrated updater. This is the variant to be published to F
 * [Clickable reply/boost line above posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:clickable-boost-reply-line)
 * [Long-click to copy username from profile](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/copy-username)
 
+
 ### Behavior
 
 * [Make back button return to the home tab before exiting the app](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/back-returns-home) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/118))
@@ -114,16 +115,13 @@ Variant without the integrated updater. This is the variant to be published to F
 * [Option to always reveal content warnings](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/cw-above-text)
 * [Option to disable scrolling title bars](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:settings/disable-marquee)
 
+
 ### Visual
 
 * [Custom extended footer redesign](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:compact-extended-footer)
 * [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:true-black-improvements)
 * [Profile header tweaks](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:ui/profile-header-tweaks)
 
-### Branding
-
-**TODO:** Come up with "a unique name and icon for your app that does not mistakenly imply any official connection with or endorsement by Mastodon gGmbH"...
-[https://github.com/sk22/megalodon/issues/15](https://github.com/sk22/megalodon/issues/15)
 
 ## Building
 
