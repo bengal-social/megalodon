@@ -32,7 +32,7 @@
     Accept or decline follow requests from your notifications or the dedicated Follow requests list.
   </li>
   <li>
-    <b>Delete and re-draft</b>
+    <b>Delete and re-draft:</b>
     The much-loved feature that made editing possible without an actual editing function.
   </li>
 </ul>
@@ -40,6 +40,6 @@
 <p><b>Unreleased official features, available in advance</b></p>
 
 <ul>
-  <li>Editing posts</li>
-  <li>Integrated updater for GitHub releases</li>
+  <li><b>Editing posts</b></li>
+  <li><b>Integrated updater for GitHub releases</b></li>
 </ul>

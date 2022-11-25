@@ -40,6 +40,6 @@
 <p><b>Aus der offiziellen App vorab verfügbar</b></p>
 
 <ul>
-  <li>Beiträge bearbeiten</li>
-  <li>Integrierter Updater</li>
+  <li><b>Beiträge bearbeiten</b></li>
+  <li><b>Integrierter Updater</b></li>
 </ul>
