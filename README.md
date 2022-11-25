@@ -4,6 +4,8 @@
 
 > A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
 
+**Warning! [The latest version's integrated updater is broken](https://github.com/sk22/megalodon/issues/106) – I'll publish a fixed version ASAP! If you're not updating through Izzy's F-Droid repository (more sources to come, hopefully!), you'll have to download the upcoming release manually. Sorry about that!**
+
 [![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk)
 
 ---
@@ -63,6 +65,8 @@ Megalodon makes use of [Mastodon for Android](https://github.com/mastodon/mastod
 ## Release variants
 
 All downloads can be found on the [Releases](https://github.com/sk22/megalodon/releases) page.
+
+**Warning! [The latest version's integrated updater is broken](https://github.com/sk22/megalodon/issues/106) – I'll publish a fixed version ASAP! If you're not updating through Izzy's F-Droid repository (more sources to come, hopefully!), you'll have to download the upcoming release manually. Sorry about that!**
 
 **`megalodon.apk`**
 
