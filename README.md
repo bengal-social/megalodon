@@ -137,4 +137,4 @@ This project is released under the [GPL-3 License](./LICENSE).
 
 ## Links
 
-<a rel="me" href="https://floss.social/@mastodos">@mastodos@floss.social</a>
+<a rel="me" href="https://floss.social/@mastodos">@mastodos<wbr>@floss.social</a>
