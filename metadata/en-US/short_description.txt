@@ -1,1 +1,1 @@
-Pink modification of the official Mastodon app
+Mastodon for Android but it's pink and has more features

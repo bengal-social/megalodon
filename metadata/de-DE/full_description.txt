@@ -1,17 +1,45 @@
-Megadolon ist eine modifizierte Version der offiziellen Mastodon-Android-App mit vielen Features, die in der offiziellen App fehlen, z.B. die föderierte Timeline, ungelistete Beiträge posten, Lesezeichen und die Möglichkeit, Bildbeschreibungen anzuzeigen.
+<p>Megadolon ist eine modifizierte Version der <a href="https://github.com/mastodon/mastodon-android">offiziellen Mastodon-Android-App</a> mit vielen Features, die in der offiziellen App fehlen, z.B. die föderierte Timeline, ungelistete Beiträge posten, Lesezeichen und die Möglichkeit, Bildbeschreibungen anzuzeigen.</p>
 
-Die wichtigsten Features:
+<p><b>Die wichtigsten Features</b></p>
 
-• Ungelistet Beiträge posten
-• Föderierte Timeline
-• Bildbeschreibungen anzeigen
-• Lesezeichen
-• Hashtags folgen
-• Beiträge anpinnen
-• Folgeanfragen beantworten
-• Beiträge löschen und neu erstellen
+<ul>
+  <li>
+    <b>Ungelistet posten:</b>
+    Öffentlich posten, ohne dass der Beitrag in Trends, Hashtags oder öffentlichen Timelines angezeigt wird.
+  </li>
+  <li>
+    <b>Föderierte Timeline:</b>
+    Alle öffentlichen Beiträge aller anderen Fediverse-Nachbarschaften, mit denen deine Heim-Instanz verbunden ist.
+  </li>
+  <li>
+    <b>Bildbeschreibungen anzeigen:</b>
+    Unkompliziert prüfen, ob Bilder und Videos Alternativ-Texte beinhalten.
+  </li>
+  <li>
+    <b>Beiträge anpinnen:</b>
+    Pinne deine wichtigsten Beiträge an dein Profil an und sieh im “Angepinnt”-Tab nach, was andere User_innen angepinnt haben.
+  </li>
+  <li>
+    <b>Lesezeichen:</b>
+    Schnell und einfach Beiträge speichern und später in der Lesezeichen-Liste wieder finden.
+  </li>
+  <li>
+    <b>Hashtags folgen:</b>
+    Bringt neue Beiträge bestimmter Hashtags direkt in deine Home-Timeline.
+  </li>
+  <li>
+    <b>Folgeanfragen beantworten:</b>
+    Folgeanfragen lassen sich nun direkt über die Benachrichtigungen-Liste oder über die Folgeanfragen-Liste akzeptieren oder ablehnen.
+  </li>
+  <li>
+    <b>Beiträge löschen und neu erstellen:</b>
+    Das beliebte Feature, das das Bearbeiten von Beiträgen ohne tatsächliche Bearbeit-Funktion möglich gemacht hat.
+  </li>
+</ul>
 
-Aus der offiziellen App vorab verfügbar:
+<p><b>Aus der offiziellen App vorab verfügbar</b></p>
 
-• Beiträge bearbeiten
-• Integrierter Updater
+<ul>
+  <li>Beiträge bearbeiten</li>
+  <li>Integrierter Updater</li>
+</ul>
