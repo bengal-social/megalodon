@@ -6,6 +6,7 @@ plugins {
 android {
 	compileSdk 33
 	defaultConfig {
+		archivesBaseName = "megalodon"
 		applicationId "org.joinmastodon.android.sk"
 		minSdk 23
 		targetSdk 33
