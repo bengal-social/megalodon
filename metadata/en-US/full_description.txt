@@ -1,0 +1,17 @@
+Megalodon is a modified version of the official Mastodon Android app adding important features that are missing in the official app, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
+
+Key features:
+
+• Post with unlisted visibility
+• Federated timeline
+• View image descriptions
+• Bookmarks
+• Follow hashtags
+• Pinning posts
+• Answering follow requests
+• Delete and re-draft
+
+Unreleased official features, available in advance:
+
+• Editing posts
+• Integrated updater
