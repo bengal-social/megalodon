@@ -1,4 +1,4 @@
-Megadolon ist eine modifizierte Version der <a href="https://github.com/mastodon/mastodon-android">offiziellen Mastodon-Android-App</a> mit vielen Features, die in der offiziellen App fehlen, z.B. die föderierte Timeline, ungelistete Beiträge posten, Lesezeichen und die Möglichkeit, Bildbeschreibungen anzuzeigen.
+Megalodon ist eine modifizierte Version der <a href="https://github.com/mastodon/mastodon-android">offiziellen Mastodon-Android-App</a> mit vielen Features, die in der offiziellen App fehlen, z.B. die föderierte Timeline, ungelistete Beiträge posten, Lesezeichen und die Möglichkeit, Bildbeschreibungen anzuzeigen.
 
 <b>Die wichtigsten Features</b>
 
