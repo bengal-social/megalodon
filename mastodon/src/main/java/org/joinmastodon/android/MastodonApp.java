@@ -6,8 +6,6 @@ import android.content.Context;
 
 import org.joinmastodon.android.api.PushSubscriptionManager;
 
-import java.lang.reflect.InvocationTargetException;
-
 import me.grishka.appkit.imageloader.ImageCache;
 import me.grishka.appkit.utils.NetworkUtils;
 import me.grishka.appkit.utils.V;
