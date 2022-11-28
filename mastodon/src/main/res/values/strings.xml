@@ -427,5 +427,5 @@
 	<string name="your_favorites">Your Favorites</string>
 	<string name="settings_always_reveal_content_warnings">Always reveal content warnings</string>
 	<string name="disable_marquee">Disable scrolling text in title bars</string>
+	<string name="settings_contribute_fork">Contribute to Megalodon</string>
 </resources>
-	
