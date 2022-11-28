@@ -35,16 +35,18 @@
 				android:id="@+id/reply_text"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="16dp"
-				android:layout_marginRight="16dp"
-				android:layout_marginTop="16dp"
+				android:layout_marginBottom="-12dp"
+				android:paddingHorizontal="16dp"
+				android:paddingTop="16dp"
+				android:paddingBottom="6dp"
 				android:textAppearance="@style/m3_title_small"
 				android:drawableStart="@drawable/ic_fluent_arrow_reply_20_filled"
 				tools:drawableEnd="@drawable/ic_fluent_earth_20_regular"
 				android:drawableTint="?android:textColorSecondary"
 				android:drawablePadding="6dp"
 				android:singleLine="true"
-				android:ellipsize="end"/>
+				android:ellipsize="end"
+				android:background="?android:selectableItemBackground"/>
 
 			<RelativeLayout
 				android:layout_width="match_parent"

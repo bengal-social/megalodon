@@ -503,6 +503,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			replyArrow.setBounds(0, 0, V.dp(20), V.dp(20));
 			replyText.setCompoundDrawables(replyArrow, null, visibilityIcon, null);
 
+			replyText.setOnClickListener(v->{
+				Bundle args=new Bundle();
+				args.putString("account", accountID);
+				args.putParcelable("status", Parcels.wrap(replyTo));
+				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+				Nav.go(getActivity(), ThreadFragment.class, args);
+			});
 			ArrayList<String> mentions=new ArrayList<>();
 			String ownID=AccountSessionManager.getInstance().getAccount(accountID).self.id;
 			if(!replyTo.account.id.equals(ownID))
