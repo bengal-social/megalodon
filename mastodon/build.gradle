@@ -32,6 +32,10 @@ android {
 		githubRelease{
 			initWith release
 		}
+		noFederatedRelease{
+			initWith release
+			versionNameSuffix '-nofederated'
+		}
 	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_17
