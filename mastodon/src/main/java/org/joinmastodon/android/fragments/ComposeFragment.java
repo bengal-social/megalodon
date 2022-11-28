@@ -474,6 +474,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		spoilerEdit.addTextChangedListener(new SimpleTextWatcher(e->updateCharCounter()));
 		if(replyTo!=null){
 			replyText.setText(getString(R.string.in_reply_to, replyTo.account.displayName));
+			replyText.setOnClickListener(v->{
+				Bundle args=new Bundle();
+				args.putString("account", accountID);
+				args.putParcelable("status", Parcels.wrap(replyTo));
+				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+				Nav.go(getActivity(), ThreadFragment.class, args);
+			});
 			ArrayList<String> mentions=new ArrayList<>();
 			String ownID=AccountSessionManager.getInstance().getAccount(accountID).self.id;
 			if(!replyTo.account.id.equals(ownID))
