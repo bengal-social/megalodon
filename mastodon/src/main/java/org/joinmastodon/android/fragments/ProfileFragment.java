@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Outline;
@@ -19,8 +18,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
@@ -286,6 +283,18 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		followersBtn.setOnClickListener(this::onFollowersOrFollowingClick);
 		followingBtn.setOnClickListener(this::onFollowersOrFollowingClick);
 
+		username.setOnLongClickListener(v->{
+			String username=account.acct;
+			if(!username.contains("@")){
+				username+="@"+AccountSessionManager.getInstance().getAccount(accountID).domain;
+			}
+			getActivity().getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText(null, "@"+username));
+			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
+				Toast.makeText(getActivity(), R.string.text_copied, Toast.LENGTH_SHORT).show();
+			}
+			return true;
+		});
+
 		return sizeWrapper;
 	}
 
@@ -453,16 +462,6 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			// noinspection SetTextI18n
 			username.setText('@'+account.acct+(isSelf ? ('@'+AccountSessionManager.getInstance().getAccount(accountID).domain) : ""));
 		}
-		username.setOnLongClickListener(l->{
-			ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
-			Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-			ClipData clip = ClipData.newPlainText("Username", '@'+account.acct+'@'+AccountSessionManager.getInstance().getAccount(accountID).domain);
-			clipboard.setPrimaryClip(clip);
-			Toast.makeText(getActivity(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show();
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) v.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
-			else v.vibrate(50);
-			return true;
-		});
 		CharSequence parsedBio=HtmlParser.parse(account.note, account.emojis, Collections.emptyList(), Collections.emptyList(), accountID);
 		if(TextUtils.isEmpty(parsedBio)){
 			bio.setVisibility(View.GONE);
@@ -548,17 +547,11 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		}
 		if(relationship==null && !isOwnProfile)
 			return;
-		inflater.inflate(R.menu.profile, menu);
+		inflater.inflate(isOwnProfile ? R.menu.profile_own : R.menu.profile, menu);
 		menu.findItem(R.id.share).setTitle(getString(R.string.share_user, account.getDisplayUsername()));
-		menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.lists_with_user, account.getDisplayUsername()));
-		if(isOwnProfile){
-			for(int i=0;i<menu.size();i++){
-				MenuItem item=menu.getItem(i);
-				item.setVisible(item.getItemId()==R.id.share || item.getItemId()==R.id.bookmarks || item.getItemId()==R.id.manage_user_lists);
-			}
-			menu.findItem(R.id.favorites_list).setVisible(true);
+		if(isOwnProfile)
 			return;
-		}
+
 		menu.findItem(R.id.mute).setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
 		menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
 		menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getDisplayUsername()));
@@ -582,16 +575,6 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			intent.setType("text/plain");
 			intent.putExtra(Intent.EXTRA_TEXT, account.url);
 			startActivity(Intent.createChooser(intent, item.getTitle()));
-		}else if(id==R.id.bookmarks) {
-			Bundle args=new Bundle();
-			args.putString("account", accountID);
-			args.putParcelable("profileAccount", Parcels.wrap(account));
-			Nav.go(getActivity(), BookmarksListFragment.class, args);
-		}else if(id==R.id.favorites_list) {
-			Bundle args=new Bundle();
-			args.putString("account", accountID);
-			args.putParcelable("profileAccount", Parcels.wrap(account));
-			Nav.go(getActivity(), FavoritesListFragment.class, args);
 		}else if(id==R.id.mute){
 			confirmToggleMuted();
 		}else if(id==R.id.block){
@@ -623,6 +606,14 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 					})
 					.wrapProgress(getActivity(), R.string.loading, false)
 					.exec(accountID);
+		}else if(id==R.id.bookmarks){
+			Bundle args=new Bundle();
+			args.putString("account", accountID);
+			Nav.go(getActivity(), BookmarkedStatusListFragment.class, args);
+		}else if(id==R.id.favorites){
+			Bundle args=new Bundle();
+			args.putString("account", accountID);
+			Nav.go(getActivity(), FavoritedStatusListFragment.class, args);
 		}else if(id==R.id.manage_user_lists){
 			final Bundle args=new Bundle();
 			args.putString("account", accountID);

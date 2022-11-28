@@ -63,36 +63,6 @@ public class StatusInteractionController{
 		E.post(new StatusCountersUpdatedEvent(status));
 	}
 
-	public void setBookmarked(Status status, boolean bookmarked){
-		if(!Looper.getMainLooper().isCurrentThread())
-			throw new IllegalStateException("Can only be called from main thread");
-
-		SetStatusBookmarked current=runningBookmarkRequests.remove(status.id);
-		if(current!=null){
-			current.cancel();
-		}
-		SetStatusBookmarked req=(SetStatusBookmarked) new SetStatusBookmarked(status.id, bookmarked)
-				.setCallback(new Callback<>(){
-					@Override
-					public void onSuccess(Status result){
-						runningBookmarkRequests.remove(status.id);
-						E.post(new StatusCountersUpdatedEvent(result));
-					}
-
-					@Override
-					public void onError(ErrorResponse error){
-						runningBookmarkRequests.remove(status.id);
-						error.showToast(MastodonApp.context);
-						status.bookmarked=!bookmarked;
-						E.post(new StatusCountersUpdatedEvent(status));
-					}
-				})
-				.exec(accountID);
-		runningBookmarkRequests.put(status.id, req);
-		status.bookmarked=bookmarked;
-		E.post(new StatusCountersUpdatedEvent(status));
-	}
-
 	public void setReblogged(Status status, boolean reblogged){
 		if(!Looper.getMainLooper().isCurrentThread())
 			throw new IllegalStateException("Can only be called from main thread");
@@ -128,6 +98,36 @@ public class StatusInteractionController{
 			status.reblogsCount++;
 		else
 			status.reblogsCount--;
+		E.post(new StatusCountersUpdatedEvent(status));
+	}
+
+	public void setBookmarked(Status status, boolean bookmarked){
+		if(!Looper.getMainLooper().isCurrentThread())
+			throw new IllegalStateException("Can only be called from main thread");
+
+		SetStatusBookmarked current=runningBookmarkRequests.remove(status.id);
+		if(current!=null){
+			current.cancel();
+		}
+		SetStatusBookmarked req=(SetStatusBookmarked) new SetStatusBookmarked(status.id, bookmarked)
+				.setCallback(new Callback<>(){
+					@Override
+					public void onSuccess(Status result){
+						runningBookmarkRequests.remove(status.id);
+						E.post(new StatusCountersUpdatedEvent(result));
+					}
+
+					@Override
+					public void onError(ErrorResponse error){
+						runningBookmarkRequests.remove(status.id);
+						error.showToast(MastodonApp.context);
+						status.bookmarked=!bookmarked;
+						E.post(new StatusCountersUpdatedEvent(status));
+					}
+				})
+				.exec(accountID);
+		runningBookmarkRequests.put(status.id, req);
+		status.bookmarked=bookmarked;
 		E.post(new StatusCountersUpdatedEvent(status));
 	}
 }

@@ -100,7 +100,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 
 		private void bindButton(TextView btn, long count){
 			if(GlobalUserPreferences.showInteractionCounts && count>0 && !item.hideCounts){
-				btn.setText(DecimalFormat.getIntegerInstance().format(count));
+				btn.setText(UiUtils.abbreviateNumber(count));
 				btn.setCompoundDrawablePadding(V.dp(8));
 			}else{
 				btn.setText("");

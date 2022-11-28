@@ -295,7 +295,6 @@
 	<string name="button_favorite">Favorite</string>
 	<string name="button_share">Share</string>
 	<string name="button_bookmark">Bookmark</string>
-	<string name="bookmarks">Bookmarks</string>
 	<string name="media_no_description">Media without description</string>
 	<string name="add_media">Add media</string>
 	<string name="mark_media_as_sensitive">Mark media as sensitive</string>
@@ -415,14 +414,18 @@
 	<string name="privacy_policy_subtitle">Although the Megalodon app does not collect any data, the server you sign up through may have a different policy. Take a minute to review and agree to the Mastodon app privacy policy and your server\'s privacy policy.</string>
 	<string name="i_agree">I Agree</string>
 	<string name="list_timelines">Lists</string>
-	<string name="favorited_posts">Favorited posts</string>
 	<string name="follow_requests">Follow requests</string>
 	<string name="accept_follow_request">Accept follow request</string>
 	<string name="reject_follow_request">Reject follow request</string>
 	<string name="lists_with_user">Lists with %s</string>
 	<string name="empty_list">This list is empty</string>
 	<string name="instance_signup_closed">This server does not accept new registrations.</string>
+	<string name="text_copied">Copied to clipboard</string>
+	<string name="add_bookmark">Bookmark</string>
+	<string name="remove_bookmark">Remove bookmark</string>
+	<string name="bookmarks">Bookmarks</string>
+	<string name="your_favorites">Your Favorites</string>
 	<string name="settings_always_reveal_content_warnings">Always reveal content warnings</string>
 	<string name="disable_marquee">Disable scrolling text in title bars</string>
-	<string name="copied_to_clipboard">Copied to clipboard</string>
 </resources>
+	

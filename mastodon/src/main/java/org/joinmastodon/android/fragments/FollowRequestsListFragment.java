@@ -17,6 +17,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
 import org.joinmastodon.android.api.requests.accounts.GetFollowRequests;
 import org.joinmastodon.android.model.Account;
+import org.joinmastodon.android.model.HeaderPaginationList;
 import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.ui.OutlineProviders;
 import org.joinmastodon.android.ui.text.HtmlParser;
@@ -50,7 +51,7 @@ public class FollowRequestsListFragment extends BaseRecyclerFragment<FollowReque
 	private String accountID;
 	private Map<String, Relationship> relationships=Collections.emptyMap();
 	private GetAccountRelationships relationshipsRequest;
-	private String lastMaxId=null;
+	private String nextMaxID;
 
 	public FollowRequestsListFragment(){
 		super(20);
@@ -75,10 +76,14 @@ public class FollowRequestsListFragment extends BaseRecyclerFragment<FollowReque
 			relationshipsRequest.cancel();
 			relationshipsRequest=null;
 		}
-		currentRequest=new GetFollowRequests(offset>0 ? lastMaxId : null, null, count)
+		currentRequest=new GetFollowRequests(offset==0 ? null : nextMaxID, count)
 				.setCallback(new SimpleCallback<>(this){
 					@Override
-					public void onSuccess(List<Account> result){
+					public void onSuccess(HeaderPaginationList<Account> result){
+						if(result.nextPageUri!=null)
+							nextMaxID=result.nextPageUri.getQueryParameter("max_id");
+						else
+							nextMaxID=null;
 						onDataLoaded(result.stream().map(AccountWrapper::new).collect(Collectors.toList()), false);
 						loadRelationships();
 					}

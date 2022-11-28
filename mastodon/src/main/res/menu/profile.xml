@@ -8,11 +8,4 @@
 	<item android:id="@+id/hide_boosts" android:title="@string/hide_boosts_from_user"/>
 	<item android:id="@+id/manage_user_lists" android:title="@string/lists_with_user"/>
 	<item android:id="@+id/open_in_browser" android:title="@string/open_in_browser"/>
-	<item android:id="@+id/favorites_list" android:title="@string/favorited_posts" android:visible="false"/>
-	<item
-		android:id="@+id/bookmarks"
-		android:showAsAction="always"
-		android:visible="false"
-		android:icon="@drawable/ic_fluent_bookmark_multiple_24_filled"
-		android:title="@string/bookmarks"/>
 </menu>

@@ -18,6 +18,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetFollowRequests;
 import org.joinmastodon.android.events.FollowRequestHandledEvent;
 import org.joinmastodon.android.model.Account;
+import org.joinmastodon.android.model.HeaderPaginationList;
 import org.joinmastodon.android.ui.SimpleViewHolder;
 import org.joinmastodon.android.ui.tabs.TabLayout;
 import org.joinmastodon.android.ui.tabs.TabLayoutMediator;
@@ -28,8 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.squareup.otto.Subscribe;
-
-import java.util.List;
 
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
@@ -167,9 +166,9 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 	}
 
 	public void refreshFollowRequestsBadge() {
-		new GetFollowRequests(null, null, 1).setCallback(new Callback<>() {
+		new GetFollowRequests(null, 1).setCallback(new Callback<>() {
 			@Override
-			public void onSuccess(List<Account> accounts) {
+			public void onSuccess(HeaderPaginationList<Account> accounts) {
 				getToolbar().getMenu().findItem(R.id.follow_requests).setVisible(!accounts.isEmpty());
 			}
 
