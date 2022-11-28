@@ -20,8 +20,8 @@ android {
 
 	buildTypes {
 		release {
-//			minifyEnabled true
-//			shrinkResources true
+			minifyEnabled true
+			shrinkResources true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 		debug{
@@ -31,12 +31,8 @@ android {
 		}
 		githubRelease{
 			initWith release
-		}
-		noFederatedRelease{
-			initWith release
-			minifyEnabled true
-			shrinkResources true
-			versionNameSuffix '-nofederated'
+			minifyEnabled false
+			shrinkResources false
 		}
 	}
 	compileOptions {
