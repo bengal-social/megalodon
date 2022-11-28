@@ -61,7 +61,7 @@ import me.grishka.appkit.api.ErrorResponse;
 public class AccountSessionManager{
 	private static final String TAG="AccountSessionManager";
 	public static final String SCOPE="read write follow push";
-	public static final String REDIRECT_URI="mastodon-android-auth://callback";
+	public static final String REDIRECT_URI="megalodon-android-auth://callback";
 
 	private static final AccountSessionManager instance=new AccountSessionManager();
 
@@ -211,7 +211,7 @@ public class AccountSessionManager{
 								.path("/oauth/authorize")
 								.appendQueryParameter("response_type", "code")
 								.appendQueryParameter("client_id", result.clientId)
-								.appendQueryParameter("redirect_uri", "mastodon-android-auth://callback")
+								.appendQueryParameter("redirect_uri", "megalodon-android-auth://callback")
 								.appendQueryParameter("scope", SCOPE)
 								.build();
 
