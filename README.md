@@ -104,7 +104,7 @@ Variant without the integrated updater. This is the variant to be published to F
 * [Add notifications tab for posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/posts-notifications-tab)
 * [Show visibility of original post when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/display-reply-visibility)
 * [Clickable reply/boost line above posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:clickable-boost-reply-line)
-* [Long-click to copy username from profile](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/copy-username)
+* [Clickable reply line while replying to open original post](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/clickable-reply-line-compose)
 
 
 ### Behavior
