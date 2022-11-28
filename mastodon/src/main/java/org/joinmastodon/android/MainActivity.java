@@ -1,10 +1,8 @@
 package org.joinmastodon.android;
 
 import android.Manifest;
-import android.app.Application;
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,8 +21,6 @@ import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.updater.GithubSelfUpdater;
 import org.parceler.Parcels;
-
-import java.lang.reflect.InvocationTargetException;
 
 import androidx.annotation.Nullable;
 import me.grishka.appkit.FragmentStackActivity;
@@ -70,12 +66,7 @@ public class MainActivity extends FragmentStackActivity{
 			}
 		}
 
-		if(BuildConfig.BUILD_TYPE.startsWith("appcenter")){
-			// Call the appcenter SDK wrapper through reflection because it is only present in beta builds
-			try{
-				Class.forName("org.joinmastodon.android.AppCenterWrapper").getMethod("init", Application.class).invoke(null, getApplication());
-			}catch(ClassNotFoundException|NoSuchMethodException|IllegalAccessException|InvocationTargetException ignore){}
-		}else if(GithubSelfUpdater.needSelfUpdating()){
+		if(GithubSelfUpdater.needSelfUpdating()){
 			GithubSelfUpdater.getInstance().maybeCheckForUpdates();
 		}
 	}
