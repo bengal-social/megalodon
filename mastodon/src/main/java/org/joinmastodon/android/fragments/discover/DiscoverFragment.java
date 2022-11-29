@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.joinmastodon.android.BuildConfig;
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.fragments.ScrollableToTop;
 import org.joinmastodon.android.fragments.ListTimelinesFragment;
@@ -61,7 +62,7 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 	private String accountID;
 	private Runnable searchDebouncer=this::onSearchChangedDebounced;
 
-	private static final boolean noFederated = BuildConfig.BUILD_TYPE.equals("noFederatedRelease");
+	private final boolean noFederated = !GlobalUserPreferences.showFederatedTimeline;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){

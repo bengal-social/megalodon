@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -70,6 +69,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	private NotificationPolicyItem notificationPolicyItem;
 	private String accountID;
 	private boolean needUpdateNotificationSettings;
+	private boolean needAppRestart;
 	private PushSubscription pushSubscription;
 
 	private ImageView themeTransitionWindowView;
@@ -130,6 +130,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new SwitchItem(R.string.settings_load_new_posts, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.loadNewPosts, i->{
 			GlobalUserPreferences.loadNewPosts=i.checked;
 			GlobalUserPreferences.save();
+		}));
+		items.add(new SwitchItem(R.string.settings_show_federated_timeline, R.drawable.ic_fluent_earth_24_regular, GlobalUserPreferences.showFederatedTimeline, i->{
+			GlobalUserPreferences.showFederatedTimeline=i.checked;
+			GlobalUserPreferences.save();
+			needAppRestart=true;
 		}));
 
 		items.add(new HeaderItem(R.string.settings_notifications));
@@ -201,6 +206,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		super.onDestroy();
 		if(needUpdateNotificationSettings && PushSubscriptionManager.arePushNotificationsAvailable()){
 			AccountSessionManager.getInstance().getAccount(accountID).getPushSubscriptionManager().updatePushSettings(pushSubscription);
+		}
+		if(needAppRestart){
+			Intent intent = Intent.makeRestartActivityTask(MastodonApp.context.getPackageManager().getLaunchIntentForPackage(MastodonApp.context.getPackageName()).getComponent());
+			MastodonApp.context.startActivity(intent);
+			Runtime.getRuntime().exit(0);
 		}
 	}
 

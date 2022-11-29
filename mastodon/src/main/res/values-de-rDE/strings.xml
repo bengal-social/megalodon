@@ -418,4 +418,5 @@
 	<string name="empty_list">Diese Liste ist leer</string>
 	<string name="instance_signup_closed">Dieser Server akzeptiert keine neuen Registrierungen.</string>
 	<string name="settings_contribute_fork">Zu Megalodon beitragen</string>
+	<string name="settings_show_federated_timeline">Show federated timeline</string>
 </resources>
