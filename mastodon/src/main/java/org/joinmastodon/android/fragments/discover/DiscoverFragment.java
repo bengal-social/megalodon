@@ -1,6 +1,7 @@
 package org.joinmastodon.android.fragments.discover;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.joinmastodon.android.BuildConfig;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.fragments.ScrollableToTop;
 import org.joinmastodon.android.fragments.ListTimelinesFragment;
@@ -29,6 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
+
 import me.grishka.appkit.fragments.AppKitFragment;
 import me.grishka.appkit.fragments.BaseRecyclerFragment;
 import me.grishka.appkit.fragments.OnBackPressedListener;
@@ -58,6 +61,8 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 	private String accountID;
 	private Runnable searchDebouncer=this::onSearchChangedDebounced;
 
+	private static final boolean noFederated = BuildConfig.BUILD_TYPE.equals("noFederatedRelease");
+
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -75,10 +80,11 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 		tabLayout=view.findViewById(R.id.tabbar);
 		pager=view.findViewById(R.id.pager);
 
-		tabViews=new FrameLayout[7];
+		tabViews=new FrameLayout[noFederated ? 6 : 7];
 		for(int i=0;i<tabViews.length;i++){
 			FrameLayout tabView=new FrameLayout(getActivity());
-			tabView.setId(switch(i){
+			int switchIndex = noFederated && i > 0 ? i + 1 : i;
+			tabView.setId(switch(switchIndex){
 				case 0 -> R.id.discover_local_timeline;
 				case 1 -> R.id.discover_federated_timeline;
 				case 2 -> R.id.discover_hashtags;
@@ -86,7 +92,7 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 				case 4 -> R.id.discover_news;
 				case 5 -> R.id.discover_users;
 				case 6 -> R.id.discover_lists;
-				default -> throw new IllegalStateException("Unexpected value: "+i);
+				default -> throw new IllegalStateException("Unexpected value: "+switchIndex);
 			});
 			tabView.setVisibility(View.GONE);
 			view.addView(tabView); // needed so the fragment manager will have somewhere to restore the tab fragment
@@ -131,26 +137,30 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 			localTimelineFragment=new LocalTimelineFragment();
 			localTimelineFragment.setArguments(args);
 
-			federatedTimelineFragment=new FederatedTimelineFragment();
-			federatedTimelineFragment.setArguments(args);
-
 			listTimelinesFragment=new ListTimelinesFragment();
 			listTimelinesFragment.setArguments(args);
 
-			getChildFragmentManager().beginTransaction()
+			FragmentTransaction transaction = getChildFragmentManager().beginTransaction()
 					.add(R.id.discover_posts, postsFragment)
 					.add(R.id.discover_local_timeline, localTimelineFragment)
-					.add(R.id.discover_federated_timeline, federatedTimelineFragment)
 					.add(R.id.discover_hashtags, hashtagsFragment)
 					.add(R.id.discover_news, newsFragment)
 					.add(R.id.discover_users, accountsFragment)
-					.add(R.id.discover_lists, listTimelinesFragment)
-					.commit();
+					.add(R.id.discover_lists, listTimelinesFragment);
+
+			if (!noFederated) {
+				federatedTimelineFragment=new FederatedTimelineFragment();
+				federatedTimelineFragment.setArguments(args);
+				transaction.add(R.id.discover_federated_timeline, federatedTimelineFragment);
+			}
+
+			transaction.commit();
 		}
 
 		tabLayoutMediator=new TabLayoutMediator(tabLayout, pager, new TabLayoutMediator.TabConfigurationStrategy(){
 			@Override
 			public void onConfigureTab(@NonNull TabLayout.Tab tab, int position){
+				if (noFederated && position > 0) position++;
 				tab.setText(switch(position){
 					case 0 -> R.string.local_timeline;
 					case 1 -> R.string.federated_timeline;
@@ -280,6 +290,7 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 	}
 
 	private Fragment getFragmentForPage(int page){
+		if (noFederated && page > 0) page++;
 		return switch(page){
 			case 0 -> localTimelineFragment;
 			case 1 -> federatedTimelineFragment;
