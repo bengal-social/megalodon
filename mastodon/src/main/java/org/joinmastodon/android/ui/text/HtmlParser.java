@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.BulletSpan;
+import android.text.style.LeadingMarginSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
@@ -26,6 +27,7 @@ import org.jsoup.safety.Safelist;
 import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -127,24 +129,27 @@ public class HtmlParser{
 								openSpans.add(new SpanInfo(new InvisibleSpan(), ssb.length(), el));
 							}
 						}
-						case "li" -> openSpans.add(new SpanInfo(new BulletSpan(V.dp(6)), ssb.length(), el));
+						case "li" -> openSpans.add(new SpanInfo(new BulletSpan(V.dp(8)), ssb.length(), el));
 						case "em", "i" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.ITALIC), ssb.length(), el));
 						case "strong", "b" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
 						case "u" -> openSpans.add(new SpanInfo(new UnderlineSpan(), ssb.length(), el));
 						case "code", "pre" -> openSpans.add(new SpanInfo(new TypefaceSpan("monospace"), ssb.length(), el));
+						case "blockquote" -> openSpans.add(new SpanInfo(new LeadingMarginSpan.Standard(V.dp(10)), ssb.length(), el));
 					}
 				}
 			}
+			
+			final List<String> blockElements = Arrays.asList("p", "ul", "ol", "blockquote");
 
 			@Override
 			public void tail(@NonNull Node node, int depth){
 				if(node instanceof Element el){
 					if("span".equals(el.nodeName()) && el.hasClass("ellipsis")){
 						ssb.append("…", new DeleteWhenCopiedSpan(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-					}else if("p".equals(el.nodeName()) || "ul".equals(el.nodeName()) || "ol".equals(el.nodeName())){
-						if(node.nextSibling()!=null)
-							ssb.append("\n\n");
-					}else if(!openSpans.isEmpty()){
+					}else if(blockElements.contains(el.nodeName()) && node.nextSibling()!=null){
+						ssb.append("\n\n");
+					}
+					if(!openSpans.isEmpty()){
 						SpanInfo si=openSpans.get(openSpans.size()-1);
 						if(si.element==el){
 							ssb.setSpan(si.span, si.start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
