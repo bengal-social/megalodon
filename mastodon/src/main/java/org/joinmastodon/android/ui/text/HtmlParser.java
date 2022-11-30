@@ -131,7 +131,7 @@ public class HtmlParser{
 						case "em", "i" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.ITALIC), ssb.length(), el));
 						case "strong", "b" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
 						case "u" -> openSpans.add(new SpanInfo(new UnderlineSpan(), ssb.length(), el));
-						case "code" -> openSpans.add(new SpanInfo(new TypefaceSpan("monospace"), ssb.length(), el));
+						case "code", "pre" -> openSpans.add(new SpanInfo(new TypefaceSpan("monospace"), ssb.length(), el));
 					}
 				}
 			}
