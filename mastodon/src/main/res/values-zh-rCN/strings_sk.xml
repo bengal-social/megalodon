@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="sk_pinned_posts">置顶</string>
+	<string name="sk_delete_and_redraft">删除以重新编辑</string>
+	<string name="sk_confirm_delete_and_redraft_title">删除嘟文并重新编辑</string>
+	<string name="sk_confirm_delete_and_redraft">确定要删除这条嘟文并重新编辑吗？</string>
+	<string name="sk_pin_post">置顶</string>
+	<string name="sk_confirm_pin_post_title">置顶嘟文</string>
+	<string name="sk_confirm_pin_post">确定要在你的资料页置顶这条嘟文吗？</string>
+	<string name="sk_pinning">正在置顶嘟文…</string>
+	<string name="sk_unpin_post">取消置顶</string>
+	<string name="sk_confirm_unpin_post_title">取消嘟文置顶</string>
+	<string name="sk_confirm_unpin_post">确定不再置顶这条嘟文吗？</string>
+	<string name="sk_unpinning">正在取消置顶…</string>
+	<string name="sk_image_description">图片描述</string>
+	<string name="sk_visibility_unlisted">不公开</string>
+	<string name="sk_federated_timeline">联邦时间轴</string>
+	<string name="sk_federated_timeline_info_banner">这是在你的联邦宇宙中最新发布的嘟文。</string>
+</resources>

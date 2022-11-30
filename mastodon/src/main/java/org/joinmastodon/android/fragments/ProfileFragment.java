@@ -249,7 +249,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 				tab.setText(switch(position){
 					case 0 -> R.string.posts;
 					case 1 -> R.string.posts_and_replies;
-					case 2 -> R.string.pinned_posts;
+					case 2 -> R.string.sk_pinned_posts;
 					case 3 -> R.string.media;
 					case 4 -> R.string.profile_about;
 					default -> throw new IllegalStateException();
@@ -658,7 +658,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		notifyProgress.setIndeterminateTintList(notifyButton.getTextColors());
 		followsYouView.setVisibility(relationship.followedBy ? View.VISIBLE : View.GONE);
 		notifyButton.setSelected(relationship.notifying);
-		if (getActivity() != null) notifyButton.setContentDescription(getString(relationship.notifying ? R.string.user_post_notifications_on : R.string.user_post_notifications_off, '@'+account.username));
+		if (getActivity() != null) notifyButton.setContentDescription(getString(relationship.notifying ? R.string.sk_user_post_notifications_on : R.string.sk_user_post_notifications_off, '@'+account.username));
 	}
 
 	private void onScrollChanged(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY){

@@ -316,7 +316,7 @@ public class HomeTimelineFragment extends StatusListFragment{
 
 	private void updateToolbarLogo(){
 		toolbarLogo =new TextView(getActivity());
-		toolbarLogo.setText(getString(R.string.app_name).toLowerCase(Locale.getDefault()));
+		toolbarLogo.setText(getString(R.string.sk_app_name).toLowerCase(Locale.getDefault()));
 		toolbarLogo.setTextAppearance(R.style.app_title);
 
 		toolbarShowNewPostsBtn=new Button(getActivity());
