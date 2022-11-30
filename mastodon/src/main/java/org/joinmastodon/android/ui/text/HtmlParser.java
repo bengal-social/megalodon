@@ -1,11 +1,14 @@
 package org.joinmastodon.android.ui.text;
 
 import android.graphics.Typeface;
+import android.graphics.fonts.FontFamily;
+import android.graphics.fonts.FontStyle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.BulletSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
@@ -128,6 +131,7 @@ public class HtmlParser{
 						case "em", "i" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.ITALIC), ssb.length(), el));
 						case "strong", "b" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
 						case "u" -> openSpans.add(new SpanInfo(new UnderlineSpan(), ssb.length(), el));
+						case "code" -> openSpans.add(new SpanInfo(new TypefaceSpan("monospace"), ssb.length(), el));
 					}
 				}
 			}
