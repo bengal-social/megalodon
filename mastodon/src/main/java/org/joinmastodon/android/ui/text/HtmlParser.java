@@ -6,7 +6,9 @@ import android.graphics.fonts.FontStyle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.BulletSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
@@ -15,10 +17,13 @@ import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
+import android.util.TypedValue;
 import android.widget.TextView;
 
 import com.twitter.twittertext.Regex;
 
+import org.joinmastodon.android.MastodonApp;
+import org.joinmastodon.android.R;
 import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.Hashtag;
 import org.joinmastodon.android.model.Mention;
@@ -81,11 +86,17 @@ public class HtmlParser{
 			public Object span;
 			public int start;
 			public Element element;
+			public boolean more;
 
 			public SpanInfo(Object span, int start, Element element){
+				this(span, start, element, false);
+			}
+
+			public SpanInfo(Object span, int start, Element element, boolean more){
 				this.span=span;
 				this.start=start;
 				this.element=element;
+				this.more=more;
 			}
 		}
 
@@ -135,8 +146,20 @@ public class HtmlParser{
 						}
 						case "li" -> openSpans.add(new SpanInfo(new BulletSpan(V.dp(8)), ssb.length(), el));
 						case "em", "i" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.ITALIC), ssb.length(), el));
-						case "h1" -> openSpans.add(new SpanInfo(new RelativeSizeSpan(1.3f), ssb.length(), el));
-						case "strong", "b", "h2" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
+						case "h1", "h2", "h3", "h4", "h5", "h6" -> {
+							// increase line height above heading (multiplying the margin)
+							if (node.previousSibling()!=null) ssb.setSpan(new RelativeSizeSpan(2), ssb.length() - 1, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+							if (!node.nodeName().equals("h1")) {
+								openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
+							}
+							openSpans.add(new SpanInfo(new RelativeSizeSpan(switch(node.nodeName()) {
+								case "h1" -> 1.5f;
+								case "h2" -> 1.25f;
+								case "h3" -> 1.125f;
+								default -> 1;
+							}), ssb.length(), el, !node.nodeName().equals("h1")));
+						}
+						case "strong", "b" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
 						case "u" -> openSpans.add(new SpanInfo(new UnderlineSpan(), ssb.length(), el));
 						case "s", "del" -> openSpans.add(new SpanInfo(new StrikethroughSpan(), ssb.length(), el));
 						case "sub" -> openSpans.add(new SpanInfo(new SubscriptSpan(), ssb.length(), el));
@@ -152,20 +175,26 @@ public class HtmlParser{
 			@Override
 			public void tail(@NonNull Node node, int depth){
 				if(node instanceof Element el){
+					processOpenSpan(el);
 					if("span".equals(el.nodeName()) && el.hasClass("ellipsis")){
 						ssb.append("…", new DeleteWhenCopiedSpan(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					}else if(blockElements.contains(el.nodeName()) && node.nextSibling()!=null){
-						ssb.append("\n\n");
+						ssb.append("\n"); // line end
+						ssb.append("\n", new RelativeSizeSpan(0.75f), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // margin after block
 					}
-					if(!openSpans.isEmpty()){
-						SpanInfo si=openSpans.get(openSpans.size()-1);
-						if(si.element==el){
-							ssb.setSpan(si.span, si.start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-							openSpans.remove(openSpans.size()-1);
-						}
-						if("li".equals(el.nodeName()) && node.nextSibling()!=null) {
-							ssb.append('\n');
-						}
+				}
+			}
+
+			private void processOpenSpan(Element el) {
+				if(!openSpans.isEmpty()){
+					SpanInfo si=openSpans.get(openSpans.size()-1);
+					if(si.element==el){
+						ssb.setSpan(si.span, si.start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+						openSpans.remove(openSpans.size()-1);
+						if(si.more) processOpenSpan(el);
+					}
+					if("li".equals(el.nodeName()) && el.nextSibling()!=null) {
+						ssb.append('\n');
 					}
 				}
 			}
