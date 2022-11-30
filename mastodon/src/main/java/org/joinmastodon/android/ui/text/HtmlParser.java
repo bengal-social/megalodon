@@ -1,11 +1,14 @@
 package org.joinmastodon.android.ui.text;
 
 import android.graphics.Typeface;
+import android.graphics.fonts.FontFamily;
+import android.graphics.fonts.FontStyle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.BulletSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
@@ -94,12 +97,6 @@ public class HtmlParser{
 					ssb.append(textNode.text());
 				}else if(node instanceof Element el){
 					switch(el.nodeName()){
-						case "p" -> {
-							Node sib=el.previousSibling();
-							// compensate for missing empty line after </ul> to match the empty
-							// line added by the <p> before <ul> elements
-							if(sib!=null && !sib.nodeName().equals("p")) ssb.append('\n');
-						}
 						case "a" -> {
 							String href=el.attr("href");
 							LinkSpan.Type linkType;
@@ -134,6 +131,7 @@ public class HtmlParser{
 						case "em", "i" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.ITALIC), ssb.length(), el));
 						case "strong", "b" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
 						case "u" -> openSpans.add(new SpanInfo(new UnderlineSpan(), ssb.length(), el));
+						case "code", "pre" -> openSpans.add(new SpanInfo(new TypefaceSpan("monospace"), ssb.length(), el));
 					}
 				}
 			}
@@ -143,7 +141,7 @@ public class HtmlParser{
 				if(node instanceof Element el){
 					if("span".equals(el.nodeName()) && el.hasClass("ellipsis")){
 						ssb.append("…", new DeleteWhenCopiedSpan(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-					}else if("p".equals(el.nodeName())){
+					}else if("p".equals(el.nodeName()) || "ul".equals(el.nodeName()) || "ol".equals(el.nodeName())){
 						if(node.nextSibling()!=null)
 							ssb.append("\n\n");
 					}else if(!openSpans.isEmpty()){
@@ -153,9 +151,7 @@ public class HtmlParser{
 							openSpans.remove(openSpans.size()-1);
 						}
 						if("li".equals(el.nodeName())) {
-							ssb.append('\n');
-							Node sib=node.nextSibling();
-							if(sib!=null && !sib.nodeName().equals("li")) ssb.append('\n');
+							if(node.nextSibling()!=null) ssb.append('\n');
 						}
 					}
 				}
