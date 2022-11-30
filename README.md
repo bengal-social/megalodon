@@ -2,6 +2,8 @@
 
 # Megalodon
 
+[![Translation status](https://translate.codeberg.org/widgets/megalodon/-/svg-badge.svg)](https://translate.codeberg.org/engage/megalodon/)
+
 > A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
 
 **Warning! [A previous version's integrated updater was broken](https://github.com/sk22/megalodon/issues/106) – I already published a fixed version! If you're not updating through Izzy's F-Droid repository (more sources to come, hopefully!), you'll have to download the current release manually. Sorry about that!**
@@ -79,6 +81,19 @@ This is an **unmodified version** of the official [Mastodon for Android](https:/
 <!-- **`megalodon-fdroid.apk`**
 
 Variant without the integrated updater. This is the variant to be published to F-Droid.org where an integrated updater is not necessary. -->
+
+---
+
+## Contribution
+
+### Translation
+
+As with the source code, the translation is sourced from the official project, which you can contribute to on the official “**Mastodon for Android**” Crowdin project: https://crowdin.com/project/mastodon-for-android
+
+There's also a handful of custom strings exclusive to this projects that would need to be translated. You can help translate **Megalodon** on Weblate: https://translate.codeberg.org/projects/megalodon/
+
+[![Translation status](https://translate.codeberg.org/widgets/megalodon/-/multi-auto.svg)](https://translate.codeberg.org/engage/megalodon/)
+
 
 ---
 
