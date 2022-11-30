@@ -146,7 +146,7 @@ public class HtmlParser{
 					}
 				}
 			}
-			
+
 			final static List<String> blockElements = Arrays.asList("p", "ul", "ol", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6");
 
 			@Override
@@ -163,8 +163,8 @@ public class HtmlParser{
 							ssb.setSpan(si.span, si.start, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 							openSpans.remove(openSpans.size()-1);
 						}
-						if("li".equals(el.nodeName())) {
-							if(node.nextSibling()!=null) ssb.append('\n');
+						if("li".equals(el.nodeName()) && node.nextSibling()!=null) {
+							ssb.append('\n');
 						}
 					}
 				}
