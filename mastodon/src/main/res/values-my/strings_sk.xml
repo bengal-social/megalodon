@@ -31,5 +31,4 @@
     <string name="sk_federated_timeline_info_banner">သင့်ဖက်ဒရေးရှင်းကလူတွေရဲ့ လတ်တလောပို့စ်တွေ ဖြစ်ပါတယ်။</string>
     <string name="sk_check_for_update">အပ်ဒိတ်ရှိလားစစ်ဆေးမည်</string>
     <string name="sk_disable_marquee">ခေါင်းစီးဘားများတွင် စာများရွေ့လျားမှု ပိတ်မည်</string>
-    <string name="sk_privacy_policy_subtitle">Megalodon က မည်သည့်ဒေတာမျှ မကောက်ယူပေမယ့် သင်စာရင်းသွင်းမယ့် ဆာဗာကတော့ မတူညီတဲ့မူဝါဒတစ်ခုရှိနေနိုင်ပါတယ်။ Mastodon ၏ အက်ပလီကေးရှင်းဆိုင်ရာ ကိုယ်ရေးအချက်အလက်မူဝါဒနှင့် သင့်ဆာဗာ၏ ကိုယ်ရေးအချက်အလက်မူဝါဒတို့ကို ခေတ္တခဏအချိန်ပေး၍ ဖတ်ရှုကာ သဘောတူပေးပါ။</string>
 </resources>

@@ -38,5 +38,4 @@
     <string name="sk_settings_show_interaction_counts">Afficher le nombre d\'interactions</string>
     <string name="sk_federated_timeline">Fédération</string>
     <string name="sk_federated_timeline_info_banner">Ce sont les publications les plus récentes des membres de votre fédération.</string>
-    <string name="sk_privacy_policy_subtitle">Bien que l\'application Megalodon ne collecte aucune donnée, le serveur sur lequel vous vous inscrivez peut avoir une politique différente. Prenez une minute pour lire et accepter la politique de confidentialité de l\'application Mastodon et la politique de confidentialité de votre serveur.</string>
 </resources>

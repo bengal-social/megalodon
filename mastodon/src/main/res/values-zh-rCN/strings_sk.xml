@@ -36,7 +36,6 @@
     <string name="sk_disable_marquee">禁用标题栏的滚动文本</string>
     <string name="sk_settings_contribute">向 Megalodon 贡献</string>
     <string name="sk_settings_show_federated_timeline">显示联邦时间轴</string>
-    <string name="sk_privacy_policy_subtitle">尽管Megalodon应用程序不收集任何数据，但您注册的服务器可能有不同的政策。花时间查看并同意 Mastodon 应用程序的隐私政策和您服务器的隐私政策。</string>
     <string name="sk_follow_requests">关注请求</string>
     <string name="sk_settings_always_reveal_content_warnings">总是显示内容警告</string>
 </resources>

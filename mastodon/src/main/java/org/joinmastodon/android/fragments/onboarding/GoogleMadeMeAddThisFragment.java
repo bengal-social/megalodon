@@ -92,7 +92,7 @@ public class GoogleMadeMeAddThisFragment extends AppKitFragment{
 		TextView subtitle=headerView.findViewById(R.id.subtitle);
 		headerView.findViewById(R.id.step_counter).setVisibility(View.GONE);
 		title.setText(R.string.privacy_policy_title);
-		subtitle.setText(R.string.sk_privacy_policy_subtitle);
+		subtitle.setText(R.string.privacy_policy_subtitle);
 
 		adapter=new MergeRecyclerAdapter();
 		adapter.addAdapter(new SingleViewRecyclerAdapter(headerView));

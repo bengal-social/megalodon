@@ -29,7 +29,6 @@
   <string name="sk_update_ready">Megalodon %s is downloaded and ready to install.</string>
   <string name="sk_check_for_update">Check for update</string>
   <string name="sk_no_update_available">No update available</string>
-  <string name="sk_privacy_policy_subtitle">Although the Megalodon app does not collect any data, the server you sign up through may have a different policy. Take a minute to review and agree to the Mastodon app privacy policy and your server\'s privacy policy.</string>
   <string name="sk_list_timelines">Lists</string>
   <string name="sk_follow_requests">Follow requests</string>
   <string name="sk_accept_follow_request">Accept follow request</string>

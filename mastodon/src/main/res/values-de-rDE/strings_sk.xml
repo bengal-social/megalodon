@@ -29,7 +29,6 @@
 	<string name="sk_update_ready">Megalodon %s wurde heruntergeladen und kann jetzt installiert werden.</string>
 	<string name="sk_check_for_update">Auf Update prüfen</string>
 	<string name="sk_no_update_available">Kein Update verfügbar</string>
-	<string name="sk_privacy_policy_subtitle">Obwohl die Megalodon-App keine Daten sammelt, kann der Server, über den Sie sich anmelden, eine andere Richtlinie haben. Nehmen Sie sich eine Minute Zeit, um die Mastodon-Datenschutzrichtlinien und die Datenschutzrichtlinien Ihres Servers zu lesen und zu akzeptieren.</string>
 	<string name="sk_list_timelines">Listen</string>
 	<string name="sk_follow_requests">Folgeanfragen</string>
 	<string name="sk_accept_follow_request">Folgeanfrage akzeptieren</string>

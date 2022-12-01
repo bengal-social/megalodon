@@ -38,5 +38,4 @@
     <string name="sk_settings_contribute">Contribuir a Megalodon</string>
     <string name="sk_settings_show_federated_timeline">Mostrar el timeline federado</string>
     <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
-    <string name="sk_privacy_policy_subtitle">A pesar de que la aplicación Megalodon no recolecta ningún dato, el servidor en el que se registre puede tener una política distinta. Tómese un minuto para revisar y aceptar la política de privacidad de la aplicación de Mastodon y la de su servidor.</string>
 </resources>
