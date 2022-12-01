@@ -162,8 +162,10 @@ public class HtmlParser{
 						case "strong", "b" -> openSpans.add(new SpanInfo(new StyleSpan(Typeface.BOLD), ssb.length(), el));
 						case "u" -> openSpans.add(new SpanInfo(new UnderlineSpan(), ssb.length(), el));
 						case "s", "del" -> openSpans.add(new SpanInfo(new StrikethroughSpan(), ssb.length(), el));
-						case "sub" -> openSpans.add(new SpanInfo(new SubscriptSpan(), ssb.length(), el));
-						case "sup" -> openSpans.add(new SpanInfo(new SuperscriptSpan(), ssb.length(), el));
+						case "sub", "sup" -> {
+							openSpans.add(new SpanInfo(node.nodeName().equals("sub") ? new SubscriptSpan() : new SuperscriptSpan(), ssb.length(), el));
+							openSpans.add(new SpanInfo(new RelativeSizeSpan(0.8f), ssb.length(), el, true));
+						}
 						case "code", "pre" -> openSpans.add(new SpanInfo(new TypefaceSpan("monospace"), ssb.length(), el));
 						case "blockquote" -> openSpans.add(new SpanInfo(new LeadingMarginSpan.Standard(V.dp(10)), ssb.length(), el));
 					}
