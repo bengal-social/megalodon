@@ -29,4 +29,14 @@
     <string name="sk_confirm_delete_and_redraft">Hapus dan tulis ulang kiriman ini\?</string>
     <string name="sk_confirm_unpin_post">Apa kamu yakin untuk menghapus sematan kiriman ini\?</string>
     <string name="sk_settings_contribute">Kontribusi ke Megalodon</string>
+    <string name="sk_pinned_posts">Disematkan</string>
+    <string name="sk_pin_post">Sematkan ke profil</string>
+    <string name="sk_visibility_unlisted">Tidak terdaftar</string>
+    <string name="sk_mark_media_as_sensitive">Tandai media sebagai sensitif</string>
+    <string name="sk_privacy_policy_subtitle">Walaupun aplikasi Megalodon tidak mengumpulkan data apa pun, server yang Anda daftarkan di situ mungkin memiliki kebijakan yang berbeda. Luangkan beberapa menit untuk membaca dan menerima kebijakan privasi aplikasi Mastodon dan kebijakan privasi server Anda.</string>
+    <string name="sk_follow_requests">Permintaan pengikut</string>
+    <string name="sk_lists_with_user">Daftar dengan %s</string>
+    <string name="sk_settings_always_reveal_content_warnings">Selalu ungkap peringatan konten</string>
+    <string name="sk_disable_marquee">Nonaktifkan teks bergulir dalam bilah judul</string>
+    <string name="sk_settings_show_federated_timeline">Tampilkan lini masa federasi</string>
 </resources>
