@@ -38,5 +38,4 @@
     <string name="sk_confirm_unpin_post">Är du säker på att du vill ta bort detta inlägg\?</string>
     <string name="sk_user_post_notifications_on">Slå på inläggsnotifieringar för %s</string>
     <string name="sk_update_ready">Megalodon %s är nerladdad och redo att installeras.</string>
-    <string name="sk_privacy_policy_subtitle">Även fast Megalodon appen inte samlar in någon data, servern du registrerar dig hos kan ha en annan policy. Ta en minut och gå igenom och godkänn Mastodon app sekretess policy och din servers sekretess policy.</string>
 </resources>

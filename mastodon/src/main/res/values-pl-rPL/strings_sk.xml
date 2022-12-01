@@ -27,7 +27,6 @@
     <string name="sk_confirm_unpin_post">Jesteś pewien, że chcesz odpiąć ten post\?</string>
     <string name="sk_image_description">Opis obrazka</string>
     <string name="sk_confirm_delete_and_redraft_title">Usuń i zmodyfikuj post</string>
-    <string name="sk_privacy_policy_subtitle">Mimo, że aplikacja Megalodon nie zbiera żadnych danych, serwer na którym znajduje się twoje konto może mieć inne zasady. Poświęć chwilę aby sprawdzić i wyrazić zgodę na politykę prywatności aplikacji Mastodon oraz twojego serwera.</string>
     <string name="sk_list_timelines">Listy</string>
     <string name="sk_follow_requests">Prośby o obserwowanie</string>
     <string name="sk_accept_follow_request">Zaakceptuj prośby o obserwowanie</string>
