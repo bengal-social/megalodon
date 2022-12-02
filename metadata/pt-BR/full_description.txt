@@ -1,0 +1,3 @@
+Megalodon é uma versão modificada do <a href="https://github.com/mastodon/mastodon-android">aplicativo oficial do Mastodon para Android</a> adicionando importantes funcionalidades que estão faltando no aplicativo oficial, como a linha do tempo federada, postagens não listadas, marcadores e um visualizador de descrições de imagem.
+
+<b>Características chaves</b>
