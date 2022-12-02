@@ -35,7 +35,7 @@
     <string name="sk_settings_always_reveal_content_warnings">Sempre revelar avisos de conteúdo</string>
     <string name="sk_disable_marquee">Desative o texto de rolagem nas barras de título</string>
     <string name="sk_settings_contribute">Contribua para o Megalodon</string>
-    <string name="sk_settings_show_federated_timeline">Mostrar a linha do tempo federada</string>
+    <string name="sk_settings_show_federated_timeline">Mostre a linha do tempo federada</string>
     <string name="sk_visibility_unlisted">Não-listado</string>
     <string name="sk_settings_show_interaction_counts">Mostrar contagens de interação</string>
 </resources>
