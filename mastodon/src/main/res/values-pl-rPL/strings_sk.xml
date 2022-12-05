@@ -37,4 +37,5 @@
     <string name="sk_settings_contribute">Wspomóż Megalodon</string>
     <string name="sk_settings_show_federated_timeline">Pokaż oś czasu znanej sieci Fediverse</string>
     <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
+    <string name="sk_visibility_unlisted">Nienotowany</string>
 </resources>
