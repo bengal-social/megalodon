@@ -15,6 +15,7 @@ public class GlobalUserPreferences{
 	public static boolean alwaysExpandContentWarnings;
 	public static boolean disableMarquee;
 	public static ThemePreference theme;
+	public static boolean voteButtonForSingleChoice;
 
     private static SharedPreferences getPrefs(){
 		return MastodonApp.context.getSharedPreferences("global", Context.MODE_PRIVATE);
@@ -32,6 +33,7 @@ public class GlobalUserPreferences{
 		showInteractionCounts=prefs.getBoolean("showInteractionCounts", false);
 		alwaysExpandContentWarnings=prefs.getBoolean("alwaysExpandContentWarnings", false);
 		disableMarquee=prefs.getBoolean("disableMarquee", false);
+		voteButtonForSingleChoice=prefs.getBoolean("voteButtonForSingleChoice", true);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 	}
 
