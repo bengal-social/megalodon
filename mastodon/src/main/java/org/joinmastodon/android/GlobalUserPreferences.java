@@ -8,6 +8,7 @@ public class GlobalUserPreferences{
 	public static boolean useCustomTabs;
 	public static boolean trueBlackTheme;
 	public static ThemePreference theme;
+	public static boolean voteButtonForSingleChoice;
 
 	private static SharedPreferences getPrefs(){
 		return MastodonApp.context.getSharedPreferences("global", Context.MODE_PRIVATE);
@@ -18,6 +19,7 @@ public class GlobalUserPreferences{
 		playGifs=prefs.getBoolean("playGifs", true);
 		useCustomTabs=prefs.getBoolean("useCustomTabs", true);
 		trueBlackTheme=prefs.getBoolean("trueBlackTheme", false);
+		voteButtonForSingleChoice=prefs.getBoolean("voteButtonForSingleChoice", true);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 	}
 
