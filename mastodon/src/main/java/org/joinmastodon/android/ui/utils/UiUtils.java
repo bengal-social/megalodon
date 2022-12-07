@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.OpenableColumns;
+import android.provider.Settings;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.Menu;
@@ -655,13 +656,71 @@ public class UiUtils{
 	}
 
 	public static void setUserPreferredTheme(Context context){
-		context.setTheme(switch(GlobalUserPreferences.theme){
-			case AUTO -> GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack : R.style.Theme_Mastodon_AutoLightDark;
-			case LIGHT -> R.style.Theme_Mastodon_Light;
-			case DARK -> GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack : R.style.Theme_Mastodon_Dark;
-		});
-	}
+//		boolean isDarkTheme = isDarkTheme();
+		switch(GlobalUserPreferences.color){
+			case PINK:
+				context.setTheme(switch(GlobalUserPreferences.theme){
+					case AUTO ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack : R.style.Theme_Mastodon_AutoLightDark;
+					case LIGHT ->
+							R.style.Theme_Mastodon_Light;
+					case DARK ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack : R.style.Theme_Mastodon_Dark;
+				});
+				break;
+			case PURPLE:
+				context.setTheme(switch(GlobalUserPreferences.theme){
+					case AUTO ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Original : R.style.Theme_Mastodon_AutoLightDark_Original;
+					case LIGHT ->
+							R.style.Theme_Mastodon_Light_Original;
+					case DARK ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Original : R.style.Theme_Mastodon_Dark_Original;
+				});
+				break;
+			case GREEN:
+				context.setTheme(switch(GlobalUserPreferences.theme){
+					case AUTO ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Green : R.style.Theme_Mastodon_AutoLightDark_Green;
+					case LIGHT ->
+							R.style.Theme_Mastodon_Light_Green;
+					case DARK ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Green : R.style.Theme_Mastodon_Dark_Green;
+				});
+				break;
+			case BLUE:
+				context.setTheme(switch(GlobalUserPreferences.theme){
+					case AUTO ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Blue : R.style.Theme_Mastodon_AutoLightDark_Blue;
+					case LIGHT ->
+							R.style.Theme_Mastodon_Light_Blue;
+					case DARK ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Blue : R.style.Theme_Mastodon_Dark_Blue;
+				});
+				break;
+			case BROWN:
+				context.setTheme(switch(GlobalUserPreferences.theme){
+					case AUTO ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Brown : R.style.Theme_Mastodon_AutoLightDark_Brown;
+					case LIGHT ->
+							R.style.Theme_Mastodon_Light_Brown;
+					case DARK ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Brown : R.style.Theme_Mastodon_Dark_Brown;
+				});
+				break;
+			case YELLOW:
+				context.setTheme(switch(GlobalUserPreferences.theme){
+					case AUTO ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Yellow : R.style.Theme_Mastodon_AutoLightDark_Yellow;
+					case LIGHT ->
+							R.style.Theme_Mastodon_Light_Yellow;
+					case DARK ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Yellow : R.style.Theme_Mastodon_Dark_Yellow;
+				});
+				break;
+		}
 
+	}
 	public static boolean isDarkTheme(){
 		if(GlobalUserPreferences.theme==GlobalUserPreferences.ThemePreference.AUTO)
 			return (MastodonApp.context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)==Configuration.UI_MODE_NIGHT_YES;

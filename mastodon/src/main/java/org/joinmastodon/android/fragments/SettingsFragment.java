@@ -99,6 +99,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.disableMarquee=i.checked;
 			GlobalUserPreferences.save();
 		}));
+		items.add(new ColorPicker());
 
 		items.add(new HeaderItem(R.string.settings_behavior));
 		items.add(new SwitchItem(R.string.settings_gif, R.drawable.ic_fluent_gif_24_regular, GlobalUserPreferences.playGifs, i->{
@@ -231,6 +232,12 @@ public class SettingsFragment extends MastodonToolbarFragment{
 
 	private void onThemePreferenceClick(GlobalUserPreferences.ThemePreference theme){
 		GlobalUserPreferences.theme=theme;
+		GlobalUserPreferences.save();
+		restartActivityToApplyNewTheme();
+	}
+
+	private void onColorPreferenceClick(GlobalUserPreferences.ColorPreference color){
+		GlobalUserPreferences.color=color;
 		GlobalUserPreferences.save();
 		restartActivityToApplyNewTheme();
 	}
@@ -438,6 +445,13 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}
 	}
 
+	public class ColorPicker extends Item{
+		@Override
+		public int getViewType(){
+			return 8;
+		}
+	}
+
 	private static class ThemeItem extends Item{
 
 		@Override
@@ -522,6 +536,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 				case 5 -> new HeaderViewHolder(true);
 				case 6 -> new FooterViewHolder();
 				case 7 -> new UpdateViewHolder();
+				case 8 -> new ColorPickerViewHolder();
 				default -> throw new IllegalStateException("Unexpected value: "+viewType);
 			};
 		}
@@ -650,6 +665,68 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			}
 		}
 	}
+	private class ColorPickerViewHolder extends BindableViewHolder<ColorPicker>{
+		private final Button button;
+		private final PopupMenu popupMenu;
+		private final ImageView icon;
+
+		@SuppressLint("ClickableViewAccessibility")
+		public ColorPickerViewHolder(){
+			super(getActivity(), R.layout.item_settings_color_picker, list);
+			icon=findViewById(R.id.icon);
+			button=findViewById(R.id.color_picker_button);
+			popupMenu=new PopupMenu(getActivity(), button, Gravity.CENTER_HORIZONTAL);
+			popupMenu.inflate(R.menu.color_picker);
+			popupMenu.setOnMenuItemClickListener(item->{
+				GlobalUserPreferences.ColorPreference pref;
+				int id=item.getItemId();
+				if(id==R.id.pink_color) {
+					pref = GlobalUserPreferences.ColorPreference.PINK;
+					onColorPreferenceClick(pref);
+				}
+				else if(id==R.id.purple_color) {
+					pref = GlobalUserPreferences.ColorPreference.PURPLE;
+					onColorPreferenceClick(pref);
+				}
+				else if(id==R.id.green_color) {
+					pref = GlobalUserPreferences.ColorPreference.GREEN;
+					onColorPreferenceClick(pref);
+				}
+				else if(id==R.id.blue_color) {
+					pref = GlobalUserPreferences.ColorPreference.BLUE;
+					onColorPreferenceClick(pref);
+				}
+				else if(id==R.id.brown_color) {
+					pref = GlobalUserPreferences.ColorPreference.BROWN;
+					onColorPreferenceClick(pref);
+				}
+				else if(id==R.id.yellow_color) {
+					pref = GlobalUserPreferences.ColorPreference.YELLOW;
+					onColorPreferenceClick(pref);
+				}
+				else
+					return false;
+				return true;
+			});
+//			UiUtils.enablePopupMenuIcons(getActivity(), popupMenu);
+			button.setOnTouchListener(popupMenu.getDragToOpenListener());
+			button.setOnClickListener(v->popupMenu.show());
+		}
+
+		@Override
+		public void onBind(ColorPicker item){
+			icon.setImageResource(R.drawable.ic_fluent_color_24_regular);
+			button.setText(switch(GlobalUserPreferences.color){
+				case PINK -> R.string.sk_color_theme_pink;
+				case PURPLE -> R.string.sk_color_theme_purple;
+				case GREEN -> R.string.sk_color_theme_green;
+				case BLUE -> R.string.sk_color_theme_blue;
+				case BROWN -> R.string.sk_color_theme_brown;
+				case YELLOW -> R.string.sk_color_theme_yellow;
+			});
+		}
+	}
+
 
 	private class NotificationPolicyViewHolder extends BindableViewHolder<NotificationPolicyItem>{
 		private final Button button;
