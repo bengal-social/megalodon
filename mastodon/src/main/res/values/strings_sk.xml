@@ -38,4 +38,6 @@
   <string name="sk_disable_marquee">Disable scrolling text in title bars</string>
   <string name="sk_settings_contribute">Contribute to Megalodon</string>
   <string name="sk_settings_show_federated_timeline">Show federated timeline</string>
+  <string name="sk_notification_type_status">Posts</string>
+  <string name="sk_notify_posts">Post notifications</string>
 </resources>
