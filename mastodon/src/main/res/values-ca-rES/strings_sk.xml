@@ -38,4 +38,13 @@
     <string name="sk_settings_always_reveal_content_warnings">Mostra sempre els avisos de contingut</string>
     <string name="sk_settings_contribute">Contribueix a Megalodon</string>
     <string name="sk_settings_show_federated_timeline">Mostra la línia de temps federada</string>
+    <string name="sk_notification_type_status">Publicacions</string>
+    <string name="sk_notify_posts">Notificacions de publicacions</string>
+    <string name="sk_settings_color_picker">Color de tema</string>
+    <string name="sk_color_theme_pink">Rosa</string>
+    <string name="sk_color_theme_purple">Lila</string>
+    <string name="sk_color_theme_green">Verd</string>
+    <string name="sk_color_theme_blue">Blau</string>
+    <string name="sk_color_theme_brown">Marró</string>
+    <string name="sk_color_theme_yellow">Groc</string>
 </resources>
