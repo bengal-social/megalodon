@@ -38,4 +38,13 @@
     <string name="sk_settings_show_interaction_counts">Afficher le nombre d\'interactions</string>
     <string name="sk_federated_timeline">Fédération</string>
     <string name="sk_federated_timeline_info_banner">Ce sont les messages les plus récents des membres de votre fédération.</string>
+    <string name="sk_notification_type_status">Messages</string>
+    <string name="sk_notify_posts">Notifications des messages</string>
+    <string name="sk_color_theme_pink">Rose</string>
+    <string name="sk_color_theme_purple">Violet</string>
+    <string name="sk_color_theme_green">Vert</string>
+    <string name="sk_color_theme_blue">Bleu</string>
+    <string name="sk_color_theme_brown">Marron</string>
+    <string name="sk_color_theme_yellow">Jaune</string>
+    <string name="sk_settings_color_picker">Couleur d\'accentuation</string>
 </resources>
