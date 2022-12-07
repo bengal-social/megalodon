@@ -156,6 +156,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:true-black-improvements)
 * [Profile header tweaks](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:ui/profile-header-tweaks)
 * [Custom color themes](https://github.com/sk22/megalodon/pull/124) by [@LucasGGamerM](https://github.com/LucasGGamerM)
+* [Custom "megalodon" text logo](https://github.com/sk22/megalodon/commit/563afd487ca5c608cfbb00fa3909d3c27384acc0) by [@LucasGGamerM](https://github.com/LucasGGamerM)
 
 
 ## Building

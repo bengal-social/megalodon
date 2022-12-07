@@ -1,4 +1,5 @@
 - Custom color themes by @LucasGGamerM
+- New "megalodon" text logo submitted by @LucasGGamerM
 - Better emoji search while composing
 - Tweaked voting (display own vote, always display vote button, don't cut off long answers)
 - Add push notification setting for post notifications
