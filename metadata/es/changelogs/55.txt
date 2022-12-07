@@ -1,0 +1,4 @@
+- Solucione la representación rota de las etiquetas HTML y habilite la representación del formato Markdown
+- Inicialice el <a href="https://translate.codeberg.org/projects/megalodon">proyecto de traducción de Weblate</a>
+- Agregar alternar para la línea de tiempo federada
+- Las versiones 52-54 fueron pequeños ajustes para un lanzamiento en Google Play

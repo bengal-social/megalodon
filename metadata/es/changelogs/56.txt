@@ -1,0 +1,6 @@
+- Temas personalizados por @LucasGGamerM
+- Nuevo logotipo del texto "megalodón" enviado por @LucasGGamerM
+- Mejor búsqueda de emojis
+- Votación modificada (mostrar el voto propio, mostrar siempre el botón de voto, no cortar las respuestas largas)
+- Agregar las configuraciones de las notificaciones push
+- Corrección de errores
