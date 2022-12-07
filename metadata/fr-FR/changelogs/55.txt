@@ -1,0 +1,4 @@
+- Correction du rendu des balises HTML et activation du formatage Markdown
+- Initialisation du <a href="https://translate.codeberg.org/projects/megalodon">projet de traduction Weblate</a>
+- Ajout d'une option pour activer la chronologie fédérée
+- Les versions 52-54 contenaient de petits ajustements pour une sortie sur Google Play

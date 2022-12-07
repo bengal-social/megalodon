@@ -1,0 +1,6 @@
+- Thèmes de couleurs personnalisés par @LucasGGamerM
+- Nouveau logo textuel "megalodon" soumis par @LucasGGamerM
+- Meilleure recherche d'emoji lors de la composition
+- Vote amélioré (afficher son propre vote, toujours afficher le bouton de vote, ne pas couper les réponses longues)
+- Ajout d'un paramètre de notification push pour les notifications de messages
+- Corrections de bogues
