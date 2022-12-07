@@ -3,12 +3,15 @@
 # Megalodon
 
 [![Translation status](https://translate.codeberg.org/widgets/megalodon/-/svg-badge.svg)](https://translate.codeberg.org/engage/megalodon/)
+&nbsp;
+[![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=Download%20APK&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmegalodon%2Freleases%2Flatest&style=flat)](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk)
 
-> A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting, bookmarks and an image description viewer.
+<a href="https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk"><img height="50" alt="Get it on Google Play" src="img/google-play-badge.png"></a>
+&nbsp;
+<a href="https://apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk"><img height="50" alt="Get it on F-Droid" src="img/f-droid-badge.png"></a>
 
-**Warning! [A previous version's integrated updater was broken](https://github.com/sk22/megalodon/issues/106) – I already published a fixed version! If you're not updating through Izzy's F-Droid repository (more sources to come, hopefully!), you'll have to download the current release manually. Sorry about that!**
+> A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting and an image description viewer.
 
-[![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk)
 
 ---
 
@@ -43,25 +46,31 @@ This is important to **ensure the content you’re sharing is as accessible as p
 
 On the Fediverse, it’s quite common for people to pin posts they want others to read before following them. You can pin/unpin posts yourself by clicking the `⋯` button in the top right corner of your posts.
 
-### **Bookmarks**
-
-**They allow for quickly saving posts and viewing them through the Bookmarks button on the top right of your profile.**
-
-To bookmark a post, press the button between the Favorite and Share buttons on the bottom of the post. Bookmarks are saved privately, so the post authors won’t know you saved their post – the list of bookmarked posts is only visible to you.
-
 ## Installation
 
-**In short: Press the download button to download the APK. Open the downloaded file on your Android device to install it. Megalodon will automatically notify you about new updates inside the app.**
+### From app stores
 
-[![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=download%20apk&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmastodon-android-fork%2Freleases%2Flatest&style=for-the-badge)](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk)
+* **[Izzy's F-Droid repository](https://apt.izzysoft.de/fdroid/repo)**: [apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk](https://apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk)
 
-To install this app on your Android device, download the [latest release from GitHub](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk) and open it. You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/megalodon/releases) page.
+  Note that you'll need to add Izzy's F-Droid repository to your F-Droid app first:
+  
+  `https://apt.izzysoft.de/fdroid/repo`
+
+* **[Google Play Store](https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk)**: [play.google.com/store/apps/details?id=org.joinmastodon.android.sk](https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk)
+
+* **[F-Droid.org](https://f-droid.org)?** Not yet, sorry!
+
+  If you want, you can help me figure out if something's missing in the [Issue #47: F-Droid.org](https://github.com/sk22/megalodon/issues/47)
+
+### Directly from GitHub
+
+Press the download button to download the APK. Open the downloaded file on your Android device to install it. Megalodon will automatically notify you about new updates inside the app.
+
+[![Download latest release](https://img.shields.io/badge/dynamic/json?color=d92aad&label=Download%20APK&query=%24.tag_name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fsk22%2Fmegalodon%2Freleases%2Flatest&style=flat)](https://github.com/sk22/megalodon/releases/latest/download/megalodon.apk)
+
+You might have to accept installing APK files from your browser when trying to install it. You can also take a look at all releases on the [Releases](https://github.com/sk22/megalodon/releases) page.
 
 Megalodon makes use of [Mastodon for Android](https://github.com/mastodon/mastodon-android)’s automatic update checker. Megalodon will check for new updates available on GitHub and offer to download and install them. You can also manually press “Check for updates” at the bottom of the settings page!
-
-### Other sources
-
-* **[Izzy's F-Droid repository](https://apt.izzysoft.de/fdroid/repo)**: https://apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk
 
 ---
 
@@ -92,7 +101,7 @@ As with the source code, the translation is sourced from the official project, w
 
 There's also a handful of custom strings exclusive to this projects that would need to be translated. You can help translate **Megalodon** on Weblate: https://translate.codeberg.org/projects/megalodon/
 
-[![Translation status](https://translate.codeberg.org/widgets/megalodon/-/multi-auto.svg)](https://translate.codeberg.org/engage/megalodon/)
+[![Translation status](https://translate.codeberg.org/widgets/megalodon/-/horizontal-auto.svg)](https://translate.codeberg.org/engage/megalodon/)
 
 
 ---
@@ -122,6 +131,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Show visibility of original post when replying](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/display-reply-visibility)
 * [Clickable reply/boost line above posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:clickable-boost-reply-line)
 * [Clickable reply line while replying to open original post](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/clickable-reply-line-compose)
+* [Add push notification setting for post notifications](https://github.com/sk22/megalodon/commit/b190480d7739be47f23543d9e7644660f9b4b4ee)
 
 
 ### Behavior
@@ -133,6 +143,11 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Option to hide interaction numbers](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:settings/hide-interaction-numbers)
 * [Option to always reveal content warnings](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/cw-above-text)
 * [Option to disable scrolling title bars](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:settings/disable-marquee)
+* [No ellipsis for long poll answers](https://github.com/mastodon/mastodon-android/commit/c9aae828e2518adccdc092e41f8d1f0489636271)
+* [Show poll vote button for multiple and single answer polls](https://github.com/mastodon/mastodon-android/commit/e14dfda2fdf32f0fa3043504ac5831683a87559a)
+* [Show own vote after voting](https://github.com/mastodon/mastodon-android/commit/4ab9e25fec4fd9c10b7a8ddd1be522b3cc12cf28) ([Closes issue](https://github.com/mastodon/mastodon-android/commit/4ab9e25fec4fd9c10b7a8ddd1be522b3cc12cf28))
+* [Make inline emoji search case-insensitive and don't only search from start of emoji names](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:better-inline-emoji-search) ([Pull request](https://github.com/mastodon/mastodon-android/pull/445))
+* [Include subject line when sharing e.g. a website to Megalodon](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:external-share-include-subject)
 
 
 ### Visual
@@ -140,6 +155,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Custom extended footer redesign](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:compact-extended-footer)
 * [Improvements to the true black mode](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:true-black-improvements)
 * [Profile header tweaks](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:ui/profile-header-tweaks)
+* [Custom color themes](https://github.com/sk22/megalodon/pull/124) by [@LucasGGamerM](https://github.com/LucasGGamerM)
 
 
 ## Building
