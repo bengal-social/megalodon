@@ -1,4 +1,4 @@
-Megalodon ist eine modifizierte Version der <a href="https://github.com/mastodon/mastodon-android">offiziellen Mastodon-Android-App</a> mit vielen Features, die in der offiziellen App fehlen, z.B. die föderierte Timeline, ungelistete Beiträge posten, Lesezeichen und die Möglichkeit, Bildbeschreibungen anzuzeigen.
+Megalodon ist eine modifizierte Version der <a href="https://github.com/mastodon/mastodon-android">offiziellen Mastodon-Android-App</a> mit vielen Features, die in der offiziellen App fehlen, z.B. die föderierte Timeline, ungelistete Beiträge posten und die Möglichkeit, Bildbeschreibungen anzuzeigen.
 
 <b>Die wichtigsten Features</b>
 
@@ -6,12 +6,6 @@ Megalodon ist eine modifizierte Version der <a href="https://github.com/mastodon
 - <b>Föderierte Timeline</b>: Alle öffentlichen Beiträge aller anderen Fediverse-Nachbarschaften, mit denen deine Heim-Instanz verbunden ist.
 - <b>Bildbeschreibungen anzeigen</b>: Unkompliziert prüfen, ob Bilder und Videos Alternativ-Texte beinhalten.
 - <b>Beiträge anpinnen</b>: Pinne deine wichtigsten Beiträge an dein Profil an und sieh im “Angepinnt”-Tab nach, was andere User_innen angepinnt haben.
-- <b>Lesezeichen</b>: Schnell und einfach Beiträge speichern und später in der Lesezeichen-Liste wieder finden.
 - <b>Hashtags folgen</b>: Bringt neue Beiträge bestimmter Hashtags direkt in deine Home-Timeline.
 - <b>Folgeanfragen beantworten</b>: Folgeanfragen lassen sich nun direkt über die Benachrichtigungen-Liste oder über die Folgeanfragen-Liste akzeptieren oder ablehnen.
 - <b>Beiträge löschen und neu erstellen</b>: Das beliebte Feature, das das Bearbeiten von Beiträgen ohne tatsächliche Bearbeit-Funktion möglich gemacht hat.
-
-<b>Aus der offiziellen App vorab verfügbar</b>
-
-- Beiträge bearbeiten
-- Integrierter Updater für GitHub-Releases
