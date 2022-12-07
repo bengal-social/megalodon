@@ -1,0 +1,4 @@
+- HTML-Tags und Markdown-Formatierung richtig darstellen
+- <a href="https://translate.codeberg.org/projects/megalodon">Weblate-Übersetzungsprojekt</a> einrichten
+- Schalter für die Föderierte Timeline
+- Versionen 52-54 waren kleine Anpassungen für den Google Play-Release

@@ -1,0 +1,5 @@
+- Eigene Farbschemata von @LucasGGamerM
+- Bessere Emoji-Suche beim Verfassen
+- Verbesserungen bei Abstimmungen (eigene Stimme wird angezeigt, Abstimmen-Button wird immer angezeigt, lange Antworten werden nicht abgeschnitten)
+- Push-Notification-Einstellung für Beitrags-Benachrichtigungen
+- Fehlerbehebungen
