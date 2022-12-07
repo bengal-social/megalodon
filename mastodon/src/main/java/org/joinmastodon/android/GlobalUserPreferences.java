@@ -14,10 +14,11 @@ public class GlobalUserPreferences{
 	public static boolean showInteractionCounts;
 	public static boolean alwaysExpandContentWarnings;
 	public static boolean disableMarquee;
-	public static ThemePreference theme;
 	public static boolean voteButtonForSingleChoice;
+	public static ThemePreference theme;
+	public static ColorPreference color;
 
-    private static SharedPreferences getPrefs(){
+	private static SharedPreferences getPrefs(){
 		return MastodonApp.context.getSharedPreferences("global", Context.MODE_PRIVATE);
 	}
 
@@ -35,6 +36,7 @@ public class GlobalUserPreferences{
 		disableMarquee=prefs.getBoolean("disableMarquee", false);
 		voteButtonForSingleChoice=prefs.getBoolean("voteButtonForSingleChoice", true);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
+		color=ColorPreference.values()[prefs.getInt("color", 0)];
 	}
 
 	public static void save(){
@@ -50,7 +52,17 @@ public class GlobalUserPreferences{
 				.putBoolean("alwaysExpandContentWarnings", alwaysExpandContentWarnings)
 				.putBoolean("disableMarquee", disableMarquee)
 				.putInt("theme", theme.ordinal())
+				.putInt("color", color.ordinal())
 				.apply();
+	}
+
+	public enum ColorPreference{
+		PINK,
+		PURPLE,
+		GREEN,
+		BLUE,
+		BROWN,
+		YELLOW
 	}
 
 	public enum ThemePreference{
@@ -59,3 +71,4 @@ public class GlobalUserPreferences{
 		DARK
 	}
 }
+

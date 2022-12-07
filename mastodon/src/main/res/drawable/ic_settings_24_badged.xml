@@ -4,7 +4,7 @@
 	<item android:width="14dp" android:height="14dp" android:gravity="top|right">
 		<shape android:shape="oval">
 			<stroke android:color="?android:colorPrimary" android:width="2dp"/>
-			<solid android:color="@color/primary_600"/>
+			<solid android:color="?android:colorAccent"/>
 		</shape>
 	</item>
 </layer-list>
