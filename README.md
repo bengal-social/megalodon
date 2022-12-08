@@ -132,6 +132,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Clickable reply/boost line above posts](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:clickable-boost-reply-line)
 * [Clickable reply line while replying to open original post](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/clickable-reply-line-compose)
 * [Add push notification setting for post notifications](https://github.com/sk22/megalodon/commit/b190480d7739be47f23543d9e7644660f9b4b4ee)
+* [Add option to allow voting for multiple options on polls](https://github.com/sk22/megalodon/commit/5b28468efd49387b4f8b83f142f3adf3104ca60c)
 
 
 ### Behavior
@@ -148,6 +149,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Show own vote after voting](https://github.com/mastodon/mastodon-android/commit/4ab9e25fec4fd9c10b7a8ddd1be522b3cc12cf28) ([Closes issue](https://github.com/mastodon/mastodon-android/commit/4ab9e25fec4fd9c10b7a8ddd1be522b3cc12cf28))
 * [Make inline emoji search case-insensitive and don't only search from start of emoji names](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:better-inline-emoji-search) ([Pull request](https://github.com/mastodon/mastodon-android/pull/445))
 * [Include subject line when sharing e.g. a website to Megalodon](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:external-share-include-subject)
+* [Improve semantics for voting on polls (radio buttons and checkboxes)](https://github.com/sk22/megalodon/commit/6fd58c96827cb1d2da329cebdc170a1425dd18d7)
 
 
 ### Visual

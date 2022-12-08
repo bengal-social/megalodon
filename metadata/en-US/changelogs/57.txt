@@ -1,0 +1,3 @@
+- Improve semantics for voting on polls (radio buttons and checkboxes)
+- Add option to allow voting for multiple options on polls
+- Bugfixes
