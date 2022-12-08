@@ -132,6 +132,7 @@
 					android:outlineProvider="background"
 					android:elevation="2dp">
 					<ImageView
+						android:id="@+id/add_poll_option_icon"
 						android:layout_width="24dp"
 						android:layout_height="24dp"
 						android:layout_margin="16dp"
@@ -148,6 +149,39 @@
 					android:textAppearance="@style/m3_label_large"
 					android:textColor="?android:textColorPrimary"
 					tools:text="Duration: 7 days"/>
+
+				<LinearLayout
+					android:id="@+id/poll_allow_multiple"
+					android:orientation="horizontal"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="16dp"
+					android:layout_marginTop="8dp"
+					android:gravity="center_vertical"
+					android:layoutDirection="locale"
+					android:paddingLeft="16dp"
+					android:paddingRight="16dp"
+					android:paddingTop="12dp"
+					android:paddingBottom="12dp"
+					android:background="?android:selectableItemBackground">
+
+					<CheckBox
+						android:id="@+id/poll_allow_multiple_checkbox"
+						android:clickable="false"
+						android:layout_width="wrap_content"
+						android:layout_height="24dp"
+						android:layout_marginEnd="24dp"
+						android:duplicateParentState="true"
+						android:importantForAccessibility="no"/>
+
+					<TextView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:textSize="16sp"
+						android:singleLine="true"
+						android:text="@string/sk_poll_allow_multiple" />
+				</LinearLayout>
 			</LinearLayout>
 
 			<org.joinmastodon.android.ui.views.ComposeMediaLayout

@@ -41,6 +41,7 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -153,6 +154,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private View pollWrap;
 	private View addPollOptionBtn;
 	private View sensitiveItem;
+	private View pollAllowMultipleItem;
+	private CheckBox pollAllowMultipleCheckbox;
 	private TextView pollDurationView;
 
 	private ArrayList<DraftPollOption> pollOptions=new ArrayList<>();
@@ -297,6 +300,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		pollOptionsView=view.findViewById(R.id.poll_options);
 		pollWrap=view.findViewById(R.id.poll_wrap);
 		addPollOptionBtn=view.findViewById(R.id.add_poll_option);
+		pollAllowMultipleItem=view.findViewById(R.id.poll_allow_multiple);
+		pollAllowMultipleCheckbox=view.findViewById(R.id.poll_allow_multiple_checkbox);
+		pollAllowMultipleItem.setOnClickListener(v->this.togglePollAllowMultiple());
 
 		addPollOptionBtn.setOnClickListener(v->{
 			createDraftPollOption().edit.requestFocus();
@@ -311,6 +317,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			pollBtn.setSelected(true);
 			mediaBtn.setEnabled(false);
 			pollWrap.setVisibility(View.VISIBLE);
+			updatePollAllowMultiple(savedInstanceState.getBoolean("pollAllowMultiple", false));
 			for(String oldText:savedInstanceState.getStringArrayList("pollOptions")){
 				DraftPollOption opt=createDraftPollOption();
 				opt.edit.setText(oldText);
@@ -321,6 +328,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			pollBtn.setSelected(true);
 			mediaBtn.setEnabled(false);
 			pollWrap.setVisibility(View.VISIBLE);
+			updatePollAllowMultiple(editingStatus.poll.multiple);
 			for(Poll.Option eopt:editingStatus.poll.options){
 				DraftPollOption opt=createDraftPollOption();
 				opt.edit.setText(eopt.title);
@@ -391,6 +399,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			outState.putStringArrayList("pollOptions", opts);
 			outState.putInt("pollDuration", pollDuration);
 			outState.putString("pollDurationStr", pollDurationStr);
+			outState.putBoolean("pollAllowMultiple", pollAllowMultipleItem.isSelected());
 		}
 		outState.putBoolean("sensitive", sensitive);
 		outState.putBoolean("hasSpoiler", hasSpoiler);
@@ -698,6 +707,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		if(!pollOptions.isEmpty()){
 			req.poll=new CreateStatus.Request.Poll();
 			req.poll.expiresIn=pollDuration;
+			req.poll.multiple=pollAllowMultipleItem.isSelected();
 			for(DraftPollOption opt:pollOptions)
 				req.poll.options.add(opt.edit.getText().toString());
 		}
@@ -1208,6 +1218,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		option.view=LayoutInflater.from(getActivity()).inflate(R.layout.compose_poll_option, pollOptionsView, false);
 		option.edit=option.view.findViewById(R.id.edit);
 		option.dragger=option.view.findViewById(R.id.dragger_thingy);
+		ImageView icon = option.view.findViewById(R.id.icon);
+		icon.setImageDrawable(getContext().getDrawable(pollAllowMultipleItem.isSelected() ?
+				R.drawable.ic_poll_checkbox_regular_selector :
+				R.drawable.ic_poll_option_button
+		));
 
 		option.dragger.setOnLongClickListener(v->{
 			pollOptionsView.startDragging(option.view);
@@ -1383,6 +1398,27 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			case PRIVATE -> R.drawable.ic_fluent_people_checkmark_24_regular;
 			case DIRECT -> R.drawable.ic_at_symbol;
 		});
+	}
+
+	private void togglePollAllowMultiple() {
+		updatePollAllowMultiple(!pollAllowMultipleItem.isSelected());
+	}
+
+	private void updatePollAllowMultiple(boolean multiple){
+		pollAllowMultipleItem.setSelected(multiple);
+		pollAllowMultipleCheckbox.setChecked(multiple);
+		ImageView btn = addPollOptionBtn.findViewById(R.id.add_poll_option_icon);
+		btn.setImageDrawable(getContext().getDrawable(multiple ?
+				R.drawable.ic_fluent_add_square_24_regular :
+				R.drawable.ic_fluent_add_circle_24_regular
+		));
+		for (DraftPollOption opt:pollOptions) {
+			ImageView icon = opt.view.findViewById(R.id.icon);
+			icon.setImageDrawable(getContext().getDrawable(multiple ?
+					R.drawable.ic_poll_checkbox_regular_selector :
+					R.drawable.ic_poll_option_button
+			));
+		}
 	}
 
 	@Override

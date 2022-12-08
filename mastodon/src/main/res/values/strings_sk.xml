@@ -47,4 +47,5 @@
   <string name="sk_color_theme_blue">Blue</string>
   <string name="sk_color_theme_brown">Brown</string>
   <string name="sk_color_theme_yellow">Yellow</string>
+  <string name="sk_poll_allow_multiple">Allow multiple choices</string>
 </resources>

@@ -47,4 +47,5 @@
     <string name="sk_color_theme_yellow">Gelb</string>
     <string name="sk_notification_type_status">Beiträge</string>
     <string name="sk_color_theme_blue">Blau</string>
+    <string name="sk_poll_allow_multiple">Mehrfachantworten erlauben</string>
 </resources>
