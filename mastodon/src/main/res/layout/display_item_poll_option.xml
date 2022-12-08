@@ -26,7 +26,6 @@
 			android:layout_height="24dp"
 			android:layout_marginStart="12dp"
 			android:layout_gravity="center_vertical"
-			android:duplicateParentState="true"
 			android:tint="?colorDarkIcon"
 			android:src="@drawable/ic_poll_option_button"/>
 
