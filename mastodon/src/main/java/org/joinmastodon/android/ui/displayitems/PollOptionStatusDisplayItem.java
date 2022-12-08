@@ -80,10 +80,10 @@ public class PollOptionStatusDisplayItem extends StatusDisplayItem{
 			percent.setVisibility(item.showResults ? View.VISIBLE : View.GONE);
 			itemView.setClickable(!item.showResults);
 			if(item.showResults){
-				icon.setSelected(item.poll.ownVotes.contains(item.poll.options.indexOf(item.option)));
 				progressBg.setLevel(Math.round(10000f*item.votesFraction));
 				button.setBackground(progressBg);
 				itemView.setSelected(item.isMostVoted);
+				icon.setSelected(item.poll.ownVotes.contains(item.poll.options.indexOf(item.option)));
 				percent.setText(String.format(Locale.getDefault(), "%d%%", Math.round(item.votesFraction*100f)));
 			}else{
 				itemView.setSelected(item.poll.selectedOptions!=null && item.poll.selectedOptions.contains(item.option));
