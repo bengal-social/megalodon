@@ -397,4 +397,5 @@
 	<string name="login_title">Welcome Back</string>
 	<string name="login_subtitle">Log in with the server where you created your account.</string>
 	<string name="server_url">Server URL</string>
+	<string name="poll_allow_multiple">Allow multiple choices</string>
 </resources>
