@@ -5,6 +5,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.joinmastodon.android.R;
@@ -60,7 +61,8 @@ public class PollOptionStatusDisplayItem extends StatusDisplayItem{
 
 	public static class Holder extends StatusDisplayItem.Holder<PollOptionStatusDisplayItem> implements ImageLoaderViewHolder{
 		private final TextView text, percent;
-		private final View icon, button;
+		private final View button;
+		private final ImageView icon;
 		private final Drawable progressBg;
 
 		public Holder(Activity activity, ViewGroup parent){
@@ -76,9 +78,12 @@ public class PollOptionStatusDisplayItem extends StatusDisplayItem{
 		@Override
 		public void onBind(PollOptionStatusDisplayItem item){
 			text.setText(item.text);
-//			icon.setVisibility(item.showResults ? View.GONE : View.VISIBLE);
 			percent.setVisibility(item.showResults ? View.VISIBLE : View.GONE);
 			itemView.setClickable(!item.showResults);
+			icon.setImageDrawable(itemView.getContext().getDrawable(item.poll.multiple ?
+					item.showResults ? R.drawable.ic_poll_checkbox_regular_selector : R.drawable.ic_poll_checkbox_filled_selector :
+					item.showResults ? R.drawable.ic_poll_option_button : R.drawable.ic_fluent_radio_button_24_selector
+			));
 			if(item.showResults){
 				progressBg.setLevel(Math.round(10000f*item.votesFraction));
 				button.setBackground(progressBg);
