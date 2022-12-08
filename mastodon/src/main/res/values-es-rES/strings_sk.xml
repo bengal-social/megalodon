@@ -16,8 +16,8 @@
     <string name="sk_image_description">Descripción de la imagen</string>
     <string name="sk_visibility_unlisted">Sin listar</string>
     <string name="sk_settings_show_replies">Mostrar respuestas</string>
-    <string name="sk_settings_show_boosts">Mostrar boosts</string>
-    <string name="sk_settings_load_new_posts">Cargar nuevos posts automáticamente</string>
+    <string name="sk_settings_show_boosts">Mostrar impulsos</string>
+    <string name="sk_settings_load_new_posts">Cargar publicaciones nuevas automáticamente</string>
     <string name="sk_settings_show_interaction_counts">Mostrar contadores de interacciones</string>
     <string name="sk_mark_media_as_sensitive">Marcar medio como sensible</string>
     <string name="sk_user_post_notifications_on">Activadas las notificaciones de posts para %s</string>
@@ -36,7 +36,7 @@
     <string name="sk_settings_always_reveal_content_warnings">Mostrar siempre advertencias de contenido</string>
     <string name="sk_disable_marquee">Desactivar desplazamiento de texto en barras del título</string>
     <string name="sk_settings_contribute">Contribuir a Megalodon</string>
-    <string name="sk_settings_show_federated_timeline">Mostrar el timeline federado</string>
+    <string name="sk_settings_show_federated_timeline">Mostrar cronología federada</string>
     <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
     <string name="sk_notification_type_status">Publicaciones</string>
     <string name="sk_notify_posts">Publicar notificaciones</string>
