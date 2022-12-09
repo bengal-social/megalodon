@@ -3,23 +3,62 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:paddingLeft="16dp"
-	android:paddingRight="16dp"
 	android:paddingTop="10dp"
 	android:paddingBottom="12dp">
 
-	<org.joinmastodon.android.ui.views.LinkedTextView
-		android:id="@+id/text"
+	<LinearLayout
+		android:id="@+id/text_wrap"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textSize="16sp"
-		android:textAppearance="@style/m3_body_large"/>
+		android:orientation="vertical">
+
+		<org.joinmastodon.android.ui.views.LinkedTextView
+			android:id="@+id/text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingHorizontal="16dp"
+			android:textSize="16sp"
+			android:textAppearance="@style/m3_body_large"/>
+
+		<org.joinmastodon.android.ui.views.AutoOrientationLinearLayout
+			android:id="@+id/translate_wrap"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:gravity="center_vertical">
+
+			<Button
+				style="?secondaryButtonStyle"
+				android:background="?android:selectableItemBackground"
+				android:textColor="?android:textColorSecondary"
+				android:id="@+id/translate_btn"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="8dp"
+				android:paddingHorizontal="8dp"
+				android:text="Translate"/>
+
+			<TextView
+				android:id="@+id/translate_info"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginVertical="4dp"
+				android:layout_weight="1"
+				android:textColor="?android:textColorSecondary"
+				android:textAlignment="textEnd"
+				tools:text="Translated using TranslateEngine" />
+
+		</org.joinmastodon.android.ui.views.AutoOrientationLinearLayout>
+
+	</LinearLayout>
 
 	<LinearLayout
 		android:id="@+id/spoiler_overlay"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
+		android:paddingHorizontal="16dp"
 		android:orientation="vertical">
 
 		<TextView
