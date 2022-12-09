@@ -408,6 +408,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			outState.putString("pollDurationStr", pollDurationStr);
 		}
 		outState.putBoolean("hasSpoiler", hasSpoiler);
+		outState.putString("language", language);
 		if(!attachments.isEmpty()){
 			ArrayList<Parcelable> serializedAttachments=new ArrayList<>(attachments.size());
 			for(DraftMediaAttachment att:attachments){
@@ -522,6 +523,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					spoilerEdit.setText(replyTo.spoilerText);
 					spoilerBtn.setSelected(true);
 				}
+				if (replyTo.language != null && !replyTo.language.isEmpty()) updateLanguage(replyTo.language);
 			}
 		}else{
 			replyText.setVisibility(View.GONE);
@@ -533,7 +535,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				ignoreSelectionChanges=true;
 				mainEditText.setSelection(mainEditText.length());
 				ignoreSelectionChanges=false;
-				updateLanguage(new Locale(editingStatus.language));
+				updateLanguage(editingStatus.language);
 				if(!editingStatus.mediaAttachments.isEmpty()){
 					attachmentsView.setVisibility(View.VISIBLE);
 					for(Attachment att:editingStatus.mediaAttachments){
@@ -605,6 +607,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		item.setActionView(wrap);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		updatePublishButtonState();
+	}
+
+	private void updateLanguage(String lang) {
+		updateLanguage(new Locale(lang));
 	}
 
 	private void updateLanguage(Locale loc) {
