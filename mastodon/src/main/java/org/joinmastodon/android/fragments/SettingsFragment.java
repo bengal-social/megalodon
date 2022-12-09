@@ -159,6 +159,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}
 		items.add(new TextItem(R.string.sk_settings_contribute, ()->UiUtils.launchWebBrowser(getActivity(), "https://github.com/sk22/megalodon")));
 		items.add(new TextItem(R.string.settings_clear_cache, this::clearImageCache));
+		items.add(new TextItem(R.string.sk_clear_recent_languages, ()->UiUtils.showConfirmationAlert(getActivity(), R.string.sk_clear_recent_languages, R.string.sk_confirm_clear_recent_languages, R.string.clear, ()->{
+			GlobalUserPreferences.recentLanguages.clear();
+			GlobalUserPreferences.save();
+		})));
 		items.add(new TextItem(R.string.log_out, this::confirmLogOut));
 
 		items.add(new FooterItem(getString(R.string.sk_settings_app_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));

@@ -29,11 +29,13 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -55,6 +57,7 @@ import android.widget.Toast;
 import com.twitter.twittertext.TwitterTextEmojiRegex;
 
 import org.joinmastodon.android.E;
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.MastodonAPIController;
@@ -103,6 +106,8 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -130,6 +135,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	// from https://github.com/mastodon/mastodon-ios/blob/main/Mastodon/Helper/MastodonRegex.swift
 	private static final Pattern AUTO_COMPLETE_PATTERN=Pattern.compile("(?<!\\w)(?:@([a-zA-Z0-9_]+)(@[a-zA-Z0-9_.-]+)?|#([^\\s.]+)|:([a-zA-Z0-9_]+))");
 	private static final Pattern HIGHLIGHT_PATTERN=Pattern.compile("(?<!\\w)(?:@([a-zA-Z0-9_]+)(@[a-zA-Z0-9_.-]+)?|#([^\\s.]+))");
+	private static final List<Locale> allIsoLanguages;
 
 	@SuppressLint("NewApi") // this class actually exists on 6.0
 	private final BreakIterator breakIterator=BreakIterator.getCharacterInstance();
@@ -145,7 +151,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private String accountID;
 	private int charCount, charLimit, trimmedCharCount;
 
-	private Button publishButton;
+	private Button publishButton, languageButton;
+	private PopupMenu languagePopup;
 	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn;
 	private ImageView sensitiveIcon;
 	private ComposeMediaLayout attachmentsView;
@@ -189,6 +196,24 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private boolean creatingView;
 	private boolean ignoreSelectionChanges=false;
 	private Runnable updateUploadEtaRunnable;
+
+	private String language;
+
+	static {
+		Locale[] locales = Locale.getAvailableLocales();
+		List<Locale> allLocales = new ArrayList<>();
+		List<String> addedLanguages = new ArrayList<>();
+		for (Locale locale : locales) {
+			String lang = locale.getLanguage();
+			if (!addedLanguages.contains(lang)) {
+				allLocales.add(locale);
+				addedLanguages.add(lang);
+			}
+		}
+
+		Collections.sort(allLocales, Comparator.comparing(l -> l.getDisplayLanguage(Locale.getDefault())));
+		allIsoLanguages = allLocales;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -403,6 +428,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		}
 		outState.putBoolean("sensitive", sensitive);
 		outState.putBoolean("hasSpoiler", hasSpoiler);
+		outState.putString("language", language);
 		if(!attachments.isEmpty()){
 			ArrayList<Parcelable> serializedAttachments=new ArrayList<>(attachments.size());
 			for(DraftMediaAttachment att:attachments){
@@ -542,6 +568,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					spoilerEdit.setText(replyTo.spoilerText);
 					spoilerBtn.setSelected(true);
 				}
+				if (replyTo.language != null && !replyTo.language.isEmpty()) updateLanguage(replyTo.language);
 			}
 		}else if (editingStatus==null || editingStatus.inReplyToId==null){
 			// TODO: remove workaround after https://github.com/mastodon/mastodon-android/issues/341 gets fixed
@@ -554,6 +581,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				ignoreSelectionChanges=true;
 				mainEditText.setSelection(mainEditText.length());
 				ignoreSelectionChanges=false;
+				updateLanguage(editingStatus.language);
 				if(!editingStatus.mediaAttachments.isEmpty()){
 					attachmentsView.setVisibility(View.VISIBLE);
 					for(Attachment att:editingStatus.mediaAttachments){
@@ -616,6 +644,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		sendError.setVisibility(View.GONE);
 		sendProgress.setVisibility(View.GONE);
 
+		LinearLayout.LayoutParams langParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		langParams.setMarginEnd(V.dp(8));
+		wrap.addView(buildLanguageSelector(), langParams);
+
 		wrap.addView(publishButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		wrap.setPadding(V.dp(16), V.dp(4), V.dp(16), V.dp(8));
 		wrap.setClipToPadding(false);
@@ -623,6 +655,55 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		item.setActionView(wrap);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		updatePublishButtonState();
+	}
+
+	private void updateLanguage(String lang) {
+		updateLanguage(new Locale(lang));
+	}
+
+	private void updateLanguage(Locale loc) {
+		language = loc.getLanguage();
+		languageButton.setText(loc.getDisplayLanguage(loc));
+		languageButton.setContentDescription(getActivity().getString(R.string.sk_post_language, loc.getDisplayLanguage(Locale.getDefault())));
+	}
+
+	@SuppressLint("ClickableViewAccessibility")
+	private Button buildLanguageSelector() {
+		languageButton=new Button(getActivity());
+		TypedValue typedValue = new TypedValue();
+		getActivity().getTheme().resolveAttribute(android.R.attr.textColorSecondary, typedValue, true);
+		languageButton.setTextColor(typedValue.data);
+		languageButton.setBackground(getActivity().getDrawable(R.drawable.bg_text_button));
+		languageButton.setPadding(V.dp(8), 0, V.dp(8), 0);
+		languageButton.setCompoundDrawablesRelativeWithIntrinsicBounds(getActivity().getDrawable(R.drawable.ic_fluent_local_language_16_regular), null, null, null);
+		languageButton.setCompoundDrawableTintList(languageButton.getTextColors());
+		languageButton.setCompoundDrawablePadding(V.dp(6));
+
+		updateLanguage(Locale.getDefault());
+		languagePopup=new PopupMenu(getActivity(), languageButton);
+		languageButton.setOnTouchListener(languagePopup.getDragToOpenListener());
+		languageButton.setOnClickListener(v->languagePopup.show());
+
+		Menu languageMenu = languagePopup.getMenu();
+
+		for (String recentLanguage : GlobalUserPreferences.recentLanguages) {
+			Locale loc = new Locale(recentLanguage);
+			languageMenu.add(0, allIsoLanguages.indexOf(loc), Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
+		}
+
+		SubMenu allLanguagesMenu = languageMenu.addSubMenu(R.string.sk_all_languages);
+		for (int i = 0; i < allIsoLanguages.size(); i++) {
+			Locale loc = allIsoLanguages.get(i);
+			allLanguagesMenu.add(0, i, Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
+		}
+
+		languagePopup.setOnMenuItemClickListener(i->{
+			if (i.hasSubMenu()) return false;
+			updateLanguage(allIsoLanguages.get(i.getItemId()));
+			return true;
+		});
+
+		return languageButton;
 	}
 
 	@Override
@@ -698,6 +779,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		req.status=text;
 		req.visibility=statusVisibility;
 		req.sensitive=sensitive;
+		req.language=language;
 		if(!attachments.isEmpty()){
 			req.mediaIds=attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList());
 		}
@@ -775,6 +857,12 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					.setCallback(resCallback)
 					.exec(accountID);
 		}
+
+		List<String> recentLanguages = new ArrayList<>(GlobalUserPreferences.recentLanguages);
+		recentLanguages.remove(language);
+		recentLanguages.add(0, language);
+		GlobalUserPreferences.recentLanguages = recentLanguages.stream().limit(4).collect(Collectors.toList());
+		GlobalUserPreferences.save();
 	}
 
 	private boolean hasDraft(){
