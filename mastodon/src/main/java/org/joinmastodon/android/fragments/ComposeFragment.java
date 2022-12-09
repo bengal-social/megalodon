@@ -7,7 +7,6 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Outline;
@@ -20,7 +19,6 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.LocaleList;
 import android.os.Parcelable;
 import android.provider.OpenableColumns;
 import android.text.Editable;
@@ -57,6 +55,7 @@ import android.widget.Toast;
 import com.twitter.twittertext.TwitterTextEmojiRegex;
 
 import org.joinmastodon.android.E;
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.MastodonAPIController;
@@ -633,22 +632,12 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 		Menu languageMenu = languagePopup.getMenu();
 
-		// TODO: add recently used languages
-
-		List<Locale> systemLocales = new ArrayList<>();;
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-			systemLocales.add(Resources.getSystem().getConfiguration().locale);
-		} else {
-			LocaleList localeList = Resources.getSystem().getConfiguration().getLocales();
-			for (int i = 0; i < localeList.size(); i++) systemLocales.add(localeList.get(i));
-		}
-
-		for (int i = 0; i < systemLocales.size(); i++) {
-			Locale loc = new Locale(systemLocales.get(i).getLanguage());
+		for (String recentLanguage : GlobalUserPreferences.recentLanguages) {
+			Locale loc = new Locale(recentLanguage);
 			languageMenu.add(0, allIsoLanguages.indexOf(loc), Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
 		}
 
-		SubMenu allLanguagesMenu = languageMenu.addSubMenu(0, -1, Menu.NONE, R.string.all_languages);
+		SubMenu allLanguagesMenu = languageMenu.addSubMenu(R.string.all_languages);
 		for (int i = 0; i < allIsoLanguages.size(); i++) {
 			Locale loc = allIsoLanguages.get(i);
 			allLanguagesMenu.add(0, i, Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
@@ -805,6 +794,12 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					.setCallback(resCallback)
 					.exec(accountID);
 		}
+
+		List<String> recentLanguages = new ArrayList<>(GlobalUserPreferences.recentLanguages);
+		recentLanguages.remove(language);
+		recentLanguages.add(0, language);
+		GlobalUserPreferences.recentLanguages = recentLanguages.stream().limit(4).collect(Collectors.toList());
+		GlobalUserPreferences.save();
 	}
 
 	private boolean hasDraft(){

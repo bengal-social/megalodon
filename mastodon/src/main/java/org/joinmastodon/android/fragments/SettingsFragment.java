@@ -120,6 +120,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 
 		items.add(new RedHeaderItem(R.string.settings_spicy));
 		items.add(new TextItem(R.string.settings_clear_cache, this::clearImageCache));
+		items.add(new TextItem(R.string.clear_recent_languages, ()->UiUtils.showConfirmationAlert(getActivity(), R.string.clear_recent_languages, R.string.confirm_clear_recent_languages, R.string.clear, ()->{
+			GlobalUserPreferences.recentLanguages.clear();
+			GlobalUserPreferences.save();
+		})));
 		items.add(new TextItem(R.string.log_out, this::confirmLogOut));
 
 		items.add(new FooterItem(getString(R.string.settings_app_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));
