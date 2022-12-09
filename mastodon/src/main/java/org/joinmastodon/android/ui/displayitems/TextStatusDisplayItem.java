@@ -78,7 +78,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 	public static class Holder extends StatusDisplayItem.Holder<TextStatusDisplayItem> implements ImageLoaderViewHolder{
 		private final LinkedTextView text;
 		private final TextView spoilerTitle, translateInfo;
-		private final View spoilerOverlay, textWrap, translateWrap;
+		private final View spoilerOverlay, textWrap, translateWrap, translateProgress;
 		private final Button translateButton;
 
 		public Holder(Activity activity, ViewGroup parent){
@@ -90,6 +90,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			translateWrap=findViewById(R.id.translate_wrap);
 			translateButton=findViewById(R.id.translate_btn);
 			translateInfo=findViewById(R.id.translate_info);
+			translateProgress=findViewById(R.id.translate_progress);
 			itemView.setOnClickListener(v->item.parentFragment.onRevealSpoilerClick(this));
 		}
 
@@ -126,16 +127,22 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			translateInfo.setText(item.translated ? itemView.getResources().getString(R.string.translated_using, item.translation.provider) : "");
 			translateButton.setOnClickListener(v->{
 				if (item.translation == null) {
+					translateProgress.setVisibility(View.VISIBLE);
+					translateButton.setClickable(false);
 					new TranslateStatus(item.status.id).setCallback(new Callback<>() {
 						@Override
 						public void onSuccess(TranslatedStatus translatedStatus) {
 							item.translation = translatedStatus;
 							item.translated = true;
+							translateProgress.setVisibility(View.GONE);
+							translateButton.setClickable(true);
 							rebind();
 						}
 
 						@Override
 						public void onError(ErrorResponse error) {
+							translateProgress.setVisibility(View.GONE);
+							translateButton.setClickable(true);
 							error.showToast(itemView.getContext());
 						}
 					}).exec(item.parentFragment.getAccountID());
