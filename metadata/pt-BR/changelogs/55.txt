@@ -1,0 +1,4 @@
+- Corrigido o problema de renderização de tags HTML e habilitada a formatação Markdown de renderização
+- Criado o <a href="https://translate.codeberg.org/projects/megalodon">projeto de tradução Weblate</a>
+- Adicionada a opção de ativar ou desativar a linha do tempo Federada
+- As versões 52-54 foram pequenos ajustes para o lançamento na Google Play
