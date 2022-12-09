@@ -7,6 +7,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Outline;
@@ -19,6 +20,7 @@ import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.os.Parcelable;
 import android.provider.OpenableColumns;
 import android.text.Editable;
@@ -28,11 +30,13 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -101,6 +105,8 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -128,6 +134,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	// from https://github.com/mastodon/mastodon-ios/blob/main/Mastodon/Helper/MastodonRegex.swift
 	private static final Pattern AUTO_COMPLETE_PATTERN=Pattern.compile("(?<!\\w)(?:@([a-zA-Z0-9_]+)(@[a-zA-Z0-9_.-]+)?|#([^\\s.]+)|:([a-zA-Z0-9_]+))");
 	private static final Pattern HIGHLIGHT_PATTERN=Pattern.compile("(?<!\\w)(?:@([a-zA-Z0-9_]+)(@[a-zA-Z0-9_.-]+)?|#([^\\s.]+))");
+	private static final List<Locale> allIsoLanguages;
 
 	@SuppressLint("NewApi") // this class actually exists on 6.0
 	private final BreakIterator breakIterator=BreakIterator.getCharacterInstance();
@@ -143,7 +150,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private String accountID;
 	private int charCount, charLimit, trimmedCharCount;
 
-	private Button publishButton;
+	private Button publishButton, languageButton;
+	private PopupMenu languagePopup;
 	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn;
 	private ComposeMediaLayout attachmentsView;
 	private TextView replyText;
@@ -181,6 +189,24 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private boolean creatingView;
 	private boolean ignoreSelectionChanges=false;
 	private Runnable updateUploadEtaRunnable;
+
+	private String language;
+
+	static {
+		Locale[] locales = Locale.getAvailableLocales();
+		List<Locale> allLocales = new ArrayList<>();
+		List<String> addedLanguages = new ArrayList<>();
+		for (Locale locale : locales) {
+			String lang = locale.getLanguage();
+			if (!addedLanguages.contains(lang)) {
+				allLocales.add(locale);
+				addedLanguages.add(lang);
+			}
+		}
+
+		Collections.sort(allLocales, Comparator.comparing(l -> l.getDisplayLanguage(Locale.getDefault())));
+		allIsoLanguages = allLocales;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -508,6 +534,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				ignoreSelectionChanges=true;
 				mainEditText.setSelection(mainEditText.length());
 				ignoreSelectionChanges=false;
+				updateLanguage(new Locale(editingStatus.language));
 				if(!editingStatus.mediaAttachments.isEmpty()){
 					attachmentsView.setVisibility(View.VISIBLE);
 					for(Attachment att:editingStatus.mediaAttachments){
@@ -568,6 +595,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		sendError.setVisibility(View.GONE);
 		sendProgress.setVisibility(View.GONE);
 
+		LinearLayout.LayoutParams langParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		langParams.setMarginEnd(V.dp(8));
+		wrap.addView(buildLanguageSelector(), langParams);
+
 		wrap.addView(publishButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		wrap.setPadding(V.dp(16), V.dp(4), V.dp(16), V.dp(8));
 		wrap.setClipToPadding(false);
@@ -575,6 +606,61 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		item.setActionView(wrap);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		updatePublishButtonState();
+	}
+
+	private void updateLanguage(Locale loc) {
+		language = loc.getLanguage();
+		languageButton.setText(loc.getDisplayLanguage(loc));
+		languageButton.setContentDescription(getActivity().getString(R.string.post_language, loc.getDisplayLanguage(Locale.getDefault())));
+	}
+
+	@SuppressLint("ClickableViewAccessibility")
+	private Button buildLanguageSelector() {
+		languageButton=new Button(getActivity());
+		TypedValue typedValue = new TypedValue();
+		getActivity().getTheme().resolveAttribute(android.R.attr.textColorSecondary, typedValue, true);
+		languageButton.setTextColor(typedValue.data);
+		languageButton.setBackground(getActivity().getDrawable(R.drawable.bg_text_button));
+		languageButton.setPadding(V.dp(8), 0, V.dp(8), 0);
+		languageButton.setCompoundDrawablesRelativeWithIntrinsicBounds(getActivity().getDrawable(R.drawable.ic_fluent_local_language_16_regular), null, null, null);
+		languageButton.setCompoundDrawableTintList(languageButton.getTextColors());
+		languageButton.setCompoundDrawablePadding(V.dp(6));
+
+		updateLanguage(Locale.getDefault());
+		languagePopup=new PopupMenu(getActivity(), languageButton);
+		languageButton.setOnTouchListener(languagePopup.getDragToOpenListener());
+		languageButton.setOnClickListener(v->languagePopup.show());
+
+		Menu languageMenu = languagePopup.getMenu();
+
+		// TODO: add recently used languages
+
+		List<Locale> systemLocales = new ArrayList<>();;
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+			systemLocales.add(Resources.getSystem().getConfiguration().locale);
+		} else {
+			LocaleList localeList = Resources.getSystem().getConfiguration().getLocales();
+			for (int i = 0; i < localeList.size(); i++) systemLocales.add(localeList.get(i));
+		}
+
+		for (int i = 0; i < systemLocales.size(); i++) {
+			Locale loc = new Locale(systemLocales.get(i).getLanguage());
+			languageMenu.add(0, allIsoLanguages.indexOf(loc), Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
+		}
+
+		SubMenu allLanguagesMenu = languageMenu.addSubMenu(0, -1, Menu.NONE, R.string.all_languages);
+		for (int i = 0; i < allIsoLanguages.size(); i++) {
+			Locale loc = allIsoLanguages.get(i);
+			allLanguagesMenu.add(0, i, Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
+		}
+
+		languagePopup.setOnMenuItemClickListener(i->{
+			if (i.hasSubMenu()) return false;
+			updateLanguage(allIsoLanguages.get(i.getItemId()));
+			return true;
+		});
+
+		return languageButton;
 	}
 
 	@Override
@@ -649,6 +735,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		CreateStatus.Request req=new CreateStatus.Request();
 		req.status=text;
 		req.visibility=statusVisibility;
+		req.language=language;
 		if(!attachments.isEmpty()){
 			req.mediaIds=attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList());
 		}
