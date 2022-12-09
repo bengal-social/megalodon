@@ -7,6 +7,7 @@ import org.joinmastodon.android.api.StatusInteractionController;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Application;
 import org.joinmastodon.android.model.Filter;
+import org.joinmastodon.android.model.Preferences;
 import org.joinmastodon.android.model.PushSubscription;
 import org.joinmastodon.android.model.Token;
 
@@ -28,6 +29,7 @@ public class AccountSession{
 	public long filtersLastUpdated;
 	public List<Filter> wordFilters=new ArrayList<>();
 	public String pushAccountID;
+	public Preferences preferences;
 	private transient MastodonAPIController apiController;
 	private transient StatusInteractionController statusInteractionController;
 	private transient CacheController cacheController;

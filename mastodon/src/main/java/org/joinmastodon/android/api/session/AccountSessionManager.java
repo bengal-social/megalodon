@@ -22,6 +22,7 @@ import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.MastodonAPIController;
 import org.joinmastodon.android.api.PushSubscriptionManager;
+import org.joinmastodon.android.api.requests.accounts.GetPreferences;
 import org.joinmastodon.android.api.requests.accounts.GetWordFilters;
 import org.joinmastodon.android.api.requests.instance.GetCustomEmojis;
 import org.joinmastodon.android.api.requests.accounts.GetOwnAccount;
@@ -34,6 +35,7 @@ import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.EmojiCategory;
 import org.joinmastodon.android.model.Filter;
 import org.joinmastodon.android.model.Instance;
+import org.joinmastodon.android.model.Preferences;
 import org.joinmastodon.android.model.Token;
 
 import java.io.File;
@@ -248,12 +250,13 @@ public class AccountSessionManager{
 		HashSet<String> domains=new HashSet<>();
 		for(AccountSession session:sessions.values()){
 			domains.add(session.domain.toLowerCase());
-			if(now-session.infoLastUpdated>24L*3600_000L){
-				updateSessionLocalInfo(session);
-			}
-			if(now-session.filtersLastUpdated>3600_000L){
-				updateSessionWordFilters(session);
-			}
+//			if(now-session.infoLastUpdated>24L*3600_000L){
+			updateSessionPreferences(session);
+			updateSessionLocalInfo(session);
+//			}
+//			if(now-session.filtersLastUpdated>3600_000L){
+			updateSessionWordFilters(session);
+//			}
 		}
 		if(loadedInstances){
 			maybeUpdateCustomEmojis(domains);
@@ -263,10 +266,10 @@ public class AccountSessionManager{
 	private void maybeUpdateCustomEmojis(Set<String> domains){
 		long now=System.currentTimeMillis();
 		for(String domain:domains){
-			Long lastUpdated=instancesLastUpdated.get(domain);
-			if(lastUpdated==null || now-lastUpdated>24L*3600_000L){
-				updateInstanceInfo(domain);
-			}
+//			Long lastUpdated=instancesLastUpdated.get(domain);
+//			if(lastUpdated==null || now-lastUpdated>24L*3600_000L){
+			updateInstanceInfo(domain);
+//			}
 		}
 	}
 
@@ -286,6 +289,18 @@ public class AccountSessionManager{
 					}
 				})
 				.exec(session.getID());
+	}
+
+	private void updateSessionPreferences(AccountSession session){
+		new GetPreferences().setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(Preferences preferences) {
+				session.preferences=preferences;
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {}
+		}).exec(session.getID());
 	}
 
 	private void updateSessionWordFilters(AccountSession session){
@@ -313,6 +328,11 @@ public class AccountSessionManager{
 					public void onSuccess(Instance instance){
 						instances.put(domain, instance);
 						updateInstanceEmojis(instance, domain);
+						try {
+							if (Integer.parseInt(instance.version.split("\\.")[0]) >= 4) {
+								updateInstanceInfoV2(domain);
+							}
+						} catch (Exception ignored) {}
 					}
 
 					@Override
@@ -321,6 +341,19 @@ public class AccountSessionManager{
 					}
 				})
 				.execNoAuth(domain);
+	}
+
+	public void updateInstanceInfoV2(String domain) {
+		new GetInstance.V2().setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(Instance.V2 v2) {
+				Instance instanceInfo = instances.get(domain);
+				if (instanceInfo != null) instanceInfo.v2 = v2;
+			}
+
+			@Override
+			public void onError(ErrorResponse errorResponse) {}
+		}).execNoAuth(domain);
 	}
 
 	private void updateInstanceEmojis(Instance instance, String domain){
@@ -396,6 +429,10 @@ public class AccountSessionManager{
 
 	public Instance getInstanceInfo(String domain){
 		return instances.get(domain);
+	}
+
+	public Instance getInstanceInfoForAccount(String account) {
+		return AccountSessionManager.getInstance().getInstanceInfo(instance.getAccount(account).domain);
 	}
 
 	public void updateAccountInfo(String id, Account account){
