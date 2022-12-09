@@ -44,4 +44,6 @@
     <string name="sk_color_theme_brown">Marrom</string>
     <string name="sk_color_theme_yellow">Amarelo</string>
     <string name="sk_color_theme_pink">Rosa</string>
+    <string name="sk_notification_type_status">Postagens</string>
+    <string name="sk_settings_color_picker">Cor do tema</string>
 </resources>
