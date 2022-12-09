@@ -244,8 +244,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			charLimit=instance.configuration.statuses.maxCharacters;
 		else
 			charLimit=500;
-
-		loadDefaultStatusVisibility(savedInstanceState);
 	}
 
 	@Override
@@ -400,6 +398,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			statusVisibility=editingStatus.visibility;
 		}
 
+		loadDefaultStatusVisibility(savedInstanceState);
 		updateVisibilityIcon();
 
 		autocompleteViewController=new ComposeAutocompleteViewController(getActivity(), accountID);
@@ -1450,34 +1449,23 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			statusVisibility = (StatusPrivacy) savedInstanceState.getSerializable("visibility");
 		}
 
-		new GetPreferences()
-				.setCallback(new Callback<>(){
-					@Override
-					public void onSuccess(Preferences result){
-						// Only override the reply visibility if our preference is more private
-						if (result.postingDefaultVisibility.isLessVisibleThan(statusVisibility)) {
-							statusVisibility = switch (result.postingDefaultVisibility) {
-								case PUBLIC -> StatusPrivacy.PUBLIC;
-								case UNLISTED -> StatusPrivacy.UNLISTED;
-								case PRIVATE -> StatusPrivacy.PRIVATE;
-								case DIRECT -> StatusPrivacy.DIRECT;
-							};
-						}
+		Preferences prefs = AccountSessionManager.getInstance().getAccount(accountID).preferences;
+		if (prefs != null) {
+			// Only override the reply visibility if our preference is more private
+			if (prefs.postingDefaultVisibility.isLessVisibleThan(statusVisibility)) {
+				statusVisibility = switch (prefs.postingDefaultVisibility) {
+					case PUBLIC -> StatusPrivacy.PUBLIC;
+					case UNLISTED -> StatusPrivacy.UNLISTED;
+					case PRIVATE -> StatusPrivacy.PRIVATE;
+					case DIRECT -> StatusPrivacy.DIRECT;
+				};
+			}
 
-						// A saved privacy setting from a previous compose session wins over all
-						if(savedInstanceState !=null){
-							statusVisibility = (StatusPrivacy) savedInstanceState.getSerializable("visibility");
-						}
-
-						updateVisibilityIcon ();
-					}
-
-					@Override
-					public void onError(ErrorResponse error){
-						Log.w(TAG, "Unable to get user preferences to set default post privacy");
-					}
-				})
-				.exec(accountID);
+			// A saved privacy setting from a previous compose session wins over all
+			if(savedInstanceState !=null){
+				statusVisibility = (StatusPrivacy) savedInstanceState.getSerializable("visibility");
+			}
+		}
 	}
 
 	private void updateVisibilityIcon(){
