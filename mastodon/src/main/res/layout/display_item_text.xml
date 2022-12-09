@@ -57,16 +57,33 @@
 			android:layout_marginTop="8dp"
 			android:gravity="center_vertical">
 
-			<Button
-				style="?secondaryButtonStyle"
-				android:background="?android:selectableItemBackground"
-				android:textColor="?android:textColorSecondary"
-				android:id="@+id/translate_btn"
+			<FrameLayout
+				android:id="@+id/action_btn_wrap"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginHorizontal="8dp"
-				android:paddingHorizontal="8dp"
-				android:text="Translate"/>
+				android:clipToPadding="false">
+				<org.joinmastodon.android.ui.views.ProgressBarButton
+					android:id="@+id/translate_btn"
+					style="?secondaryButtonStyle"
+					android:background="?android:selectableItemBackground"
+					android:textColor="?android:textColorSecondary"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingHorizontal="8dp"
+					tools:text="@string/translate_post"/>
+				<ProgressBar
+					android:id="@+id/translate_progress"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:indeterminate="true"
+					style="?android:progressBarStyleSmall"
+					android:elevation="10dp"
+					android:outlineProvider="none"
+					android:indeterminateTint="?android:textColorPrimary"
+					android:visibility="gone"/>
+			</FrameLayout>
 
 			<TextView
 				android:id="@+id/translate_info"
