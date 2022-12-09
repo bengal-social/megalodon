@@ -38,4 +38,10 @@
     <string name="sk_settings_show_federated_timeline">Mostre a linha do tempo federada</string>
     <string name="sk_visibility_unlisted">Não-listado</string>
     <string name="sk_settings_show_interaction_counts">Mostrar contagens de interação</string>
+    <string name="sk_color_theme_purple">Roxo</string>
+    <string name="sk_color_theme_green">Verde</string>
+    <string name="sk_color_theme_blue">Azul</string>
+    <string name="sk_color_theme_brown">Marrom</string>
+    <string name="sk_color_theme_yellow">Amarelo</string>
+    <string name="sk_color_theme_pink">Rosa</string>
 </resources>
