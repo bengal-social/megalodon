@@ -370,7 +370,7 @@ public class PushSubscriptionManager{
 		for(AccountSession session:AccountSessionManager.getInstance().getLoggedInAccounts()){
 			if(session.pushSubscription==null || forceReRegister)
 				session.getPushSubscriptionManager().registerAccountForPush(session.pushSubscription);
-			else if(session.needUpdatePushSettings)
+			else
 				session.getPushSubscriptionManager().updatePushSettings(session.pushSubscription);
 		}
 	}

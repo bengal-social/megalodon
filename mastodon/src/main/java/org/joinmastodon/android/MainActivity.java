@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import org.joinmastodon.android.api.ObjectValidationException;
+import org.joinmastodon.android.api.PushSubscriptionManager;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.ComposeFragment;
