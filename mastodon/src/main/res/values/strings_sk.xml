@@ -52,7 +52,7 @@
 	<string name="sk_translate_show_original">Show original</string>
 	<string name="sk_translated_using">Translated using %s</string>
   <string name="sk_post_language">Language: %s</string>
-	<string name="sk_all_languages">All languages</string>
+	<string name="sk_available_languages">Available languages</string>
   <string name="sk_language_name">%s (%s)</string>
 	<string name="sk_clear_recent_languages">Clear recent languages</string>
 	<string name="sk_confirm_clear_recent_languages">Are you sure you want to clear your recently used languages?</string>
