@@ -787,11 +787,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					.exec(accountID);
 		}
 
-		List<String> recentLanguages = new ArrayList<>(GlobalUserPreferences.recentLanguages);
-		recentLanguages.remove(language);
-		recentLanguages.add(0, language);
-		GlobalUserPreferences.recentLanguages = recentLanguages.stream().limit(4).collect(Collectors.toList());
-		GlobalUserPreferences.save();
+		if (replyTo == null) {
+			List<String> recentLanguages = new ArrayList<>(GlobalUserPreferences.recentLanguages);
+			recentLanguages.remove(language);
+			recentLanguages.add(0, language);
+			GlobalUserPreferences.recentLanguages = recentLanguages.stream().limit(4).collect(Collectors.toList());
+			GlobalUserPreferences.save();
+		}
 	}
 
 	private boolean hasDraft(){
