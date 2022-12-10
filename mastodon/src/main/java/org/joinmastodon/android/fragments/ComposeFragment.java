@@ -632,7 +632,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			languageMenu.add(0, allLanguages.indexOf(l), Menu.NONE, getActivity().getString(R.string.language_name, l.getDefaultName(), l.getLanguageName()));
 		}
 
-		SubMenu allLanguagesMenu = languageMenu.addSubMenu(R.string.all_languages);
+		SubMenu allLanguagesMenu = languageMenu.addSubMenu(R.string.available_languages);
 		for (int i = 0; i < allLanguages.size(); i++) {
 			MastodonLanguage l = allLanguages.get(i);
 			allLanguagesMenu.add(0, i, Menu.NONE, getActivity().getString(R.string.language_name, l.getDefaultName(), l.getLanguageName()));
