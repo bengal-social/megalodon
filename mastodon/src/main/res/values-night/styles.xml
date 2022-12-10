@@ -17,4 +17,7 @@
 
 	<style name="Theme.Mastodon.AutoLightDark.Yellow" parent="Theme.Mastodon.Dark.Yellow"/>
 	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Yellow" parent="Theme.Mastodon.Dark.TrueBlack.Yellow"/>
+
+	<style name="Theme.Mastodon.AutoLightDark.Material3" parent="Theme.Mastodon.Dark.Material3"/>
+	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Material3" parent="Theme.Mastodon.Dark.TrueBlack.Material3"/>
 </resources>

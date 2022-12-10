@@ -47,6 +47,7 @@
     <string name="sk_color_theme_blue">Blue</string>
     <string name="sk_color_theme_brown">Brown</string>
     <string name="sk_color_theme_yellow">Yellow</string>
+    <string name="sk_color_theme_material_you">Material You</string>
     <string name="sk_poll_allow_multiple">Allow multiple choices</string>
     <string name="sk_translate_post">Translate</string>
     <string name="sk_translate_show_original">Show original</string>

@@ -242,6 +242,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	}
 
 	private void onColorPreferenceClick(GlobalUserPreferences.ColorPreference color){
+
 		GlobalUserPreferences.color=color;
 		GlobalUserPreferences.save();
 		restartActivityToApplyNewTheme();
@@ -709,6 +710,15 @@ public class SettingsFragment extends MastodonToolbarFragment{
 					pref = GlobalUserPreferences.ColorPreference.YELLOW;
 					onColorPreferenceClick(pref);
 				}
+				else if(id==R.id.m3_color) {
+					if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+						pref = GlobalUserPreferences.ColorPreference.MATERIAL3;
+						onColorPreferenceClick(pref);
+					}else{
+						Toast.makeText(getActivity(), R.string.sk_not_supported,
+								Toast.LENGTH_LONG).show();
+					}
+				}
 				else
 					return false;
 				return true;
@@ -728,6 +738,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 				case BLUE -> R.string.sk_color_theme_blue;
 				case BROWN -> R.string.sk_color_theme_brown;
 				case YELLOW -> R.string.sk_color_theme_yellow;
+				case MATERIAL3 -> R.string.sk_color_theme_material_you;
 			});
 		}
 	}
