@@ -48,6 +48,7 @@ import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.updater.GithubSelfUpdater;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import androidx.annotation.DrawableRes;
@@ -121,7 +122,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new RedHeaderItem(R.string.settings_spicy));
 		items.add(new TextItem(R.string.settings_clear_cache, this::clearImageCache));
 		items.add(new TextItem(R.string.clear_recent_languages, ()->UiUtils.showConfirmationAlert(getActivity(), R.string.clear_recent_languages, R.string.confirm_clear_recent_languages, R.string.clear, ()->{
-			GlobalUserPreferences.recentLanguages.clear();
+			GlobalUserPreferences.recentLanguages.remove(accountID);
 			GlobalUserPreferences.save();
 		})));
 		items.add(new TextItem(R.string.log_out, this::confirmLogOut));

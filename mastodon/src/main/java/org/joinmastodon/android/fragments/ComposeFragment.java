@@ -1,6 +1,8 @@
 package org.joinmastodon.android.fragments;
 
+import static org.joinmastodon.android.GlobalUserPreferences.recentLanguages;
 import static org.joinmastodon.android.utils.MastodonLanguage.allLanguages;
+import static org.joinmastodon.android.utils.MastodonLanguage.defaultRecentLanguages;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -109,6 +111,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -624,7 +627,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 		Menu languageMenu = languagePopup.getMenu();
 
-		for (String recentLanguage : GlobalUserPreferences.recentLanguages) {
+		for (String recentLanguage : Optional.ofNullable(recentLanguages.get(accountID)).orElse(defaultRecentLanguages)) {
 			MastodonLanguage l = languageResolver.from(recentLanguage);
 			languageMenu.add(0, allLanguages.indexOf(l), Menu.NONE, getActivity().getString(R.string.language_name, l.getDefaultName(), l.getLanguageName()));
 		}
@@ -788,10 +791,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		}
 
 		if (replyTo == null) {
-			List<String> recentLanguages = new ArrayList<>(GlobalUserPreferences.recentLanguages);
-			recentLanguages.remove(language);
-			recentLanguages.add(0, language);
-			GlobalUserPreferences.recentLanguages = recentLanguages.stream().limit(4).collect(Collectors.toList());
+			List<String> newRecentLanguages = new ArrayList<>(Optional.ofNullable(recentLanguages.get(accountID)).orElse(defaultRecentLanguages));
+			newRecentLanguages.remove(language);
+			newRecentLanguages.add(0, language);
+			recentLanguages.put(accountID, newRecentLanguages.stream().limit(4).collect(Collectors.toList()));
 			GlobalUserPreferences.save();
 		}
 	}

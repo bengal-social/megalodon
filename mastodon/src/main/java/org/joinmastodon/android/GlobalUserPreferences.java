@@ -1,39 +1,34 @@
 package org.joinmastodon.android;
 
+import static org.joinmastodon.android.api.MastodonAPIController.gson;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.os.Build;
-import android.os.LocaleList;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class GlobalUserPreferences{
 	public static boolean playGifs;
 	public static boolean useCustomTabs;
 	public static boolean trueBlackTheme;
 	public static ThemePreference theme;
-	public static List<String> recentLanguages;
 
-	private static String defaultRecentLanguages;
-
-	static {
-		List<Locale> systemLocales = new ArrayList<>();;
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-			systemLocales.add(Resources.getSystem().getConfiguration().locale);
-		} else {
-			LocaleList localeList = Resources.getSystem().getConfiguration().getLocales();
-			for (int i = 0; i < localeList.size(); i++) systemLocales.add(localeList.get(i));
-		}
-
-		defaultRecentLanguages = systemLocales.stream().map(Locale::getLanguage).collect(Collectors.joining(","));
-	}
+	private final static Type recentLanguagesType = new TypeToken<Map<String, List<String>>>() {}.getType();
+	public static Map<String, List<String>> recentLanguages;
 
 	private static SharedPreferences getPrefs(){
 		return MastodonApp.context.getSharedPreferences("global", Context.MODE_PRIVATE);
+	}
+
+	private static <T> T fromJson(String json, Type type, T orElse) {
+		try { return gson.fromJson(json, type); }
+		catch (JsonSyntaxException ignored) { return orElse; }
 	}
 
 	public static void load(){
@@ -42,7 +37,7 @@ public class GlobalUserPreferences{
 		useCustomTabs=prefs.getBoolean("useCustomTabs", true);
 		trueBlackTheme=prefs.getBoolean("trueBlackTheme", false);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
-		recentLanguages=Arrays.stream(prefs.getString("recentLanguages", defaultRecentLanguages).split(",")).filter(s->!s.isEmpty()).collect(Collectors.toList());
+		recentLanguages=fromJson(prefs.getString("recentLanguages", "{}"), recentLanguagesType, new HashMap<>());
 	}
 
 	public static void save(){
@@ -51,7 +46,7 @@ public class GlobalUserPreferences{
 				.putBoolean("useCustomTabs", useCustomTabs)
 				.putBoolean("trueBlackTheme", trueBlackTheme)
 				.putInt("theme", theme.ordinal())
-				.putString("recentLanguages", String.join(",", recentLanguages))
+				.putString("recentLanguages", gson.toJson(recentLanguages))
 				.apply();
 	}
 

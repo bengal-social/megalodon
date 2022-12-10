@@ -3,6 +3,10 @@ package org.joinmastodon.android.utils;
 
 import static org.joinmastodon.android.api.MastodonAPIController.gson;
 
+import android.content.res.Resources;
+import android.os.Build;
+import android.os.LocaleList;
+
 import org.joinmastodon.android.model.Instance;
 
 import java.util.ArrayList;
@@ -11,6 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MastodonLanguage {
 	// On an up-to-date Mastodon instance:
@@ -25,6 +30,20 @@ public class MastodonLanguage {
 		allLanguages = new ArrayList<>();
 		for (String[] language : languages) allLanguages.add(new MastodonLanguage(language[0], language[1], language[2]));
 		Collections.sort(allLanguages, Comparator.comparing(MastodonLanguage::getDefaultName));
+	}
+
+	public static List<String> defaultRecentLanguages;
+
+	static {
+		List<Locale> systemLocales = new ArrayList<>();;
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+			systemLocales.add(Resources.getSystem().getConfiguration().locale);
+		} else {
+			LocaleList localeList = Resources.getSystem().getConfiguration().getLocales();
+			for (int i = 0; i < localeList.size(); i++) systemLocales.add(localeList.get(i));
+		}
+
+		defaultRecentLanguages = systemLocales.stream().map(Locale::getLanguage).collect(Collectors.toList());
 	}
 
 	public final String languageTag, name, englishName;
