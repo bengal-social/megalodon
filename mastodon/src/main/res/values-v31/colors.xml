@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- M3 dynamic colors -->
+	<color name="m3_gray_900">@android:color/system_neutral1_900</color>
+	<color name="m3_gray_800t">@android:color/system_neutral1_800</color>
+	<color name="m3_gray_800">@android:color/system_neutral1_800</color>
+	<color name="m3_gray_700">@android:color/system_neutral1_700</color>
+	<color name="m3_gray_600">@android:color/system_neutral1_600</color>
+	<color name="m3_gray_500">@android:color/system_neutral1_500</color>
+	<color name="m3_gray_400">@android:color/system_neutral1_400</color>
+	<color name="m3_gray_300">@android:color/system_neutral1_300</color>
+	<color name="m3_gray_200">@android:color/system_neutral1_200</color>
+	<color name="m3_gray_100">@android:color/system_neutral1_100</color>
+	<color name="m3_gray_50t">@android:color/system_neutral1_50</color>
+	<color name="m3_gray_50">@android:color/system_neutral1_50</color>
+	<color name="m3_gray_25">@android:color/system_neutral1_10</color>
+
+	<color name="m3_primary_25">@android:color/system_accent1_10</color>
+	<color name="m3_primary_50">@android:color/system_accent1_50</color>
+	<color name="m3_primary_100">@android:color/system_accent1_100</color>
+	<color name="m3_primary_200">@android:color/system_accent1_200</color>
+	<color name="m3_primary_300">@android:color/system_accent1_300</color>
+	<color name="m3_primary_400">@android:color/system_accent1_400</color>
+	<color name="m3_primary_500">@android:color/system_accent1_500</color>
+	<color name="m3_primary_600">@android:color/system_accent1_600</color>
+	<color name="m3_primary_700">@android:color/system_accent1_700</color>
+	<color name="m3_primary_800">@android:color/system_accent1_800</color>
+	<color name="m3_primary_900">@android:color/system_accent1_900</color>
+
 
 	<!-- light theme -->
 	<color name="m3_sys_light_primary">@android:color/system_accent1_600</color>
