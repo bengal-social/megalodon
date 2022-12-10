@@ -1,0 +1,4 @@
+- HTML 렌더링 깨짐 수정 및 마크다운 포맷 렌더링 활성화
+- <a href="https://translate.codeberg.org/projects/megalodon">Weblate 번역 프로젝트</a> 초기 설정
+- 연합 타임라인 전환 추가
+- 52~54 버전은 Google Play에 릴리스하기 위한 작은 조정임
