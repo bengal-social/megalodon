@@ -1,5 +1,7 @@
 package org.joinmastodon.android.fragments;
 
+import static org.joinmastodon.android.utils.MastodonLanguage.allLanguages;
+
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -96,6 +98,7 @@ import org.joinmastodon.android.ui.views.ComposeEditText;
 import org.joinmastodon.android.ui.views.ComposeMediaLayout;
 import org.joinmastodon.android.ui.views.ReorderableLinearLayout;
 import org.joinmastodon.android.ui.views.SizeListenerLinearLayout;
+import org.joinmastodon.android.utils.MastodonLanguage;
 import org.parceler.Parcel;
 import org.parceler.Parcels;
 
@@ -104,8 +107,6 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -133,7 +134,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	// from https://github.com/mastodon/mastodon-ios/blob/main/Mastodon/Helper/MastodonRegex.swift
 	private static final Pattern AUTO_COMPLETE_PATTERN=Pattern.compile("(?<!\\w)(?:@([a-zA-Z0-9_]+)(@[a-zA-Z0-9_.-]+)?|#([^\\s.]+)|:([a-zA-Z0-9_]+))");
 	private static final Pattern HIGHLIGHT_PATTERN=Pattern.compile("(?<!\\w)(?:@([a-zA-Z0-9_]+)(@[a-zA-Z0-9_.-]+)?|#([^\\s.]+))");
-	private static final List<Locale> allIsoLanguages;
 
 	@SuppressLint("NewApi") // this class actually exists on 6.0
 	private final BreakIterator breakIterator=BreakIterator.getCharacterInstance();
@@ -190,22 +190,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private Runnable updateUploadEtaRunnable;
 
 	private String language;
-
-	static {
-		Locale[] locales = Locale.getAvailableLocales();
-		List<Locale> allLocales = new ArrayList<>();
-		List<String> addedLanguages = new ArrayList<>();
-		for (Locale locale : locales) {
-			String lang = locale.getLanguage();
-			if (!addedLanguages.contains(lang)) {
-				allLocales.add(locale);
-				addedLanguages.add(lang);
-			}
-		}
-
-		Collections.sort(allLocales, Comparator.comparing(l -> l.getDisplayLanguage(Locale.getDefault())));
-		allIsoLanguages = allLocales;
-	}
+	private MastodonLanguage.LanguageResolver languageResolver;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -218,6 +203,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		instanceDomain=session.domain;
 		customEmojis=AccountSessionManager.getInstance().getCustomEmojis(instanceDomain);
 		instance=AccountSessionManager.getInstance().getInstanceInfo(instanceDomain);
+		languageResolver=new MastodonLanguage.LanguageResolver(instance);
 		if(getArguments().containsKey("editStatus")){
 			editingStatus=Parcels.unwrap(getArguments().getParcelable("editStatus"));
 		}
@@ -610,13 +596,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	}
 
 	private void updateLanguage(String lang) {
-		updateLanguage(new Locale(lang));
+		updateLanguage(languageResolver.from(lang));
 	}
 
-	private void updateLanguage(Locale loc) {
+	private void updateLanguage(MastodonLanguage loc) {
 		language = loc.getLanguage();
-		languageButton.setText(loc.getDisplayLanguage(loc));
-		languageButton.setContentDescription(getActivity().getString(R.string.post_language, loc.getDisplayLanguage(Locale.getDefault())));
+		languageButton.setText(loc.getLanguageName());
+		languageButton.setContentDescription(getActivity().getString(R.string.post_language, loc.getDefaultName()));
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -631,7 +617,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		languageButton.setCompoundDrawableTintList(languageButton.getTextColors());
 		languageButton.setCompoundDrawablePadding(V.dp(6));
 
-		updateLanguage(Locale.getDefault());
+		updateLanguage(languageResolver.getDefault());
 		languagePopup=new PopupMenu(getActivity(), languageButton);
 		languageButton.setOnTouchListener(languagePopup.getDragToOpenListener());
 		languageButton.setOnClickListener(v->languagePopup.show());
@@ -639,19 +625,19 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		Menu languageMenu = languagePopup.getMenu();
 
 		for (String recentLanguage : GlobalUserPreferences.recentLanguages) {
-			Locale loc = new Locale(recentLanguage);
-			languageMenu.add(0, allIsoLanguages.indexOf(loc), Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
+			MastodonLanguage l = languageResolver.from(recentLanguage);
+			languageMenu.add(0, allLanguages.indexOf(l), Menu.NONE, getActivity().getString(R.string.language_name, l.getDefaultName(), l.getLanguageName()));
 		}
 
 		SubMenu allLanguagesMenu = languageMenu.addSubMenu(R.string.all_languages);
-		for (int i = 0; i < allIsoLanguages.size(); i++) {
-			Locale loc = allIsoLanguages.get(i);
-			allLanguagesMenu.add(0, i, Menu.NONE, loc.getDisplayLanguage(Locale.getDefault()));
+		for (int i = 0; i < allLanguages.size(); i++) {
+			MastodonLanguage l = allLanguages.get(i);
+			allLanguagesMenu.add(0, i, Menu.NONE, getActivity().getString(R.string.language_name, l.getDefaultName(), l.getLanguageName()));
 		}
 
 		languagePopup.setOnMenuItemClickListener(i->{
 			if (i.hasSubMenu()) return false;
-			updateLanguage(allIsoLanguages.get(i.getItemId()));
+			updateLanguage(allLanguages.get(i.getItemId()));
 			return true;
 		});
 

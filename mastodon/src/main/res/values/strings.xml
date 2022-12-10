@@ -407,6 +407,7 @@
 	<string name="welcome_page3_text">Different people choose different servers for any number of reasons. art.example is a great place for artists, while glasgow.example might be a good pick for Scots.\n\nYou can’t go wrong with any of our recommend servers, so regardless of which one you pick (or if you enter your own in the server search bar), you’ll never miss a beat anywhere.</string>
 	<string name="post_language">Language: %s</string>
 	<string name="all_languages">All languages</string>
+	<string name="language_name">%s (%s)</string>
 	<string name="clear_recent_languages">Clear recent languages</string>
 	<string name="confirm_clear_recent_languages">Are you sure you want to clear your recently used languages?</string>
 </resources>
