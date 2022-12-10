@@ -38,4 +38,13 @@
     <string name="sk_settings_show_federated_timeline">显示联邦时间轴</string>
     <string name="sk_follow_requests">关注请求</string>
     <string name="sk_settings_always_reveal_content_warnings">总是显示内容警告</string>
+    <string name="sk_settings_color_picker">主题色</string>
+    <string name="sk_color_theme_pink">粉</string>
+    <string name="sk_color_theme_purple">紫</string>
+    <string name="sk_color_theme_green">绿</string>
+    <string name="sk_color_theme_blue">蓝</string>
+    <string name="sk_color_theme_brown">棕</string>
+    <string name="sk_color_theme_yellow">黄</string>
+    <string name="sk_notification_type_status">嘟文</string>
+    <string name="sk_notify_posts">嘟文通知</string>
 </resources>
