@@ -48,4 +48,12 @@
     <string name="sk_notification_type_status">Beiträge</string>
     <string name="sk_color_theme_blue">Blau</string>
     <string name="sk_poll_allow_multiple">Mehrfachantworten erlauben</string>
+    <string name="sk_translated_using">Übersetzt mit %s</string>
+    <string name="sk_post_language">Sprache: %s</string>
+    <string name="sk_language_name">%s (%s)</string>
+    <string name="sk_confirm_clear_recent_languages">Sicher, dass du die Liste der zuletzt verwendeten Sprachen leeren willst\?</string>
+    <string name="sk_translate_post">Übersetzen</string>
+    <string name="sk_translate_show_original">Original anzeigen</string>
+    <string name="sk_available_languages">Verfügbare Sprachen</string>
+    <string name="sk_clear_recent_languages">Zuletzt verwendete Sprachen leeren</string>
 </resources>
