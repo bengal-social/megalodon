@@ -161,6 +161,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Profile header tweaks](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:ui/profile-header-tweaks)
 * [Custom color themes](https://github.com/sk22/megalodon/pull/124) by [@LucasGGamerM](https://github.com/LucasGGamerM)
 * [Custom "megalodon" text logo](https://github.com/sk22/megalodon/commit/563afd487ca5c608cfbb00fa3909d3c27384acc0) by [@LucasGGamerM](https://github.com/LucasGGamerM)
+* [Custom login screen](https://github.com/sk22/megalodon/commit/9bbf8c4618dbe13accaeb3b5482bf3fe88cac4c0)
 
 
 ## Building
