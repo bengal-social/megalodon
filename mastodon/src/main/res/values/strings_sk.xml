@@ -49,11 +49,14 @@
   <string name="sk_color_theme_yellow">Yellow</string>
   <string name="sk_poll_allow_multiple">Allow multiple choices</string>
   <string name="sk_translate_post">Translate</string>
-	<string name="sk_translate_show_original">Show original</string>
-	<string name="sk_translated_using">Translated using %s</string>
+  <string name="sk_translate_show_original">Show original</string>
+  <string name="sk_translated_using">Translated using %s</string>
   <string name="sk_post_language">Language: %s</string>
-	<string name="sk_available_languages">Available languages</string>
+  <string name="sk_available_languages">Available languages</string>
   <string name="sk_language_name">%s (%s)</string>
-	<string name="sk_clear_recent_languages">Clear recent languages</string>
-	<string name="sk_confirm_clear_recent_languages">Are you sure you want to clear your recently used languages?</string>
+  <string name="sk_clear_recent_languages">Clear recent languages</string>
+  <string name="sk_confirm_clear_recent_languages">Are you sure you want to clear your recently used languages?</string>
+  <string name="sk_welcome_title">Welcome!</string>
+  <string name="sk_welcome_text">The shark salutes you! To get started, please enter your home instance’s domain name below.</string>
+  <string name="sk_example_domain">example.social</string>
 </resources>

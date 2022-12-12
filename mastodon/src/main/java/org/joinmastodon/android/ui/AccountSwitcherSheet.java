@@ -2,14 +2,12 @@ package org.joinmastodon.android.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
@@ -25,8 +23,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.oauth.RevokeOauthToken;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
-import org.joinmastodon.android.fragments.SplashFragment;
-import org.joinmastodon.android.model.Account;
+import org.joinmastodon.android.fragments.onboarding.MegalodonLoginFragment;
 import org.joinmastodon.android.ui.utils.UiUtils;
 
 import java.util.List;
@@ -80,7 +77,7 @@ public class AccountSwitcherSheet extends BottomSheet{
 		holder.avatar.setImageResource(R.drawable.ic_fluent_add_circle_24_filled);
 		holder.avatar.setImageTintList(ColorStateList.valueOf(UiUtils.getThemeColor(activity, android.R.attr.textColorPrimary)));
 		adapter.addAdapter(new ClickableSingleViewRecyclerAdapter(holder.itemView, ()->{
-			Nav.go(activity, SplashFragment.class, null);
+			Nav.go(activity, MegalodonLoginFragment.class, null);
 			dismiss();
 		}));
 

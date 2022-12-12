@@ -9,15 +9,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import org.joinmastodon.android.api.ObjectValidationException;
-import org.joinmastodon.android.api.PushSubscriptionManager;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.HomeFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
-import org.joinmastodon.android.fragments.SplashFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.fragments.onboarding.AccountActivationFragment;
+import org.joinmastodon.android.fragments.onboarding.MegalodonLoginFragment;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.updater.GithubSelfUpdater;
@@ -34,7 +33,7 @@ public class MainActivity extends FragmentStackActivity{
 
 		if(savedInstanceState==null){
 			if(AccountSessionManager.getInstance().getLoggedInAccounts().isEmpty()){
-				showFragmentClearingBackStack(new SplashFragment());
+				showFragmentClearingBackStack(new MegalodonLoginFragment());
 			}else{
 				AccountSessionManager.getInstance().maybeUpdateLocalInfo();
 				AccountSession session;
