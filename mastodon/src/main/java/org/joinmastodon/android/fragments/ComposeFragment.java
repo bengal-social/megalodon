@@ -657,9 +657,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	@SuppressLint("ClickableViewAccessibility")
 	private Button buildLanguageSelector() {
-		languageButton=new Button(getActivity());
 		TypedValue typedValue = new TypedValue();
 		getActivity().getTheme().resolveAttribute(android.R.attr.textColorSecondary, typedValue, true);
+
+		languageButton=new Button(getActivity());
 		languageButton.setTextColor(typedValue.data);
 		languageButton.setBackground(getActivity().getDrawable(R.drawable.bg_text_button));
 		languageButton.setPadding(V.dp(8), 0, V.dp(8), 0);
@@ -667,17 +668,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		languageButton.setCompoundDrawableTintList(languageButton.getTextColors());
 		languageButton.setCompoundDrawablePadding(V.dp(6));
 
-		Preferences prefs = AccountSessionManager.getInstance().getAccount(accountID).preferences;
-		String defaultLang = prefs != null ? prefs.postingDefaultLanguage : null;
-		if (defaultLang != null) updateLanguage(defaultLang);
-		else updateLanguage(languageResolver.getDefault());
-
 		languagePopup=new PopupMenu(getActivity(), languageButton);
 		languageButton.setOnTouchListener(languagePopup.getDragToOpenListener());
 		languageButton.setOnClickListener(v->languagePopup.show());
 
-		Menu languageMenu = languagePopup.getMenu();
+		updateLanguage(languageResolver.getDefault());
 
+		Menu languageMenu = languagePopup.getMenu();
 		for (String recentLanguage : Optional.ofNullable(recentLanguages.get(accountID)).orElse(defaultRecentLanguages)) {
 			MastodonLanguage l = languageResolver.from(recentLanguage);
 			languageMenu.add(0, allLanguages.indexOf(l), Menu.NONE, getActivity().getString(R.string.sk_language_name, l.getDefaultName(), l.getLanguageName()));
