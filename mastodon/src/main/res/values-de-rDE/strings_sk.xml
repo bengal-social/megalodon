@@ -56,4 +56,7 @@
     <string name="sk_translate_show_original">Original anzeigen</string>
     <string name="sk_available_languages">Verfügbare Sprachen</string>
     <string name="sk_clear_recent_languages">Zuletzt verwendete Sprachen leeren</string>
+    <string name="sk_welcome_title">Willkommen!</string>
+    <string name="sk_example_domain">beispiel.social</string>
+    <string name="sk_welcome_text">Der Hai sagt Hi! Um anzufangen, bitte gib den Domain-Namen deiner Heim-Instanz unten ein.</string>
 </resources>
