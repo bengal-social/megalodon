@@ -46,4 +46,12 @@
     <string name="sk_color_theme_pink">Rosa</string>
     <string name="sk_notification_type_status">Postagens</string>
     <string name="sk_settings_color_picker">Cor do tema</string>
+    <string name="sk_translate_post">Traduzir</string>
+    <string name="sk_translate_show_original">Mostrar original</string>
+    <string name="sk_translated_using">Traduzido usando %s</string>
+    <string name="sk_post_language">Idioma: %s</string>
+    <string name="sk_available_languages">Idiomas disponíveis</string>
+    <string name="sk_language_name">%s (%s)</string>
+    <string name="sk_confirm_clear_recent_languages">Tem certeza de que deseja limpar os idiomas usados recentemente\?</string>
+    <string name="sk_clear_recent_languages">Limpar idiomas usados recentemente</string>
 </resources>
