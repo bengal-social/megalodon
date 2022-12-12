@@ -1,0 +1,5 @@
+- Se añadió un selector de idiomas
+- Se incluye una función para traducir
+- Mejora la semántica para votar en encuestas (botones de opción y casillas)
+- Permite votar por varias opciones en las encuestas
+- Corrige varios defectos

@@ -1,11 +1,11 @@
-Megalodon es una versión modificada de <a href="https://github.com/mastodon/mastodon-android">Mastodon oficial para Android</a> que agrega funciones importantes que faltan en la aplicación oficial, como la línea de tiempo federada, no listada publicación y un visor de descripción de imágenes.
+Megalodon es una versión modificada de la <a href="https://github.com/mastodon/mastodon-android">aplicación oficial de Mastodon para Android</a> que añade funcionalidades importantes que le faltan a esta, como la cronología federada, la publicación descatalogada y un visor de descripciones de imágenes.
 
-<b>Características clave</b>
+<b>Funcionalidades importantes</b>
 
-- <b>Publicación no listada</b>: publique públicamente sin que su publicación aparezca en tendencias, hashtags o líneas de tiempo públicas.
-- <b>Línea de tiempo federada</b>: muestra todos los mensajes públicos de personas en todo el vecindario de la Fediverse a la que está conectada tu instancia.
-- <b>Visor de descripción de imágenes</b>: comprueba rápidamente si una imagen o vídeo tiene texto alternativo asociado.
-- <b>Fijar publicaciones</b>: fije sus publicaciones más importantes a su perfil y vea lo que otros han fijado utilizando la pestaña "Fijado".
-- <b>Seguir hashtags</b>: vea nuevas publicaciones con hashtags específicos directamente en su línea de tiempo de inicio siguiéndolas.
-- <b>Responder a solicitudes de seguimiento</b>: acepte o rechace solicitudes de seguimiento desde sus notificaciones o desde la lista dedicada a solicitudes de seguimiento.
-- <b>Eliminar y reformular</b>: la característica más popular que hace posible la edición sin una función de edición real.
+- <b>Publicación descatalogada</b>: haga envíos públicos sin que estos figuren en tendencias, etiquetas o cronologías públicas.
+- <b>Cronología federada</b>: vea todos los envíos públicos de las personas en las instalaciones del Fediverso que estén conectadas con su instalación hogar.
+- <b>Visor de descripciones de imágenes</b>: compruebe con rapidez si una imagen o un vídeo tiene texto alternativo.
+- <b>Anclaje de publicaciones</b>: ancle sus envíos más importantes a su perfil y vea lo que otros han anclado mediante la pestaña «Ancladas».
+- <b>Seguir etiquetas</b>: vea envíos etiquetados directamente en su cronología de inicio siguiéndolas.
+- <b>Respuesta a solicitudes de seguimiento</b>: acepte o rechace solicitudes de seguimiento desde sus notificaciones o desde la lista dedicada.
+- <b>Eliminar y reescribir</b>: la tan querida función que hizo posible editar los envíos ante la falta de una función Editar propiamente dicha.
