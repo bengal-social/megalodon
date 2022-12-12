@@ -9,3 +9,7 @@ Megalodon ist eine modifizierte Version der <a href="https://github.com/mastodon
 - <b>Hashtags folgen</b>: Bringt neue Beiträge bestimmter Hashtags direkt in deine Home-Timeline.
 - <b>Folgeanfragen beantworten</b>: Folgeanfragen lassen sich nun direkt über die Benachrichtigungen-Liste oder über die Folgeanfragen-Liste akzeptieren oder ablehnen.
 - <b>Beiträge löschen und neu erstellen</b>: Das beliebte Feature, das das Bearbeiten von Beiträgen ohne tatsächliche Bearbeit-Funktion möglich gemacht hat.
+- <b>Sprachauswahl</b>: Wähle mühelos die Sprache für jeden deiner Beiträge, damit diese richtig gefiltert und übersetzt werden können.
+- <b>Übersetzung</b>: Beiträge können nun direkt in Megalodon übersetzt werden – aber nur, wenn deine Instanz dies auch unterstützt.
+- <b>Sichtbarkeits-Indikator</b>: Beim Öffnen oder Antworten auf einen Beitrag zeigt ein Symbol die Sichtbarkeit des Beitrags an.
+- <b>Farb-Schemata</b>: Wem das Standard-Pink nicht gefällt (der Hai verurteilt dich stillschweigend), dem verschaffen die Farb-Schemata von Moshidon Abhilfe.
