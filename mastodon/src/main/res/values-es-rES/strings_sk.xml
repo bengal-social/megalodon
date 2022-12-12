@@ -2,7 +2,7 @@
 <resources>
     <string name="sk_pinned_posts">Anclado</string>
     <string name="sk_delete_and_redraft">Eliminar y editar</string>
-    <string name="sk_confirm_delete_and_redraft_title">Eliminar y editar post</string>
+    <string name="sk_confirm_delete_and_redraft_title">Eliminar y editar publicación</string>
     <string name="sk_confirm_delete_and_redraft">¿Confirma que quiere eliminar y volver a editar esta publicación\?</string>
     <string name="sk_pin_post">Anclar en perfil</string>
     <string name="sk_confirm_pin_post_title">Anclar publicación en perfil</string>
@@ -18,7 +18,7 @@
     <string name="sk_settings_show_replies">Mostrar respuestas</string>
     <string name="sk_settings_show_boosts">Mostrar impulsos</string>
     <string name="sk_settings_load_new_posts">Cargar publicaciones nuevas automáticamente</string>
-    <string name="sk_settings_show_interaction_counts">Mostrar contadores de interacciones</string>
+    <string name="sk_settings_show_interaction_counts">Mostrar recuentos de interacciones</string>
     <string name="sk_mark_media_as_sensitive">Marcar medio como delicado</string>
     <string name="sk_user_post_notifications_on">Activadas las notificaciones de posts para %s</string>
     <string name="sk_user_post_notifications_off">Desactivadas las notificaciones de posts para %s</string>
@@ -47,4 +47,13 @@
     <string name="sk_color_theme_blue">Azul</string>
     <string name="sk_color_theme_brown">Marrón</string>
     <string name="sk_color_theme_yellow">Amarillo</string>
+    <string name="sk_poll_allow_multiple">Permitir respuesta múltiple</string>
+    <string name="sk_translate_post">Traducir</string>
+    <string name="sk_translate_show_original">Mostrar original</string>
+    <string name="sk_translated_using">Traducido mediante %s</string>
+    <string name="sk_post_language">Idioma: %s</string>
+    <string name="sk_available_languages">Idiomas disponibles</string>
+    <string name="sk_language_name">%s (%s)</string>
+    <string name="sk_confirm_clear_recent_languages">¿Confirma que quiere vaciar sus idiomas usados recientemente\?</string>
+    <string name="sk_clear_recent_languages">Vaciar idiomas usados recientemente</string>
 </resources>
