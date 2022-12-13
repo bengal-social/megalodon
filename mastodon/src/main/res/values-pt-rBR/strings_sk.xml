@@ -54,4 +54,5 @@
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_confirm_clear_recent_languages">Tem certeza de que deseja limpar os idiomas usados recentemente\?</string>
     <string name="sk_clear_recent_languages">Limpar idiomas usados recentemente</string>
+    <string name="sk_notify_posts">Notificações de posts</string>
 </resources>
