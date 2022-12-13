@@ -56,4 +56,7 @@
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_confirm_clear_recent_languages">Czy na pewno chcesz wyczyścić ostatnio użyte języki\?</string>
     <string name="sk_clear_recent_languages">Wyczyść ostatnio użyte języki</string>
+    <string name="sk_example_domain">przykład.social</string>
+    <string name="sk_welcome_title">Witaj!</string>
+    <string name="sk_welcome_text">Rekin się kłania! Aby zacząć, wpisz adres swojej instancji poniżej.</string>
 </resources>
