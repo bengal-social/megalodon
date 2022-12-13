@@ -56,4 +56,7 @@
     <string name="sk_available_languages">모든 언어</string>
     <string name="sk_clear_recent_languages">최근 사용한 언어 지우기</string>
     <string name="sk_confirm_clear_recent_languages">정말로 최근 사용한 언어를 지우시겠습니까\?</string>
+    <string name="sk_example_domain">example.social</string>
+    <string name="sk_welcome_title">환영합니다!</string>
+    <string name="sk_welcome_text">상어가 당신을 맞이합니다! 시작하기 위해, 아래에 사용하시는 인스턴스의 도메인 이름을 입력해주세요.</string>
 </resources>
