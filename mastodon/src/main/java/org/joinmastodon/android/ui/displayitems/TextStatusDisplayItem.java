@@ -121,6 +121,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 
 			translateWrap.setVisibility(item.textSelectable && item.translateEnabled &&
 					!item.status.visibility.isLessVisibleThan(StatusPrivacy.UNLISTED) &&
+					item.status.language != null &&
 					(item.session.preferences == null || !item.status.language.equalsIgnoreCase(item.session.preferences.postingDefaultLanguage))
 					? View.VISIBLE : View.GONE);
 			translateButton.setText(item.translated ? R.string.translate_show_original : R.string.translate_post);
