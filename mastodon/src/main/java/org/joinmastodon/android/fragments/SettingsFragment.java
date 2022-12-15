@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
@@ -31,6 +32,7 @@ import com.squareup.otto.Subscribe;
 import org.joinmastodon.android.BuildConfig;
 import org.joinmastodon.android.E;
 import org.joinmastodon.android.GlobalUserPreferences;
+import org.joinmastodon.android.GlobalUserPreferences.ColorPreference;
 import org.joinmastodon.android.MainActivity;
 import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
@@ -241,11 +243,28 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		restartActivityToApplyNewTheme();
 	}
 
-	private void onColorPreferenceClick(GlobalUserPreferences.ColorPreference color){
+	private boolean onColorPreferenceClick(MenuItem item){
+		ColorPreference pref = null;
+		int id = item.getItemId();
 
-		GlobalUserPreferences.color=color;
+		if (id == R.id.pink_color) pref = ColorPreference.PINK;
+		else if (id == R.id.purple_color) pref = ColorPreference.PURPLE;
+		else if (id == R.id.green_color) pref = ColorPreference.GREEN;
+		else if (id == R.id.blue_color) pref = ColorPreference.BLUE;
+		else if (id == R.id.brown_color) pref = ColorPreference.BROWN;
+		else if (id == R.id.yellow_color) pref = ColorPreference.YELLOW;
+		else if (id == R.id.m3_color) pref = ColorPreference.MATERIAL3;
+
+		if (pref == null) return false;
+		if (pref == ColorPreference.MATERIAL3 && Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+			Toast.makeText(getActivity(), R.string.sk_unsupported, Toast.LENGTH_LONG).show();
+			return false;
+		}
+
+		GlobalUserPreferences.color=pref;
 		GlobalUserPreferences.save();
 		restartActivityToApplyNewTheme();
+		return true;
 	}
 
 	private void onTrueBlackThemeChanged(SwitchItem item){
@@ -683,47 +702,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			button=findViewById(R.id.color_picker_button);
 			popupMenu=new PopupMenu(getActivity(), button, Gravity.CENTER_HORIZONTAL);
 			popupMenu.inflate(R.menu.color_picker);
-			popupMenu.setOnMenuItemClickListener(item->{
-				GlobalUserPreferences.ColorPreference pref;
-				int id=item.getItemId();
-				if(id==R.id.pink_color) {
-					pref = GlobalUserPreferences.ColorPreference.PINK;
-					onColorPreferenceClick(pref);
-				}
-				else if(id==R.id.purple_color) {
-					pref = GlobalUserPreferences.ColorPreference.PURPLE;
-					onColorPreferenceClick(pref);
-				}
-				else if(id==R.id.green_color) {
-					pref = GlobalUserPreferences.ColorPreference.GREEN;
-					onColorPreferenceClick(pref);
-				}
-				else if(id==R.id.blue_color) {
-					pref = GlobalUserPreferences.ColorPreference.BLUE;
-					onColorPreferenceClick(pref);
-				}
-				else if(id==R.id.brown_color) {
-					pref = GlobalUserPreferences.ColorPreference.BROWN;
-					onColorPreferenceClick(pref);
-				}
-				else if(id==R.id.yellow_color) {
-					pref = GlobalUserPreferences.ColorPreference.YELLOW;
-					onColorPreferenceClick(pref);
-				}
-				else if(id==R.id.m3_color) {
-					if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-						pref = GlobalUserPreferences.ColorPreference.MATERIAL3;
-						onColorPreferenceClick(pref);
-					}else{
-						Toast.makeText(getActivity(), R.string.sk_not_supported,
-								Toast.LENGTH_LONG).show();
-					}
-				}
-				else
-					return false;
-				return true;
-			});
-//			UiUtils.enablePopupMenuIcons(getActivity(), popupMenu);
+			popupMenu.setOnMenuItemClickListener(SettingsFragment.this::onColorPreferenceClick);
 			button.setOnTouchListener(popupMenu.getDragToOpenListener());
 			button.setOnClickListener(v->popupMenu.show());
 		}
@@ -739,6 +718,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 				case BROWN -> R.string.sk_color_theme_brown;
 				case YELLOW -> R.string.sk_color_theme_yellow;
 				case MATERIAL3 -> R.string.sk_color_theme_material_you;
+				default -> throw new IllegalStateException("Unexpected value: "+GlobalUserPreferences.color);
 			});
 		}
 	}
