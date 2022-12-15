@@ -17,6 +17,26 @@
 	<attr name="colorTabInactive" format="color"/>
 	<attr name="colorAccentLightest" format="color"/>
 	<attr name="profileHeaderBackground" format="color"/>
+
+	<attr name="colorButtonBackgroundPrimaryDarkOnLight" format="color"/>
+	<attr name="colorButtonBackgroundPrimaryDarkOnLightDisabled" format="color"/>
+	<attr name="colorButtonTextPrimaryDarkOnLight" format="color"/>
+	<attr name="colorButtonTextPrimaryDarkOnLightDisabled" format="color"/>
+
+	<attr name="colorButtonBackgroundPrimaryLightOnDark" format="color"/>
+	<attr name="colorButtonBackgroundPrimaryLightOnDarkDisabled" format="color"/>
+	<attr name="colorButtonTextPrimaryLightOnDark" format="color"/>
+	<attr name="colorButtonTextPrimaryLightOnDarkDisabled" format="color"/>
+
+	<attr name="colorButtonBackgroundSecondaryDarkOnLight" format="color"/>
+	<attr name="colorButtonBackgroundSecondaryDarkOnLightDisabled" format="color"/>
+	<attr name="colorButtonTextSecondaryDarkOnLight" format="color"/>
+	<attr name="colorButtonTextSecondaryDarkOnLightDisabled" format="color"/>
+
+	<attr name="colorButtonBackgroundSecondaryLightOnDark" format="color"/>
+	<attr name="colorButtonBackgroundSecondaryLightOnDarkDisabled" format="color"/>
+	<attr name="colorButtonTextSecondaryLightOnDark" format="color"/>
+	<attr name="colorButtonTextSecondaryLightOnDarkDisabled" format="color"/>
 	
 	<attr name="colorM3Primary" format="color"/>
 	<attr name="colorM3OnPrimary" format="color"/>

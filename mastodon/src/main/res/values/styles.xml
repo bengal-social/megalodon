@@ -38,6 +38,27 @@
 		<item name="colorAccentLightest">@color/primary_100</item>
 		<item name="profileHeaderBackground">@color/gray_500</item>
 
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">?colorButtonTextPrimaryLightOnDark</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">?colorButtonTextPrimaryLightOnDarkDisabled</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">?colorButtonTextPrimaryDarkOnLight</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">?colorButtonTextPrimaryDarkOnLightDisabled</item>
+
 		<item name="buttonBackground">@drawable/bg_button_primary_dark_on_light</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_light</item>
 
@@ -110,6 +131,27 @@
 		<!-- TODO dark colors -->
 		<item name="colorSearchField">@color/gray_700</item>
 		<item name="colorSearchHint">@color/gray_300</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">?colorButtonTextPrimaryLightOnDark</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">?colorButtonTextPrimaryLightOnDarkDisabled</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">?colorButtonTextPrimaryDarkOnLight</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">?colorButtonTextPrimaryDarkOnLightDisabled</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_light_on_dark</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_dark</item>
@@ -230,6 +272,27 @@
 		<item name="colorTabInactive">@color/m3_gray_400</item>
 		<item name="colorAccentLightest">@color/m3_primary_100</item>
 		<item name="colorSecondary">@color/m3_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/m3_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/m3_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/m3_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/m3_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/m3_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/m3_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/m3_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/m3_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/m3_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">?colorButtonTextPrimaryLightOnDark</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">?colorButtonTextPrimaryLightOnDarkDisabled</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/m3_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/m3_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">?colorButtonTextPrimaryDarkOnLight</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">?colorButtonTextPrimaryDarkOnLightDisabled</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.Material3" parent="Theme.Mastodon.Dark">
@@ -261,9 +324,30 @@
 
 		<!-- TODO dark colors -->
 		<item name="colorSearchField">@color/m3_gray_700</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/m3_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/m3_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/m3_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/m3_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/m3_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/m3_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/m3_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/m3_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/m3_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">?colorButtonTextPrimaryLightOnDark</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">?colorButtonTextPrimaryLightOnDarkDisabled</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/m3_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/m3_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">?colorButtonTextPrimaryDarkOnLight</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">?colorButtonTextPrimaryDarkOnLightDisabled</item>
 	</style>
 
-	<style name="Theme.Mastodon.Dark.TrueBlack.Material3">
+	<style name="Theme.Mastodon.Dark.TrueBlack.Material3" parent="Theme.Mastodon.Dark.Material3">
 		<item name="android:colorAccent">@color/m3_primary_400</item>
 		<item name="colorPollMostVoted">@color/m3_primary_700</item>
 		<item name="colorAccentLight">@color/m3_primary_600</item>
