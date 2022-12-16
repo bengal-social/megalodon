@@ -5,6 +5,8 @@ import static org.joinmastodon.android.api.MastodonAPIController.gson;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
@@ -54,8 +56,14 @@ public class GlobalUserPreferences{
 		disableMarquee=prefs.getBoolean("disableMarquee", false);
 		voteButtonForSingleChoice=prefs.getBoolean("voteButtonForSingleChoice", true);
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
-		color=ColorPreference.values()[prefs.getInt("color", 0)];
 		recentLanguages=fromJson(prefs.getString("recentLanguages", "{}"), recentLanguagesType, new HashMap<>());
+
+		try {
+			color=ColorPreference.valueOf(prefs.getString("color", ColorPreference.PINK.name()));
+		} catch (IllegalArgumentException|ClassCastException ignored) {
+			// invalid color name or color was previously saved as integer
+			color=ColorPreference.PINK;
+		}
 	}
 
 	public static void save(){
@@ -71,7 +79,7 @@ public class GlobalUserPreferences{
 				.putBoolean("alwaysExpandContentWarnings", alwaysExpandContentWarnings)
 				.putBoolean("disableMarquee", disableMarquee)
 				.putInt("theme", theme.ordinal())
-				.putInt("color", color.ordinal())
+				.putString("color", color.name())
 				.putString("recentLanguages", gson.toJson(recentLanguages))
 				.apply();
 	}
