@@ -199,6 +199,7 @@
 		<item name="colorWindowBackground">@color/black</item>
 
 		<item name="colorM3Background">#000</item>
+<!--		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_900</item>-->
 	</style>
 
 	<style name="Theme.Mastodon.AutoLightDark" parent="Theme.Mastodon.Light"/>
@@ -275,7 +276,7 @@
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
 		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/m3_gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/m3_gray_300</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/m3_gray_200</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/m3_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/m3_gray_400</item>
 
@@ -332,7 +333,7 @@
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/m3_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/m3_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_500</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_700</item>
 		<item name="colorButtonTextPrimaryLightOnDark">@color/m3_gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/m3_gray_400</item>
 
@@ -365,6 +366,8 @@
 		<item name="colorWindowBackground">@color/black</item>
 		<item name="colorButtonText">@color/black</item>
 		<item name="colorBackgroundLightest">@color/black</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_900</item>
 	</style>
 
 	<style name="Theme.Mastodon.AutoLightDark.Material3" parent="Theme.Mastodon.Light.Material3"/>
