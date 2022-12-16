@@ -247,19 +247,15 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		ColorPreference pref = null;
 		int id = item.getItemId();
 
-		if (id == R.id.pink_color) pref = ColorPreference.PINK;
+		if (id == R.id.m3_color) pref = ColorPreference.MATERIAL3;
+		else if (id == R.id.pink_color) pref = ColorPreference.PINK;
 		else if (id == R.id.purple_color) pref = ColorPreference.PURPLE;
 		else if (id == R.id.green_color) pref = ColorPreference.GREEN;
 		else if (id == R.id.blue_color) pref = ColorPreference.BLUE;
 		else if (id == R.id.brown_color) pref = ColorPreference.BROWN;
 		else if (id == R.id.yellow_color) pref = ColorPreference.YELLOW;
-		else if (id == R.id.m3_color) pref = ColorPreference.MATERIAL3;
 
 		if (pref == null) return false;
-		if (pref == ColorPreference.MATERIAL3 && Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-			Toast.makeText(getActivity(), R.string.sk_unsupported, Toast.LENGTH_LONG).show();
-			return false;
-		}
 
 		GlobalUserPreferences.color=pref;
 		GlobalUserPreferences.save();
@@ -711,13 +707,13 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		public void onBind(ColorPicker item){
 			icon.setImageResource(R.drawable.ic_fluent_color_24_regular);
 			button.setText(switch(GlobalUserPreferences.color){
+				case MATERIAL3 -> R.string.sk_color_theme_material3;
 				case PINK -> R.string.sk_color_theme_pink;
 				case PURPLE -> R.string.sk_color_theme_purple;
 				case GREEN -> R.string.sk_color_theme_green;
 				case BLUE -> R.string.sk_color_theme_blue;
 				case BROWN -> R.string.sk_color_theme_brown;
 				case YELLOW -> R.string.sk_color_theme_yellow;
-				case MATERIAL3 -> R.string.sk_color_theme_material_you;
 				default -> throw new IllegalStateException("Unexpected value: "+GlobalUserPreferences.color);
 			});
 		}
