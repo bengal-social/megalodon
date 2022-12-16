@@ -23,7 +23,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.oauth.RevokeOauthToken;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
-import org.joinmastodon.android.fragments.onboarding.MegalodonLoginFragment;
+import org.joinmastodon.android.fragments.onboarding.CustomWelcomeFragment;
 import org.joinmastodon.android.ui.utils.UiUtils;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public class AccountSwitcherSheet extends BottomSheet{
 		holder.avatar.setImageResource(R.drawable.ic_fluent_add_circle_24_filled);
 		holder.avatar.setImageTintList(ColorStateList.valueOf(UiUtils.getThemeColor(activity, android.R.attr.textColorPrimary)));
 		adapter.addAdapter(new ClickableSingleViewRecyclerAdapter(holder.itemView, ()->{
-			Nav.go(activity, MegalodonLoginFragment.class, null);
+			Nav.go(activity, CustomWelcomeFragment.class, null);
 			dismiss();
 		}));
 

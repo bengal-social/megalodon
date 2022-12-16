@@ -36,11 +36,11 @@ import me.grishka.appkit.utils.SingleViewRecyclerAdapter;
 import me.grishka.appkit.utils.V;
 import me.grishka.appkit.views.UsableRecyclerView;
 
-public class MegalodonLoginFragment extends InstanceCatalogFragment {
+public class CustomWelcomeFragment extends InstanceCatalogFragment {
 	private View headerView;
 
-	public MegalodonLoginFragment() {
-		super(R.layout.fragment_megalodon_welcome, 1);
+	public CustomWelcomeFragment() {
+		super(R.layout.fragment_welcome_custom, 1);
 	}
 
 	@Override
@@ -131,15 +131,16 @@ public class MegalodonLoginFragment extends InstanceCatalogFragment {
 
 	@Override
 	protected RecyclerView.Adapter getAdapter(){
-		headerView=getActivity().getLayoutInflater().inflate(R.layout.header_megalodon_welcome, list, false);
+		headerView=getActivity().getLayoutInflater().inflate(R.layout.header_welcome_custom, list, false);
 		searchEdit=headerView.findViewById(R.id.search_edit);
 		searchEdit.setOnEditorActionListener(this::onSearchEnterPressed);
 
 		headerView.findViewById(R.id.more).setVisibility(View.GONE);
 		headerView.findViewById(R.id.visibility).setVisibility(View.GONE);
-		((TextView) headerView.findViewById(R.id.username)).setText("@megalodon");
+		headerView.findViewById(R.id.separator).setVisibility(View.GONE);
+		headerView.findViewById(R.id.timestamp).setVisibility(View.GONE);
+		((TextView) headerView.findViewById(R.id.username)).setText(R.string.sk_app_username);
 		((TextView) headerView.findViewById(R.id.name)).setText(R.string.sk_app_name);
-		((TextView) headerView.findViewById(R.id.timestamp)).setText(R.string.time_now);
 		((ImageView) headerView.findViewById(R.id.avatar)).setImageDrawable(getActivity().getDrawable(R.mipmap.ic_launcher));
 		((FragmentStackActivity) getActivity()).invalidateSystemBarColors(this);
 
@@ -203,7 +204,7 @@ public class MegalodonLoginFragment extends InstanceCatalogFragment {
 		private final RadioButton radioButton;
 
 		public InstanceViewHolder(){
-			super(getActivity(), R.layout.item_megalodon_instance, list);
+			super(getActivity(), R.layout.item_instance_custom, list);
 
 //			itemView.setPadding(V.dp(16), V.dp(16), V.dp(16), V.dp(16));
 //			TypedValue value = new TypedValue();
