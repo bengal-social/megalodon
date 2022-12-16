@@ -425,6 +425,27 @@
 		<item name="colorTabInactive">@color/green_gray_400</item>
 		<item name="colorAccentLightest">@color/green_primary_100</item>
 		<item name="colorSecondary">@color/green_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/green_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/green_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/green_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/green_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/green_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/green_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/green_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/green_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/green_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/green_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/green_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.Green" parent="Theme.Mastodon.Dark.CustomBase">
@@ -439,6 +460,27 @@
 		<item name="colorTabInactive">@color/green_gray_400</item>
 		<item name="colorSearchHint">@color/green_gray_300</item>
 		<item name="colorSecondary">@color/green_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/green_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/green_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/green_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/green_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/green_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/green_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/green_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/green_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/green_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/green_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/green_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.TrueBlack.Green" parent="Theme.Mastodon.Dark.Green">
@@ -516,6 +558,27 @@
 		<item name="colorTabInactive">@color/blue_gray_400</item>
 		<item name="colorAccentLightest">@color/blue_primary_100</item>
 		<item name="colorSecondary">@color/blue_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/blue_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/blue_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/blue_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/blue_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/blue_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/blue_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/blue_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/blue_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/blue_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/blue_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/blue_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.Blue" parent="Theme.Mastodon.Dark.CustomBase">
@@ -530,6 +593,27 @@
 		<item name="colorTabInactive">@color/blue_gray_400</item>
 		<item name="colorSearchHint">@color/blue_gray_300</item>
 		<item name="colorSecondary">@color/blue_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/blue_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/blue_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/blue_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/blue_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/blue_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/blue_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/blue_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/blue_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/blue_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/blue_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/blue_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.TrueBlack.Blue" parent="Theme.Mastodon.Dark.Blue">
@@ -606,6 +690,27 @@
 		<item name="colorTabInactive">@color/brown_gray_400</item>
 		<item name="colorAccentLightest">@color/brown_primary_100</item>
 		<item name="colorSecondary">@color/brown_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/brown_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/brown_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/brown_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/brown_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/brown_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/brown_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/brown_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/brown_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/brown_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/brown_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/brown_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.Brown" parent="Theme.Mastodon.Dark.CustomBase">
@@ -620,6 +725,27 @@
 		<item name="colorTabInactive">@color/brown_gray_400</item>
 		<item name="colorSearchHint">@color/brown_gray_300</item>
 		<item name="colorSecondary">@color/brown_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/brown_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/brown_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/brown_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/brown_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/brown_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/brown_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/brown_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/brown_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/brown_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/brown_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/brown_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.TrueBlack.Brown" parent="Theme.Mastodon.Dark.Brown">
@@ -697,6 +823,27 @@
 		<item name="colorTabInactive">@color/yellow_gray_400</item>
 		<item name="colorAccentLightest">@color/yellow_primary_100</item>
 		<item name="colorSecondary">@color/yellow_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/yellow_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/yellow_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/yellow_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/yellow_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/yellow_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/yellow_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/yellow_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/yellow_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/yellow_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/yellow_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/yellow_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.Yellow" parent="Theme.Mastodon.Dark.CustomBase">
@@ -711,6 +858,27 @@
 		<item name="colorTabInactive">@color/yellow_gray_400</item>
 		<item name="colorSearchHint">@color/yellow_gray_300</item>
 		<item name="colorSecondary">@color/yellow_gray_50</item>
+
+		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/yellow_gray_300</item>
+		<item name="colorButtonTextPrimaryDarkOnLight">@color/yellow_gray_50</item>
+		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/yellow_gray_400</item>
+
+		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/yellow_gray_100</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/yellow_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/yellow_gray_25</item>
+		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/yellow_gray_100</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/yellow_gray_400</item>
+
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/yellow_gray_300</item>
+		<item name="colorButtonTextSecondaryLightOnDark">@color/yellow_gray_50</item>
+		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/yellow_gray_400</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.TrueBlack.Yellow" parent="Theme.Mastodon.Dark.Yellow">
