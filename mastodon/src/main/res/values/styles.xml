@@ -947,6 +947,31 @@
 	</style>
 
 
+	<style name="Theme.Mastodon.Dark.Red" parent="Theme.Mastodon.Dark">
+		<item name="android:colorAccent">@color/error_400</item>
+		<item name="colorPollMostVoted">@color/error_700</item>
+		<item name="colorAccentLight">@color/error_600</item>
+		<item name="colorAccentLightest">@color/error_800</item>
+	</style>
+
+	<style name="Theme.Mastodon.Dark.TrueBlack.Red" parent="Theme.Mastodon.Dark.TrueBlack">
+		<item name="android:colorAccent">@color/error_400</item>
+		<item name="colorPollMostVoted">@color/error_700</item>
+		<item name="colorAccentLight">@color/error_600</item>
+		<item name="colorAccentLightest">@color/error_800</item>
+	</style>
+
+	<style name="Theme.Mastodon.Light.Red" parent="Theme.Mastodon.Light">
+		<item name="android:colorAccent">@color/error_400</item>
+		<item name="colorPollMostVoted">@color/error_700</item>
+		<item name="colorAccentLight">@color/error_600</item>
+		<item name="colorAccentLightest">@color/error_800</item>
+	</style>
+
+	<style name="Theme.Mastodon.AutoLightDark.Red" parent="Theme.Mastodon.Light.Red"/>
+	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Red" parent="Theme.Mastodon.Light.Red"/>
+
+
 	<style name="Theme.Mastodon.Dark.Original" parent="Theme.Mastodon.Dark">
 		<item name="android:colorAccent">@color/original_primary_400</item>
 		<item name="colorPollMostVoted">@color/original_primary_700</item>

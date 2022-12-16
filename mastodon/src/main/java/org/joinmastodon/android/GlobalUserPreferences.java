@@ -91,6 +91,7 @@ public class GlobalUserPreferences{
 		GREEN,
 		BLUE,
 		BROWN,
+		RED,
 		ORANGE,
 		YELLOW
 	}

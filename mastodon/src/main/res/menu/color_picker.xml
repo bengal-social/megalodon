@@ -6,5 +6,6 @@
     <item android:id="@+id/green_color" android:title="@string/sk_color_theme_green"/>
     <item android:id="@+id/blue_color" android:title="@string/sk_color_theme_blue"/>
     <item android:id="@+id/brown_color" android:title="@string/sk_color_theme_brown"/>
+    <item android:id="@+id/red_color" android:title="@string/sk_color_theme_red"/>
     <item android:id="@+id/yellow_color" android:title="@string/sk_color_theme_yellow"/>
 </menu>

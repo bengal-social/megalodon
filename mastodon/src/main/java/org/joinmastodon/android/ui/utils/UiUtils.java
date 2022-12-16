@@ -708,6 +708,16 @@ public class UiUtils{
 							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Brown : R.style.Theme_Mastodon_Dark_Brown;
 				});
 				break;
+			case RED:
+				context.setTheme(switch(GlobalUserPreferences.theme){
+					case AUTO ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Red : R.style.Theme_Mastodon_AutoLightDark_Red;
+					case LIGHT ->
+							R.style.Theme_Mastodon_Light_Red;
+					case DARK ->
+							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Red : R.style.Theme_Mastodon_Dark_Red;
+				});
+				break;
 			case YELLOW:
 				context.setTheme(switch(GlobalUserPreferences.theme){
 					case AUTO ->
