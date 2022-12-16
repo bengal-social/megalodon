@@ -49,14 +49,15 @@
     <string name="sk_reject_follow_request">Rifiuta richiesta di seguirti</string>
     <string name="sk_translate_post">Traduci</string>
     <string name="sk_translate_show_original">Mostra originale</string>
-    <string name="sk_translated_using">Tradotto usando %s</string>
+    <string name="sk_translated_using">Tradotto con</string>
     <string name="sk_post_language">Lingua: %s</string>
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_confirm_clear_recent_languages">Sei sicuro di voler cancellare le lingue usate di recente\?</string>
     <string name="sk_clear_recent_languages">Cancella lingue usate di recente</string>
     <string name="sk_welcome_title">Benvenuto!</string>
     <string name="sk_example_domain">example.social</string>
-    <string name="sk_poll_allow_multiple">Permetti scelta multipla</string>
+    <string name="sk_poll_allow_multiple">Consenti scelte multiple</string>
     <string name="sk_available_languages">Lingue disponibili</string>
     <string name="sk_welcome_text">Lo squalo ti saluta! Per iniziare inserisci il dominio dell\'istanza a cui sei iscritto.</string>
+    <string name="sk_color_theme_material3">Sistema</string>
 </resources>
