@@ -215,37 +215,37 @@
 
 	<style name="Theme.Mastodon.Light.CustomBase" parent="Theme.Mastodon.Light">
 		<!-- needed to disable scrim on API 29+ -->
-		<item name="android:colorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_500</item>
-		<item name="colorDarkIcon">@color/custom_gray_900</item>
-		<item name="colorSearchHint">@color/custom_gray_600</item>
-		<item name="profileHeaderBackground">@color/custom_gray_500</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
+		<item name="colorDarkIcon">@color/gray_900</item>
+		<item name="colorSearchHint">@color/gray_600</item>
+		<item name="profileHeaderBackground">@color/gray_500</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.CustomBase" parent="Theme.Mastodon.Dark">
 		<!-- needed to disable scrim on API 29+ -->
-		<item name="android:colorBackground">@color/custom_gray_700</item>
-		<item name="colorButtonText">@color/custom_gray_800</item>
-		<item name="colorBackgroundLight">@color/custom_gray_700</item>
-		<item name="colorBackgroundLightest">@color/custom_gray_900</item>
-		<item name="colorBackgroundPopup">@color/custom_gray_900</item>
+		<item name="android:colorBackground">@color/gray_700</item>
+		<item name="colorButtonText">@color/gray_800</item>
+		<item name="colorBackgroundLight">@color/gray_700</item>
+		<item name="colorBackgroundLightest">@color/gray_900</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
 		<item name="colorDarkIcon">@color/gray_25</item>
-		<item name="colorWindowBackground">@color/custom_gray_800</item>
-		<item name="android:statusBarColor">@color/custom_gray_800</item>
-		<item name="android:navigationBarColor">@color/custom_gray_800</item>
-		<item name="colorPollVoted">@color/custom_gray_600</item>
+		<item name="colorWindowBackground">@color/gray_800</item>
+		<item name="android:statusBarColor">@color/gray_800</item>
+		<item name="android:navigationBarColor">@color/gray_800</item>
+		<item name="colorPollVoted">@color/gray_600</item>
 		<item name="profileHeaderBackground">?colorWindowBackground</item>
 		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.CustomBase</item>
 
 		<!-- TODO dark colors -->
-		<item name="colorSearchField">@color/custom_gray_700</item>
+		<item name="colorSearchField">@color/gray_700</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.TrueBlack.CustomBase">
-		<item name="colorPollVoted">@color/custom_gray_800</item>
-		<item name="colorSearchField">@color/custom_gray_900</item>
-		<item name="colorBackgroundPopup">@color/custom_gray_900</item>
+		<item name="colorPollVoted">@color/gray_800</item>
+		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
 		<item name="android:navigationBarColor">@color/black</item>
 		<item name="android:colorBackground">@color/black</item>
 		<item name="android:statusBarColor">@color/black</item>
@@ -390,7 +390,7 @@
 		<!-- colors -->
 		<item name="android:colorAccent">@color/m3_primary_600</item>
 		<item name="android:colorPrimary">@color/m3_gray_50</item>
-		<item name="android:colorBackground">@color/custom_gray_700</item>
+		<item name="android:colorBackground">@color/gray_700</item>
 		<item name="android:textColorPrimary">@color/m3_gray_50</item>
 		<item name="android:textColorSecondary">@color/m3_gray_400</item>
 	</style>
@@ -403,16 +403,16 @@
 
 		<!-- colors -->
 		<item name="android:colorAccent">@color/m3_primary_700</item>
-		<item name="android:colorPrimary">@color/custom_gray_800</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
 		<item name="android:colorBackground">@color/m3_gray_100</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_500</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.M3" parent="android:ThemeOverlay.Material.ActionBar">
 		<item name="android:colorPrimary">@color/m3_gray_50</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_800</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_800</item>
 	</style>
 
 
@@ -435,22 +435,22 @@
 		<item name="colorSecondary">@color/green_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/green_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/green_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/green_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/green_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/green_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/green_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/green_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/green_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/green_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/green_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/green_gray_400</item>
@@ -470,22 +470,22 @@
 		<item name="colorSecondary">@color/green_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/green_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/green_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/green_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/green_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/green_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/green_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/green_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/green_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/green_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/green_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/green_gray_400</item>
@@ -498,9 +498,9 @@
 		<item name="colorAccentLightest">@color/green_primary_800</item>
 		<item name="colorSecondary">@color/green_gray_50</item>
 
-		<item name="colorPollVoted">@color/custom_gray_800</item>
-		<item name="colorSearchField">@color/custom_gray_900</item>
-		<item name="colorBackgroundPopup">@color/custom_gray_900</item>
+		<item name="colorPollVoted">@color/gray_800</item>
+		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
 		<item name="android:navigationBarColor">@color/black</item>
 		<item name="android:colorBackground">@color/black</item>
 		<item name="android:statusBarColor">@color/black</item>
@@ -523,7 +523,7 @@
 		<!-- colors -->
 		<item name="android:colorAccent">@color/green_primary_600</item>
 		<item name="android:colorPrimary">@color/green_gray_50</item>
-		<item name="android:colorBackground">@color/custom_gray_700</item>
+		<item name="android:colorBackground">@color/gray_700</item>
 		<item name="android:textColorPrimary">@color/green_gray_50</item>
 		<item name="android:textColorSecondary">@color/green_gray_400</item>
 	</style>
@@ -536,16 +536,16 @@
 
 		<!-- colors -->
 		<item name="android:colorAccent">@color/green_primary_700</item>
-		<item name="android:colorPrimary">@color/custom_gray_800</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
 		<item name="android:colorBackground">@color/green_gray_100</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_500</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Green" parent="android:ThemeOverlay.Material.ActionBar">
 		<item name="android:colorPrimary">@color/green_gray_50</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_800</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_800</item>
 	</style>
 
 
@@ -568,22 +568,22 @@
 		<item name="colorSecondary">@color/blue_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/blue_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/blue_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/blue_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/blue_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/blue_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/blue_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/blue_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/blue_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/blue_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/blue_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/blue_gray_400</item>
@@ -603,22 +603,22 @@
 		<item name="colorSecondary">@color/blue_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/blue_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/blue_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/blue_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/blue_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/blue_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/blue_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/blue_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/blue_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/blue_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/blue_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/blue_gray_400</item>
@@ -631,9 +631,9 @@
 		<item name="colorAccentLightest">@color/blue_primary_800</item>
 		<item name="colorSecondary">@color/blue_gray_50</item>
 
-		<item name="colorPollVoted">@color/custom_gray_800</item>
-		<item name="colorSearchField">@color/custom_gray_900</item>
-		<item name="colorBackgroundPopup">@color/custom_gray_900</item>
+		<item name="colorPollVoted">@color/gray_800</item>
+		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
 		<item name="android:navigationBarColor">@color/black</item>
 		<item name="android:colorBackground">@color/black</item>
 		<item name="android:statusBarColor">@color/black</item>
@@ -656,7 +656,7 @@
 		<!-- colors -->
 		<item name="android:colorAccent">@color/blue_primary_600</item>
 		<item name="android:colorPrimary">@color/blue_gray_50</item>
-		<item name="android:colorBackground">@color/custom_gray_700</item>
+		<item name="android:colorBackground">@color/gray_700</item>
 		<item name="android:textColorPrimary">@color/blue_gray_50</item>
 		<item name="android:textColorSecondary">@color/blue_gray_400</item>
 	</style>
@@ -669,16 +669,16 @@
 
 		<!-- colors -->
 		<item name="android:colorAccent">@color/blue_primary_700</item>
-		<item name="android:colorPrimary">@color/custom_gray_800</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
 		<item name="android:colorBackground">@color/blue_gray_100</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_500</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Blue" parent="android:ThemeOverlay.Material.ActionBar">
 		<item name="android:colorPrimary">@color/blue_gray_50</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_800</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_800</item>
 	</style>
 
 	<style name="Theme.Mastodon.Light.Brown" parent="Theme.Mastodon.Light.CustomBase">
@@ -700,22 +700,22 @@
 		<item name="colorSecondary">@color/brown_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/brown_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/brown_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/brown_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/brown_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/brown_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/brown_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/brown_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/brown_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/brown_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/brown_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/brown_gray_400</item>
@@ -735,22 +735,22 @@
 		<item name="colorSecondary">@color/brown_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/brown_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/brown_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/brown_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/brown_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/brown_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/brown_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/brown_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/brown_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/brown_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/brown_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/brown_gray_400</item>
@@ -763,9 +763,9 @@
 		<item name="colorAccentLightest">@color/brown_primary_800</item>
 		<item name="colorSecondary">@color/brown_gray_50</item>
 
-		<item name="colorPollVoted">@color/custom_gray_800</item>
-		<item name="colorSearchField">@color/custom_gray_900</item>
-		<item name="colorBackgroundPopup">@color/custom_gray_900</item>
+		<item name="colorPollVoted">@color/gray_800</item>
+		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
 		<item name="android:navigationBarColor">@color/black</item>
 		<item name="android:colorBackground">@color/black</item>
 		<item name="android:statusBarColor">@color/black</item>
@@ -788,7 +788,7 @@
 		<!-- colors -->
 		<item name="android:colorAccent">@color/brown_primary_600</item>
 		<item name="android:colorPrimary">@color/brown_gray_50</item>
-		<item name="android:colorBackground">@color/custom_gray_700</item>
+		<item name="android:colorBackground">@color/gray_700</item>
 		<item name="android:textColorPrimary">@color/brown_gray_50</item>
 		<item name="android:textColorSecondary">@color/brown_gray_400</item>
 	</style>
@@ -801,16 +801,16 @@
 
 		<!-- colors -->
 		<item name="android:colorAccent">@color/brown_primary_700</item>
-		<item name="android:colorPrimary">@color/custom_gray_800</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
 		<item name="android:colorBackground">@color/brown_gray_100</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_500</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Brown" parent="android:ThemeOverlay.Material.ActionBar">
 		<item name="android:colorPrimary">@color/brown_gray_50</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_800</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_800</item>
 	</style>
 
 
@@ -833,22 +833,22 @@
 		<item name="colorSecondary">@color/yellow_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/yellow_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/yellow_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/yellow_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/yellow_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/yellow_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/yellow_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/yellow_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/yellow_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/yellow_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/yellow_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/yellow_gray_400</item>
@@ -868,22 +868,22 @@
 		<item name="colorSecondary">@color/yellow_gray_50</item>
 
 		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/yellow_gray_300</item>
 		<item name="colorButtonTextPrimaryDarkOnLight">@color/yellow_gray_50</item>
 		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/yellow_gray_400</item>
 
 		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/yellow_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/custom_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/custom_gray_800</item>
+		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
+		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
 		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/yellow_gray_400</item>
 
 		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/yellow_gray_25</item>
 		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/yellow_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/custom_gray_800</item>
+		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
 		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/yellow_gray_400</item>
 
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/custom_gray_600</item>
+		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
 		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/yellow_gray_300</item>
 		<item name="colorButtonTextSecondaryLightOnDark">@color/yellow_gray_50</item>
 		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/yellow_gray_400</item>
@@ -896,9 +896,9 @@
 		<item name="colorAccentLightest">@color/yellow_primary_800</item>
 		<item name="colorSecondary">@color/yellow_gray_50</item>
 
-		<item name="colorPollVoted">@color/custom_gray_800</item>
-		<item name="colorSearchField">@color/custom_gray_900</item>
-		<item name="colorBackgroundPopup">@color/custom_gray_900</item>
+		<item name="colorPollVoted">@color/gray_800</item>
+		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
 		<item name="android:navigationBarColor">@color/black</item>
 		<item name="android:colorBackground">@color/black</item>
 		<item name="android:statusBarColor">@color/black</item>
@@ -921,7 +921,7 @@
 		<!-- colors -->
 		<item name="android:colorAccent">@color/yellow_primary_600</item>
 		<item name="android:colorPrimary">@color/yellow_gray_50</item>
-		<item name="android:colorBackground">@color/custom_gray_700</item>
+		<item name="android:colorBackground">@color/gray_700</item>
 		<item name="android:textColorPrimary">@color/yellow_gray_50</item>
 		<item name="android:textColorSecondary">@color/yellow_gray_400</item>
 	</style>
@@ -934,16 +934,16 @@
 
 		<!-- colors -->
 		<item name="android:colorAccent">@color/yellow_primary_700</item>
-		<item name="android:colorPrimary">@color/custom_gray_800</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
 		<item name="android:colorBackground">@color/yellow_gray_100</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_500</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Yellow" parent="android:ThemeOverlay.Material.ActionBar">
 		<item name="android:colorPrimary">@color/yellow_gray_50</item>
-		<item name="android:textColorPrimary">@color/custom_gray_800</item>
-		<item name="android:textColorSecondary">@color/custom_gray_800</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_800</item>
 	</style>
 
 
@@ -977,6 +977,7 @@
 		<item name="colorPollMostVoted">@color/original_primary_700</item>
 		<item name="colorAccentLight">@color/original_primary_600</item>
 		<item name="colorAccentLightest">@color/original_primary_800</item>
+		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Original</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dark.TrueBlack.Original" parent="Theme.Mastodon.Dark.TrueBlack">
@@ -984,6 +985,7 @@
 		<item name="colorPollMostVoted">@color/original_primary_700</item>
 		<item name="colorAccentLight">@color/original_primary_600</item>
 		<item name="colorAccentLightest">@color/original_primary_800</item>
+		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Original</item>
 	</style>
 
 	<style name="Theme.Mastodon.Light.Original" parent="Theme.Mastodon.Light">
@@ -991,17 +993,45 @@
 		<item name="colorPollMostVoted">@color/original_primary_700</item>
 		<item name="colorAccentLight">@color/original_primary_600</item>
 		<item name="colorAccentLightest">@color/original_primary_800</item>
+		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Original</item>
 	</style>
 
 	<style name="Theme.Mastodon.AutoLightDark.Original" parent="Theme.Mastodon.Light.Original"/>
 	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Original" parent="Theme.Mastodon.Light.Original"/>
 
+	<style name="Theme.Mastodon.Dialog.Alert.Dark.Original" parent="android:Theme.Material.Dialog.Alert">
+		<item name="android:windowTitleStyle">@style/alert_title</item>
+		<item name="android:dialogPreferredPadding">24dp</item>
+		<item name="android:windowBackground">@drawable/bg_alert</item>
+		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
+
+		<!-- colors -->
+		<item name="android:colorAccent">@color/original_primary_600</item>
+		<item name="android:colorPrimary">@color/gray_50</item>
+		<item name="android:colorBackground">@color/gray_700</item>
+		<item name="android:textColorPrimary">@color/gray_50</item>
+		<item name="android:textColorSecondary">@color/gray_400</item>
+	</style>
+
+	<style name="Theme.Mastodon.Dialog.Alert.Original" parent="android:Theme.Material.Light.Dialog.Alert">
+		<item name="android:windowTitleStyle">@style/alert_title</item>
+		<item name="android:dialogPreferredPadding">24dp</item>
+		<item name="android:windowBackground">@drawable/bg_alert</item>
+		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
+
+		<!-- colors -->
+		<item name="android:colorAccent">@color/original_primary_700</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
+		<item name="android:colorBackground">@color/gray_100</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
+	</style>
 
 	<style name="Theme.Mastodon.Toolbar" parent="android:ThemeOverlay.Material.ActionBar">
 		<item name="android:colorPrimary">@color/gray_50</item>
+		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
 		<item name="android:textColorPrimary">@color/gray_800</item>
 		<item name="android:textColorSecondary">@color/gray_800</item>
-		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Dark" parent="android:ThemeOverlay.Material.Dark.ActionBar">
@@ -1012,7 +1042,7 @@
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Dark.CustomBase" parent="android:ThemeOverlay.Material.Dark.ActionBar">
-		<item name="android:colorPrimary">@color/custom_gray_800</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
 		<item name="android:textColorPrimary">@color/gray_50</item>
 		<item name="android:textColorSecondary">@color/gray_50</item>
 	</style>

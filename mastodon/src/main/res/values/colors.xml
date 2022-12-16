@@ -5,12 +5,12 @@
 
 	<color name="fluent_default_icon_tint">?android:textColorPrimary</color>
 
-	<color name="gray_900">#121029</color>
-	<color name="gray_800t">#cc2b2938</color>
-	<color name="gray_800">#2b2938</color>
-	<color name="gray_700">#353454</color>
-	<color name="gray_600">#464666</color>
-	<color name="gray_500">#696685</color>
+	<color name="gray_900">#131010</color>
+	<color name="gray_800t">#cc1A1717</color>
+	<color name="gray_800">#1A1717</color>
+	<color name="gray_700">#252222</color>
+	<color name="gray_600">#3D3A3A</color>
+	<color name="gray_500">#636060</color>
 	<color name="gray_400">#9998b3</color>
 	<color name="gray_300">#d1d1de</color>
 	<color name="gray_200">#e6e6ed</color>
@@ -30,6 +30,13 @@
 	<color name="primary_700">#d92aad</color>
 	<color name="primary_800">#ae218a</color>
 	<color name="primary_900">#6d1556</color>
+
+	<!-- <color name="original_gray_900">#121029</color> -->
+	<!-- <color name="original_gray_800t">#cc2b2938</color> -->
+	<!-- <color name="original_gray_800">#2b2938</color> -->
+	<!-- <color name="original_gray_700">#353454</color> -->
+	<!-- <color name="original_gray_600">#464666</color> -->
+	<!-- <color name="original_gray_500">#696685</color> -->
 
 	<color name="original_primary_25">#fafaff</color>
 	<color name="original_primary_50">#f4f3ff</color>
@@ -90,13 +97,6 @@
 	<color name="yellow_primary_700">#574500</color>
 	<color name="yellow_primary_800">#3c2f00</color>
 	<color name="yellow_primary_900">#231b00</color>
-
-	<color name="custom_gray_900">#000000</color>
-	<color name="custom_gray_800t">#cc171717</color>
-	<color name="custom_gray_800">#171717</color>
-	<color name="custom_gray_700">#191919</color>
-	<color name="custom_gray_600">#212121</color>
-	<color name="custom_gray_500">#242424</color>
 
 	<color name="green_gray_400">#a2b095</color>
 	<color name="green_gray_300">#bdcbaf</color>
