@@ -5,22 +5,18 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.joinmastodon.android.R;
@@ -28,16 +24,12 @@ import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.model.Instance;
 import org.joinmastodon.android.model.catalog.CatalogInstance;
 import org.joinmastodon.android.ui.BetterItemAnimator;
-import org.joinmastodon.android.ui.DividerItemDecoration;
 import org.joinmastodon.android.ui.utils.UiUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import me.grishka.appkit.FragmentStackActivity;
-import me.grishka.appkit.Nav;
-import me.grishka.appkit.api.PaginatedList;
 import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.utils.MergeRecyclerAdapter;
 import me.grishka.appkit.utils.SingleViewRecyclerAdapter;
@@ -176,7 +168,7 @@ public class MegalodonLoginFragment extends InstanceCatalogFragment {
 		return mergeAdapter;
 	}
 
-	private class InstancesAdapter extends UsableRecyclerView.Adapter<InstanceViewHolder>{
+	private class InstancesAdapter extends UsableRecyclerView.Adapter<InstanceViewHolder> {
 		public InstancesAdapter(){
 			super(imgLoader);
 		}
