@@ -142,7 +142,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(100).start();
 				if (action == MotionEvent.ACTION_UP) v.performClick();
 			} else if (action == MotionEvent.ACTION_DOWN) {
-				v.animate().scaleX(0.9f).scaleY(0.9f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(50).start();
+				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(50).start();
 			}
 			return true;
 		}
