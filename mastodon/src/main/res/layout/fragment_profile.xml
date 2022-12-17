@@ -85,7 +85,7 @@
 						<LinearLayout
 							android:id="@+id/posts_btn"
 							android:layout_width="wrap_content"
-							android:layout_height="56dp"
+							android:layout_height="wrap_content"
 							android:layout_marginTop="12dp"
 							android:layout_marginEnd="12dp"
 							android:gravity="center_horizontal"
@@ -112,7 +112,7 @@
 						<LinearLayout
 							android:id="@+id/following_btn"
 							android:layout_width="wrap_content"
-							android:layout_height="56dp"
+							android:layout_height="wrap_content"
 							android:layout_marginTop="12dp"
 							android:layout_marginEnd="16dp"
 							android:padding="4dp"
@@ -140,7 +140,7 @@
 						<LinearLayout
 							android:id="@+id/followers_btn"
 							android:layout_width="wrap_content"
-							android:layout_height="56dp"
+							android:layout_height="wrap_content"
 							android:layout_marginTop="12dp"
 							android:layout_marginEnd="12dp"
 							android:padding="4dp"
