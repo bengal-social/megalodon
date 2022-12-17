@@ -9,3 +9,7 @@ Megalodon es una versión modificada de la <a href="https://github.com/mastodon/
 - <b>Seguir etiquetas</b>: vea envíos etiquetados directamente en su cronología de inicio siguiéndolas.
 - <b>Respuesta a solicitudes de seguimiento</b>: acepte o rechace solicitudes de seguimiento desde sus notificaciones o desde la lista dedicada.
 - <b>Eliminar y reescribir</b>: la tan querida función que hizo posible editar los envíos ante la falta de una función Editar propiamente dicha.
+- <b>Selector de idioma</b>: seleccione fácilmente el idioma de cada publicación que realice para que los filtros y la traducción funcionen correctamente. 
+- <b>Traducción</b>: ¡Traduce fácilmente las publicaciones dentro de Megalodon! Solo funciona si la función también está disponible en su Mastodon Web. 
+- <b>Indicador de visibilidad de publicación</b>: al abrir o responder a una publicación, se mostrará un ícono útil que indica la visibilidad de la publicación. 
+- <b>Temas de color</b>: si no te gusta el color rosa predeterminado (el tiburón te está juzgando en silencio), los temas de color de Moshidon te ayudarán.

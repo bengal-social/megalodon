@@ -1,5 +1,6 @@
-- Se añadió un selector de idiomas
-- Se incluye una función para traducir
-- Mejora la semántica para votar en encuestas (botones de opción y casillas)
-- Permite votar por varias opciones en las encuestas
-- Corrige varios defectos
+- Agregado un selector de idiomas
+- Agregada una función de traducción
+- Mejorar la semántica para votar en encuestas (botones de radio y casillas de verificación)
+- Agregada la opción para permitir votar por múltiples opciones en las encuestas
+- Nueva pantalla de inicio de sesión
+- Corrección de errores

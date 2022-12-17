@@ -56,4 +56,8 @@
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_confirm_clear_recent_languages">Êtes-vous sûr de vouloir effacer vos langues récemment utilisées \?</string>
     <string name="sk_clear_recent_languages">Effacer les langues récemment utilisées</string>
+    <string name="sk_example_domain">exemple.social</string>
+    <string name="sk_welcome_title">Bienvenue !</string>
+    <string name="sk_welcome_text">Le requin vous salue ! Pour commencer, veuillez entrer le nom de domaine de votre instance personnelle ci-dessous.</string>
+    <string name="sk_color_theme_material3">Système</string>
 </resources>

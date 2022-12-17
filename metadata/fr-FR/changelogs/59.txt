@@ -2,4 +2,5 @@
 - Ajout d'une fonction de traduction
 - Amélioration de la sémantique pour voter sur les sondages (boutons radio et cases à cocher)
 - Ajout d'une option pour permettre de voter pour plusieurs options dans les sondages
+- Nouvel écran de connexion
 - Corrections de bogues

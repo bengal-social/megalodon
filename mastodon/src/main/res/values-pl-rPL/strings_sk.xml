@@ -15,7 +15,7 @@
     <string name="sk_mark_media_as_sensitive">Oznacz jako wrażliwe</string>
     <string name="sk_user_post_notifications_on">Włączono powiadomienia dla postu %s</string>
     <string name="sk_user_post_notifications_off">Wyłączono powiadomienia dla postu %s</string>
-    <string name="sk_federated_timeline">Globalne</string>
+    <string name="sk_federated_timeline">fediwersum</string>
     <string name="sk_federated_timeline_info_banner">To są najnowsze post ze znanej sieci fediwersum dla twojego serwera.</string>
     <string name="sk_update_available">Megalodon %s jest dostępny do pobrania.</string>
     <string name="sk_update_ready">Megalodon %s został pobrany i jest gotowy do instalacji.</string>
@@ -56,4 +56,7 @@
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_confirm_clear_recent_languages">Czy na pewno chcesz wyczyścić ostatnio użyte języki\?</string>
     <string name="sk_clear_recent_languages">Wyczyść ostatnio użyte języki</string>
+    <string name="sk_example_domain">przykład.social</string>
+    <string name="sk_welcome_title">Witaj!</string>
+    <string name="sk_welcome_text">Rekin się kłania! Aby zacząć, wpisz adres swojej instancji poniżej.</string>
 </resources>

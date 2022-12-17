@@ -56,4 +56,8 @@
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_confirm_clear_recent_languages">¿Confirma que quiere vaciar sus idiomas usados recientemente\?</string>
     <string name="sk_clear_recent_languages">Vaciar idiomas usados recientemente</string>
+    <string name="sk_welcome_text">¡El tiburón te saluda! Para empezar, introduzca a continuación el nombre del dominio de su instancia de origen.</string>
+    <string name="sk_example_domain">example.social</string>
+    <string name="sk_welcome_title">¡Bienvenidos!</string>
+    <string name="sk_color_theme_material3">Sistema</string>
 </resources>

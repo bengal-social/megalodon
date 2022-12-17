@@ -8,4 +8,8 @@ Megalodon est une version modifiée de <a href="https://github.com/mastodon/mast
 - <b>Épingler des publications</b> : Épinglez vos publications les plus importantes à votre profil et voyez ce que les autres ont épinglé en utilisant l'onglet "Épinglé".
 - <b>Suivez des hashtags</b> : Voir les nouveaux messages avec des hashtags spécifiques directement dans votre timeline d'accueil en les suivant.
 - <b>Répondre aux demandes de suivi</b> : Acceptez ou refusez les demandes de suivi à partir de vos notifications ou de la liste dédiée aux demandes de suivi.
-- <b>Supprimer et reformuler</b> : La fonctionnalité la plus appréciée qui rend l'édition possible sans fonction d'édition réelle.
+- <b>Supprimer et rééditer</b> : La fonctionnalité la plus appréciée qui rend l'édition possible sans fonction d'édition réelle.
+- <b>Sélecteur de langue</b> : sélectionnez facilement la langue de chaque message que vous publiez afin que les filtres et la traduction fonctionnent correctement.
+- <b>Traduction</b> : traduisez facilement les publications directement dans Megalodon ! Ne fonctionne que si la fonctionnalité est également disponible sur votre instance Mastodon.
+- <b>Indicateur de visibilité de la publication</b> : lors de l'ouverture ou de la réponse à une publication, une icône indiquant la visibilité de la publication sera affichée.
+- <b>Thèmes de couleurs</b> : si vous n'aimez pas la couleur rose par défaut (le requin vous juge en silence), les thèmes de couleurs de Moshidon sont là pour vous.

@@ -56,4 +56,7 @@
     <string name="sk_no_update_available">Немає доступних оновлень</string>
     <string name="sk_list_timelines">Списки</string>
     <string name="sk_settings_show_federated_timeline">Показувати федеративну стрічку</string>
+    <string name="sk_example_domain">example.social</string>
+    <string name="sk_welcome_title">Вітаємо!</string>
+    <string name="sk_welcome_text">Акулка вас вітає! Щоб розпочати, введіть нижче доменне ім’я вашого інстансу.</string>
 </resources>
