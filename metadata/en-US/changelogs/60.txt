@@ -1,0 +1,5 @@
+- Material You color theme
+- Replace dark gray tones for all themes
+- More distinct filled boost icon
+- Animations for interaction buttons
+- Bugfixes (Crash on some posts, "Lists with", default posting language)
