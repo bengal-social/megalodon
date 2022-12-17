@@ -5,12 +5,13 @@
 
 	<color name="fluent_default_icon_tint">?android:textColorPrimary</color>
 
-	<color name="gray_900">#131010</color>
-	<color name="gray_800t">#cc1A1717</color>
-	<color name="gray_800">#1A1717</color>
-	<color name="gray_700">#252222</color>
-	<color name="gray_600">#3D3A3A</color>
-	<color name="gray_500">#636060</color>
+	<color name="gray_900">#110c10</color>
+	<color name="gray_800t">#cc191417</color>
+	<color name="gray_800">#191417</color>
+	<color name="gray_700">#231f22</color>
+	<color name="gray_600">#3b373a</color>
+	<color name="gray_500">#625d60</color>
+
 	<color name="gray_400">#9998b3</color>
 	<color name="gray_300">#d1d1de</color>
 	<color name="gray_200">#e6e6ed</color>
