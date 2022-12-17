@@ -1,0 +1,4 @@
+- Diperbaiki perenderan tag HTML dan aktifkan perenderan format Markdown
+- Dimulai <a href="https://translate.codeberg.org/projects/megalodon">proyek terjemahkan Weblate</a>
+- Ditambahkan saklar untuk lini masa Federasi
+- Versi 52-54 adalah perubahan kecil untuk sebuah rilis di Google Play

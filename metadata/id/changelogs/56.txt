@@ -1,0 +1,6 @@
+- Tema warna kustom oleh @LucasGGamerM
+- Logo teks "megalodon" baru dikirim oleh @LucasGGamerM
+- Pencarian emoji lebih baik saat menulis kiriman
+- Diubah antarmuka pemungutan suara (tampilkan suara sendiri, selalu tampilkan tombol kirim suara, jangan potong jawaban panjang)
+- Ditambahkan pengaturan notifikasi dorong untuk notifikasi kiriman
+- Perbaikan kutu

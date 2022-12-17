@@ -9,3 +9,7 @@ Megalodon adalah versi modifikasi <a href="https://github.com/mastodon/mastodon-
 - <b>Ikuti tagar</b>: Lihat kiriman baru dari tagar spesifik secara langsung dalam lini masa beranda Anda dengan mengikutinya.
 - <b>Menjawab permintaan pengikut</b>: Tolak atau terima permintaan pengikut dari notifikasi Anda atau daftar permintaan pengikut khusus.
 - <b>Hapus dan draf ulang</b>: Fitur yang banyak disukai yang membuat penyuntingan memungkinkan tanpa fungsi penyuntingan yang asli.
+- <b>Pemilih bahasa</b>: Pilih bahasa untuk setiap kiriman tanpa kesulitan supaya saringan dan terjemahan bekerja dengan benar.
+- <b>Terjemahan</b>: Terjemahkan kiriman dalam Megalodon dengan mudah! Hanya bekerja jika fitur juga tersedia di Mastodon Web Anda.
+- <b>Indikator keterlihatan kiriman</b>: Ketika membuka atau membalas kiriman, sebuah ikon kecil yang menandakan keterlihatan kiriman akan ditampilkan.
+- <b>Tema warna</b>: Jika Anda tidak ingin warna Merah Muda bawaan (hiunya diam-diam menghakimimu), tema warna Moshidon akan menyelesaikan masalah itu.

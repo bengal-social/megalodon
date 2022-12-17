@@ -1,0 +1,6 @@
+- Ditambahkan pemilih bahasa
+- Ditambahkan kemampuan terjemahan
+- Ditingkatkan semantik untuk kiriman suara pada pemungutan suara (tombol radio dan kotak centang)
+- Ditambahkan opsi untuk perbolehkan mengirim suara beberapa opsi pada pemungutan suara
+- Layar masuk baru
+- Perbaikan kutu
