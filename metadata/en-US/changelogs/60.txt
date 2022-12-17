@@ -1,4 +1,4 @@
-- Material You color theme
+- New color themes: Material You and Red
 - New dark gray tones for all themes
 - More distinct filled boost icon
 - Animations for interaction buttons
