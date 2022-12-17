@@ -1011,12 +1011,6 @@
 		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
 	</style>
 
-	<style name="Widget.Mastodon.Toolbar" parent="android:Widget.Material.Toolbar">
-		<item name="android:contentInsetStartWithNavigation">0dp</item>
-		<item name="android:titleMarginEnd">0dp</item>
-		<item name="android:titleMarginStart">0dp</item>
-	</style>
-
 	<style name="Theme.Mastodon.Toolbar.Dark.CustomBase" parent="android:ThemeOverlay.Material.Dark.ActionBar">
 		<item name="android:colorPrimary">@color/custom_gray_800</item>
 		<item name="android:textColorPrimary">@color/gray_50</item>
