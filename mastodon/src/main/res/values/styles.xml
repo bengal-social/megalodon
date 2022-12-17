@@ -169,12 +169,6 @@
 		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
 	</style>
 
-	<style name="Widget.Mastodon.Toolbar" parent="android:Widget.Material.Toolbar">
-		<item name="android:contentInsetStartWithNavigation">0dp</item>
-		<item name="android:titleMarginEnd">0dp</item>
-		<item name="android:titleMarginStart">0dp</item>
-	</style>
-
 	<style name="Theme.Mastodon.Toolbar.Profile">
 		<item name="android:textColorPrimary">@color/gray_50</item>
 		<item name="android:textColorSecondary">@color/gray_50</item>
