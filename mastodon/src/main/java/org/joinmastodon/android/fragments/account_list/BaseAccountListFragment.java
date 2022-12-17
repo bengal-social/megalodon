@@ -23,6 +23,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
 import org.joinmastodon.android.api.requests.accounts.SetAccountFollowed;
 import org.joinmastodon.android.api.session.AccountSessionManager;
+import org.joinmastodon.android.fragments.ListTimelinesFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.report.ReportReasonChoiceFragment;
 import org.joinmastodon.android.model.Account;
@@ -286,6 +287,7 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 			menu.findItem(R.id.mute).setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
 			menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
 			menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getDisplayUsername()));
+			menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.sk_lists_with_user, account.getDisplayUsername())).setVisible(relationship.following);
 			MenuItem hideBoosts=menu.findItem(R.id.hide_boosts);
 			MenuItem manageUserLists=menu.findItem(R.id.manage_user_lists);
 			if(relationship.following){
@@ -372,6 +374,12 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 						})
 						.wrapProgress(getActivity(), R.string.loading, false)
 						.exec(accountID);
+			}else if(id==R.id.manage_user_lists){
+				final Bundle args=new Bundle();
+				args.putString("account", accountID);
+				args.putString("profileAccount", account.id);
+				args.putString("profileDisplayUsername", account.getDisplayUsername());
+				Nav.go(getActivity(), ListTimelinesFragment.class, args);
 			}
 			return true;
 		}
