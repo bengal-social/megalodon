@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,10 +25,8 @@ import org.joinmastodon.android.model.StatusPrivacy;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.parceler.Parcels;
 
-import java.text.DecimalFormat;
-
 import me.grishka.appkit.Nav;
-import me.grishka.appkit.utils.BindableViewHolder;
+import me.grishka.appkit.utils.CubicBezierInterpolator;
 import me.grishka.appkit.utils.V;
 
 public class FooterStatusDisplayItem extends StatusDisplayItem{
@@ -45,6 +48,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 	public static class Holder extends StatusDisplayItem.Holder<FooterStatusDisplayItem>{
 		private final TextView reply, boost, favorite;
 		private final ImageView share;
+		private static final AnimationSet scaleDown, scaleUp;
 
 		private final View.AccessibilityDelegate buttonAccessibilityDelegate=new View.AccessibilityDelegate(){
 			@Override
@@ -54,6 +58,27 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 				info.setText(item.parentFragment.getString(descriptionForId(host.getId())));
 			}
 		};
+
+		static {
+			// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
+			Animation scaleDownAnim = new ScaleAnimation(1, 0.85f, 1, 0.85f, Animation.ABSOLUTE, V.dp(20), Animation.RELATIVE_TO_SELF, 0.5f);
+			Animation scaleUpAnim = new ScaleAnimation(0.85f, 1, 0.85f, 1, Animation.ABSOLUTE, V.dp(20), Animation.RELATIVE_TO_SELF, 0.5f);
+			Animation opacityOutAnim = new AlphaAnimation(1, 0.75f);
+			Animation opacityInAnim = new AlphaAnimation(0.75f, 1);
+
+			scaleDown = new AnimationSet(true);
+			scaleDown.setDuration(350);
+			scaleDown.setInterpolator(CubicBezierInterpolator.DEFAULT);
+			scaleDown.setFillAfter(true);
+			scaleDown.addAnimation(scaleDownAnim);
+			scaleDown.addAnimation(opacityOutAnim);
+
+			scaleUp = new AnimationSet(true);
+			scaleUp.setDuration(100);
+			scaleUp.setInterpolator(CubicBezierInterpolator.DEFAULT);
+			scaleUp.addAnimation(scaleUpAnim);
+			scaleUp.addAnimation(opacityInAnim);
+		}
 
 		public Holder(Activity activity, ViewGroup parent){
 			super(activity, R.layout.display_item_footer, parent);
@@ -70,12 +95,16 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			View boost=findViewById(R.id.boost_btn);
 			View favorite=findViewById(R.id.favorite_btn);
 			View share=findViewById(R.id.share_btn);
+			reply.setOnTouchListener(this::onButtonTouch);
 			reply.setOnClickListener(this::onReplyClick);
 			reply.setAccessibilityDelegate(buttonAccessibilityDelegate);
+			boost.setOnTouchListener(this::onButtonTouch);
 			boost.setOnClickListener(this::onBoostClick);
 			boost.setAccessibilityDelegate(buttonAccessibilityDelegate);
+			favorite.setOnTouchListener(this::onButtonTouch);
 			favorite.setOnClickListener(this::onFavoriteClick);
 			favorite.setAccessibilityDelegate(buttonAccessibilityDelegate);
+			share.setOnTouchListener(this::onButtonTouch);
 			share.setOnClickListener(this::onShareClick);
 			share.setAccessibilityDelegate(buttonAccessibilityDelegate);
 		}
@@ -102,25 +131,38 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void onReplyClick(View v){
+			v.startAnimation(scaleUp);
 			Bundle args=new Bundle();
 			args.putString("account", item.accountID);
 			args.putParcelable("replyTo", Parcels.wrap(item.status));
 			Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 		}
 
+		private boolean onButtonTouch(View v, MotionEvent event){
+			if (event.getAction() == MotionEvent.ACTION_UP) v.performClick();
+			else if (event.getAction() == MotionEvent.ACTION_DOWN) v.startAnimation(scaleDown);
+			else if (event.getAction() == MotionEvent.ACTION_CANCEL) v.startAnimation(scaleUp);
+			return true;
+		}
+
 		private void onBoostClick(View v){
-			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setReblogged(item.status, !item.status.reblogged);
-			boost.setSelected(item.status.reblogged);
-			bindButton(boost, item.status.reblogsCount);
+			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setReblogged(item.status, !item.status.reblogged, r->{
+				v.startAnimation(scaleUp);
+				boost.setSelected(item.status.reblogged);
+				bindButton(boost, r.reblogsCount);
+			});
 		}
 
 		private void onFavoriteClick(View v){
-			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setFavorited(item.status, !item.status.favourited);
-			favorite.setSelected(item.status.favourited);
-			bindButton(favorite, item.status.favouritesCount);
+			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setFavorited(item.status, !item.status.favourited, r->{
+				v.startAnimation(scaleUp);
+				favorite.setSelected(r.favourited);
+				bindButton(favorite, r.favouritesCount);
+			});
 		}
 
 		private void onShareClick(View v){
+			v.startAnimation(scaleUp);
 			Intent intent=new Intent(Intent.ACTION_SEND);
 			intent.setType("text/plain");
 			intent.putExtra(Intent.EXTRA_TEXT, item.status.url);
