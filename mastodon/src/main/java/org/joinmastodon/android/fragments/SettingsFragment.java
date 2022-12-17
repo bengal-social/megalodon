@@ -699,6 +699,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			button=findViewById(R.id.color_picker_button);
 			popupMenu=new PopupMenu(getActivity(), button, Gravity.CENTER_HORIZONTAL);
 			popupMenu.inflate(R.menu.color_picker);
+			popupMenu.getMenu().findItem(R.id.m3_color).setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S);
 			popupMenu.setOnMenuItemClickListener(SettingsFragment.this::onColorPreferenceClick);
 			button.setOnTouchListener(popupMenu.getDragToOpenListener());
 			button.setOnClickListener(v->popupMenu.show());
