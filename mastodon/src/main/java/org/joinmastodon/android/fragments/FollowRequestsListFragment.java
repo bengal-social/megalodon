@@ -302,7 +302,7 @@ public class FollowRequestsListFragment extends BaseRecyclerFragment<FollowReque
 				RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter = getBindingAdapter();
 				if (!rel.requested && !rel.followedBy && adapter != null) {
 					data.remove(item);
-					adapter.notifyItemRemoved(getBindingAdapterPosition());
+					adapter.notifyItemRemoved(getLayoutPosition());
 				} else {
 					rebind();
 				}

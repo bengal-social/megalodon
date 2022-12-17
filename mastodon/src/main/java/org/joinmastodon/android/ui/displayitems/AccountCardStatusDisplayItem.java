@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.model.Account;
@@ -23,7 +25,9 @@ import org.joinmastodon.android.ui.utils.CustomEmojiHelper;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.ui.views.ProgressBarButton;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import me.grishka.appkit.imageloader.ImageLoaderViewHolder;
 import me.grishka.appkit.imageloader.requests.ImageLoaderRequest;
@@ -154,10 +158,18 @@ public class AccountCardStatusDisplayItem extends StatusDisplayItem{
 
 		private void onFollowRequestButtonClick(View v) {
 			itemView.setHasTransientState(true);
-			UiUtils.handleFollowRequest((Activity) v.getContext(), item.account, item.parentFragment.getAccountID(), item.notification.id , v == acceptButton, relationship, rel -> {
+			UiUtils.handleFollowRequest((Activity) v.getContext(), item.account, item.parentFragment.getAccountID(), null, v == acceptButton, relationship, rel -> {
 				itemView.setHasTransientState(false);
 				item.parentFragment.putRelationship(item.account.id, rel);
-				rebind();
+				RecyclerView.Adapter<? extends RecyclerView.ViewHolder> adapter = getBindingAdapter();
+				if (!rel.requested && !rel.followedBy && adapter != null) {
+					int index = item.parentFragment.getDisplayItems().indexOf(item);
+					item.parentFragment.getDisplayItems().remove(index);
+					item.parentFragment.getDisplayItems().remove(index - 1);
+					adapter.notifyItemRangeRemoved(getLayoutPosition()-1, 2);
+				} else {
+					rebind();
+				}
 			});
 		}
 
