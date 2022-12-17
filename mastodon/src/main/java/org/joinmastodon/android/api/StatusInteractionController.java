@@ -11,6 +11,7 @@ import org.joinmastodon.android.events.StatusCountersUpdatedEvent;
 import org.joinmastodon.android.model.Status;
 
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
@@ -25,7 +26,7 @@ public class StatusInteractionController{
 		this.accountID=accountID;
 	}
 
-	public void setFavorited(Status status, boolean favorited){
+	public void setFavorited(Status status, boolean favorited, Consumer<Status> cb){
 		if(!Looper.getMainLooper().isCurrentThread())
 			throw new IllegalStateException("Can only be called from main thread");
 
@@ -38,6 +39,8 @@ public class StatusInteractionController{
 					@Override
 					public void onSuccess(Status result){
 						runningFavoriteRequests.remove(status.id);
+						result.favouritesCount = Math.max(0, status.favouritesCount) + (favorited ? 1 : -1);
+						cb.accept(result);
 						E.post(new StatusCountersUpdatedEvent(result));
 					}
 
@@ -46,24 +49,17 @@ public class StatusInteractionController{
 						runningFavoriteRequests.remove(status.id);
 						error.showToast(MastodonApp.context);
 						status.favourited=!favorited;
-						if(favorited)
-							status.favouritesCount--;
-						else
-							status.favouritesCount++;
+						cb.accept(status);
 						E.post(new StatusCountersUpdatedEvent(status));
 					}
 				})
 				.exec(accountID);
 		runningFavoriteRequests.put(status.id, req);
 		status.favourited=favorited;
-		if(favorited)
-			status.favouritesCount++;
-		else
-			status.favouritesCount--;
 		E.post(new StatusCountersUpdatedEvent(status));
 	}
 
-	public void setReblogged(Status status, boolean reblogged){
+	public void setReblogged(Status status, boolean reblogged, Consumer<Status> cb){
 		if(!Looper.getMainLooper().isCurrentThread())
 			throw new IllegalStateException("Can only be called from main thread");
 
@@ -76,6 +72,8 @@ public class StatusInteractionController{
 					@Override
 					public void onSuccess(Status result){
 						runningReblogRequests.remove(status.id);
+						result.reblogsCount = Math.max(0, status.reblogsCount) + (reblogged ? 1 : -1);
+						cb.accept(result);
 						E.post(new StatusCountersUpdatedEvent(result));
 					}
 
@@ -84,24 +82,21 @@ public class StatusInteractionController{
 						runningReblogRequests.remove(status.id);
 						error.showToast(MastodonApp.context);
 						status.reblogged=!reblogged;
-						if(reblogged)
-							status.reblogsCount--;
-						else
-							status.reblogsCount++;
+						cb.accept(status);
 						E.post(new StatusCountersUpdatedEvent(status));
 					}
 				})
 				.exec(accountID);
 		runningReblogRequests.put(status.id, req);
 		status.reblogged=reblogged;
-		if(reblogged)
-			status.reblogsCount++;
-		else
-			status.reblogsCount--;
 		E.post(new StatusCountersUpdatedEvent(status));
 	}
 
 	public void setBookmarked(Status status, boolean bookmarked){
+		setBookmarked(status, bookmarked, r->{});
+	}
+
+	public void setBookmarked(Status status, boolean bookmarked, Consumer<Status> cb){
 		if(!Looper.getMainLooper().isCurrentThread())
 			throw new IllegalStateException("Can only be called from main thread");
 
@@ -114,6 +109,7 @@ public class StatusInteractionController{
 					@Override
 					public void onSuccess(Status result){
 						runningBookmarkRequests.remove(status.id);
+						cb.accept(result);
 						E.post(new StatusCountersUpdatedEvent(result));
 					}
 
@@ -122,6 +118,7 @@ public class StatusInteractionController{
 						runningBookmarkRequests.remove(status.id);
 						error.showToast(MastodonApp.context);
 						status.bookmarked=!bookmarked;
+						cb.accept(status);
 						E.post(new StatusCountersUpdatedEvent(status));
 					}
 				})
