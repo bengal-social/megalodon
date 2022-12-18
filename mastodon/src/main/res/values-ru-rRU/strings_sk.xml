@@ -53,4 +53,12 @@
     <string name="sk_clear_recent_languages">Очистить недавно использованные языки</string>
     <string name="sk_confirm_clear_recent_languages">Вы точно хотите очистить недавно использованные языки\?</string>
     <string name="sk_welcome_text">Акула приветствует вас! Чтобы начать, пожалуйста, введите домен своего домашнего сервера (инстанса) ниже.</string>
+    <string name="sk_poll_allow_multiple">Разрешить несколько вариантов ответа</string>
+    <string name="sk_user_post_notifications_on">Уведомления о постах %s включены</string>
+    <string name="sk_user_post_notifications_off">Уведомления о новых постах %s отключены</string>
+    <string name="sk_color_theme_material3">Система</string>
+    <string name="sk_settings_show_boosts">Показать репосты</string>
+    <string name="sk_settings_show_interaction_counts">Показывать количество взаимодействий</string>
+    <string name="sk_disable_marquee">Отключить прокручиваемый текст в заголовках</string>
+    <string name="sk_color_theme_red">Красный</string>
 </resources>
