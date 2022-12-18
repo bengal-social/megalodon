@@ -59,4 +59,6 @@
     <string name="sk_example_domain">example.social</string>
     <string name="sk_welcome_title">환영합니다!</string>
     <string name="sk_welcome_text">상어가 당신을 맞이합니다! 시작하기 위해, 아래에 사용하시는 인스턴스의 도메인 이름을 입력해주세요.</string>
+    <string name="sk_color_theme_material3">시스템</string>
+    <string name="sk_color_theme_red">빨간색</string>
 </resources>
