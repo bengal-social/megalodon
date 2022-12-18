@@ -99,6 +99,18 @@
 	<color name="yellow_primary_800">#3c2f00</color>
 	<color name="yellow_primary_900">#231b00</color>
 
+	<color name="red_primary_25">#FFFBFA</color>
+	<color name="red_primary_50">#FEF3F2</color>
+	<color name="red_primary_100">#FEE4E2</color>
+	<color name="red_primary_200">#FECDCA</color>
+	<color name="red_primary_300">#FDA29B</color>
+	<color name="red_primary_400">#F97066</color>
+	<color name="red_primary_500">#F04438</color>
+	<color name="red_primary_600">#D92D20</color>
+	<color name="red_primary_700">#B42318</color>
+	<color name="red_primary_800">#912018</color>
+	<color name="red_primary_900">#7A271A</color>
+
 	<color name="green_gray_400">#a2b095</color>
 	<color name="green_gray_300">#bdcbaf</color>
 	<color name="green_gray_200">#d9e7ca</color>
@@ -130,6 +142,14 @@
 	<color name="yellow_gray_50t">#ccfff0ca</color>
 	<color name="yellow_gray_50">#fff0ca</color>
 	<color name="yellow_gray_25">#f7f8fa</color>
+
+	<color name="red_gray_400">#d69f84</color>
+	<color name="red_gray_300">#f4ba9e</color>
+	<color name="red_gray_200">#ffdbcb</color>
+	<color name="red_gray_100">#ffedea</color>
+	<color name="red_gray_50t">#ffede6ca</color>
+	<color name="red_gray_50">#ffede6</color>
+	<color name="red_gray_25">#f7f8fa</color>
 
 	<color name="error_25">#FFFBFA</color>
 	<color name="error_50">#FEF3F2</color>

@@ -946,30 +946,95 @@
 		<item name="android:textColorSecondary">@color/gray_800</item>
 	</style>
 
-
-	<style name="Theme.Mastodon.Dark.Red" parent="Theme.Mastodon.Dark">
-		<item name="android:colorAccent">@color/error_400</item>
-		<item name="colorPollMostVoted">@color/error_700</item>
-		<item name="colorAccentLight">@color/error_600</item>
-		<item name="colorAccentLightest">@color/error_800</item>
+	<style name="Theme.Mastodon.Light.Red" parent="Theme.Mastodon.Light.CustomBase">
+		<item name="android:colorAccent">@color/red_primary_700</item>
+		<item name="android:colorBackground">@color/red_gray_100</item>
+		<item name="colorButtonText">@color/red_gray_50</item>
+		<item name="colorBackgroundLight">@color/red_gray_50</item>
+		<item name="colorBackgroundLightest">@color/red_gray_25</item>
+		<item name="android:statusBarColor">@color/red_gray_50</item>
+		<item name="android:navigationBarColor">@color/red_navigation_bar_bg</item>
+		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Red</item>
+		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Red</item>
+		<item name="colorPollMostVoted">@color/red_primary_500</item>
+		<item name="colorPollVoted">@color/red_gray_300</item>
+		<item name="colorAccentLight">@color/red_primary_600</item>
+		<item name="colorSearchField">@color/red_gray_200</item>
+		<item name="colorTabInactive">@color/red_gray_400</item>
+		<item name="colorAccentLightest">@color/red_primary_100</item>
+		<item name="colorSecondary">@color/red_gray_50</item>
 	</style>
 
-	<style name="Theme.Mastodon.Dark.TrueBlack.Red" parent="Theme.Mastodon.Dark.TrueBlack">
-		<item name="android:colorAccent">@color/error_400</item>
-		<item name="colorPollMostVoted">@color/error_700</item>
-		<item name="colorAccentLight">@color/error_600</item>
-		<item name="colorAccentLightest">@color/error_800</item>
+	<style name="Theme.Mastodon.Dark.Red" parent="Theme.Mastodon.Dark.CustomBase">
+		<item name="android:colorAccent">@color/red_primary_400</item>
+		<item name="android:colorPrimary">@color/red_gray_50</item>
+		<item name="android:textColorPrimary">@color/red_gray_50</item>
+		<item name="android:textColorSecondary">@color/red_gray_400</item>
+		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Red</item>
+		<item name="colorPollMostVoted">@color/red_primary_700</item>
+		<item name="colorAccentLight">@color/red_primary_600</item>
+		<item name="colorAccentLightest">@color/red_primary_800</item>
+		<item name="colorTabInactive">@color/red_gray_400</item>
+		<item name="colorSearchHint">@color/red_gray_300</item>
+		<item name="colorSecondary">@color/red_gray_50</item>
 	</style>
 
-	<style name="Theme.Mastodon.Light.Red" parent="Theme.Mastodon.Light">
-		<item name="android:colorAccent">@color/error_700</item>
-		<item name="colorPollMostVoted">@color/error_800</item>
-		<item name="colorAccentLight">@color/error_600</item>
-		<item name="colorAccentLightest">@color/error_800</item>
+	<style name="Theme.Mastodon.Dark.TrueBlack.Red" parent="Theme.Mastodon.Dark.Red">
+		<item name="android:colorAccent">@color/red_primary_400</item>
+		<item name="colorPollMostVoted">@color/red_primary_700</item>
+		<item name="colorAccentLight">@color/red_primary_600</item>
+		<item name="colorAccentLightest">@color/red_primary_800</item>
+		<item name="colorSecondary">@color/red_gray_50</item>
+
+		<item name="colorPollVoted">@color/gray_800</item>
+		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorBackgroundPopup">@color/gray_900</item>
+		<item name="android:navigationBarColor">@color/black</item>
+		<item name="android:colorBackground">@color/black</item>
+		<item name="android:statusBarColor">@color/black</item>
+		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
+		<item name="colorBackgroundLight">@color/black</item>
+		<item name="colorWindowBackground">@color/black</item>
+		<item name="colorButtonText">@color/black</item>
+		<item name="colorBackgroundLightest">@color/black</item>
 	</style>
 
 	<style name="Theme.Mastodon.AutoLightDark.Red" parent="Theme.Mastodon.Light.Red"/>
 	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Red" parent="Theme.Mastodon.Light.Red"/>
+
+	<style name="Theme.Mastodon.Dialog.Alert.Dark.Red" parent="android:Theme.Material.Dialog.Alert">
+		<item name="android:windowTitleStyle">@style/alert_title</item>
+		<item name="android:dialogPreferredPadding">24dp</item>
+		<item name="android:windowBackground">@drawable/bg_alert</item>
+		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
+
+		<!-- colors -->
+		<item name="android:colorAccent">@color/red_primary_600</item>
+		<item name="android:colorPrimary">@color/red_gray_50</item>
+		<item name="android:colorBackground">@color/gray_700</item>
+		<item name="android:textColorPrimary">@color/red_gray_50</item>
+		<item name="android:textColorSecondary">@color/red_gray_400</item>
+	</style>
+
+	<style name="Theme.Mastodon.Dialog.Alert.Red" parent="android:Theme.Material.Light.Dialog.Alert">
+		<item name="android:windowTitleStyle">@style/alert_title</item>
+		<item name="android:dialogPreferredPadding">24dp</item>
+		<item name="android:windowBackground">@drawable/bg_alert</item>
+		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
+
+		<!-- colors -->
+		<item name="android:colorAccent">@color/red_primary_700</item>
+		<item name="android:colorPrimary">@color/gray_800</item>
+		<item name="android:colorBackground">@color/red_gray_100</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_500</item>
+	</style>
+
+	<style name="Theme.Mastodon.Toolbar.Red" parent="android:ThemeOverlay.Material.ActionBar">
+		<item name="android:colorPrimary">@color/red_gray_50</item>
+		<item name="android:textColorPrimary">@color/gray_800</item>
+		<item name="android:textColorSecondary">@color/gray_800</item>
+	</style>
 
 
 	<style name="Theme.Mastodon.Dark.Original" parent="Theme.Mastodon.Dark">

@@ -19,7 +19,7 @@
 	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Yellow" parent="Theme.Mastodon.Dark.TrueBlack.Yellow"/>
 
 	<style name="Theme.Mastodon.AutoLightDark.Red" parent="Theme.Mastodon.Dark.Red"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Red" parent="Theme.Mastodon.Dark.Red"/>
+	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Red" parent="Theme.Mastodon.Dark.TrueBlack.Red"/>
 
 	<style name="Theme.Mastodon.AutoLightDark.Material3" parent="Theme.Mastodon.Dark.Material3"/>
 	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Material3" parent="Theme.Mastodon.Dark.TrueBlack.Material3"/>

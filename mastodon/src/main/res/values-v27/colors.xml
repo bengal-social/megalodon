@@ -5,4 +5,5 @@
 	<color name="blue_navigation_bar_bg">@color/blue_gray_50</color>
 	<color name="brown_navigation_bar_bg">@color/brown_gray_50</color>
 	<color name="yellow_navigation_bar_bg">@color/yellow_gray_50</color>
+	<color name="red_navigation_bar_bg">@color/red_gray_50</color>
 </resources>
