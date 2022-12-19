@@ -3,6 +3,8 @@ package org.joinmastodon.android.ui.utils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -20,6 +22,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.provider.OpenableColumns;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -586,5 +590,16 @@ public class UiUtils{
 			}
 		}
 		launchWebBrowser(context, url);
+	}
+
+	public static void copyText(Context context, String text) {
+		context.getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText(null, text));
+		// fork: always show toast because MIUI doesn't play along
+		// if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
+		Toast.makeText(context, R.string.text_copied, Toast.LENGTH_SHORT).show();
+		// }
+		Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+		else vibrator.vibrate(50);
 	}
 }
