@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Outline;
@@ -16,6 +17,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
@@ -284,6 +287,9 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
 				Toast.makeText(getActivity(), R.string.text_copied, Toast.LENGTH_SHORT).show();
 			}
+			Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+			else vibrator.vibrate(50);
 			return true;
 		});
 
