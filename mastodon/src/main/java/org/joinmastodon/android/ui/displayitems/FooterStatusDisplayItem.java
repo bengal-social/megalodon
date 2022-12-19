@@ -123,8 +123,6 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 
 		private boolean onButtonTouch(View v, MotionEvent event){
 			int action = event.getAction();
-			// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
-			v.setPivotX(V.dp(20));
 			long eventDuration = event.getEventTime() - event.getDownTime();
 			if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
 				touchingView = null;
@@ -134,6 +132,8 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 				else v.startAnimation(opacityIn);
 			} else if (action == MotionEvent.ACTION_DOWN) {
 				touchingView = v;
+				// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
+				v.setPivotX(V.dp(20));
 				v.postDelayed(longClickRunnable, ViewConfiguration.getLongPressTimeout());
 				v.startAnimation(opacityOut);
 				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(75).start();
