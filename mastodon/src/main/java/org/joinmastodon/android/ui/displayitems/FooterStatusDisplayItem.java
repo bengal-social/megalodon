@@ -6,12 +6,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,6 +48,9 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		private final TextView reply, boost, favorite;
 		private final ImageView share;
 		private static final Animation opacityOut, opacityIn;
+
+		private View touchingView = null;
+		private final Runnable longClickRunnable = () -> { if (touchingView != null) touchingView.performLongClick(); };
 
 		private final View.AccessibilityDelegate buttonAccessibilityDelegate=new View.AccessibilityDelegate(){
 			@Override
@@ -119,27 +121,32 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			}
 		}
 
+		private boolean onButtonTouch(View v, MotionEvent event){
+			int action = event.getAction();
+			// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
+			v.setPivotX(V.dp(20));
+			long eventDuration = event.getEventTime() - event.getDownTime();
+			if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+				touchingView = null;
+				v.removeCallbacks(longClickRunnable);
+				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
+				if (action == MotionEvent.ACTION_UP && eventDuration < ViewConfiguration.getLongPressTimeout()) v.performClick();
+				else v.startAnimation(opacityIn);
+			} else if (action == MotionEvent.ACTION_DOWN) {
+				touchingView = v;
+				v.postDelayed(longClickRunnable, ViewConfiguration.getLongPressTimeout());
+				v.startAnimation(opacityOut);
+				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(75).start();
+			}
+			return true;
+		}
+
 		private void onReplyClick(View v){
 			v.startAnimation(opacityIn);
 			Bundle args=new Bundle();
 			args.putString("account", item.accountID);
 			args.putParcelable("replyTo", Parcels.wrap(item.status));
 			Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
-		}
-
-		private boolean onButtonTouch(View v, MotionEvent event){
-			int action = event.getAction();
-			// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
-			v.setPivotX(V.dp(20));
-			if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
-				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
-				if (action == MotionEvent.ACTION_UP) v.performClick();
-				else v.startAnimation(opacityIn);
-			} else if (action == MotionEvent.ACTION_DOWN) {
-				v.startAnimation(opacityOut);
-				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(75).start();
-			}
-			return true;
 		}
 
 		private void onBoostClick(View v){
