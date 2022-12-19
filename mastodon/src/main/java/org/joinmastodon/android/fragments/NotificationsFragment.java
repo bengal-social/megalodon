@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import org.joinmastodon.android.E;
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetFollowRequests;
 import org.joinmastodon.android.events.FollowRequestHandledEvent;
@@ -109,6 +110,7 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 		tabLayout.setTabTextColors(UiUtils.getThemeColor(getActivity(), R.attr.colorTabInactive), UiUtils.getThemeColor(getActivity(), android.R.attr.textColorPrimary));
 
 		pager.setOffscreenPageLimit(4);
+		pager.setUserInputEnabled(!GlobalUserPreferences.disableSwipe);
 		pager.setAdapter(new DiscoverPagerAdapter());
 		pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback(){
 			@Override

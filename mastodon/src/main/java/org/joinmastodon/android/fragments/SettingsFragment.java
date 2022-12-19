@@ -121,6 +121,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.alwaysExpandContentWarnings=i.checked;
 			GlobalUserPreferences.save();
 		}));
+		items.add(new SwitchItem(R.string.sk_tabs_disable_swipe, R.drawable.ic_fluent_swipe_right_24_regular, GlobalUserPreferences.disableSwipe, i->{
+			GlobalUserPreferences.disableSwipe=i.checked;
+			GlobalUserPreferences.save();
+			needAppRestart=true;
+		}));
 
 		items.add(new HeaderItem(R.string.home_timeline));
 		items.add(new SwitchItem(R.string.sk_settings_show_replies, R.drawable.ic_fluent_chat_multiple_24_regular, GlobalUserPreferences.showReplies, i->{

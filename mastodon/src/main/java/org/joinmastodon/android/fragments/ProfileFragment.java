@@ -237,6 +237,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		}
 
 		pager.setOffscreenPageLimit(5);
+		pager.setUserInputEnabled(!GlobalUserPreferences.disableSwipe);
 		pager.setAdapter(new ProfilePagerAdapter());
 		pager.getLayoutParams().height=getResources().getDisplayMetrics().heightPixels;
 
