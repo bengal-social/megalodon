@@ -189,8 +189,8 @@ public abstract class StatusListFragment extends BaseStatusListFragment<Status>{
 				}
 			}
 			for(Status s:preloadedData){
-				if(s.id.equals(ev.id)){
-					s.update(ev);
+				if(s.getContentStatus().id.equals(ev.id)){
+					s.getContentStatus().update(ev);
 				}
 			}
 		}
