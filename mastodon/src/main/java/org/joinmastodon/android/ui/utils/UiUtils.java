@@ -1,5 +1,8 @@
 package org.joinmastodon.android.ui.utils;
 
+import static org.joinmastodon.android.GlobalUserPreferences.theme;
+import static org.joinmastodon.android.GlobalUserPreferences.trueBlackTheme;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -24,7 +27,6 @@ import android.os.Looper;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.OpenableColumns;
-import android.provider.Settings;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -57,8 +59,6 @@ import org.joinmastodon.android.events.NotificationDeletedEvent;
 import org.joinmastodon.android.events.RemoveAccountPostsEvent;
 import org.joinmastodon.android.events.StatusDeletedEvent;
 import org.joinmastodon.android.events.StatusUnpinnedEvent;
-import org.joinmastodon.android.fragments.BaseStatusListFragment;
-import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.HashtagTimelineFragment;
 import org.joinmastodon.android.fragments.ListTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
@@ -661,95 +661,19 @@ public class UiUtils{
 	}
 
 	public static void setUserPreferredTheme(Context context){
-//		boolean isDarkTheme = isDarkTheme();
-		switch(GlobalUserPreferences.color){
-			case PINK:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack : R.style.Theme_Mastodon_AutoLightDark;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack : R.style.Theme_Mastodon_Dark;
-				});
-				break;
-			case PURPLE:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Original : R.style.Theme_Mastodon_AutoLightDark_Original;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light_Original;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Original : R.style.Theme_Mastodon_Dark_Original;
-				});
-				break;
-			case GREEN:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Green : R.style.Theme_Mastodon_AutoLightDark_Green;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light_Green;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Green : R.style.Theme_Mastodon_Dark_Green;
-				});
-				break;
-			case BLUE:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Blue : R.style.Theme_Mastodon_AutoLightDark_Blue;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light_Blue;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Blue : R.style.Theme_Mastodon_Dark_Blue;
-				});
-				break;
-			case BROWN:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Brown : R.style.Theme_Mastodon_AutoLightDark_Brown;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light_Brown;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Brown : R.style.Theme_Mastodon_Dark_Brown;
-				});
-				break;
-			case RED:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Red : R.style.Theme_Mastodon_AutoLightDark_Red;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light_Red;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Red : R.style.Theme_Mastodon_Dark_Red;
-				});
-				break;
-			case YELLOW:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Yellow : R.style.Theme_Mastodon_AutoLightDark_Yellow;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light_Yellow;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Yellow : R.style.Theme_Mastodon_Dark_Yellow;
-				});
-				break;
-			case MATERIAL3:
-				context.setTheme(switch(GlobalUserPreferences.theme){
-					case AUTO ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack_Material3 : R.style.Theme_Mastodon_AutoLightDark_Material3;
-					case LIGHT ->
-							R.style.Theme_Mastodon_Light_Material3;
-					case DARK ->
-							GlobalUserPreferences.trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack_Material3 : R.style.Theme_Mastodon_Dark_Material3;
-				});
-				break;
-		}
+		context.setTheme(switch (theme) {
+			case LIGHT -> R.style.Theme_Mastodon_Light;
+			case DARK -> trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack : R.style.Theme_Mastodon_Dark;
+			default -> trueBlackTheme ? R.style.Theme_Mastodon_AutoLightDark_TrueBlack : R.style.Theme_Mastodon_AutoLightDark;
+		});
 
+		ColorPalette palette = ColorPalette.palettes.get(GlobalUserPreferences.color);
+		if (palette != null) palette.apply(context);
 	}
 	public static boolean isDarkTheme(){
-		if(GlobalUserPreferences.theme==GlobalUserPreferences.ThemePreference.AUTO)
+		if(theme==GlobalUserPreferences.ThemePreference.AUTO)
 			return (MastodonApp.context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)==Configuration.UI_MODE_NIGHT_YES;
-		return GlobalUserPreferences.theme==GlobalUserPreferences.ThemePreference.DARK;
+		return theme==GlobalUserPreferences.ThemePreference.DARK;
 	}
 
 	public static void openURL(Context context, @Nullable String accountID, String url){

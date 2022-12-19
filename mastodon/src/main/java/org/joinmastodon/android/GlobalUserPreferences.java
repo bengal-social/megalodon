@@ -5,8 +5,6 @@ import static org.joinmastodon.android.api.MastodonAPIController.gson;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
-
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
@@ -95,7 +93,6 @@ public class GlobalUserPreferences{
 		BLUE,
 		BROWN,
 		RED,
-		ORANGE,
 		YELLOW
 	}
 

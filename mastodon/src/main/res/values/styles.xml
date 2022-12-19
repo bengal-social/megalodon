@@ -13,51 +13,30 @@
 		<item name="secondaryButtonStyle">@style/Widget.Mastodon.Button.Secondary_DarkOnLight</item>
 		<item name="primaryLargeButtonStyle">@style/Widget.Mastodon.Button.Large.Primary_DarkOnLight</item>
 		<item name="secondaryLargeButtonStyle">@style/Widget.Mastodon.Button.Large.Secondary_DarkOnLight</item>
-		<item name="android:colorAccent">@color/primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-		<item name="colorButtonText">@color/gray_50</item>
+		<item name="android:colorAccent">?colorPrimary700</item>
+		<item name="android:colorPrimary">?colorGray800</item>
+		<item name="android:colorBackground">?colorGray100</item>
+		<item name="android:textColorPrimary">?colorGray800</item>
+		<item name="android:textColorSecondary">?colorGray500</item>
+		<item name="colorButtonText">?colorGray50</item>
 		<item name="colorSecondary">#E9EDF2</item>
-		<item name="colorBackgroundLight">@color/gray_50</item>
-		<item name="colorBackgroundLightest">@color/gray_25</item>
+		<item name="colorBackgroundLight">?colorGray50</item>
+		<item name="colorBackgroundLightest">?colorGray25</item>
 		<item name="colorBackgroundPopup">?colorBackgroundLightest</item>
-		<item name="colorDarkIcon">@color/gray_900</item>
+		<item name="colorDarkIcon">?colorGray900</item>
 		<item name="colorWindowBackground">@color/white</item>
-		<item name="android:statusBarColor">@color/gray_50</item>
-		<item name="android:navigationBarColor">@color/navigation_bar_bg</item>
+		<item name="android:statusBarColor">?colorGray50</item>
+		<item name="android:navigationBarColor">?android:statusBarColor</item>
 		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar</item>
 		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert</item>
-		<item name="colorPollMostVoted">@color/primary_500</item>
-		<item name="colorPollVoted">@color/gray_300</item>
-		<item name="colorAccentLight">@color/primary_600</item>
-		<item name="colorSearchField">@color/gray_200</item>
-		<item name="colorSearchHint">@color/gray_600</item>
-		<item name="colorTabInactive">@color/gray_400</item>
-		<item name="colorAccentLightest">@color/primary_100</item>
-		<item name="profileHeaderBackground">@color/gray_500</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/gray_400</item>
+		<item name="colorPollMostVoted">?colorPrimary500</item>
+		<item name="colorPollVoted">?colorGray300</item>
+		<item name="colorAccentLight">?colorPrimary600</item>
+		<item name="colorSearchField">?colorGray200</item>
+		<item name="colorSearchHint">?colorGray600</item>
+		<item name="colorTabInactive">?colorGray400</item>
+		<item name="colorAccentLightest">?colorPrimary100</item>
+		<item name="profileHeaderBackground">?colorGray500</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_dark_on_light</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_light</item>
@@ -109,53 +88,30 @@
 		<item name="secondaryButtonStyle">@style/Widget.Mastodon.Button.Secondary_LightOnDark</item>
 		<item name="primaryLargeButtonStyle">@style/Widget.Mastodon.Button.Large.Primary_LightOnDark</item>
 		<item name="secondaryLargeButtonStyle">@style/Widget.Mastodon.Button.Large.Secondary_LightOnDark</item>
-		<item name="android:colorAccent">@color/primary_400</item>
-		<item name="android:colorPrimary">@color/gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/gray_50</item>
-		<item name="android:textColorSecondary">@color/gray_400</item>
-		<item name="colorButtonText">@color/gray_800</item>
+		<item name="android:colorAccent">?colorPrimary400</item>
+		<item name="android:colorPrimary">?colorGray50</item>
+		<item name="android:colorBackground">?colorGray700</item>
+		<item name="android:textColorPrimary">?colorGray50</item>
+		<item name="android:textColorSecondary">?colorGray400</item>
+		<item name="colorButtonText">?colorGray800</item>
 		<item name="colorSecondary">#E9EDF2</item>
-		<item name="colorBackgroundLight">@color/gray_700</item>
-		<item name="colorBackgroundLightest">@color/gray_900</item>
+		<item name="colorBackgroundLight">?colorGray700</item>
+		<item name="colorBackgroundLightest">?colorGray900</item>
 		<item name="colorBackgroundPopup">?colorBackgroundLightest</item>
-		<item name="colorDarkIcon">@color/gray_25</item>
-		<item name="colorWindowBackground">@color/gray_800</item>
-		<item name="android:statusBarColor">@color/gray_800</item>
-		<item name="android:navigationBarColor">@color/gray_800</item>
+		<item name="colorDarkIcon">?colorGray25</item>
+		<item name="colorWindowBackground">?colorGray800</item>
+		<item name="android:statusBarColor">?colorGray800</item>
+		<item name="android:navigationBarColor">?android:statusBarColor</item>
 		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark</item>
 		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark</item>
-		<item name="colorPollMostVoted">@color/primary_700</item>
-		<item name="colorPollVoted">@color/gray_600</item>
-		<item name="colorAccentLight">@color/primary_600</item>
-		<item name="colorAccentLightest">@color/primary_800</item>
-		<item name="colorTabInactive">@color/gray_400</item>
+		<item name="colorPollMostVoted">?colorPrimary700</item>
+		<item name="colorPollVoted">?colorGray600</item>
+		<item name="colorAccentLight">?colorPrimary600</item>
+		<item name="colorAccentLightest">?colorPrimary800</item>
+		<item name="colorTabInactive">?colorGray400</item>
 		<item name="profileHeaderBackground">?colorWindowBackground</item>
-
-		<!-- TODO dark colors -->
-		<item name="colorSearchField">@color/gray_700</item>
-		<item name="colorSearchHint">@color/gray_300</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/gray_400</item>
+		<item name="colorSearchField">?colorGray700</item>
+		<item name="colorSearchHint">?colorGray300</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_light_on_dark</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_dark</item>
@@ -200,922 +156,31 @@
 		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
 		<item name="colorBackgroundLight">@color/black</item>
 		<item name="colorButtonText">@color/black</item>
-		<item name="colorPollVoted">@color/gray_800</item>
-		<item name="colorSearchField">@color/gray_900</item>
+		<item name="colorPollVoted">?colorGray800</item>
+		<item name="colorSearchField">?colorGray900</item>
 		<item name="colorBackgroundLightest">@color/black</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
+		<item name="colorBackgroundPopup">?colorGray900</item>
 		<item name="colorWindowBackground">@color/black</item>
 
 		<item name="colorM3Background">#000</item>
-<!--		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_900</item>-->
+<!--		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">?colorGray900</item>-->
 	</style>
 
 	<style name="Theme.Mastodon.AutoLightDark" parent="Theme.Mastodon.Light"/>
 	<style name="Theme.Mastodon.AutoLightDark.TrueBlack" parent="Theme.Mastodon.Light"/>
 
-	<style name="Theme.Mastodon.Light.CustomBase" parent="Theme.Mastodon.Light">
-		<!-- needed to disable scrim on API 29+ -->
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-		<item name="colorDarkIcon">@color/gray_900</item>
-		<item name="colorSearchHint">@color/gray_600</item>
-		<item name="profileHeaderBackground">@color/gray_500</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.CustomBase" parent="Theme.Mastodon.Dark">
-		<!-- needed to disable scrim on API 29+ -->
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="colorButtonText">@color/gray_800</item>
-		<item name="colorBackgroundLight">@color/gray_700</item>
-		<item name="colorBackgroundLightest">@color/gray_900</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
-		<item name="colorDarkIcon">@color/gray_25</item>
-		<item name="colorWindowBackground">@color/gray_800</item>
-		<item name="android:statusBarColor">@color/gray_800</item>
-		<item name="android:navigationBarColor">@color/gray_800</item>
-		<item name="colorPollVoted">@color/gray_600</item>
-		<item name="profileHeaderBackground">?colorWindowBackground</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.CustomBase</item>
-
-		<!-- TODO dark colors -->
-		<item name="colorSearchField">@color/gray_700</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.CustomBase">
-		<item name="colorPollVoted">@color/gray_800</item>
-		<item name="colorSearchField">@color/gray_900</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
-		<item name="android:navigationBarColor">@color/black</item>
-		<item name="android:colorBackground">@color/black</item>
-		<item name="android:statusBarColor">@color/black</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
-		<item name="colorBackgroundLight">@color/black</item>
-		<item name="colorWindowBackground">@color/black</item>
-		<item name="colorButtonText">@color/black</item>
-		<item name="colorBackgroundLightest">@color/black</item>
-	</style>
-
-	<style name="Theme.Mastodon.Light.Material3" parent="Theme.Mastodon.Light">
-		<!-- needed to disable scrim on API 29+ -->
-		<item name="android:colorPrimary">@color/m3_gray_800</item>
-		<item name="android:textColorPrimary">@color/m3_gray_800</item>
-		<item name="android:textColorSecondary">@color/m3_gray_500</item>
-		<item name="colorDarkIcon">@color/m3_gray_900</item>
-		<item name="colorSearchHint">@color/m3_gray_700</item>
-		<item name="profileHeaderBackground">@color/m3_gray_500</item>
-
-		<item name="android:colorAccent">@color/m3_primary_700</item>
-		<item name="android:colorBackground">@color/m3_gray_50</item>
-		<item name="colorButtonText">@color/m3_gray_50</item>
-		<item name="colorBackgroundLight">@color/m3_gray_50</item>
-		<item name="colorBackgroundLightest">@color/m3_gray_25</item>
-		<item name="android:statusBarColor">@color/m3_gray_50</item>
-		<item name="android:navigationBarColor">@color/m3_navigation_bar_bg</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.M3</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.M3</item>
-		<item name="colorPollMostVoted">@color/m3_primary_500</item>
-		<item name="colorPollVoted">@color/m3_gray_200</item>
-		<item name="colorAccentLight">@color/m3_primary_600</item>
-		<item name="colorSearchField">@color/m3_gray_100</item>
-		<item name="colorTabInactive">@color/m3_gray_400</item>
-		<item name="colorAccentLightest">@color/m3_primary_100</item>
-		<item name="colorSecondary">@color/m3_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/m3_gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/m3_gray_200</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/m3_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/m3_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/m3_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/m3_gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/m3_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/m3_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/m3_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/m3_gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/m3_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/m3_gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/m3_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/m3_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/m3_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.Material3" parent="Theme.Mastodon.Dark">
-		<!-- needed to disable scrim on API 29+ -->
-		<item name="android:colorBackground">@color/m3_gray_800</item>
-		<item name="colorButtonText">@color/m3_gray_800</item>
-		<item name="colorBackgroundLight">@color/m3_gray_800</item>
-		<item name="colorBackgroundLightest">@color/m3_gray_900</item>
-		<item name="colorBackgroundPopup">@color/m3_gray_900</item>
-		<item name="colorDarkIcon">@color/gray_25</item>
-		<item name="colorWindowBackground">@color/m3_gray_900</item>
-		<item name="android:statusBarColor">@color/m3_gray_900</item>
-		<item name="android:navigationBarColor">@color/m3_gray_900</item>
-		<item name="colorPollVoted">@color/m3_gray_700</item>
-		<item name="profileHeaderBackground">?colorWindowBackground</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.Material3</item>
-
-		<item name="android:colorAccent">@color/m3_primary_400</item>
-		<item name="android:colorPrimary">@color/m3_gray_50</item>
-		<item name="android:textColorPrimary">@color/m3_gray_50</item>
-		<item name="android:textColorSecondary">@color/m3_gray_400</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.M3</item>
-		<item name="colorPollMostVoted">@color/m3_primary_700</item>
-		<item name="colorAccentLight">@color/m3_primary_600</item>
-		<item name="colorAccentLightest">@color/m3_primary_800</item>
-		<item name="colorTabInactive">@color/m3_gray_400</item>
-		<item name="colorSearchHint">@color/m3_gray_300</item>
-		<item name="colorSecondary">@color/m3_gray_50</item>
-
-		<!-- TODO dark colors -->
-		<item name="colorSearchField">@color/m3_gray_700</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/m3_gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/m3_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/m3_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/m3_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/m3_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_700</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/m3_gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/m3_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/m3_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/m3_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/m3_gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/m3_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/m3_gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/m3_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/m3_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/m3_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.Material3" parent="Theme.Mastodon.Dark.Material3">
-		<item name="android:colorAccent">@color/m3_primary_400</item>
-		<item name="colorPollMostVoted">@color/m3_primary_700</item>
-		<item name="colorAccentLight">@color/m3_primary_600</item>
-		<item name="colorAccentLightest">@color/m3_primary_800</item>
-		<item name="colorSecondary">@color/m3_gray_50</item>
-
-		<item name="colorPollVoted">@color/m3_gray_800</item>
-		<item name="colorSearchField">@color/m3_gray_900</item>
-		<item name="colorBackgroundPopup">@color/m3_gray_900</item>
-		<item name="android:navigationBarColor">@color/black</item>
-		<item name="android:colorBackground">@color/black</item>
-		<item name="android:statusBarColor">@color/black</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
-		<item name="colorBackgroundLight">@color/black</item>
-		<item name="colorWindowBackground">@color/black</item>
-		<item name="colorButtonText">@color/black</item>
-		<item name="colorBackgroundLightest">@color/black</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/m3_gray_900</item>
-	</style>
-
-	<style name="Theme.Mastodon.AutoLightDark.Material3" parent="Theme.Mastodon.Light.Material3"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Material3" parent="Theme.Mastodon.Light.Material3"/>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Dark.M3" parent="android:Theme.Material.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/m3_primary_600</item>
-		<item name="android:colorPrimary">@color/m3_gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/m3_gray_50</item>
-		<item name="android:textColorSecondary">@color/m3_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dialog.Alert.M3" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/m3_primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/m3_gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.M3" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">@color/m3_gray_50</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_800</item>
-	</style>
-
-
-	<style name="Theme.Mastodon.Light.Green" parent="Theme.Mastodon.Light.CustomBase">
-		<item name="android:colorAccent">@color/green_primary_700</item>
-		<item name="android:colorBackground">@color/green_gray_100</item>
-		<item name="colorButtonText">@color/green_gray_50</item>
-		<item name="colorBackgroundLight">@color/green_gray_50</item>
-		<item name="colorBackgroundLightest">@color/green_gray_25</item>
-		<item name="android:statusBarColor">@color/green_gray_50</item>
-		<item name="android:navigationBarColor">@color/green_navigation_bar_bg</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Green</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Green</item>
-		<item name="colorPollMostVoted">@color/green_primary_500</item>
-		<item name="colorPollVoted">@color/green_gray_300</item>
-		<item name="colorAccentLight">@color/green_primary_600</item>
-		<item name="colorSearchField">@color/green_gray_200</item>
-		<item name="colorTabInactive">@color/green_gray_400</item>
-		<item name="colorAccentLightest">@color/green_primary_100</item>
-		<item name="colorSecondary">@color/green_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/green_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/green_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/green_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/green_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/green_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/green_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/green_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/green_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/green_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/green_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/green_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.Green" parent="Theme.Mastodon.Dark.CustomBase">
-		<item name="android:colorAccent">@color/green_primary_400</item>
-		<item name="android:colorPrimary">@color/green_gray_50</item>
-		<item name="android:textColorPrimary">@color/green_gray_50</item>
-		<item name="android:textColorSecondary">@color/green_gray_400</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Green</item>
-		<item name="colorPollMostVoted">@color/green_primary_700</item>
-		<item name="colorAccentLight">@color/green_primary_600</item>
-		<item name="colorAccentLightest">@color/green_primary_800</item>
-		<item name="colorTabInactive">@color/green_gray_400</item>
-		<item name="colorSearchHint">@color/green_gray_300</item>
-		<item name="colorSecondary">@color/green_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/green_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/green_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/green_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/green_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/green_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/green_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/green_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/green_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/green_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/green_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/green_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.Green" parent="Theme.Mastodon.Dark.Green">
-		<item name="android:colorAccent">@color/green_primary_400</item>
-		<item name="colorPollMostVoted">@color/green_primary_700</item>
-		<item name="colorAccentLight">@color/green_primary_600</item>
-		<item name="colorAccentLightest">@color/green_primary_800</item>
-		<item name="colorSecondary">@color/green_gray_50</item>
-
-		<item name="colorPollVoted">@color/gray_800</item>
-		<item name="colorSearchField">@color/gray_900</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
-		<item name="android:navigationBarColor">@color/black</item>
-		<item name="android:colorBackground">@color/black</item>
-		<item name="android:statusBarColor">@color/black</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
-		<item name="colorBackgroundLight">@color/black</item>
-		<item name="colorWindowBackground">@color/black</item>
-		<item name="colorButtonText">@color/black</item>
-		<item name="colorBackgroundLightest">@color/black</item>
-	</style>
-
-	<style name="Theme.Mastodon.AutoLightDark.Green" parent="Theme.Mastodon.Light.Green"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Green" parent="Theme.Mastodon.Light.Green"/>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Dark.Green" parent="android:Theme.Material.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/green_primary_600</item>
-		<item name="android:colorPrimary">@color/green_gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/green_gray_50</item>
-		<item name="android:textColorSecondary">@color/green_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Green" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/green_primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/green_gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.Green" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">@color/green_gray_50</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_800</item>
-	</style>
-
-
-	<style name="Theme.Mastodon.Light.Blue" parent="Theme.Mastodon.Light.CustomBase">
-		<item name="android:colorAccent">@color/blue_primary_700</item>
-		<item name="android:colorBackground">@color/blue_gray_100</item>
-		<item name="colorButtonText">@color/blue_gray_50</item>
-		<item name="colorBackgroundLight">@color/blue_gray_50</item>
-		<item name="colorBackgroundLightest">@color/blue_gray_25</item>
-		<item name="android:statusBarColor">@color/blue_gray_50</item>
-		<item name="android:navigationBarColor">@color/blue_navigation_bar_bg</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Blue</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Blue</item>
-		<item name="colorPollMostVoted">@color/blue_primary_500</item>
-		<item name="colorPollVoted">@color/blue_gray_300</item>
-		<item name="colorAccentLight">@color/blue_primary_600</item>
-		<item name="colorSearchField">@color/blue_gray_200</item>
-		<item name="colorTabInactive">@color/blue_gray_400</item>
-		<item name="colorAccentLightest">@color/blue_primary_100</item>
-		<item name="colorSecondary">@color/blue_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/blue_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/blue_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/blue_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/blue_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/blue_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/blue_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/blue_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/blue_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/blue_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/blue_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/blue_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.Blue" parent="Theme.Mastodon.Dark.CustomBase">
-		<item name="android:colorAccent">@color/blue_primary_400</item>
-		<item name="android:colorPrimary">@color/blue_gray_50</item>
-		<item name="android:textColorPrimary">@color/blue_gray_50</item>
-		<item name="android:textColorSecondary">@color/blue_gray_400</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Blue</item>
-		<item name="colorPollMostVoted">@color/blue_primary_700</item>
-		<item name="colorAccentLight">@color/blue_primary_600</item>
-		<item name="colorAccentLightest">@color/blue_primary_800</item>
-		<item name="colorTabInactive">@color/blue_gray_400</item>
-		<item name="colorSearchHint">@color/blue_gray_300</item>
-		<item name="colorSecondary">@color/blue_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/blue_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/blue_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/blue_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/blue_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/blue_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/blue_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/blue_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/blue_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/blue_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/blue_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/blue_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.Blue" parent="Theme.Mastodon.Dark.Blue">
-		<item name="android:colorAccent">@color/blue_primary_400</item>
-		<item name="colorPollMostVoted">@color/blue_primary_700</item>
-		<item name="colorAccentLight">@color/blue_primary_600</item>
-		<item name="colorAccentLightest">@color/blue_primary_800</item>
-		<item name="colorSecondary">@color/blue_gray_50</item>
-
-		<item name="colorPollVoted">@color/gray_800</item>
-		<item name="colorSearchField">@color/gray_900</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
-		<item name="android:navigationBarColor">@color/black</item>
-		<item name="android:colorBackground">@color/black</item>
-		<item name="android:statusBarColor">@color/black</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
-		<item name="colorBackgroundLight">@color/black</item>
-		<item name="colorWindowBackground">@color/black</item>
-		<item name="colorButtonText">@color/black</item>
-		<item name="colorBackgroundLightest">@color/black</item>
-	</style>
-
-	<style name="Theme.Mastodon.AutoLightDark.Blue" parent="Theme.Mastodon.Light.Blue"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Blue" parent="Theme.Mastodon.Light.Blue"/>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Dark.Blue" parent="android:Theme.Material.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/blue_primary_600</item>
-		<item name="android:colorPrimary">@color/blue_gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/blue_gray_50</item>
-		<item name="android:textColorSecondary">@color/blue_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Blue" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/blue_primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/blue_gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.Blue" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">@color/blue_gray_50</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_800</item>
-	</style>
-
-	<style name="Theme.Mastodon.Light.Brown" parent="Theme.Mastodon.Light.CustomBase">
-		<item name="android:colorAccent">@color/brown_primary_700</item>
-		<item name="android:colorBackground">@color/brown_gray_100</item>
-		<item name="colorButtonText">@color/brown_gray_50</item>
-		<item name="colorBackgroundLight">@color/brown_gray_50</item>
-		<item name="colorBackgroundLightest">@color/brown_gray_25</item>
-		<item name="android:statusBarColor">@color/brown_gray_50</item>
-		<item name="android:navigationBarColor">@color/brown_navigation_bar_bg</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Brown</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Brown</item>
-		<item name="colorPollMostVoted">@color/brown_primary_500</item>
-		<item name="colorPollVoted">@color/brown_gray_200</item>
-		<item name="colorAccentLight">@color/brown_primary_600</item>
-		<item name="colorSearchField">@color/brown_gray_200</item>
-		<item name="colorTabInactive">@color/brown_gray_400</item>
-		<item name="colorAccentLightest">@color/brown_primary_100</item>
-		<item name="colorSecondary">@color/brown_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/brown_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/brown_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/brown_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/brown_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/brown_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/brown_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/brown_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/brown_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/brown_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/brown_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/brown_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.Brown" parent="Theme.Mastodon.Dark.CustomBase">
-		<item name="android:colorAccent">@color/brown_primary_400</item>
-		<item name="android:colorPrimary">@color/brown_gray_50</item>
-		<item name="android:textColorPrimary">@color/brown_gray_50</item>
-		<item name="android:textColorSecondary">@color/brown_gray_400</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Brown</item>
-		<item name="colorPollMostVoted">@color/brown_primary_700</item>
-		<item name="colorAccentLight">@color/brown_primary_600</item>
-		<item name="colorAccentLightest">@color/brown_primary_800</item>
-		<item name="colorTabInactive">@color/brown_gray_400</item>
-		<item name="colorSearchHint">@color/brown_gray_300</item>
-		<item name="colorSecondary">@color/brown_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/brown_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/brown_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/brown_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/brown_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/brown_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/brown_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/brown_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/brown_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/brown_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/brown_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/brown_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.Brown" parent="Theme.Mastodon.Dark.Brown">
-		<item name="android:colorAccent">@color/brown_primary_400</item>
-		<item name="colorPollMostVoted">@color/brown_primary_700</item>
-		<item name="colorAccentLight">@color/brown_primary_600</item>
-		<item name="colorAccentLightest">@color/brown_primary_800</item>
-		<item name="colorSecondary">@color/brown_gray_50</item>
-
-		<item name="colorPollVoted">@color/gray_800</item>
-		<item name="colorSearchField">@color/gray_900</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
-		<item name="android:navigationBarColor">@color/black</item>
-		<item name="android:colorBackground">@color/black</item>
-		<item name="android:statusBarColor">@color/black</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
-		<item name="colorBackgroundLight">@color/black</item>
-		<item name="colorWindowBackground">@color/black</item>
-		<item name="colorButtonText">@color/black</item>
-		<item name="colorBackgroundLightest">@color/black</item>
-	</style>
-
-	<style name="Theme.Mastodon.AutoLightDark.Brown" parent="Theme.Mastodon.Light.Brown"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Brown" parent="Theme.Mastodon.Light.Brown"/>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Dark.Brown" parent="android:Theme.Material.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/brown_primary_600</item>
-		<item name="android:colorPrimary">@color/brown_gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/brown_gray_50</item>
-		<item name="android:textColorSecondary">@color/brown_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Brown" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/brown_primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/brown_gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.Brown" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">@color/brown_gray_50</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_800</item>
-	</style>
-
-
-	<style name="Theme.Mastodon.Light.Yellow" parent="Theme.Mastodon.Light.CustomBase">
-		<item name="android:colorAccent">@color/yellow_primary_700</item>
-		<item name="android:colorBackground">@color/yellow_gray_100</item>
-		<item name="colorButtonText">@color/yellow_gray_50</item>
-		<item name="colorBackgroundLight">@color/yellow_gray_50</item>
-		<item name="colorBackgroundLightest">@color/yellow_gray_25</item>
-		<item name="android:statusBarColor">@color/yellow_gray_50</item>
-		<item name="android:navigationBarColor">@color/yellow_navigation_bar_bg</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Yellow</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Yellow</item>
-		<item name="colorPollMostVoted">@color/yellow_primary_500</item>
-		<item name="colorPollVoted">@color/yellow_gray_300</item>
-		<item name="colorAccentLight">@color/yellow_primary_600</item>
-		<item name="colorSearchField">@color/yellow_gray_200</item>
-		<item name="colorTabInactive">@color/yellow_gray_400</item>
-		<item name="colorAccentLightest">@color/yellow_primary_100</item>
-		<item name="colorSecondary">@color/yellow_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/yellow_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/yellow_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/yellow_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/yellow_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/yellow_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/yellow_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/yellow_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/yellow_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/yellow_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/yellow_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/yellow_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.Yellow" parent="Theme.Mastodon.Dark.CustomBase">
-		<item name="android:colorAccent">@color/yellow_primary_400</item>
-		<item name="android:colorPrimary">@color/yellow_gray_50</item>
-		<item name="android:textColorPrimary">@color/yellow_gray_50</item>
-		<item name="android:textColorSecondary">@color/yellow_gray_400</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Yellow</item>
-		<item name="colorPollMostVoted">@color/yellow_primary_700</item>
-		<item name="colorAccentLight">@color/yellow_primary_600</item>
-		<item name="colorAccentLightest">@color/yellow_primary_800</item>
-		<item name="colorTabInactive">@color/yellow_gray_400</item>
-		<item name="colorSearchHint">@color/yellow_gray_300</item>
-		<item name="colorSecondary">@color/yellow_gray_50</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">@color/yellow_gray_300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">@color/yellow_gray_50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">@color/yellow_gray_400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">@color/yellow_gray_100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">@color/gray_500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">@color/gray_800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">@color/yellow_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">@color/yellow_gray_25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">@color/yellow_gray_100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">@color/gray_800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">@color/yellow_gray_400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">@color/gray_600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">@color/yellow_gray_300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">@color/yellow_gray_50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">@color/yellow_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.Yellow" parent="Theme.Mastodon.Dark.Yellow">
-		<item name="android:colorAccent">@color/yellow_primary_400</item>
-		<item name="colorPollMostVoted">@color/yellow_primary_700</item>
-		<item name="colorAccentLight">@color/yellow_primary_600</item>
-		<item name="colorAccentLightest">@color/yellow_primary_800</item>
-		<item name="colorSecondary">@color/yellow_gray_50</item>
-
-		<item name="colorPollVoted">@color/gray_800</item>
-		<item name="colorSearchField">@color/gray_900</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
-		<item name="android:navigationBarColor">@color/black</item>
-		<item name="android:colorBackground">@color/black</item>
-		<item name="android:statusBarColor">@color/black</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
-		<item name="colorBackgroundLight">@color/black</item>
-		<item name="colorWindowBackground">@color/black</item>
-		<item name="colorButtonText">@color/black</item>
-		<item name="colorBackgroundLightest">@color/black</item>
-	</style>
-
-	<style name="Theme.Mastodon.AutoLightDark.Yellow" parent="Theme.Mastodon.Light.Yellow"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Yellow" parent="Theme.Mastodon.Light.Yellow"/>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Dark.Yellow" parent="android:Theme.Material.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/yellow_primary_600</item>
-		<item name="android:colorPrimary">@color/yellow_gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/yellow_gray_50</item>
-		<item name="android:textColorSecondary">@color/yellow_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Yellow" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/yellow_primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/yellow_gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.Yellow" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">@color/yellow_gray_50</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_800</item>
-	</style>
-
-	<style name="Theme.Mastodon.Light.Red" parent="Theme.Mastodon.Light.CustomBase">
-		<item name="android:colorAccent">@color/red_primary_700</item>
-		<item name="android:colorBackground">@color/red_gray_100</item>
-		<item name="colorButtonText">@color/red_gray_50</item>
-		<item name="colorBackgroundLight">@color/red_gray_50</item>
-		<item name="colorBackgroundLightest">@color/red_gray_25</item>
-		<item name="android:statusBarColor">@color/red_gray_50</item>
-		<item name="android:navigationBarColor">@color/red_navigation_bar_bg</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Red</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Red</item>
-		<item name="colorPollMostVoted">@color/red_primary_500</item>
-		<item name="colorPollVoted">@color/red_gray_300</item>
-		<item name="colorAccentLight">@color/red_primary_600</item>
-		<item name="colorSearchField">@color/red_gray_200</item>
-		<item name="colorTabInactive">@color/red_gray_400</item>
-		<item name="colorAccentLightest">@color/red_primary_100</item>
-		<item name="colorSecondary">@color/red_gray_50</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.Red" parent="Theme.Mastodon.Dark.CustomBase">
-		<item name="android:colorAccent">@color/red_primary_400</item>
-		<item name="android:colorPrimary">@color/red_gray_50</item>
-		<item name="android:textColorPrimary">@color/red_gray_50</item>
-		<item name="android:textColorSecondary">@color/red_gray_400</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Red</item>
-		<item name="colorPollMostVoted">@color/red_primary_700</item>
-		<item name="colorAccentLight">@color/red_primary_600</item>
-		<item name="colorAccentLightest">@color/red_primary_800</item>
-		<item name="colorTabInactive">@color/red_gray_400</item>
-		<item name="colorSearchHint">@color/red_gray_300</item>
-		<item name="colorSecondary">@color/red_gray_50</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.Red" parent="Theme.Mastodon.Dark.Red">
-		<item name="android:colorAccent">@color/red_primary_400</item>
-		<item name="colorPollMostVoted">@color/red_primary_700</item>
-		<item name="colorAccentLight">@color/red_primary_600</item>
-		<item name="colorAccentLightest">@color/red_primary_800</item>
-		<item name="colorSecondary">@color/red_gray_50</item>
-
-		<item name="colorPollVoted">@color/gray_800</item>
-		<item name="colorSearchField">@color/gray_900</item>
-		<item name="colorBackgroundPopup">@color/gray_900</item>
-		<item name="android:navigationBarColor">@color/black</item>
-		<item name="android:colorBackground">@color/black</item>
-		<item name="android:statusBarColor">@color/black</item>
-		<item name="android:actionBarTheme">@style/Theme.Mastodon.Toolbar.Dark.TrueBlack</item>
-		<item name="colorBackgroundLight">@color/black</item>
-		<item name="colorWindowBackground">@color/black</item>
-		<item name="colorButtonText">@color/black</item>
-		<item name="colorBackgroundLightest">@color/black</item>
-	</style>
-
-	<style name="Theme.Mastodon.AutoLightDark.Red" parent="Theme.Mastodon.Light.Red"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Red" parent="Theme.Mastodon.Light.Red"/>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Dark.Red" parent="android:Theme.Material.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/red_primary_600</item>
-		<item name="android:colorPrimary">@color/red_gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/red_gray_50</item>
-		<item name="android:textColorSecondary">@color/red_gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Red" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/red_primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/red_gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.Red" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">@color/red_gray_50</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_800</item>
-	</style>
-
-
-	<style name="Theme.Mastodon.Dark.Original" parent="Theme.Mastodon.Dark">
-		<item name="android:colorAccent">@color/original_primary_400</item>
-		<item name="colorPollMostVoted">@color/original_primary_700</item>
-		<item name="colorAccentLight">@color/original_primary_600</item>
-		<item name="colorAccentLightest">@color/original_primary_800</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Original</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dark.TrueBlack.Original" parent="Theme.Mastodon.Dark.TrueBlack">
-		<item name="android:colorAccent">@color/original_primary_400</item>
-		<item name="colorPollMostVoted">@color/original_primary_700</item>
-		<item name="colorAccentLight">@color/original_primary_600</item>
-		<item name="colorAccentLightest">@color/original_primary_800</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Dark.Original</item>
-	</style>
-
-	<style name="Theme.Mastodon.Light.Original" parent="Theme.Mastodon.Light">
-		<item name="android:colorAccent">@color/original_primary_400</item>
-		<item name="colorPollMostVoted">@color/original_primary_700</item>
-		<item name="colorAccentLight">@color/original_primary_600</item>
-		<item name="colorAccentLightest">@color/original_primary_800</item>
-		<item name="android:alertDialogTheme">@style/Theme.Mastodon.Dialog.Alert.Original</item>
-	</style>
-
-	<style name="Theme.Mastodon.AutoLightDark.Original" parent="Theme.Mastodon.Light.Original"/>
-	<style name="Theme.Mastodon.AutoLightDark.TrueBlack.Original" parent="Theme.Mastodon.Light.Original"/>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Dark.Original" parent="android:Theme.Material.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/original_primary_600</item>
-		<item name="android:colorPrimary">@color/gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/gray_50</item>
-		<item name="android:textColorSecondary">@color/gray_400</item>
-	</style>
-
-	<style name="Theme.Mastodon.Dialog.Alert.Original" parent="android:Theme.Material.Light.Dialog.Alert">
-		<item name="android:windowTitleStyle">@style/alert_title</item>
-		<item name="android:dialogPreferredPadding">24dp</item>
-		<item name="android:windowBackground">@drawable/bg_alert</item>
-		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
-
-		<!-- colors -->
-		<item name="android:colorAccent">@color/original_primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
-	</style>
-
 	<style name="Theme.Mastodon.Toolbar" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">@color/gray_50</item>
+		<item name="android:colorPrimary">?colorGray50</item>
 		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_800</item>
+		<item name="android:textColorPrimary">?colorGray800</item>
+		<item name="android:textColorSecondary">?colorGray800</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Dark" parent="android:ThemeOverlay.Material.Dark.ActionBar">
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:textColorPrimary">@color/gray_50</item>
-		<item name="android:textColorSecondary">@color/gray_50</item>
+		<item name="android:colorPrimary">?colorGray800</item>
+		<item name="android:textColorPrimary">?colorGray50</item>
+		<item name="android:textColorSecondary">?colorGray50</item>
 		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.Dark.CustomBase" parent="android:ThemeOverlay.Material.Dark.ActionBar">
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:textColorPrimary">@color/gray_50</item>
-		<item name="android:textColorSecondary">@color/gray_50</item>
-	</style>
-
-	<style name="Theme.Mastodon.Toolbar.Dark.Material3" parent="android:ThemeOverlay.Material.Dark.ActionBar">
-		<item name="android:colorPrimary">@color/m3_gray_900</item>
-		<item name="android:textColorPrimary">@color/m3_gray_50</item>
-		<item name="android:textColorSecondary">@color/m3_gray_50</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Dark.TrueBlack" parent="android:ThemeOverlay.Material.Dark.ActionBar">
@@ -1202,11 +267,11 @@
 		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
 
 		<!-- colors -->
-		<item name="android:colorAccent">@color/primary_700</item>
-		<item name="android:colorPrimary">@color/gray_800</item>
-		<item name="android:colorBackground">@color/gray_100</item>
-		<item name="android:textColorPrimary">@color/gray_800</item>
-		<item name="android:textColorSecondary">@color/gray_500</item>
+		<item name="android:colorAccent">?colorPrimary700</item>
+		<item name="android:colorPrimary">?colorGray800</item>
+		<item name="android:colorBackground">?colorGray100</item>
+		<item name="android:textColorPrimary">?colorGray800</item>
+		<item name="android:textColorSecondary">?colorGray500</item>
 	</style>
 
 	<style name="Theme.Mastodon.Dialog.Alert.Dark" parent="android:Theme.Material.Dialog.Alert">
@@ -1216,11 +281,11 @@
 		<item name="android:buttonBarButtonStyle">@style/Widget.Mastodon.ButtonBarButton</item>
 
 		<!-- colors -->
-		<item name="android:colorAccent">@color/primary_600</item>
-		<item name="android:colorPrimary">@color/gray_50</item>
-		<item name="android:colorBackground">@color/gray_700</item>
-		<item name="android:textColorPrimary">@color/gray_50</item>
-		<item name="android:textColorSecondary">@color/gray_400</item>
+		<item name="android:colorAccent">?colorPrimary600</item>
+		<item name="android:colorPrimary">?colorGray50</item>
+		<item name="android:colorBackground">?colorGray700</item>
+		<item name="android:textColorPrimary">?colorGray50</item>
+		<item name="android:textColorSecondary">?colorGray400</item>
 	</style>
 
 	<style name="Widget.Mastodon.ButtonBarButton" parent="android:Widget.Material.Button.Borderless">
