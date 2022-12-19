@@ -61,11 +61,11 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		};
 
 		static {
-			opacityOut = new AlphaAnimation(1, 0.7f);
-			opacityOut.setDuration(200);
+			opacityOut = new AlphaAnimation(1, 0.55f);
+			opacityOut.setDuration(300);
 			opacityOut.setInterpolator(CubicBezierInterpolator.DEFAULT);
 			opacityOut.setFillAfter(true);
-			opacityIn = new AlphaAnimation(0.7f, 1);
+			opacityIn = new AlphaAnimation(0.55f, 1);
 			opacityIn.setDuration(300);
 			opacityIn.setInterpolator(CubicBezierInterpolator.DEFAULT);
 		}
