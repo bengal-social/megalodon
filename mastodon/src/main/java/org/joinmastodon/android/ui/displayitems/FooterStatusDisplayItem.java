@@ -77,6 +77,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			favorite.setOnClickListener(this::onFavoriteClick);
 			favorite.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			share.setOnClickListener(this::onShareClick);
+			share.setOnLongClickListener(this::onShareLongClick);
 			share.setAccessibilityDelegate(buttonAccessibilityDelegate);
 		}
 
@@ -125,6 +126,11 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			intent.setType("text/plain");
 			intent.putExtra(Intent.EXTRA_TEXT, item.status.url);
 			v.getContext().startActivity(Intent.createChooser(intent, v.getContext().getString(R.string.share_toot_title)));
+		}
+
+		private boolean onShareLongClick(View v){
+			UiUtils.copyText(v.getContext(), item.status.url);
+			return true;
 		}
 
 		private int descriptionForId(int id){
