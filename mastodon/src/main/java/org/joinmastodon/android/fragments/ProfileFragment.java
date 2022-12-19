@@ -284,9 +284,10 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 				username+="@"+AccountSessionManager.getInstance().getAccount(accountID).domain;
 			}
 			getActivity().getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText(null, "@"+username));
-			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
-				Toast.makeText(getActivity(), R.string.text_copied, Toast.LENGTH_SHORT).show();
-			}
+			// fork: always show toast because MIUI doesn't play along
+			// if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
+			Toast.makeText(getActivity(), R.string.text_copied, Toast.LENGTH_SHORT).show();
+			// }
 			Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
 			else vibrator.vibrate(50);
