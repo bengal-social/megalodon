@@ -61,12 +61,12 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		};
 
 		static {
-			opacityOut = new AlphaAnimation(1, 0.5f);
+			opacityOut = new AlphaAnimation(1, 0.7f);
 			opacityOut.setDuration(200);
 			opacityOut.setInterpolator(CubicBezierInterpolator.DEFAULT);
 			opacityOut.setFillAfter(true);
-			opacityIn = new AlphaAnimation(0.5f, 1);
-			opacityIn.setDuration(150);
+			opacityIn = new AlphaAnimation(0.7f, 1);
+			opacityIn.setDuration(300);
 			opacityIn.setInterpolator(CubicBezierInterpolator.DEFAULT);
 		}
 
@@ -129,6 +129,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void onReplyClick(View v){
+			v.startAnimation(opacityIn);
 			Bundle args=new Bundle();
 			args.putString("account", item.accountID);
 			args.putParcelable("replyTo", Parcels.wrap(item.status));
@@ -140,16 +141,17 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
 			v.setPivotX(V.dp(20));
 			if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
-				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(100).start();
+				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
 				if (action == MotionEvent.ACTION_UP) v.performClick();
+				else v.startAnimation(opacityIn);
 			} else if (action == MotionEvent.ACTION_DOWN) {
-				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(50).start();
+				v.startAnimation(opacityOut);
+				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(75).start();
 			}
 			return true;
 		}
 
 		private void onBoostClick(View v){
-			v.startAnimation(opacityOut);
 			boost.setSelected(!item.status.reblogged);
 			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setReblogged(item.status, !item.status.reblogged, r->{
 				v.startAnimation(opacityIn);
@@ -158,7 +160,6 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void onFavoriteClick(View v){
-			v.startAnimation(opacityOut);
 			favorite.setSelected(!item.status.favourited);
 			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setFavorited(item.status, !item.status.favourited, r->{
 				v.startAnimation(opacityIn);
@@ -167,7 +168,6 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void onBookmarkClick(View v){
-			v.startAnimation(opacityOut);
 			bookmark.setSelected(item.status.bookmarked);
 			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setBookmarked(item.status, !item.status.bookmarked, r->{
 				v.startAnimation(opacityIn);
@@ -175,6 +175,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void onShareClick(View v){
+			v.startAnimation(opacityIn);
 			Intent intent=new Intent(Intent.ACTION_SEND);
 			intent.setType("text/plain");
 			intent.putExtra(Intent.EXTRA_TEXT, item.status.url);
