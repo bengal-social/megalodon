@@ -1,0 +1,3 @@
+- Copy post URL when long-pressing share button
+- Add option to disable swiping between tabs
+- Bugfixes and tweaks (Bookmark button, button animations)

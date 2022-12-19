@@ -152,6 +152,8 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Make inline emoji search case-insensitive and don't only search from start of emoji names](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:better-inline-emoji-search) ([Pull request](https://github.com/mastodon/mastodon-android/pull/445))
 * [Include subject line when sharing e.g. a website to Megalodon](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:external-share-include-subject)
 * [Improve semantics for voting on polls (radio buttons and checkboxes)](https://github.com/sk22/megalodon/commit/6fd58c96827cb1d2da329cebdc170a1425dd18d7)
+* [Copy post URL when long-pressing share button](https://github.com/sk22/megalodon/commit/ba36347f03278763ecec617b1ce57ba89db7be72)
+* [Add option to disable swiping between tabs](https://github.com/sk22/megalodon/commit/1f20b21fc84bf006c1ec14bd2229cbfad5215ec8)
 
 
 ### Visual
