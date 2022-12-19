@@ -27,6 +27,7 @@ import android.provider.OpenableColumns;
 import android.provider.Settings;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -783,12 +784,24 @@ public class UiUtils{
 
 	public static void copyText(Context context, String text) {
 		context.getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText(null, text));
-		// fork: always show toast because MIUI doesn't play along
-		// if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
-		Toast.makeText(context, R.string.text_copied, Toast.LENGTH_SHORT).show();
-		// }
+		if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU || UiUtils.isMIUI()){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
+			Toast.makeText(context, R.string.text_copied, Toast.LENGTH_SHORT).show();
+		}
 		Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
 		else vibrator.vibrate(50);
+	}
+
+	private static String getSystemProperty(String key){
+		try{
+			Class<?> props=Class.forName("android.os.SystemProperties");
+			Method get=props.getMethod("get", String.class);
+			return (String)get.invoke(null, key);
+		}catch(Exception ignore){}
+		return null;
+	}
+
+	public static boolean isMIUI(){
+		return !TextUtils.isEmpty(getSystemProperty("ro.miui.ui.version.code"));
 	}
 }
