@@ -60,4 +60,5 @@
     <string name="sk_example_domain">example.social</string>
     <string name="sk_welcome_title">¡Bienvenidos!</string>
     <string name="sk_color_theme_material3">Sistema</string>
+    <string name="sk_color_theme_red">Rojo</string>
 </resources>
