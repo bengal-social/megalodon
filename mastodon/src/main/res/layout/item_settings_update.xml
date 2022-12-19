@@ -35,7 +35,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_vertical|end"
 				android:background="?android:selectableItemBackground"
-				android:textColor="?colorAccentLight"
+				android:textColor="?android:textColorPrimary"
 				android:textAllCaps="true"
 				android:textSize="14dp"
 				android:paddingLeft="16dp"
