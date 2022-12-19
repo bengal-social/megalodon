@@ -168,7 +168,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void onBookmarkClick(View v){
-			bookmark.setSelected(item.status.bookmarked);
+			bookmark.setSelected(!item.status.bookmarked);
 			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setBookmarked(item.status, !item.status.bookmarked, r->{
 				v.startAnimation(opacityIn);
 			});
