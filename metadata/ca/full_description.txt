@@ -10,8 +10,3 @@ Megalodon és una versió modificada de l'<a href="https://github.com/mastodon/m
 - <b>Seguiment d'etiquetes</b>: Visualitza publicacions noves d'etiquetes específiques directament a la línia de temps, seguint aquestes etiquetes.
 - <b>Respondre les sol·licituds de seguiment</b>: Accepta o rebutja sol·licituds de seguiment des de les notificacions o a la llista de sol·licituds de seguiment dedicada.
 - <b>Eliminar i tornar a escriure</b>: La característica tan estimada que va fer possible l'edició sense una funció d'edició real.
-
-<b>Funcionalitats oficials no llançades, disponibles per avançat</b>
-
-- Edició de publicacions
-- Actualitzador integrat per als llançaments de GitHub

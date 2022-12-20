@@ -10,8 +10,3 @@ Megalodon är en modifierad version av den <a href="https://github.com/mastodon/
 - <b>Följ hashtaggar</b>: Visa nya inlägg från specifika hashtaggar direkt i den hem tidslinje genom att följa dem.
 - <b>Svara på följarbegäranden</b>: Acceptera eller avböj följarbegäranden från dina notifieringar eller i den dedikerade Följarbegäran listan.
 - <b>Ta bort och skriv om</b>: Den mycket älskade funktionen som gjorde det möjligt att redigera inlägg utan en faktisk redigeringsfunktion.
-
-<b>Ej släppta officiella funktioner, tillgängliga i förväg</b>
-
-- Redigera inlägg
-- Integrerad uppdaterare för GitHub releaser
