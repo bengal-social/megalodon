@@ -63,4 +63,11 @@
     <string name="sk_example_domain">example.social</string>
     <string name="sk_app_username" translatable="false">\@megalodon</string>
     <string name="sk_tabs_disable_swipe">Disable swiping between tabs</string>
+    <string name="sk_settings_profile">Set up profile</string>
+    <string name="sk_settings_posting">Posting preferences</string>
+    <string name="sk_settings_filters">Configure filters</string>
+    <string name="sk_settings_auth">Security settings</string>
+    <string name="sk_settings_rules">Rules</string>
+    <string name="sk_settings_about">About the app</string>
+    <string name="sk_settings_donate">Donate</string>
 </resources>

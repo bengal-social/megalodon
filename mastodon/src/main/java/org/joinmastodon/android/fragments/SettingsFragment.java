@@ -42,6 +42,7 @@ import org.joinmastodon.android.api.requests.oauth.RevokeOauthToken;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.SelfUpdateStateChangedEvent;
+import org.joinmastodon.android.model.Instance;
 import org.joinmastodon.android.model.PushNotification;
 import org.joinmastodon.android.model.PushSubscription;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
@@ -155,23 +156,31 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new SwitchItem(R.string.notify_mention, R.drawable.ic_at_symbol, pushSubscription.alerts.mention, i->onNotificationsChanged(PushNotification.Type.MENTION, i.checked)));
 		items.add(new SwitchItem(R.string.sk_notify_posts, R.drawable.ic_fluent_alert_24_regular, pushSubscription.alerts.status, i->onNotificationsChanged(PushNotification.Type.STATUS, i.checked)));
 
-		items.add(new HeaderItem(R.string.settings_boring));
-		items.add(new TextItem(R.string.settings_account, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/auth/edit")));
-		items.add(new TextItem(R.string.settings_tos, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms")));
-		items.add(new TextItem(R.string.settings_privacy_policy, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms")));
+		items.add(new HeaderItem(R.string.settings_account));
+		items.add(new TextItem(R.string.sk_settings_profile, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/settings/profile"), R.drawable.ic_fluent_open_24_regular));
+		items.add(new TextItem(R.string.sk_settings_posting, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/settings/preferences/other"), R.drawable.ic_fluent_open_24_regular));
+		items.add(new TextItem(R.string.sk_settings_filters, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/filters"), R.drawable.ic_fluent_open_24_regular));
+		items.add(new TextItem(R.string.sk_settings_auth, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/auth/edit"), R.drawable.ic_fluent_open_24_regular));
 
-		items.add(new RedHeaderItem(R.string.settings_spicy));
+		Instance instance = AccountSessionManager.getInstance().getInstanceInfo(session.domain);
+		items.add(new HeaderItem(instance != null ? instance.title : session.domain));
+		items.add(new TextItem(R.string.sk_settings_rules, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/about"), R.drawable.ic_fluent_open_24_regular));
+		items.add(new TextItem(R.string.settings_tos, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
+		items.add(new TextItem(R.string.settings_privacy_policy, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
+		items.add(new TextItem(R.string.log_out, this::confirmLogOut, R.drawable.ic_fluent_sign_out_24_regular));
+
+		items.add(new HeaderItem(R.string.sk_settings_about));
+		items.add(new TextItem(R.string.sk_settings_contribute, ()->UiUtils.launchWebBrowser(getActivity(), "https://github.com/sk22/megalodon"), R.drawable.ic_fluent_open_24_regular));
+		items.add(new TextItem(R.string.sk_settings_donate, ()->UiUtils.launchWebBrowser(getActivity(), "https://ko-fi.com/xsk22"), R.drawable.ic_fluent_open_24_regular));
 		if (GithubSelfUpdater.needSelfUpdating()) {
 			checkForUpdateItem = new TextItem(R.string.sk_check_for_update, GithubSelfUpdater.getInstance()::checkForUpdates);
 			items.add(checkForUpdateItem);
 		}
-		items.add(new TextItem(R.string.sk_settings_contribute, ()->UiUtils.launchWebBrowser(getActivity(), "https://github.com/sk22/megalodon")));
 		items.add(new TextItem(R.string.settings_clear_cache, this::clearImageCache));
 		items.add(new TextItem(R.string.sk_clear_recent_languages, ()->UiUtils.showConfirmationAlert(getActivity(), R.string.sk_clear_recent_languages, R.string.sk_confirm_clear_recent_languages, R.string.clear, ()->{
 			GlobalUserPreferences.recentLanguages.remove(accountID);
 			GlobalUserPreferences.save();
 		})));
-		items.add(new TextItem(R.string.log_out, this::confirmLogOut));
 
 		items.add(new FooterItem(getString(R.string.sk_settings_app_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));
 	}
@@ -438,6 +447,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			this.text=getString(text);
 		}
 
+		public HeaderItem(String text) {
+			this.text=text;
+		}
+
 		@Override
 		public int getViewType(){
 			return 0;
@@ -499,15 +512,25 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		private String text;
 		private Runnable onClick;
 		private boolean loading;
+		private int icon;
 
 		public TextItem(@StringRes int text, Runnable onClick) {
-			this(text, onClick, false);
+			this(text, onClick, false, 0);
 		}
 
-		public TextItem(@StringRes int text, Runnable onClick, boolean loading){
+		public TextItem(@StringRes int text, Runnable onClick, boolean loading) {
+			this(text, onClick, loading, 0);
+		}
+
+		public TextItem(@StringRes int text, Runnable onClick, @DrawableRes int icon) {
+			this(text, onClick, false, icon);
+		}
+
+		public TextItem(@StringRes int text, Runnable onClick, boolean loading, @DrawableRes int icon){
 			this.text=getString(text);
 			this.onClick=onClick;
 			this.loading=loading;
+			this.icon=icon;
 		}
 
 		@Override
@@ -773,17 +796,20 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	private class TextViewHolder extends BindableViewHolder<TextItem> implements UsableRecyclerView.Clickable{
 		private final TextView text;
 		private final ProgressBar progress;
+		private final ImageView icon;
 
 		public TextViewHolder(){
 			super(getActivity(), R.layout.item_settings_text, list);
 			text = itemView.findViewById(R.id.text);
 			progress = itemView.findViewById(R.id.progress);
+			icon = itemView.findViewById(R.id.icon);
 		}
 
 		@Override
 		public void onBind(TextItem item){
 			text.setText(item.text);
 			progress.animate().alpha(item.loading ? 1 : 0);
+			if (item.icon != 0) icon.setImageDrawable(getActivity().getTheme().getDrawable(item.icon));
 		}
 
 		@Override
