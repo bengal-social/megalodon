@@ -70,7 +70,8 @@ public class StatusInteractionController{
 		SetStatusReblogged req=(SetStatusReblogged) new SetStatusReblogged(status.id, reblogged)
 				.setCallback(new Callback<>(){
 					@Override
-					public void onSuccess(Status result){
+					public void onSuccess(Status reblog){
+						Status result = reblog.getContentStatus();
 						runningReblogRequests.remove(status.id);
 						result.reblogsCount = Math.max(0, status.reblogsCount) + (reblogged ? 1 : -1);
 						cb.accept(result);
