@@ -61,4 +61,12 @@
     <string name="sk_welcome_title">¡Bienvenidos!</string>
     <string name="sk_color_palette_material3">Sistema</string>
     <string name="sk_color_palette_red">Rojo</string>
+    <string name="sk_settings_profile">Configurar el perfil</string>
+    <string name="sk_settings_posting">Preferencias de publicación</string>
+    <string name="sk_settings_filters">Configurar los filtros</string>
+    <string name="sk_settings_auth">Ajustes de seguridad</string>
+    <string name="sk_settings_rules">Reglas</string>
+    <string name="sk_settings_about">Acerca de la aplicación</string>
+    <string name="sk_settings_donate">Donar</string>
+    <string name="sk_tabs_disable_swipe">Deshabilitar el deslizamiento entre pestañas</string>
 </resources>
