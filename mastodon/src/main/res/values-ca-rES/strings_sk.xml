@@ -40,11 +40,11 @@
     <string name="sk_settings_show_federated_timeline">Mostra la línia de temps federada</string>
     <string name="sk_notification_type_status">Publicacions</string>
     <string name="sk_notify_posts">Notificacions de publicacions</string>
-    <string name="sk_settings_color_picker">Color de tema</string>
-    <string name="sk_color_theme_pink">Rosa</string>
-    <string name="sk_color_theme_purple">Lila</string>
-    <string name="sk_color_theme_green">Verd</string>
-    <string name="sk_color_theme_blue">Blau</string>
-    <string name="sk_color_theme_brown">Marró</string>
-    <string name="sk_color_theme_yellow">Groc</string>
+    <string name="sk_settings_color_palette">Color de tema</string>
+    <string name="sk_color_palette_pink">Rosa</string>
+    <string name="sk_color_palette_purple">Lila</string>
+    <string name="sk_color_palette_green">Verd</string>
+    <string name="sk_color_palette_blue">Blau</string>
+    <string name="sk_color_palette_brown">Marró</string>
+    <string name="sk_color_palette_yellow">Groc</string>
 </resources>
