@@ -155,6 +155,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 				if (item.translation == null) {
 					translateProgress.setVisibility(View.VISIBLE);
 					translateButton.setClickable(false);
+					translateButton.setAlpha(.50f);
 					new TranslateStatus(item.status.id).setCallback(new Callback<>() {
 						@Override
 						public void onSuccess(TranslatedStatus translatedStatus) {
@@ -162,6 +163,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 							item.translated = true;
 							translateProgress.setVisibility(View.GONE);
 							translateButton.setClickable(true);
+							translateButton.setAlpha(1f);
 							rebind();
 						}
 
@@ -169,6 +171,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 						public void onError(ErrorResponse error) {
 							translateProgress.setVisibility(View.GONE);
 							translateButton.setClickable(true);
+							translateButton.setAlpha(1f);
 							error.showToast(itemView.getContext());
 						}
 					}).exec(item.parentFragment.getAccountID());
