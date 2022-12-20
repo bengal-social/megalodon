@@ -40,13 +40,13 @@
     <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
     <string name="sk_notification_type_status">Publicaciones</string>
     <string name="sk_notify_posts">Publicar notificaciones</string>
-    <string name="sk_settings_color_picker">Colores para los temas</string>
-    <string name="sk_color_theme_pink">Rosa</string>
-    <string name="sk_color_theme_purple">Violeta</string>
-    <string name="sk_color_theme_green">Verde</string>
-    <string name="sk_color_theme_blue">Azul</string>
-    <string name="sk_color_theme_brown">Marrón</string>
-    <string name="sk_color_theme_yellow">Amarillo</string>
+    <string name="sk_settings_color_palette">Colores para los temas</string>
+    <string name="sk_color_palette_pink">Rosa</string>
+    <string name="sk_color_palette_purple">Violeta</string>
+    <string name="sk_color_palette_green">Verde</string>
+    <string name="sk_color_palette_blue">Azul</string>
+    <string name="sk_color_palette_brown">Marrón</string>
+    <string name="sk_color_palette_yellow">Amarillo</string>
     <string name="sk_poll_allow_multiple">Permitir respuesta múltiple</string>
     <string name="sk_translate_post">Traducir</string>
     <string name="sk_translate_show_original">Mostrar original</string>
@@ -59,6 +59,6 @@
     <string name="sk_welcome_text">¡El tiburón te saluda! Para empezar, introduzca a continuación el nombre del dominio de su instancia de origen.</string>
     <string name="sk_example_domain">example.social</string>
     <string name="sk_welcome_title">¡Bienvenidos!</string>
-    <string name="sk_color_theme_material3">Sistema</string>
-    <string name="sk_color_theme_red">Rojo</string>
+    <string name="sk_color_palette_material3">Sistema</string>
+    <string name="sk_color_palette_red">Rojo</string>
 </resources>

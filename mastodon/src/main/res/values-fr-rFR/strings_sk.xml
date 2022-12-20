@@ -40,13 +40,13 @@
     <string name="sk_federated_timeline_info_banner">Ce sont les messages les plus récents des membres de votre fédération.</string>
     <string name="sk_notification_type_status">Messages</string>
     <string name="sk_notify_posts">Notifications des messages</string>
-    <string name="sk_color_theme_pink">Rose</string>
-    <string name="sk_color_theme_purple">Violet</string>
-    <string name="sk_color_theme_green">Vert</string>
-    <string name="sk_color_theme_blue">Bleu</string>
-    <string name="sk_color_theme_brown">Marron</string>
-    <string name="sk_color_theme_yellow">Jaune</string>
-    <string name="sk_settings_color_picker">Couleur d\'accentuation</string>
+    <string name="sk_color_palette_pink">Rose</string>
+    <string name="sk_color_palette_purple">Violet</string>
+    <string name="sk_color_palette_green">Vert</string>
+    <string name="sk_color_palette_blue">Bleu</string>
+    <string name="sk_color_palette_brown">Marron</string>
+    <string name="sk_color_palette_yellow">Jaune</string>
+    <string name="sk_settings_color_palette">Couleur d\'accentuation</string>
     <string name="sk_poll_allow_multiple">Autoriser plusieurs choix</string>
     <string name="sk_translate_post">Traduire</string>
     <string name="sk_translate_show_original">Afficher l\'original</string>
@@ -59,6 +59,6 @@
     <string name="sk_example_domain">exemple.social</string>
     <string name="sk_welcome_title">Bienvenue !</string>
     <string name="sk_welcome_text">Le requin vous salue ! Pour commencer, veuillez entrer le nom de domaine de votre instance personnelle ci-dessous.</string>
-    <string name="sk_color_theme_material3">Système</string>
-    <string name="sk_color_theme_red">Rouge</string>
+    <string name="sk_color_palette_material3">Système</string>
+    <string name="sk_color_palette_red">Rouge</string>
 </resources>

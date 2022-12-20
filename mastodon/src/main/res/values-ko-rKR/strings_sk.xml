@@ -39,13 +39,13 @@
     <string name="sk_settings_show_federated_timeline">연합 타임라인 표시</string>
     <string name="sk_notification_type_status">게시물</string>
     <string name="sk_notify_posts">게시물 알림</string>
-    <string name="sk_settings_color_picker">테마 색상</string>
-    <string name="sk_color_theme_pink">분홍색</string>
-    <string name="sk_color_theme_purple">보라색</string>
-    <string name="sk_color_theme_green">초록색</string>
-    <string name="sk_color_theme_blue">파란색</string>
-    <string name="sk_color_theme_brown">갈색</string>
-    <string name="sk_color_theme_yellow">노란색</string>
+    <string name="sk_settings_color_palette">테마 색상</string>
+    <string name="sk_color_palette_pink">분홍색</string>
+    <string name="sk_color_palette_purple">보라색</string>
+    <string name="sk_color_palette_green">초록색</string>
+    <string name="sk_color_palette_blue">파란색</string>
+    <string name="sk_color_palette_brown">갈색</string>
+    <string name="sk_color_palette_yellow">노란색</string>
     <string name="sk_settings_contribute">Megalodon에 기여</string>
     <string name="sk_poll_allow_multiple">다중 선택 허용</string>
     <string name="sk_translate_post">번역하기</string>
@@ -59,6 +59,6 @@
     <string name="sk_example_domain">example.social</string>
     <string name="sk_welcome_title">환영합니다!</string>
     <string name="sk_welcome_text">상어가 당신을 맞이합니다! 시작하기 위해, 아래에 사용하시는 인스턴스의 도메인 이름을 입력해주세요.</string>
-    <string name="sk_color_theme_material3">시스템</string>
-    <string name="sk_color_theme_red">빨간색</string>
+    <string name="sk_color_palette_material3">시스템</string>
+    <string name="sk_color_palette_red">빨간색</string>
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="sk_notify_posts">Сповіщення про пости</string>
-    <string name="sk_settings_color_picker">Колірна тема</string>
-    <string name="sk_color_theme_purple">Фіолетовий</string>
-    <string name="sk_color_theme_green">Зелений</string>
-    <string name="sk_color_theme_blue">Синий</string>
-    <string name="sk_color_theme_brown">Коричневий</string>
-    <string name="sk_color_theme_yellow">Жовтий</string>
+    <string name="sk_settings_color_palette">Колірна тема</string>
+    <string name="sk_color_palette_purple">Фіолетовий</string>
+    <string name="sk_color_palette_green">Зелений</string>
+    <string name="sk_color_palette_blue">Синий</string>
+    <string name="sk_color_palette_brown">Коричневий</string>
+    <string name="sk_color_palette_yellow">Жовтий</string>
     <string name="sk_poll_allow_multiple">Дозволити кілька виборів</string>
     <string name="sk_translate_post">Перекласти</string>
     <string name="sk_translate_show_original">Показати оригінал</string>
@@ -17,7 +17,7 @@
     <string name="sk_clear_recent_languages">Очистити нещодавно використані мови</string>
     <string name="sk_settings_always_reveal_content_warnings">Завжди відкривати вміст</string>
     <string name="sk_notification_type_status">Пости</string>
-    <string name="sk_color_theme_pink">Рожевий</string>
+    <string name="sk_color_palette_pink">Рожевий</string>
     <string name="sk_confirm_clear_recent_languages">Ви впевнені, що хочете очистити нещодавно використані мови\?</string>
     <string name="sk_app_name">Megalodon</string>
     <string name="sk_pinned_posts">Закріплене</string>

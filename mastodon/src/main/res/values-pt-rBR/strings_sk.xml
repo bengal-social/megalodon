@@ -38,14 +38,14 @@
     <string name="sk_settings_show_federated_timeline">Mostre a linha do tempo federada</string>
     <string name="sk_visibility_unlisted">Não-listado</string>
     <string name="sk_settings_show_interaction_counts">Mostrar contagens de interação</string>
-    <string name="sk_color_theme_purple">Roxo</string>
-    <string name="sk_color_theme_green">Verde</string>
-    <string name="sk_color_theme_blue">Azul</string>
-    <string name="sk_color_theme_brown">Marrom</string>
-    <string name="sk_color_theme_yellow">Amarelo</string>
-    <string name="sk_color_theme_pink">Rosa</string>
+    <string name="sk_color_palette_purple">Roxo</string>
+    <string name="sk_color_palette_green">Verde</string>
+    <string name="sk_color_palette_blue">Azul</string>
+    <string name="sk_color_palette_brown">Marrom</string>
+    <string name="sk_color_palette_yellow">Amarelo</string>
+    <string name="sk_color_palette_pink">Rosa</string>
     <string name="sk_notification_type_status">Postagens</string>
-    <string name="sk_settings_color_picker">Cor do tema</string>
+    <string name="sk_settings_color_palette">Cor do tema</string>
     <string name="sk_translate_post">Traduzir</string>
     <string name="sk_translate_show_original">Mostrar original</string>
     <string name="sk_translated_using">Traduzido usando %s</string>
@@ -59,6 +59,6 @@
     <string name="sk_welcome_text">O tubarão te cumprimenta! Para começar, por favor, digite abaixo o nome de domínio de sua instância de origem.</string>
     <string name="sk_example_domain">exemplo.social</string>
     <string name="sk_welcome_title">Bem vindo!</string>
-    <string name="sk_color_theme_material3">Sistema</string>
-    <string name="sk_color_theme_red">Vermelho</string>
+    <string name="sk_color_palette_material3">Sistema</string>
+    <string name="sk_color_palette_red">Vermelho</string>
 </resources>

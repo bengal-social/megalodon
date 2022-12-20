@@ -17,11 +17,11 @@
     <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
     <string name="sk_notification_type_status">Публикации</string>
     <string name="sk_notify_posts">Отправляет публикацию</string>
-    <string name="sk_settings_color_picker">Цветовая схема</string>
-    <string name="sk_color_theme_pink">Розовый</string>
-    <string name="sk_color_theme_purple">Фиолетовый</string>
-    <string name="sk_color_theme_brown">Коричневый</string>
-    <string name="sk_color_theme_yellow">Жёлтый</string>
+    <string name="sk_settings_color_palette">Цветовая схема</string>
+    <string name="sk_color_palette_pink">Розовый</string>
+    <string name="sk_color_palette_purple">Фиолетовый</string>
+    <string name="sk_color_palette_brown">Коричневый</string>
+    <string name="sk_color_palette_yellow">Жёлтый</string>
     <string name="sk_translate_show_original">Показать оригинальную публикацию</string>
     <string name="sk_translated_using">Переведено через %s</string>
     <string name="sk_available_languages">Доступные языки</string>
@@ -46,8 +46,8 @@
     <string name="sk_settings_always_reveal_content_warnings">Всегда раскрывать предупреждения о непристойном контенте</string>
     <string name="sk_settings_contribute">Внести свой код в Megalodon</string>
     <string name="sk_settings_show_federated_timeline">Показывать федеративную временную шкалу</string>
-    <string name="sk_color_theme_green">Зелёный</string>
-    <string name="sk_color_theme_blue">Синий</string>
+    <string name="sk_color_palette_green">Зелёный</string>
+    <string name="sk_color_palette_blue">Синий</string>
     <string name="sk_translate_post">Перевести</string>
     <string name="sk_post_language">Язык: %s</string>
     <string name="sk_clear_recent_languages">Очистить недавно использованные языки</string>
@@ -56,9 +56,9 @@
     <string name="sk_poll_allow_multiple">Разрешить несколько вариантов ответа</string>
     <string name="sk_user_post_notifications_on">Уведомления о постах %s включены</string>
     <string name="sk_user_post_notifications_off">Уведомления о новых постах %s отключены</string>
-    <string name="sk_color_theme_material3">Система</string>
+    <string name="sk_color_palette_material3">Система</string>
     <string name="sk_settings_show_boosts">Показать репосты</string>
     <string name="sk_settings_show_interaction_counts">Показывать количество взаимодействий</string>
     <string name="sk_disable_marquee">Отключить прокручиваемый текст в заголовках</string>
-    <string name="sk_color_theme_red">Красный</string>
+    <string name="sk_color_palette_red">Красный</string>
 </resources>

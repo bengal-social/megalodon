@@ -39,7 +39,7 @@
     <string name="sk_settings_contribute">Zu Megalodon beitragen</string>
     <string name="sk_settings_show_federated_timeline">Föderierte Timeline anzeigen</string>
     <string name="sk_notify_posts">Beitrags-Benachrichtigungen</string>
-    <string name="sk_settings_color_picker">Farbschema</string>
+    <string name="sk_settings_color_palette">Farbschema</string>
     <string name="sk_color_palette_pink">Pink</string>
     <string name="sk_color_palette_purple">Violett</string>
     <string name="sk_color_palette_green">Grün</string>
@@ -59,8 +59,8 @@
     <string name="sk_welcome_title">Willkommen!</string>
     <string name="sk_example_domain">beispiel.social</string>
     <string name="sk_welcome_text">Der Hai sagt Hi! Um anzufangen, bitte gib den Domain-Namen deiner Heim-Instanz unten ein.</string>
-    <string name="sk_color_theme_material3">System</string>
-    <string name="sk_color_theme_red">Rot</string>
+    <string name="sk_color_palette_material3">System</string>
+    <string name="sk_color_palette_red">Rot</string>
     <string name="sk_settings_profile">Profil einrichten</string>
     <string name="sk_settings_posting">Einstellungen für Beiträge</string>
     <string name="sk_settings_filters">Filter konfigurieren</string>
