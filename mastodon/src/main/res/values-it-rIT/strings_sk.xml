@@ -49,7 +49,7 @@
     <string name="sk_reject_follow_request">Rifiuta richiesta di seguirti</string>
     <string name="sk_translate_post">Traduci</string>
     <string name="sk_translate_show_original">Mostra originale</string>
-    <string name="sk_translated_using">Tradotto con</string>
+    <string name="sk_translated_using">Tradotto con %s</string>
     <string name="sk_post_language">Lingua: %s</string>
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_confirm_clear_recent_languages">Sei sicuro di voler cancellare le lingue usate di recente\?</string>
