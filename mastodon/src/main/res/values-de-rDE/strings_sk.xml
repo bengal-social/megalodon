@@ -59,4 +59,14 @@
     <string name="sk_welcome_title">Willkommen!</string>
     <string name="sk_example_domain">beispiel.social</string>
     <string name="sk_welcome_text">Der Hai sagt Hi! Um anzufangen, bitte gib den Domain-Namen deiner Heim-Instanz unten ein.</string>
+    <string name="sk_color_theme_material3">System</string>
+    <string name="sk_color_theme_red">Rot</string>
+    <string name="sk_settings_profile">Profil einrichten</string>
+    <string name="sk_settings_posting">Einstellungen für Beiträge</string>
+    <string name="sk_settings_filters">Filter konfigurieren</string>
+    <string name="sk_settings_auth">Sicherheitseinstellungen</string>
+    <string name="sk_settings_rules">Regelwerk</string>
+    <string name="sk_settings_about">Über die App</string>
+    <string name="sk_settings_donate">Spenden</string>
+    <string name="sk_tabs_disable_swipe">Wischen zwischen Tabs deaktivieren</string>
 </resources>
