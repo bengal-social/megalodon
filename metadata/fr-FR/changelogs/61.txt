@@ -1,0 +1,5 @@
+- Nouveaux thèmes de couleurs : Material You et Rouge
+- Nouveaux tons de gris foncé pour tous les thèmes
+- Icône de boost remplie plus perceptible
+- Animations pour les boutons d'interaction
+- Corrections de bugs (Crash sur certains messages, "Listes avec", langue de publication par défaut)
