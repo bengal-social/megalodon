@@ -26,27 +26,6 @@
 		<item name="colorGray50t">@color/gray_50t</item>
 		<item name="colorGray50">@color/gray_50</item>
 		<item name="colorGray25">@color/gray_25</item>
-
-		<!-- colors for button_bg|text_primary|secondary_dark|light_on_light|dark.xml -->
-		<item name="colorButtonBackgroundPrimaryDarkOnLight">?colorGray800</item>
-		<item name="colorButtonBackgroundPrimaryDarkOnLightDisabled">?colorGray300</item>
-		<item name="colorButtonTextPrimaryDarkOnLight">?colorGray50</item>
-		<item name="colorButtonTextPrimaryDarkOnLightDisabled">?colorGray400</item>
-
-		<item name="colorButtonBackgroundPrimaryLightOnDark">?colorGray100</item>
-		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">?colorGray500</item>
-		<item name="colorButtonTextPrimaryLightOnDark">?colorGray800</item>
-		<item name="colorButtonTextPrimaryLightOnDarkDisabled">?colorGray400</item>
-
-		<item name="colorButtonBackgroundSecondaryDarkOnLight">?colorGray25</item>
-		<item name="colorButtonBackgroundSecondaryDarkOnLightDisabled">?colorGray100</item>
-		<item name="colorButtonTextSecondaryDarkOnLight">?colorGray800</item>
-		<item name="colorButtonTextSecondaryDarkOnLightDisabled">?colorGray400</item>
-
-		<item name="colorButtonBackgroundSecondaryLightOnDark">?colorGray600</item>
-		<item name="colorButtonBackgroundSecondaryLightOnDarkDisabled">?colorGray300</item>
-		<item name="colorButtonTextSecondaryLightOnDark">?colorGray50</item>
-		<item name="colorButtonTextSecondaryLightOnDarkDisabled">?colorGray400</item>
 	</style>
 
 	<style name="ColorPalette.Material3">
