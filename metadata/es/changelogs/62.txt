@@ -1,0 +1,3 @@
+- Copie la URL de la publicación cuando mantenga presionado el botón Compartir 
+- Agregar opción para deshabilitar el deslizamiento entre pestañas 
+- Corrección de errores y ajustes (botón Marcador, animaciones de botones)

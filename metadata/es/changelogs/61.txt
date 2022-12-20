@@ -1,0 +1,5 @@
+- Nuevos temas de colores: Material You y Rojo
+- Nuevos tonos grises oscuros para todos los temas
+- Icono de impulso relleno más distintivo
+- Animaciones para los botones de interacción
+- Corrección de errores (bloqueo de algunas publicaciones, "Listas con", idioma de publicación predeterminado)
