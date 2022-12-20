@@ -155,7 +155,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private int charCount, charLimit, trimmedCharCount;
 
 	private Button publishButton, languageButton;
-	private PopupMenu languagePopup;
+	private PopupMenu languagePopup, visibilityPopup;
 	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn;
 	private ImageView sensitiveIcon;
 	private ComposeMediaLayout attachmentsView;
@@ -255,6 +255,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		wm=activity.getSystemService(WindowManager.class);
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		creatingView=true;
@@ -295,7 +296,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		pollBtn.setOnClickListener(v->togglePoll());
 		emojiBtn.setOnClickListener(v->emojiKeyboard.toggleKeyboardPopup(mainEditText));
 		spoilerBtn.setOnClickListener(v->toggleSpoiler());
-		visibilityBtn.setOnClickListener(this::onVisibilityClick);
+		buildVisibilityPopup(visibilityBtn);
+		visibilityBtn.setOnClickListener(v->visibilityPopup.show());
+		visibilityBtn.setOnTouchListener(visibilityPopup.getDragToOpenListener());
 		sensitiveItem.setOnClickListener(v->toggleSensitive());
 		emojiKeyboard.setOnIconChangedListener(new PopupKeyboard.OnIconChangeListener(){
 			@Override
@@ -1396,11 +1399,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		return attachments.size();
 	}
 
-	private void onVisibilityClick(View v){
-		PopupMenu menu=new PopupMenu(getActivity(), v);
-		menu.inflate(R.menu.compose_visibility);
-		Menu m=menu.getMenu();
-		UiUtils.enablePopupMenuIcons(getActivity(), menu);
+	private void buildVisibilityPopup(View v){
+		visibilityPopup=new PopupMenu(getActivity(), v);
+		visibilityPopup.inflate(R.menu.compose_visibility);
+		Menu m=visibilityPopup.getMenu();
+		UiUtils.enablePopupMenuIcons(getActivity(), visibilityPopup);
 		m.setGroupCheckable(0, true, true);
 		m.findItem(switch(statusVisibility){
 			case PUBLIC -> R.id.vis_public;
@@ -1408,7 +1411,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			case PRIVATE -> R.id.vis_followers;
 			case DIRECT -> R.id.vis_private;
 		}).setChecked(true);
-		menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+		visibilityPopup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
 			@Override
 			public boolean onMenuItemClick(MenuItem item){
 				int id=item.getItemId();
@@ -1426,7 +1429,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				return true;
 			}
 		});
-		menu.show();
 	}
 
 	private void loadDefaultStatusVisibility(Bundle savedInstanceState) {
