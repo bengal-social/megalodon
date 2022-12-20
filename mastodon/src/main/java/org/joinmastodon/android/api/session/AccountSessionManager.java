@@ -104,6 +104,7 @@ public class AccountSessionManager{
 
 	public void addAccount(Instance instance, Token token, Account self, Application app, AccountActivationInfo activationInfo){
 		instances.put(instance.uri, instance);
+		updateInstanceInfoV2(instance);
 		AccountSession session=new AccountSession(token, self, app, instance.uri, activationInfo==null, activationInfo);
 		sessions.put(session.getID(), session);
 		lastActiveAccountID=session.getID();
@@ -329,9 +330,7 @@ public class AccountSessionManager{
 						instances.put(domain, instance);
 						updateInstanceEmojis(instance, domain);
 						try {
-							if (Integer.parseInt(instance.version.split("\\.")[0]) >= 4) {
-								updateInstanceInfoV2(domain);
-							}
+							updateInstanceInfoV2(instance);
 						} catch (Exception ignored) {}
 					}
 
@@ -343,17 +342,17 @@ public class AccountSessionManager{
 				.execNoAuth(domain);
 	}
 
-	public void updateInstanceInfoV2(String domain) {
+	public void updateInstanceInfoV2(Instance instance) {
 		new GetInstance.V2().setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(Instance.V2 v2) {
-				Instance instanceInfo = instances.get(domain);
-				if (instanceInfo != null) instanceInfo.v2 = v2;
+				if (instance != null) instance.v2 = v2;
+				writeAccountsFile();
 			}
 
 			@Override
 			public void onError(ErrorResponse errorResponse) {}
-		}).execNoAuth(domain);
+		}).execNoAuth(instance.uri);
 	}
 
 	private void updateInstanceEmojis(Instance instance, String domain){

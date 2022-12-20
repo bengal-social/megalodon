@@ -41,10 +41,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 	public final Status status;
 	public boolean translated = false;
 	public TranslatedStatus translation = null;
-
 	private AccountSession session;
-	private Instance instanceInfo;
-	private boolean translateEnabled;
 
 	public TextStatusDisplayItem(String parentID, CharSequence text, BaseStatusListFragment parentFragment, Status status){
 		super(parentID, parentFragment);
@@ -57,8 +54,6 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			spoilerEmojiHelper.setText(parsedSpoilerText);
 		}
 		session = AccountSessionManager.getInstance().getAccount(parentFragment.getAccountID());
-		instanceInfo = AccountSessionManager.getInstance().getInstanceInfo(session.domain);
-		translateEnabled = instanceInfo.v2 != null && instanceInfo.v2.configuration.translation != null && instanceInfo.v2.configuration.translation.enabled;
 	}
 
 	@Override
@@ -146,7 +141,10 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 				itemView.setClickable(false);
 			}
 
-			translateWrap.setVisibility(item.textSelectable && item.translateEnabled &&
+			Instance instanceInfo = AccountSessionManager.getInstance().getInstanceInfo(item.session.domain);
+			boolean translateEnabled = instanceInfo.v2 != null && instanceInfo.v2.configuration.translation != null && instanceInfo.v2.configuration.translation.enabled;
+
+			translateWrap.setVisibility(item.textSelectable && translateEnabled &&
 					!item.status.visibility.isLessVisibleThan(StatusPrivacy.UNLISTED) &&
 					item.status.language != null &&
 					(item.session.preferences == null || !item.status.language.equalsIgnoreCase(item.session.preferences.postingDefaultLanguage))
