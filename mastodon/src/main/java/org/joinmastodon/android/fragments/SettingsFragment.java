@@ -51,7 +51,6 @@ import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.updater.GithubSelfUpdater;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import androidx.annotation.DrawableRes;
@@ -103,7 +102,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.disableMarquee=i.checked;
 			GlobalUserPreferences.save();
 		}));
-		items.add(new ColorPicker());
+		items.add(new ColorPalettePicker());
 
 		items.add(new HeaderItem(R.string.settings_behavior));
 		items.add(new SwitchItem(R.string.settings_gif, R.drawable.ic_fluent_gif_24_regular, GlobalUserPreferences.playGifs, i->{
@@ -485,7 +484,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}
 	}
 
-	public class ColorPicker extends Item{
+	public class ColorPalettePicker extends Item{
 		@Override
 		public int getViewType(){
 			return 8;
@@ -586,7 +585,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 				case 5 -> new HeaderViewHolder(true);
 				case 6 -> new FooterViewHolder();
 				case 7 -> new UpdateViewHolder();
-				case 8 -> new ColorPickerViewHolder();
+				case 8 -> new ColorPalettePickerViewHolder();
 				default -> throw new IllegalStateException("Unexpected value: "+viewType);
 			};
 		}
@@ -715,18 +714,18 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			}
 		}
 	}
-	private class ColorPickerViewHolder extends BindableViewHolder<ColorPicker>{
+	private class ColorPalettePickerViewHolder extends BindableViewHolder<ColorPalettePicker>{
 		private final Button button;
 		private final PopupMenu popupMenu;
 		private final ImageView icon;
 
 		@SuppressLint("ClickableViewAccessibility")
-		public ColorPickerViewHolder(){
+		public ColorPalettePickerViewHolder(){
 			super(getActivity(), R.layout.item_settings_color_picker, list);
 			icon=findViewById(R.id.icon);
-			button=findViewById(R.id.color_picker_button);
+			button=findViewById(R.id.color_palette_button);
 			popupMenu=new PopupMenu(getActivity(), button, Gravity.CENTER_HORIZONTAL);
-			popupMenu.inflate(R.menu.color_picker);
+			popupMenu.inflate(R.menu.color_palettes);
 			popupMenu.getMenu().findItem(R.id.m3_color).setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S);
 			popupMenu.setOnMenuItemClickListener(SettingsFragment.this::onColorPreferenceClick);
 			button.setOnTouchListener(popupMenu.getDragToOpenListener());
@@ -734,17 +733,17 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}
 
 		@Override
-		public void onBind(ColorPicker item){
+		public void onBind(ColorPalettePicker item){
 			icon.setImageResource(R.drawable.ic_fluent_color_24_regular);
 			button.setText(switch(GlobalUserPreferences.color){
-				case MATERIAL3 -> R.string.sk_color_theme_material3;
-				case PINK -> R.string.sk_color_theme_pink;
-				case PURPLE -> R.string.sk_color_theme_purple;
-				case GREEN -> R.string.sk_color_theme_green;
-				case BLUE -> R.string.sk_color_theme_blue;
-				case BROWN -> R.string.sk_color_theme_brown;
-				case RED -> R.string.sk_color_theme_red;
-				case YELLOW -> R.string.sk_color_theme_yellow;
+				case MATERIAL3 -> R.string.sk_color_palette_material3;
+				case PINK -> R.string.sk_color_palette_pink;
+				case PURPLE -> R.string.sk_color_palette_purple;
+				case GREEN -> R.string.sk_color_palette_green;
+				case BLUE -> R.string.sk_color_palette_blue;
+				case BROWN -> R.string.sk_color_palette_brown;
+				case RED -> R.string.sk_color_palette_red;
+				case YELLOW -> R.string.sk_color_palette_yellow;
 				default -> throw new IllegalStateException("Unexpected value: "+GlobalUserPreferences.color);
 			});
 		}
