@@ -84,7 +84,7 @@
 		<item name="colorBackgroundLightest">?colorGray900</item>
 		<item name="android:colorBackground">?colorGray800</item>
 		<item name="android:statusBarColor">?colorGray900</item>
-		<item name="android:navigationBarColor">?colorGray900</item>
+		<item name="toolbarBackground">?colorGray900</item>
 	</style>
 
 	<style name="ColorPalette.Pink">

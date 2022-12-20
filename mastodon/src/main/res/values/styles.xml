@@ -37,6 +37,7 @@
 		<item name="colorTabInactive">?colorGray400</item>
 		<item name="colorAccentLightest">?colorPrimary100</item>
 		<item name="profileHeaderBackground">?colorGray500</item>
+		<item name="toolbarBackground">?colorGray50</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_dark_on_light</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_light</item>
@@ -112,6 +113,7 @@
 		<item name="profileHeaderBackground">?colorWindowBackground</item>
 		<item name="colorSearchField">?colorGray700</item>
 		<item name="colorSearchHint">?colorGray300</item>
+		<item name="toolbarBackground">?colorGray800</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_light_on_dark</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_dark</item>
@@ -170,14 +172,14 @@
 	<style name="Theme.Mastodon.AutoLightDark.TrueBlack" parent="Theme.Mastodon.Light"/>
 
 	<style name="Theme.Mastodon.Toolbar" parent="android:ThemeOverlay.Material.ActionBar">
-		<item name="android:colorPrimary">?colorGray50</item>
+		<item name="android:colorPrimary">?toolbarBackground</item>
 		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
 		<item name="android:textColorPrimary">?colorGray800</item>
 		<item name="android:textColorSecondary">?colorGray800</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Dark" parent="android:ThemeOverlay.Material.Dark.ActionBar">
-		<item name="android:colorPrimary">?colorGray800</item>
+		<item name="android:colorPrimary">?toolbarBackground</item>
 		<item name="android:textColorPrimary">?colorGray50</item>
 		<item name="android:textColorSecondary">?colorGray50</item>
 		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
