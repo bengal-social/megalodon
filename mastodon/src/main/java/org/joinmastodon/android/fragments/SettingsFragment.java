@@ -105,6 +105,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new ColorPalettePicker());
 
 		items.add(new HeaderItem(R.string.settings_behavior));
+		items.add(new SwitchItem(R.string.sk_settings_show_federated_timeline, R.drawable.ic_fluent_earth_24_regular, GlobalUserPreferences.showFederatedTimeline, i->{
+			GlobalUserPreferences.showFederatedTimeline=i.checked;
+			GlobalUserPreferences.save();
+			needAppRestart=true;
+		}));
 		items.add(new SwitchItem(R.string.settings_gif, R.drawable.ic_fluent_gif_24_regular, GlobalUserPreferences.playGifs, i->{
 			GlobalUserPreferences.playGifs=i.checked;
 			GlobalUserPreferences.save();
@@ -126,6 +131,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.save();
 			needAppRestart=true;
 		}));
+		items.add(new SwitchItem(R.string.sk_enable_delete_notifications, R.drawable.ic_fluent_delete_24_regular, GlobalUserPreferences.enableDeleteNotifications, i->{
+			GlobalUserPreferences.enableDeleteNotifications=i.checked;
+			GlobalUserPreferences.save();
+			needAppRestart=true;
+		}));
 
 		items.add(new HeaderItem(R.string.home_timeline));
 		items.add(new SwitchItem(R.string.sk_settings_show_replies, R.drawable.ic_fluent_chat_multiple_24_regular, GlobalUserPreferences.showReplies, i->{
@@ -139,11 +149,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new SwitchItem(R.string.sk_settings_load_new_posts, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.loadNewPosts, i->{
 			GlobalUserPreferences.loadNewPosts=i.checked;
 			GlobalUserPreferences.save();
-		}));
-		items.add(new SwitchItem(R.string.sk_settings_show_federated_timeline, R.drawable.ic_fluent_earth_24_regular, GlobalUserPreferences.showFederatedTimeline, i->{
-			GlobalUserPreferences.showFederatedTimeline=i.checked;
-			GlobalUserPreferences.save();
-			needAppRestart=true;
 		}));
 
 		items.add(new HeaderItem(R.string.settings_notifications));
