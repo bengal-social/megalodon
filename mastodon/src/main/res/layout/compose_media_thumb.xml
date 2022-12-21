@@ -83,7 +83,7 @@
 				android:layout_alignParentTop="true"
 				android:src="@drawable/ic_fluent_dismiss_24_filled"
 				android:contentDescription="@string/cancel"
-				android:tint="@color/gray_100"
+				android:tint="?colorGray100"
 				android:background="@drawable/bg_upload_progress"/>
 
 			<ProgressBar
@@ -104,7 +104,7 @@
 				android:layout_height="16dp"
 				android:layout_below="@id/retry_or_cancel_upload"
 				android:layout_marginTop="16dp"
-				android:textColor="@color/gray_200"
+				android:textColor="?colorGray200"
 				android:textSize="14dp"
 				android:gravity="center_horizontal"
 				android:singleLine="true"
@@ -119,7 +119,7 @@
 				android:layout_height="32dp"
 				android:layout_below="@id/state_title"
 				android:includeFontPadding="false"
-				android:textColor="@color/gray_200"
+				android:textColor="?colorGray200"
 				android:gravity="center_horizontal|top"
 				android:lines="2"
 				android:maxLines="2"
