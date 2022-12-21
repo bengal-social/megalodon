@@ -31,6 +31,7 @@ import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.imageloader.ImageLoaderViewHolder;
 import me.grishka.appkit.imageloader.MovieDrawable;
 import me.grishka.appkit.imageloader.requests.ImageLoaderRequest;
+import me.grishka.appkit.utils.CubicBezierInterpolator;
 import me.grishka.appkit.utils.V;
 
 public class TextStatusDisplayItem extends StatusDisplayItem{
@@ -155,7 +156,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 				if (item.translation == null) {
 					translateProgress.setVisibility(View.VISIBLE);
 					translateButton.setClickable(false);
-					translateButton.setAlpha(.50f);
+					translateButton.animate().alpha(0.5f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
 					new TranslateStatus(item.status.id).setCallback(new Callback<>() {
 						@Override
 						public void onSuccess(TranslatedStatus translatedStatus) {
@@ -163,7 +164,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 							item.translated = true;
 							translateProgress.setVisibility(View.GONE);
 							translateButton.setClickable(true);
-							translateButton.setAlpha(1f);
+							translateButton.animate().alpha(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(50).start();
 							rebind();
 						}
 
@@ -171,7 +172,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 						public void onError(ErrorResponse error) {
 							translateProgress.setVisibility(View.GONE);
 							translateButton.setClickable(true);
-							translateButton.setAlpha(1f);
+							translateButton.animate().alpha(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(50).start();
 							error.showToast(itemView.getContext());
 						}
 					}).exec(item.parentFragment.getAccountID());
