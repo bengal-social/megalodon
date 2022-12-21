@@ -79,4 +79,6 @@
     <string name="sk_delete_all_notifications">Alle Benachrichtigungen löschen</string>
     <string name="sk_settings_publish_button_text_title">Veröffentlichen-Button-Text anpassen</string>
     <string name="sk_delete_all_notifications_confirm">Wirklich alle Benachrichtigungen löschen\?</string>
+    <string name="sk_settings_translation_availability_note_available">%s unterstützt Übersetzung!</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s scheint keine Übersetzung zu unterstützen.</string>
 </resources>
