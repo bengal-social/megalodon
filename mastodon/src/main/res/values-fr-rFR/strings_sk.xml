@@ -69,4 +69,16 @@
     <string name="sk_settings_about">À propos de l\'application</string>
     <string name="sk_settings_donate">Donner</string>
     <string name="sk_tabs_disable_swipe">Désactiver le balayage entre les onglets</string>
+    <string name="sk_delete_notification">Supprimer la notification</string>
+    <string name="sk_delete_notification_confirm_action">Supprimer la notification</string>
+    <string name="sk_delete_notification_confirm">Voulez-vous vraiment supprimer cette notification \?</string>
+    <string name="sk_delete_all_notifications">Supprimer toutes les notifications</string>
+    <string name="sk_delete_all_notifications_confirm_action">Tout supprimer</string>
+    <string name="sk_enable_delete_notifications">Activer la suppression des notifications</string>
+    <string name="sk_settings_publish_button_text_title">Personnaliser le texte du bouton Publier</string>
+    <string name="sk_settings_publish_button_text">Texte du bouton Publier</string>
+    <string name="sk_settings_hide_translate_in_timeline">Masquer le bouton de traduction dans la timeline</string>
+    <string name="sk_settings_translation_availability_note_available">%s prend en charge la traduction !</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s ne semble pas prendre en charge la traduction.</string>
+    <string name="sk_delete_all_notifications_confirm">Voulez-vous vraiment supprimer toutes les notifications \?</string>
 </resources>
