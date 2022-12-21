@@ -3,13 +3,13 @@
 	<item
 		android:id="@+id/follow_requests"
 		android:icon="@drawable/ic_follow_requests_24_badged"
-		android:showAsAction="always"
+		android:showAsAction="ifRoom"
 		android:visible="false"
 		android:title="@string/sk_follow_requests" />
 	<item
 		android:id="@+id/clear_notifications"
-		android:icon="@drawable/ic_fluent_delete_24_regular"
-		android:showAsAction="always"
+		android:icon="@drawable/ic_fluent_mail_inbox_dismiss_24_regular"
+		android:showAsAction="collapseActionView"
 		android:visible="false"
-		android:title="@string/sk_delete_all_notifications" />
+		android:title="@string/sk_clear_all_notifications" />
 </menu>

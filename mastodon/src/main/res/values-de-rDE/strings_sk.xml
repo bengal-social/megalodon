@@ -71,12 +71,12 @@
     <string name="sk_tabs_disable_swipe">Wischen zwischen Tabs deaktivieren</string>
     <string name="sk_delete_notification_confirm_action">Benachrichtigung löschen</string>
     <string name="sk_delete_notification_confirm">Benachrichtigung wirklich löschen\?</string>
-    <string name="sk_delete_all_notifications_confirm_action">Alle löschen</string>
+    <string name="sk_clear_all_notifications_confirm_action">Alle löschen</string>
     <string name="sk_enable_delete_notifications">Löschen von Benachrichtigungen aktivieren</string>
     <string name="sk_settings_publish_button_text">Veröffentlichen-Button-Text</string>
     <string name="sk_settings_hide_translate_in_timeline">Übersetzen-Button in der Timeline ausblenden</string>
     <string name="sk_delete_notification">Benachrichtigung löschen</string>
-    <string name="sk_delete_all_notifications">Alle Benachrichtigungen löschen</string>
+    <string name="sk_clear_all_notifications">Alle Benachrichtigungen löschen</string>
     <string name="sk_settings_publish_button_text_title">Veröffentlichen-Button-Text anpassen</string>
-    <string name="sk_delete_all_notifications_confirm">Wirklich alle Benachrichtigungen löschen\?</string>
+    <string name="sk_clear_all_notifications_confirm">Wirklich alle Benachrichtigungen löschen\?</string>
 </resources>
