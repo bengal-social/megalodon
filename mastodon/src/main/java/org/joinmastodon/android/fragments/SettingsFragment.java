@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -88,6 +90,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		setTitle(R.string.settings);
 		accountID=getArguments().getString("account");
 		AccountSession session=AccountSessionManager.getInstance().getAccount(accountID);
+		Instance instance = AccountSessionManager.getInstance().getInstanceInfo(session.domain);
 
 		if(GithubSelfUpdater.needSelfUpdating()){
 			GithubSelfUpdater updater=GithubSelfUpdater.getInstance();
@@ -217,12 +220,16 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new TextItem(R.string.sk_settings_filters, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/filters"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.sk_settings_auth, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/auth/edit"), R.drawable.ic_fluent_open_24_regular));
 
-		Instance instance = AccountSessionManager.getInstance().getInstanceInfo(session.domain);
 		items.add(new HeaderItem(instance != null ? instance.title : session.domain));
 		items.add(new TextItem(R.string.sk_settings_rules, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/about"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.settings_tos, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.settings_privacy_policy, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.log_out, this::confirmLogOut, R.drawable.ic_fluent_sign_out_24_regular));
+		boolean translationAvailable = instance.v2 != null && instance.v2.configuration.translation != null && instance.v2.configuration.translation.enabled;
+		items.add(new SmallTextItem(getString(translationAvailable ?
+				R.string.sk_settings_translation_availability_note_available :
+				R.string.sk_settings_translation_availability_note_unavailable, instance.title)));
+
 
 		items.add(new HeaderItem(R.string.sk_settings_about));
 		items.add(new TextItem(R.string.sk_settings_contribute, ()->UiUtils.launchWebBrowser(getActivity(), "https://github.com/sk22/megalodon"), R.drawable.ic_fluent_open_24_regular));
@@ -578,6 +585,19 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}
 	}
 
+	private class SmallTextItem extends Item {
+		private String text;
+
+		public SmallTextItem(String text) {
+			this.text = text;
+		}
+
+		@Override
+		public int getViewType() {
+			return 9;
+		}
+	}
+
 	private class TextItem extends Item{
 		private String text;
 		private Runnable onClick;
@@ -657,6 +677,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 				case 6 -> new FooterViewHolder();
 				case 7 -> new UpdateViewHolder();
 				case 8 -> new ButtonViewHolder();
+				case 9 -> new SmallTextViewHolder();
 				default -> throw new IllegalStateException("Unexpected value: "+viewType);
 			};
 		}
@@ -871,6 +892,26 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		@Override
 		public void onClick(){
 			item.onClick.run();
+		}
+	}
+
+	private class SmallTextViewHolder extends BindableViewHolder<SmallTextItem> {
+		private final TextView text;
+;
+
+		public SmallTextViewHolder(){
+			super(getActivity(), R.layout.item_settings_text, list);
+			text = itemView.findViewById(R.id.text);
+		}
+
+		@Override
+		public void onBind(SmallTextItem item){
+			text.setText(item.text);
+			TypedValue val = new TypedValue();
+			getContext().getTheme().resolveAttribute(android.R.attr.textColorSecondary, val, true);
+			text.setTextColor(getResources().getColor(val.resourceId, getContext().getTheme()));
+			text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+			text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 		}
 	}
 
