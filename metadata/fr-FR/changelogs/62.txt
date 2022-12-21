@@ -1,3 +1,9 @@
-- Copier l'URL de la publication lorsque vous appuyez longuement sur le bouton de partage
+- Copier l'URL du post avec un appuis long sur le bouton de partage
 - Ajout d'une option pour désactiver le balayage entre les onglets
+- Nouvelles couleurs grises
+- Ajout de la suppression des notifications
+- Ajout de divers liens vers les paramètres du compte
+- Bouton Publier personnalisable
+- Icônes dédiées pour différents types de notification
+- Option pour afficher/masquer le bouton de traduction dans la timeline
 - Corrections de bugs et ajustements (bouton de signet, animations de bouton)
