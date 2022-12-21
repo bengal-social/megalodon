@@ -18,6 +18,8 @@ import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -103,6 +105,12 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.save();
 		}));
 		items.add(new ButtonItem(R.string.sk_settings_color_palette, R.drawable.ic_fluent_color_24_regular, b->{
+			PopupMenu popupMenu=new PopupMenu(getActivity(), b, Gravity.CENTER_HORIZONTAL);
+			popupMenu.inflate(R.menu.color_palettes);
+			popupMenu.getMenu().findItem(R.id.m3_color).setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S);
+			popupMenu.setOnMenuItemClickListener(SettingsFragment.this::onColorPreferenceClick);
+			b.setOnTouchListener(popupMenu.getDragToOpenListener());
+			b.setOnClickListener(v->popupMenu.show());
 			b.setText(switch(GlobalUserPreferences.color){
 				case MATERIAL3 -> R.string.sk_color_palette_material3;
 				case PINK -> R.string.sk_color_palette_pink;
@@ -112,6 +120,33 @@ public class SettingsFragment extends MastodonToolbarFragment{
 				case BROWN -> R.string.sk_color_palette_brown;
 				case RED -> R.string.sk_color_palette_red;
 				case YELLOW -> R.string.sk_color_palette_yellow;
+			});
+		}));
+		items.add(new ButtonItem(R.string.sk_settings_publish_button_text, R.drawable.ic_fluent_send_24_regular, b->{
+			updatePublishText(b);
+
+			b.setOnClickListener(l->{
+				FrameLayout inputWrap = new FrameLayout(getContext());
+				EditText input = new EditText(getContext());
+				input.setHint(R.string.publish);
+				input.setText(GlobalUserPreferences.publishButtonText.trim());
+				FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+				params.setMargins(V.dp(16), V.dp(4), V.dp(16), V.dp(16));
+				input.setLayoutParams(params);
+				inputWrap.addView(input);
+				new M3AlertDialogBuilder(getContext()).setTitle(R.string.sk_settings_publish_button_text_title).setView(inputWrap)
+						.setPositiveButton(R.string.save, (d, which) -> {
+							GlobalUserPreferences.publishButtonText = input.getText().toString().trim();
+							GlobalUserPreferences.save();
+							updatePublishText(b);
+						})
+						.setNeutralButton(R.string.clear, (d, which) -> {
+							GlobalUserPreferences.publishButtonText = "";
+							GlobalUserPreferences.save();
+							updatePublishText(b);
+						})
+						.setNegativeButton(R.string.cancel, (d, which) -> {})
+						.show();
 			});
 		}));
 
@@ -198,6 +233,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		})));
 
 		items.add(new FooterItem(getString(R.string.sk_settings_app_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));
+	}
+
+	private void updatePublishText(Button btn) {
+		if (GlobalUserPreferences.publishButtonText.isBlank()) btn.setText(R.string.publish);
+		else btn.setText(GlobalUserPreferences.publishButtonText);
 	}
 
 	@Override
@@ -742,7 +782,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	}
 	private class ButtonViewHolder extends BindableViewHolder<ButtonItem>{
 		private final Button button;
-		private final PopupMenu popupMenu;
 		private final ImageView icon;
 		private final TextView text;
 
@@ -752,12 +791,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			text=findViewById(R.id.text);
 			icon=findViewById(R.id.icon);
 			button=findViewById(R.id.button);
-			popupMenu=new PopupMenu(getActivity(), button, Gravity.CENTER_HORIZONTAL);
-			popupMenu.inflate(R.menu.color_palettes);
-			popupMenu.getMenu().findItem(R.id.m3_color).setVisible(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S);
-			popupMenu.setOnMenuItemClickListener(SettingsFragment.this::onColorPreferenceClick);
-			button.setOnTouchListener(popupMenu.getDragToOpenListener());
-			button.setOnClickListener(v->popupMenu.show());
 		}
 
 		@Override
