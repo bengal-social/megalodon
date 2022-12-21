@@ -220,7 +220,8 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new TextItem(R.string.sk_settings_filters, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/filters"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.sk_settings_auth, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/auth/edit"), R.drawable.ic_fluent_open_24_regular));
 
-		items.add(new HeaderItem(instance != null ? instance.title : session.domain));
+		String instanceName = instance != null && !instance.title.isBlank() ? instance.title : session.domain;
+		items.add(new HeaderItem(instanceName));
 		items.add(new TextItem(R.string.sk_settings_rules, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/about"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.settings_tos, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.settings_privacy_policy, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
@@ -228,7 +229,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		boolean translationAvailable = instance.v2 != null && instance.v2.configuration.translation != null && instance.v2.configuration.translation.enabled;
 		items.add(new SmallTextItem(getString(translationAvailable ?
 				R.string.sk_settings_translation_availability_note_available :
-				R.string.sk_settings_translation_availability_note_unavailable, instance.title)));
+				R.string.sk_settings_translation_availability_note_unavailable, instanceName)));
 
 
 		items.add(new HeaderItem(R.string.sk_settings_about));
