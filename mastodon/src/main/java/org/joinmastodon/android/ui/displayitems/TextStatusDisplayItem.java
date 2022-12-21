@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.statuses.TranslateStatus;
 import org.joinmastodon.android.api.session.AccountSession;
@@ -145,7 +146,9 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			Instance instanceInfo = AccountSessionManager.getInstance().getInstanceInfo(item.session.domain);
 			boolean translateEnabled = instanceInfo.v2 != null && instanceInfo.v2.configuration.translation != null && instanceInfo.v2.configuration.translation.enabled;
 
-			translateWrap.setVisibility(item.textSelectable && translateEnabled &&
+			translateWrap.setVisibility(
+					(!GlobalUserPreferences.translateButtonOpenedOnly || item.textSelectable) &&
+					translateEnabled &&
 					!item.status.visibility.isLessVisibleThan(StatusPrivacy.UNLISTED) &&
 					item.status.language != null &&
 					(item.session.preferences == null || !item.status.language.equalsIgnoreCase(item.session.preferences.postingDefaultLanguage))
