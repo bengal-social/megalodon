@@ -80,4 +80,5 @@
     <string name="sk_settings_hide_translate_in_timeline">Ocultar el botón de la traducción en la línea de tiempo</string>
     <string name="sk_delete_all_notifications_confirm">¿Estás seguro de que quieres borrar todas las notificaciones\?</string>
     <string name="sk_settings_translation_availability_note_available">¡%s admite traducción!</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s no parece soportar la traducción.</string>
 </resources>
