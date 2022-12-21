@@ -6,4 +6,6 @@
 - Customizable Publish button
 - Dedicated icons for different notification types
 - Toggle for showing/hiding the translate button in the timeline
+- Resolve Fediverse links in the app
+- Long-click boost button to "quote" a post
 - Bugfixes and tweaks (Bookmark button, button animations)

@@ -152,6 +152,8 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Improve semantics for voting on polls (radio buttons and checkboxes)](https://github.com/sk22/megalodon/commit/6fd58c96827cb1d2da329cebdc170a1425dd18d7)
 * [Copy post URL when long-pressing share button](https://github.com/sk22/megalodon/commit/ba36347f03278763ecec617b1ce57ba89db7be72)
 * [Add option to disable swiping between tabs](https://github.com/sk22/megalodon/commit/1f20b21fc84bf006c1ec14bd2229cbfad5215ec8)
+* [Resolve Fediverse links in the app](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/open-urls-in-app)
+* [Long-click boost button to "quote" a post](https://github.com/sk22/megalodon/commit/b25a237c20c6a924ed4d9b357999867c3a32b32b)
 
 
 ### Visual
