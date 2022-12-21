@@ -2,8 +2,10 @@ package org.joinmastodon.android.ui.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -41,6 +43,7 @@ import org.joinmastodon.android.api.requests.accounts.SetAccountBlocked;
 import org.joinmastodon.android.api.requests.accounts.SetAccountFollowed;
 import org.joinmastodon.android.api.requests.accounts.SetAccountMuted;
 import org.joinmastodon.android.api.requests.accounts.SetDomainBlocked;
+import org.joinmastodon.android.api.requests.search.GetSearchResults;
 import org.joinmastodon.android.api.requests.statuses.DeleteStatus;
 import org.joinmastodon.android.api.requests.statuses.GetStatusByID;
 import org.joinmastodon.android.api.session.AccountSessionManager;
@@ -52,6 +55,7 @@ import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.Relationship;
+import org.joinmastodon.android.model.SearchResults;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.text.CustomEmojiSpan;
@@ -560,11 +564,19 @@ public class UiUtils{
 	}
 
 	public static void openURL(Context context, String accountID, String url){
+		Consumer<ProgressDialog> transformDialogForLookup = dialog -> {
+			dialog.setTitle(R.string.loading_fediverse_resource_title);
+			dialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.cancel), (d, which) -> d.cancel());
+			dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.open_in_browser), (d, which) -> {
+				d.cancel();
+				launchWebBrowser(context, url);
+			});
+		};
+
 		Uri uri=Uri.parse(url);
-		if(accountID!=null && "https".equals(uri.getScheme()) && AccountSessionManager.getInstance().getAccount(accountID).domain.equalsIgnoreCase(uri.getAuthority())){
-			List<String> path=uri.getPathSegments();
-			// Match URLs like https://mastodon.social/@Gargron/108132679274083591
-			if(path.size()==2 && path.get(0).matches("^@[a-zA-Z0-9_]+$") && path.get(1).matches("^[0-9]+$")){
+		List<String> path=uri.getPathSegments();
+		if(accountID!=null && "https".equals(uri.getScheme())){
+			if(path.size()==2 && path.get(0).matches("^@[a-zA-Z0-9_]+$") && path.get(1).matches("^[0-9]+$") && AccountSessionManager.getInstance().getAccount(accountID).domain.equalsIgnoreCase(uri.getAuthority())){
 				new GetStatusByID(path.get(1))
 						.setCallback(new Callback<>(){
 							@Override
@@ -581,7 +593,34 @@ public class UiUtils{
 								launchWebBrowser(context, url);
 							}
 						})
-						.wrapProgress((Activity)context, R.string.loading, true)
+						.wrapProgress((Activity)context, R.string.loading, true, transformDialogForLookup)
+						.exec(accountID);
+				return;
+			} else {
+				new GetSearchResults(url, null, true)
+						.setCallback(new Callback<>() {
+							@Override
+							public void onSuccess(SearchResults results) {
+								Bundle args=new Bundle();
+								args.putString("account", accountID);
+								if (!results.statuses.isEmpty()) {
+									args.putParcelable("status", Parcels.wrap(results.statuses.get(0)));
+									Nav.go((Activity) context, ThreadFragment.class, args);
+								} else if (!results.accounts.isEmpty()) {
+									args.putParcelable("profileAccount", Parcels.wrap(results.accounts.get(0)));
+									Nav.go((Activity) context, ProfileFragment.class, args);
+								} else {
+									launchWebBrowser(context, url);
+								}
+							}
+
+							@Override
+							public void onError(ErrorResponse error) {
+								error.showToast(context);
+								launchWebBrowser(context, url);
+							}
+						})
+						.wrapProgress((Activity)context, R.string.loading, true, transformDialogForLookup)
 						.exec(accountID);
 				return;
 			}

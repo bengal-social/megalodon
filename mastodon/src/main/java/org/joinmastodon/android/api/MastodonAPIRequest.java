@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.StringRes;
@@ -101,9 +102,14 @@ public abstract class MastodonAPIRequest<T> extends APIRequest<T>{
 	}
 
 	public MastodonAPIRequest<T> wrapProgress(Activity activity, @StringRes int message, boolean cancelable){
+		return wrapProgress(activity, message, cancelable, null);
+	}
+
+	public MastodonAPIRequest<T> wrapProgress(Activity activity, @StringRes int message, boolean cancelable, Consumer<ProgressDialog> transform){
 		progressDialog=new ProgressDialog(activity);
 		progressDialog.setMessage(activity.getString(message));
 		progressDialog.setCancelable(cancelable);
+		if (transform != null) transform.accept(progressDialog);
 		if(cancelable){
 			progressDialog.setOnCancelListener(dialog->cancel());
 		}
