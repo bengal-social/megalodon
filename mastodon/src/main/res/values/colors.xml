@@ -8,17 +8,17 @@
 	<color name="gray_900">#18131c</color>
 	<color name="gray_800">#1E1824</color>
 	<color name="gray_800t">#CC1E1824</color>
-	<color name="gray_700">#251f2b</color>
-	<color name="gray_600">#39343e</color>
+	<color name="gray_700">#2c2631</color>
+	<color name="gray_600">#403b45</color>
 	<color name="gray_500">#5b565f</color>
 
-	<color name="gray_400">#757179</color>
-	<color name="gray_300">#908c93</color>
-	<color name="gray_200">#aaa8ac</color>
-	<color name="gray_100">#c5c3c6</color>
-	<color name="gray_50">#dfdee0</color>
-	<color name="gray_50t">#ccdfdee0</color>
-	<color name="gray_25">#f9f9fa</color>
+	<color name="gray_400">#959298</color>
+	<color name="gray_300">#cbcacd</color>
+	<color name="gray_200">#dddcde</color>
+	<color name="gray_100">#ededed</color>
+	<color name="gray_50">#f2f1f2</color>
+	<color name="gray_50t">#ccf2f1f2</color>
+	<color name="gray_25">#f6f6f6</color>
 
 	<color name="primary_25">#fffafd</color>
 	<color name="primary_50">#fbeaf6</color>
