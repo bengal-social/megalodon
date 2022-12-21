@@ -602,6 +602,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					ignoreSelectionChanges=false;
 					initialText=prefilledText;
 				}
+				if (getArguments().containsKey("selectionStart") || getArguments().containsKey("selectionEnd")) {
+					int selectionStart=getArguments().getInt("selectionStart", 0);
+					int selectionEnd=getArguments().getInt("selectionEnd", selectionStart);
+					mainEditText.setSelection(selectionStart, selectionEnd);
+				}
 				ArrayList<Uri> mediaUris=getArguments().getParcelableArrayList("mediaAttachments");
 				if(mediaUris!=null && !mediaUris.isEmpty()){
 					for(Uri uri:mediaUris){

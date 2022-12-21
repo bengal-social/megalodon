@@ -95,6 +95,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			reply.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			boost.setOnTouchListener(this::onButtonTouch);
 			boost.setOnClickListener(this::onBoostClick);
+			boost.setOnLongClickListener(this::onBoostLongClick);
 			boost.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			favorite.setOnTouchListener(this::onButtonTouch);
 			favorite.setOnClickListener(this::onFavoriteClick);
@@ -164,6 +165,16 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 				v.startAnimation(opacityIn);
 				bindButton(boost, r.reblogsCount);
 			});
+		}
+
+		private boolean onBoostLongClick(View v){
+			v.startAnimation(opacityIn);
+			Bundle args=new Bundle();
+			args.putString("account", item.accountID);
+			args.putString("prefilledText", "\n\n" + item.status.url);
+			args.putInt("selectionStart", 0);
+			Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+			return true;
 		}
 
 		private void onFavoriteClick(View v){

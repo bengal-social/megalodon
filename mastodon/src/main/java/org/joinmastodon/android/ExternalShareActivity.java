@@ -52,7 +52,8 @@ public class ExternalShareActivity extends FragmentStackActivity{
 
 		Intent intent=getIntent();
 		StringBuilder builder=new StringBuilder();
-		if (intent.hasExtra(Intent.EXTRA_SUBJECT)) builder.append(intent.getStringExtra(Intent.EXTRA_SUBJECT)).append("\n\n");
+		String subject = "";
+		if (intent.hasExtra(Intent.EXTRA_SUBJECT)) builder.append(subject = intent.getStringExtra(Intent.EXTRA_SUBJECT)).append("\n\n");
 		if (intent.hasExtra(Intent.EXTRA_TEXT)) builder.append(intent.getStringExtra(Intent.EXTRA_TEXT)).append("\n");
 		String text=builder.toString();
 		List<Uri> mediaUris;
@@ -80,6 +81,8 @@ public class ExternalShareActivity extends FragmentStackActivity{
 		args.putString("account", accountID);
 		if(!TextUtils.isEmpty(text))
 			args.putString("prefilledText", text);
+		if(!subject.isBlank())
+			args.putInt("selectionEnd", subject.length());
 		if(mediaUris!=null && !mediaUris.isEmpty())
 			args.putParcelableArrayList("mediaAttachments", toArrayList(mediaUris));
 		Fragment fragment=new ComposeFragment();
