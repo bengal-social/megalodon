@@ -1,3 +1,9 @@
-- Copie la URL de la publicación cuando mantenga presionado el botón Compartir 
-- Agregar opción para deshabilitar el deslizamiento entre pestañas 
-- Corrección de errores y ajustes (botón Marcador, animaciones de botones)
+- Copiar la URL de la entrada al pulsar prolongadamente el botón de compartir
+- Añadir la opción de desactivar el deslizamiento entre pestañas
+- Nuevos colores grises
+- Eliminar notificaciones (desactivado por defecto)
+- Añadir varios enlaces a la configuración de la cuenta
+- Botón de publicación personalizable
+- Iconos específicos para los distintos tipos de notificaciones
+- Mostrar/ocultar el botón de traducción en la línea de tiempo
+- Corrección de errores y ajustes (botón Marcador, animaciones de los botones)
