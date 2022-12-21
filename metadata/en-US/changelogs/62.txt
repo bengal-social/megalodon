@@ -1,5 +1,9 @@
 - Copy post URL when long-pressing share button
 - Add option to disable swiping between tabs
-- Bugfixes and tweaks (Bookmark button, button animations)
 - New gray colors
 - Implement deleting notifications (disabled by default)
+- Add various links to account settings
+- Customizable Publish button
+- Dedicated icons for different notification types
+- Toggle for showing/hiding the translate button in the timeline
+- Bugfixes and tweaks (Bookmark button, button animations)

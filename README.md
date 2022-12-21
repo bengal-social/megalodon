@@ -165,6 +165,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [More distinct filled boost icon](https://github.com/sk22/megalodon/commits/more-distinct-filled-boost-icon)
 * Material You color theme by [@LucasGGamerM](https://github.com/LucasGGamerM)
 * [Animations for interaction buttons](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/animate-buttons)
+* [Dedicated icons for different notification types](https://github.com/sk22/megalodon/pull/178) by [@florian-obernberger](https://github.com/florian-obernberger)
 
 
 ## Building
