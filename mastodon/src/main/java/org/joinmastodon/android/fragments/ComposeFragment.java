@@ -672,11 +672,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	@SuppressLint("ClickableViewAccessibility")
 	private Button buildLanguageSelector() {
-		TypedValue typedValue = new TypedValue();
-		getActivity().getTheme().resolveAttribute(android.R.attr.textColorSecondary, typedValue, true);
-
 		languageButton=new Button(getActivity());
-		languageButton.setTextColor(typedValue.data);
+		languageButton.setTextColor(UiUtils.getThemeColor(getActivity(), android.R.attr.textColorSecondary));
 		languageButton.setBackground(getActivity().getDrawable(R.drawable.bg_text_button));
 		languageButton.setPadding(V.dp(8), 0, V.dp(8), 0);
 		languageButton.setCompoundDrawablesRelativeWithIntrinsicBounds(getActivity().getDrawable(R.drawable.ic_fluent_local_language_16_regular), null, null, null);

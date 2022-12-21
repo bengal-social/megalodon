@@ -25,6 +25,7 @@ import org.joinmastodon.android.model.StatusPrivacy;
 import org.joinmastodon.android.model.TranslatedStatus;
 import org.joinmastodon.android.ui.text.HtmlParser;
 import org.joinmastodon.android.ui.utils.CustomEmojiHelper;
+import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.ui.views.LinkedTextView;
 
 import me.grishka.appkit.api.Callback;
@@ -82,7 +83,7 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 		private final LinearLayout spoilerHeader;
 		private final TextView spoilerTitle, spoilerTitleInline, translateInfo;
 		private final View spoilerOverlay, borderTop, borderBottom, textWrap, translateWrap, translateProgress;
-		private final Drawable backgroundColor, borderColor;
+		private final int backgroundColor, borderColor;
 		private final Button translateButton;
 
 		public Holder(Activity activity, ViewGroup parent){
@@ -100,14 +101,8 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			translateInfo=findViewById(R.id.translate_info);
 			translateProgress=findViewById(R.id.translate_progress);
 			itemView.setOnClickListener(v->item.parentFragment.onRevealSpoilerClick(this));
-
-			TypedValue outValue=new TypedValue();
-			activity.getTheme().resolveAttribute(R.attr.colorBackgroundLight, outValue, true);
-			backgroundColor=activity.getDrawable(outValue.resourceId);
-//			activity.getTheme().resolveAttribute(R.attr.colorBackgroundLightest, outValue, true);
-//			backgroundColorInset=activity.getDrawable(outValue.resourceId);
-			activity.getTheme().resolveAttribute(R.attr.colorPollVoted, outValue, true);
-			borderColor=activity.getDrawable(outValue.resourceId);
+			backgroundColor=UiUtils.getThemeColor(activity, R.attr.colorBackgroundLight);
+			borderColor=UiUtils.getThemeColor(activity, R.attr.colorPollVoted);
 		}
 
 		@Override
@@ -118,10 +113,10 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			text.setTextIsSelectable(item.textSelectable);
 			spoilerTitleInline.setTextIsSelectable(item.textSelectable);
 			text.setInvalidateOnEveryFrame(false);
-			spoilerTitleInline.setBackground(item.inset ? null : backgroundColor);
+			spoilerTitleInline.setBackgroundColor(item.inset ? 0 : backgroundColor);
 			spoilerTitleInline.setPadding(spoilerTitleInline.getPaddingLeft(), item.inset ? 0 : V.dp(14), spoilerTitleInline.getPaddingRight(), item.inset ? 0 : V.dp(14));
-			borderTop.setBackground(item.inset ? null : borderColor);
-			borderBottom.setBackground(item.inset ? null : borderColor);
+			borderTop.setBackgroundColor(item.inset ? 0 : borderColor);
+			borderBottom.setBackgroundColor(item.inset ? 0 : borderColor);
 			if(!TextUtils.isEmpty(item.status.spoilerText)){
 				spoilerTitle.setText(item.parsedSpoilerText);
 				spoilerTitleInline.setText(item.parsedSpoilerText);

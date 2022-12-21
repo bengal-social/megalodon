@@ -205,11 +205,6 @@ public class CustomWelcomeFragment extends InstanceCatalogFragment {
 
 		public InstanceViewHolder(){
 			super(getActivity(), R.layout.item_instance_custom, list);
-
-//			itemView.setPadding(V.dp(16), V.dp(16), V.dp(16), V.dp(16));
-//			TypedValue value = new TypedValue();
-//			getActivity().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, value, true);
-//			itemView.setBackground(getActivity().getTheme().getDrawable(R.drawable.bg_search_field));
 			title=findViewById(R.id.title);
 			description=findViewById(R.id.description);
 			userCount=findViewById(R.id.user_count);

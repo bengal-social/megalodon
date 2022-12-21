@@ -907,9 +907,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		@Override
 		public void onBind(SmallTextItem item){
 			text.setText(item.text);
-			TypedValue val = new TypedValue();
-			getContext().getTheme().resolveAttribute(android.R.attr.textColorSecondary, val, true);
-			text.setTextColor(getResources().getColor(val.resourceId, getContext().getTheme()));
+			text.setTextColor(UiUtils.getThemeColor(getActivity(), android.R.attr.textColorSecondary));
 			text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 			text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
 		}
