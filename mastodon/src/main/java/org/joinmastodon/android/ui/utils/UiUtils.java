@@ -64,6 +64,8 @@ import org.parceler.Parcels;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -563,6 +565,47 @@ public class UiUtils{
 		return GlobalUserPreferences.theme==GlobalUserPreferences.ThemePreference.DARK;
 	}
 
+	// https://mastodon.foo.bar/@User
+	// https://mastodon.foo.bar/@User/43456787654678
+	// https://pleroma.foo.bar/users/User
+	// https://pleroma.foo.bar/users/9qTHT2ANWUdXzENqC0
+	// https://pleroma.foo.bar/notice/9sBHWIlwwGZi5QGlHc
+	// https://pleroma.foo.bar/objects/d4643c42-3ae0-4b73-b8b0-c725f5819207
+	// https://friendica.foo.bar/profile/user
+	// https://friendica.foo.bar/display/d4643c42-3ae0-4b73-b8b0-c725f5819207
+	// https://misskey.foo.bar/notes/83w6r388br (always lowercase)
+	// https://pixelfed.social/p/connyduck/391263492998670833
+	// https://pixelfed.social/connyduck
+	// https://gts.foo.bar/@goblin/statuses/01GH9XANCJ0TA8Y95VE9H3Y0Q2
+	// https://gts.foo.bar/@goblin
+	// https://foo.microblog.pub/o/5b64045effd24f48a27d7059f6cb38f5
+	//
+	// COPIED FROM https://github.com/tuskyapp/Tusky/blob/develop/app/src/main/java/com/keylesspalace/tusky/util/LinkHelper.kt
+	public static boolean looksLikeMastodonUrl(String urlString) {
+		URI uri;
+		try {
+			uri = new URI(urlString);
+		} catch (URISyntaxException e) {
+			return false;
+		}
+
+		if (uri.getQuery() != null || uri.getFragment() != null || uri.getPath() == null) return false;
+
+		String it = uri.getPath();
+		return it.matches("^/@[^/]+$") ||
+			it.matches("^/@[^/]+/\\d+$") ||
+			it.matches("^/users/\\w+$") ||
+			it.matches("^/notice/[a-zA-Z0-9]+$") ||
+			it.matches("^/objects/[-a-f0-9]+$") ||
+			it.matches("^/notes/[a-z0-9]+$") ||
+			it.matches("^/display/[-a-f0-9]+$") ||
+			it.matches("^/profile/\\w+$") ||
+			it.matches("^/p/\\w+/\\d+$") ||
+			it.matches("^/\\w+$") ||
+			it.matches("^/@[^/]+/statuses/[a-zA-Z0-9]+$") ||
+			it.matches("^/o/[a-f0-9]+$");
+	}
+
 	public static void openURL(Context context, String accountID, String url){
 		Consumer<ProgressDialog> transformDialogForLookup = dialog -> {
 			dialog.setTitle(R.string.loading_fediverse_resource_title);
@@ -596,7 +639,7 @@ public class UiUtils{
 						.wrapProgress((Activity)context, R.string.loading, true, transformDialogForLookup)
 						.exec(accountID);
 				return;
-			} else {
+			} else if (looksLikeMastodonUrl(url)) {
 				new GetSearchResults(url, null, true)
 						.setCallback(new Callback<>() {
 							@Override
