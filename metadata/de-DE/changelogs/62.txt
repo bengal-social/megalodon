@@ -1,0 +1,11 @@
+- Anpassbarer Text des "Veröffentlichen"-Buttons
+- Fediverse-Links werden nun in der App geöffnet
+- Boost-Button gedrückt halten zum Drüber-Kommentieren
+- Teilen-Button gedrückt halten, um den Link zu kopieren
+- Benachrichtigungen löschen (standardmäßig deaktiviert)
+- Extra Symbole für die einzelnen Benachrichtigungs-Typen
+- Neue Grautöne
+- Einstellung, um Wischen zwischen Tabs auszuschalten
+- Verschiedene Links zu Kontoeinstellungen hinzugefügt
+- Einstellung, um den Übersetzen-Button in der Timeline zu verbergen/anzuzeigen
+- Fehlerbehebungen und Anpassungen

@@ -1,11 +1,11 @@
 - Customizable Publish button
-- Resolve Fediverse links in the app
-- Copy post URL when long-pressing share button
+- Open Fediverse links in the app
 - Long-click boost button to "quote" a post
+- Copy post URL when long-pressing share button
 - Implement deleting notifications (disabled by default)
 - Dedicated icons for different notification types
 - New gray colors
-- Add option to disable swiping between tabs
+- Add setting to disable swiping between tabs
 - Add various links to account settings
 - Toggle for showing/hiding the translate button in the timeline
-- Bugfixes and tweaks (Bookmark button, button animations, boost counter)
+- Bugfixes and tweaks
