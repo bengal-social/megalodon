@@ -168,7 +168,9 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private boolean onBoostLongClick(View v){
-			v.startAnimation(opacityIn);
+			v.setAlpha(1);
+			v.setScaleX(1);
+			v.setScaleY(1);
 			Bundle args=new Bundle();
 			args.putString("account", item.accountID);
 			args.putString("prefilledText", "\n\n" + item.status.url);
