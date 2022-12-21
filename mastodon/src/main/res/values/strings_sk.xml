@@ -75,11 +75,11 @@
     <string name="sk_delete_notification_confirm">Are you sure you want to delete this notification?</string>
     <string name="sk_delete_all_notifications">Delete all notifications</string>
     <string name="sk_delete_all_notifications_confirm_action">Delete all</string>
-    <string name="sk_delete_all_notifications_confirm">Are you sure you want to delete this notification?</string>
+    <string name="sk_delete_all_notifications_confirm">Are you sure you want to delete all notifications\?</string>
     <string name="sk_enable_delete_notifications">Enable deleting notifications</string>
     <string name="sk_settings_publish_button_text">Publish button text</string>
     <string name="sk_settings_publish_button_text_title">Customize Publish button text</string>
     <string name="sk_settings_hide_translate_in_timeline">Hide translate button in timeline</string>
     <string name="sk_settings_translation_availability_note_available">%s supports translation!</string>
-    <string name="sk_settings_translation_availability_note_unavailable">%s seems not to support translation.</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s does not seem to support translation.</string>
 </resources>

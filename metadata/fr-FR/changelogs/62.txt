@@ -1,0 +1,3 @@
+- Copier l'URL de la publication lorsque vous appuyez longuement sur le bouton de partage
+- Ajout d'une option pour désactiver le balayage entre les onglets
+- Corrections de bugs et ajustements (bouton de signet, animations de bouton)

@@ -61,4 +61,12 @@
     <string name="sk_welcome_text">Le requin vous salue ! Pour commencer, veuillez entrer le nom de domaine de votre instance personnelle ci-dessous.</string>
     <string name="sk_color_palette_material3">Système</string>
     <string name="sk_color_palette_red">Rouge</string>
+    <string name="sk_settings_profile">Configurer le profil</string>
+    <string name="sk_settings_posting">Préférences de publication</string>
+    <string name="sk_settings_filters">Configurer les filtres</string>
+    <string name="sk_settings_auth">Paramètres de sécurité</string>
+    <string name="sk_settings_rules">Règles</string>
+    <string name="sk_settings_about">À propos de l\'application</string>
+    <string name="sk_settings_donate">Donner</string>
+    <string name="sk_tabs_disable_swipe">Désactiver le balayage entre les onglets</string>
 </resources>
