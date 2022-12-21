@@ -69,4 +69,16 @@
     <string name="sk_settings_about">Acerca de la aplicación</string>
     <string name="sk_settings_donate">Donar</string>
     <string name="sk_tabs_disable_swipe">Deshabilitar el deslizamiento entre pestañas</string>
+    <string name="sk_delete_notification">Eliminar la notificación</string>
+    <string name="sk_delete_notification_confirm_action">Eliminar la notificación</string>
+    <string name="sk_delete_notification_confirm">¿Estás seguro de que quieres borrar esta notificación\?</string>
+    <string name="sk_clear_all_notifications">Borrar todas las notificaciones</string>
+    <string name="sk_clear_all_notifications_confirm_action">Borrar todo</string>
+    <string name="sk_enable_delete_notifications">Activar la eliminación de notificaciones</string>
+    <string name="sk_settings_publish_button_text">Publicar el texto del botón</string>
+    <string name="sk_settings_publish_button_text_title">Personalizar el texto del botón Publicar</string>
+    <string name="sk_settings_hide_translate_in_timeline">Ocultar el botón de la traducción en la línea de tiempo</string>
+    <string name="sk_clear_all_notifications_confirm">¿Estás seguro de que quieres borrar todas las notificaciones\?</string>
+    <string name="sk_settings_translation_availability_note_available">¡%s admite traducción!</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s no parece soportar la traducción.</string>
 </resources>
