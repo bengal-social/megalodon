@@ -388,9 +388,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 		if(editingStatus!=null && editingStatus.visibility!=null) {
 			statusVisibility=editingStatus.visibility;
+		} else {
+			loadDefaultStatusVisibility(savedInstanceState);
 		}
 
-		loadDefaultStatusVisibility(savedInstanceState);
 		updateVisibilityIcon();
 
 		autocompleteViewController=new ComposeAutocompleteViewController(getActivity(), accountID);
