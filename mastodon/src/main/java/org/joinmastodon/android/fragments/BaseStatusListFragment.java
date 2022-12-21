@@ -787,7 +787,7 @@ public abstract class BaseStatusListFragment<T extends DisplayItemsParent> exten
 			currentMediaHiddenLayoutsWidth=width;
 			String title=getString(R.string.sensitive_content);
 			TextPaint titlePaint=new TextPaint(Paint.ANTI_ALIAS_FLAG);
-			titlePaint.setColor(getResources().getColor(R.color.gray_50));
+			titlePaint.setColor(UiUtils.getThemeColor(getContext(), R.attr.colorGray50));
 			titlePaint.setTextSize(V.dp(22));
 			titlePaint.setTypeface(mediumTypeface);
 			mediaHiddenTitleLayout=StaticLayout.Builder.obtain(title, 0, title.length(), titlePaint, width)
@@ -798,7 +798,7 @@ public abstract class BaseStatusListFragment<T extends DisplayItemsParent> exten
 					.setAlignment(Layout.Alignment.ALIGN_CENTER)
 					.build();
 			TextPaint textPaint=new TextPaint(Paint.ANTI_ALIAS_FLAG);
-			textPaint.setColor(getResources().getColor(R.color.gray_200));
+			textPaint.setColor(UiUtils.getThemeColor(getContext(), R.attr.colorGray200));
 			textPaint.setTextSize(V.dp(16));
 			String text=getString(R.string.sensitive_content_explain);
 			mediaHiddenTextLayout=StaticLayout.Builder.obtain(text, 0, text.length(), textPaint, width)

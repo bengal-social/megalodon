@@ -42,7 +42,7 @@
 						android:layout_margin="16dp"
 						android:paddingRight="8dp"
 						android:paddingLeft="8dp"
-						android:textColor="@color/gray_50t"
+						android:textColor="?colorGray50t"
 						android:textAllCaps="true"
 						android:fontFamily="sans-serif-medium"
 						android:textSize="14dp"

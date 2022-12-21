@@ -142,7 +142,7 @@ public class PushNotificationReceiver extends BroadcastReceiver{
 				.setShowWhen(true)
 				.setCategory(Notification.CATEGORY_SOCIAL)
 				.setAutoCancel(true)
-				.setColor(context.getColor(R.color.primary_700));
+				.setColor(UiUtils.getThemeColor(context, R.attr.colorPrimary700));
 		switch (pn.notificationType) {
 			case FAVORITE -> builder.setSmallIcon(R.drawable.ic_fluent_star_24_filled);
 			case REBLOG -> builder.setSmallIcon(R.drawable.ic_fluent_arrow_repeat_all_24_filled);
