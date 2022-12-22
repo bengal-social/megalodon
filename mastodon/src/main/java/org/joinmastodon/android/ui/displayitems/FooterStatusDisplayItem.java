@@ -1,9 +1,13 @@
 package org.joinmastodon.android.ui.displayitems;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -18,13 +22,17 @@ import android.widget.TextView;
 
 import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
+import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.model.StatusPrivacy;
+import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.parceler.Parcels;
+
+import java.util.function.Consumer;
 
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.utils.CubicBezierInterpolator;
@@ -166,21 +174,68 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 
 		private void onBoostClick(View v){
 			boost.setSelected(!item.status.reblogged);
-			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setReblogged(item.status, !item.status.reblogged, r->{
-				v.startAnimation(opacityIn);
-				bindButton(boost, r.reblogsCount);
-			});
+			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setReblogged(item.status, !item.status.reblogged, null, r->boostConsumer(v, r));
+		}
+
+		private void boostConsumer(View v, Status r) {
+			v.startAnimation(opacityIn);
+			bindButton(boost, r.reblogsCount);
 		}
 
 		private boolean onBoostLongClick(View v){
-			v.setAlpha(1);
-			v.setScaleX(1);
-			v.setScaleY(1);
-			Bundle args=new Bundle();
-			args.putString("account", item.accountID);
-			args.putString("prefilledText", "\n\n" + item.status.url);
-			args.putInt("selectionStart", 0);
-			Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+			Context ctx = itemView.getContext();
+			View menu = LayoutInflater.from(ctx).inflate(R.layout.item_boost_menu, null);
+			Dialog dialog = new M3AlertDialogBuilder(ctx).setView(menu).create();
+			AccountSession session = AccountSessionManager.getInstance().getAccount(item.accountID);
+
+			Consumer<StatusPrivacy> doReblog = (visibility) -> {
+				v.startAnimation(opacityOut);
+				session.getStatusInteractionController()
+						.setReblogged(item.status, !item.status.reblogged, visibility, r->boostConsumer(v, r));
+				dialog.dismiss();
+			};
+
+			View separator = menu.findViewById(R.id.separator);
+			TextView reblogHeader = menu.findViewById(R.id.reblog_header);
+			TextView undoReblog = menu.findViewById(R.id.delete_reblog);
+			TextView itemPublic = menu.findViewById(R.id.vis_public);
+			TextView itemUnlisted = menu.findViewById(R.id.vis_unlisted);
+			TextView itemFollowers = menu.findViewById(R.id.vis_followers);
+
+			undoReblog.setVisibility(item.status.reblogged ? View.VISIBLE : View.GONE);
+			separator.setVisibility(item.status.reblogged ? View.GONE : View.VISIBLE);
+			reblogHeader.setVisibility(item.status.reblogged ? View.GONE : View.VISIBLE);
+
+			itemPublic.setVisibility(item.status.reblogged || item.status.visibility.isLessVisibleThan(StatusPrivacy.PUBLIC) ? View.GONE : View.VISIBLE);
+			itemUnlisted.setVisibility(item.status.reblogged || item.status.visibility.isLessVisibleThan(StatusPrivacy.UNLISTED) ? View.GONE : View.VISIBLE);
+			itemFollowers.setVisibility(item.status.reblogged || item.status.visibility.isLessVisibleThan(StatusPrivacy.PRIVATE) ? View.GONE : View.VISIBLE);
+
+			Drawable checkMark = ctx.getDrawable(R.drawable.ic_fluent_checkmark_circle_20_regular);
+			Drawable publicDrawable = ctx.getDrawable(R.drawable.ic_fluent_earth_24_regular);
+			Drawable unlistedDrawable = ctx.getDrawable(R.drawable.ic_fluent_people_community_24_regular);
+			Drawable followersDrawable = ctx.getDrawable(R.drawable.ic_fluent_people_checkmark_24_regular);
+
+			StatusPrivacy defaultVisibility = session.preferences.postingDefaultVisibility;
+			itemPublic.setCompoundDrawablesWithIntrinsicBounds(publicDrawable, null, StatusPrivacy.PUBLIC.equals(defaultVisibility) ? checkMark : null, null);
+			itemUnlisted.setCompoundDrawablesWithIntrinsicBounds(unlistedDrawable, null, StatusPrivacy.UNLISTED.equals(defaultVisibility) ? checkMark : null, null);
+			itemFollowers.setCompoundDrawablesWithIntrinsicBounds(followersDrawable, null, StatusPrivacy.PRIVATE.equals(defaultVisibility) ? checkMark : null, null);
+
+			undoReblog.setOnClickListener(c->doReblog.accept(null));
+			itemPublic.setOnClickListener(c->doReblog.accept(StatusPrivacy.PUBLIC));
+			itemUnlisted.setOnClickListener(c->doReblog.accept(StatusPrivacy.UNLISTED));
+			itemFollowers.setOnClickListener(c->doReblog.accept(StatusPrivacy.PRIVATE));
+
+			menu.findViewById(R.id.quote).setOnClickListener(c->{
+				dialog.dismiss();
+				v.startAnimation(opacityIn);
+				Bundle args=new Bundle();
+				args.putString("account", item.accountID);
+				args.putString("prefilledText", "\n\n" + item.status.url);
+				args.putInt("selectionStart", 0);
+				Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+			});
+
+			dialog.show();
 			return true;
 		}
 

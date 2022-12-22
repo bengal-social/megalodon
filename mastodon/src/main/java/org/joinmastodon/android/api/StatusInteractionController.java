@@ -9,6 +9,7 @@ import org.joinmastodon.android.api.requests.statuses.SetStatusFavorited;
 import org.joinmastodon.android.api.requests.statuses.SetStatusReblogged;
 import org.joinmastodon.android.events.StatusCountersUpdatedEvent;
 import org.joinmastodon.android.model.Status;
+import org.joinmastodon.android.model.StatusPrivacy;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
@@ -59,7 +60,7 @@ public class StatusInteractionController{
 		E.post(new StatusCountersUpdatedEvent(status));
 	}
 
-	public void setReblogged(Status status, boolean reblogged, Consumer<Status> cb){
+	public void setReblogged(Status status, boolean reblogged, StatusPrivacy visibility, Consumer<Status> cb){
 		if(!Looper.getMainLooper().isCurrentThread())
 			throw new IllegalStateException("Can only be called from main thread");
 
@@ -67,7 +68,7 @@ public class StatusInteractionController{
 		if(current!=null){
 			current.cancel();
 		}
-		SetStatusReblogged req=(SetStatusReblogged) new SetStatusReblogged(status.id, reblogged)
+		SetStatusReblogged req=(SetStatusReblogged) new SetStatusReblogged(status.id, reblogged, visibility)
 				.setCallback(new Callback<>(){
 					@Override
 					public void onSuccess(Status reblog){

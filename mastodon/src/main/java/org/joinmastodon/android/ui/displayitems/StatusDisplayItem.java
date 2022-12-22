@@ -81,13 +81,13 @@ public abstract class StatusDisplayItem{
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
 		if(status.reblog!=null){
-			items.add(new ReblogOrReplyLineStatusDisplayItem(parentID, fragment, fragment.getString(R.string.user_boosted, status.account.displayName), status.account.emojis, R.drawable.ic_fluent_arrow_repeat_all_20_filled, i->{
+			items.add(new ReblogOrReplyLineStatusDisplayItem(parentID, fragment, fragment.getString(R.string.user_boosted, status.account.displayName), status.account.emojis, R.drawable.ic_fluent_arrow_repeat_all_20_filled, status.visibility, i->{
 				args.putParcelable("profileAccount", Parcels.wrap(status.account));
 				Nav.go(fragment.getActivity(), ProfileFragment.class, args);
 			}));
 		}else if(status.inReplyToAccountId!=null && knownAccounts.containsKey(status.inReplyToAccountId)){
 			Account account=Objects.requireNonNull(knownAccounts.get(status.inReplyToAccountId));
-			items.add(new ReblogOrReplyLineStatusDisplayItem(parentID, fragment, fragment.getString(R.string.in_reply_to, account.displayName), account.emojis, R.drawable.ic_fluent_arrow_reply_20_filled, i->{
+			items.add(new ReblogOrReplyLineStatusDisplayItem(parentID, fragment, fragment.getString(R.string.in_reply_to, account.displayName), account.emojis, R.drawable.ic_fluent_arrow_reply_20_filled, null, i->{
 				args.putParcelable("profileAccount", Parcels.wrap(account));
 				Nav.go(fragment.getActivity(), ProfileFragment.class, args);
 			}));

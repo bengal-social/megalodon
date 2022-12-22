@@ -83,4 +83,7 @@
     <string name="sk_settings_translation_availability_note_available">%s supports translation!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s does not appear to support translation.</string>
     <string name="sk_loading_fediverse_resource_title">Looking it up on the Fediverse…</string>
+    <string name="sk_undo_reblog">Undo reblog</string>
+    <string name="sk_reblog_with_visibility">Reblog with visibility</string>
+    <string name="sk_quote_post">Post about this</string>
 </resources>
