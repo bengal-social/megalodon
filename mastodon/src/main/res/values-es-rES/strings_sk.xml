@@ -81,4 +81,5 @@
     <string name="sk_clear_all_notifications_confirm">¿Estás seguro de que quieres borrar todas las notificaciones\?</string>
     <string name="sk_settings_translation_availability_note_available">¡%s admite traducción!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s no parece soportar la traducción.</string>
+    <string name="sk_loading_fediverse_resource_title">Buscándolo en Fediverse…</string>
 </resources>
