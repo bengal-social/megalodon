@@ -111,7 +111,7 @@ public class HtmlParser{
 			@Override
 			public void head(@NonNull Node node, int depth){
 				if(node instanceof TextNode textNode){
-					ssb.append(textNode.text());
+					ssb.append(textNode.getWholeText());
 				}else if(node instanceof Element el){
 					switch(el.nodeName()){
 						case "a" -> {
