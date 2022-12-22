@@ -82,4 +82,7 @@
     <string name="sk_settings_translation_availability_note_unavailable">%s ne semble pas prendre en charge la traduction.</string>
     <string name="sk_clear_all_notifications_confirm">Voulez-vous vraiment supprimer toutes les notifications \?</string>
     <string name="sk_loading_fediverse_resource_title">Le rechercher sur le Fediverse…</string>
+    <string name="sk_reblog_with_visibility">Rebloguer avec visibilité</string>
+    <string name="sk_undo_reblog">Annuler le reblogage</string>
+    <string name="sk_quote_post">Poster à ce sujet</string>
 </resources>
