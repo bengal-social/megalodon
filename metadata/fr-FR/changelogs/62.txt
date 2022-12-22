@@ -1,9 +1,11 @@
-- Copier l'URL du post avec un appuis long sur le bouton de partage
-- Ajout d'une option pour désactiver le balayage entre les onglets
+- Bouton Publier perso.
+- Ouverture des liens Fediverse dans l'application
+- Clic long sur le bouton boost pour citer un message
+- Copier l'URL du post avec appuis long sur le bouton de partage
+- Ajout de la suppr. des notifs.
+- Icônes pour différents types de notification
 - Nouvelles couleurs grises
-- Ajout de la suppression des notifications
-- Ajout de divers liens vers les paramètres du compte
-- Bouton Publier personnalisable
-- Icônes dédiées pour différents types de notification
+- Possibilité de désactiver le balayage entre les onglets
+- Ajout de liens vers les paramètres du compte
 - Option pour afficher/masquer le bouton de traduction dans la timeline
-- Corrections de bugs et ajustements (bouton de signet, animations de bouton)
+- Correction de bugs
