@@ -1,0 +1,2 @@
+- Reblog with specific visibility on long-click
+- List of followed hashtags
