@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingHorizontal="16dp"
-        android:drawableLeft="@drawable/ic_fluent_people_community_24_regular"
         android:drawableTint="?android:textColorSecondary"
         android:drawablePadding="16dp"
         android:textAppearance="@style/m3_title_medium"
@@ -26,6 +25,7 @@
         android:clickable="false"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:paddingRight="16dp"/>
 
 </LinearLayout>

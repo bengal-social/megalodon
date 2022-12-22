@@ -624,6 +624,10 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			args.putString("profileAccount", profileAccountID);
 			args.putString("profileDisplayUsername", account.getDisplayUsername());
 			Nav.go(getActivity(), ListTimelinesFragment.class, args);
+		}else if(id==R.id.followed_hashtags){
+			Bundle args=new Bundle();
+			args.putString("account", accountID);
+			Nav.go(getActivity(), FollowedHashtagsFragment.class, args);
 		}
 		return true;
 	}

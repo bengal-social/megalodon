@@ -1,14 +1,9 @@
 package org.joinmastodon.android.fragments;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,17 +18,13 @@ import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.ui.utils.UiUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.api.SimpleCallback;
 import me.grishka.appkit.fragments.BaseRecyclerFragment;
 import me.grishka.appkit.utils.BindableViewHolder;
-import me.grishka.appkit.utils.V;
 import me.grishka.appkit.views.UsableRecyclerView;
 
 public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> implements ScrollableToTop {
@@ -159,7 +150,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
         private final CheckBox listToggle;
 
         public ListViewHolder(){
-            super(getActivity(), R.layout.item_list_timeline, list);
+            super(getActivity(), R.layout.item_text, list);
             title=findViewById(R.id.title);
             listToggle=findViewById(R.id.list_toggle);
         }
@@ -167,8 +158,10 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
         @Override
         public void onBind(ListTimeline item) {
             title.setText(item.title);
+            title.setCompoundDrawablesRelativeWithIntrinsicBounds(itemView.getContext().getDrawable(R.drawable.ic_fluent_people_community_24_regular), null, null, null);
             if (profileAccountId != null) {
                 Boolean checked = userInList.get(item.id);
+                listToggle.setVisibility(View.VISIBLE);
                 listToggle.setChecked(userInList.containsKey(item.id) && checked != null && checked);
                 listToggle.setOnClickListener(this::onClickToggle);
             } else {
