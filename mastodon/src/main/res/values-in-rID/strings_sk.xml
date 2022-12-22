@@ -61,4 +61,15 @@
     <string name="sk_color_palette_red">Merah</string>
     <string name="sk_translated_using">Diterjemahkan menggunakan %s</string>
     <string name="sk_welcome_text">Hiu menyapamu! Untuk memulai, silakan memasukkan nama domain instansi Anda di bawah.</string>
+    <string name="sk_tabs_disable_swipe">Nonaktifkan mengusap antara tab</string>
+    <string name="sk_settings_profile">Atur profil</string>
+    <string name="sk_settings_filters">Atur profil</string>
+    <string name="sk_enable_delete_notifications">Aktifkan menghapus notifikasi</string>
+    <string name="sk_settings_publish_button_text">Teks tombol Terbitkan</string>
+    <string name="sk_settings_publish_button_text_title">Ubah teks tombol Terbitkan</string>
+    <string name="sk_settings_hide_translate_in_timeline">Sembunyikan tombol terjemahkan di lini masa</string>
+    <string name="sk_settings_translation_availability_note_available">%s mendukung penerjemahan!</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s sepertinya tidak mendukung penerjemahan.</string>
+    <string name="sk_clear_all_notifications_confirm">Apakah Anda yakin ingin menghapus semua notifikasi\?</string>
+    <string name="sk_loading_fediverse_resource_title">Mencari di Fedimesta…</string>
 </resources>
