@@ -731,17 +731,18 @@ public class UiUtils{
 
 		String it = uri.getPath();
 		return it.matches("^/@[^/]+$") ||
-			it.matches("^/@[^/]+/\\d+$") ||
-			it.matches("^/users/\\w+$") ||
-			it.matches("^/notice/[a-zA-Z0-9]+$") ||
-			it.matches("^/objects/[-a-f0-9]+$") ||
-			it.matches("^/notes/[a-z0-9]+$") ||
-			it.matches("^/display/[-a-f0-9]+$") ||
-			it.matches("^/profile/\\w+$") ||
-			it.matches("^/p/\\w+/\\d+$") ||
-			it.matches("^/\\w+$") ||
-			it.matches("^/@[^/]+/statuses/[a-zA-Z0-9]+$") ||
-			it.matches("^/o/[a-f0-9]+$");
+				it.matches("^/@[^/]+/\\d+$") ||
+				it.matches("^/users/\\w+$") ||
+				it.matches("^/notice/[a-zA-Z0-9]+$") ||
+				it.matches("^/objects/[-a-f0-9]+$") ||
+				it.matches("^/notes/[a-z0-9]+$") ||
+				it.matches("^/display/[-a-f0-9]+$") ||
+				it.matches("^/profile/\\w+$") ||
+				it.matches("^/p/\\w+/\\d+$") ||
+				it.matches("^/\\w+$") ||
+				it.matches("^/@[^/]+/statuses/[a-zA-Z0-9]+$") ||
+				it.matches("^/users/[^/]+/statuses/[a-zA-Z0-9]+$") ||
+				it.matches("^/o/[a-f0-9]+$");
 	}
 
 	public static void openURL(Context context, String accountID, String url){
