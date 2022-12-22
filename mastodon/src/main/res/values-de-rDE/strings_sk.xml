@@ -81,4 +81,5 @@
     <string name="sk_clear_all_notifications_confirm">Wirklich alle Benachrichtigungen löschen\?</string>
     <string name="sk_settings_translation_availability_note_available">%s unterstützt Übersetzung!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s scheint keine Übersetzung zu unterstützen.</string>
+    <string name="sk_loading_fediverse_resource_title">Es wird im Fediverse nachgeschlagen…</string>
 </resources>
