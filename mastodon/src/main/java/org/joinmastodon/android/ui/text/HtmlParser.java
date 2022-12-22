@@ -182,7 +182,7 @@ public class HtmlParser{
 						ssb.append("…", new DeleteWhenCopiedSpan(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					}else if(blockElements.contains(el.nodeName()) && node.nextSibling()!=null){
 						ssb.append("\n"); // line end
-						ssb.append("\n", new RelativeSizeSpan(0.75f), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // margin after block
+						ssb.append("\n", new RelativeSizeSpan(0.65f), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // margin after block
 					}
 				}
 			}
