@@ -12,6 +12,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -132,21 +133,25 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private boolean onButtonTouch(View v, MotionEvent event){
+			boolean disabled = !v.isEnabled() || (v instanceof FrameLayout parentFrame &&
+					parentFrame.getChildCount() > 0 && !parentFrame.getChildAt(0).isEnabled());
 			int action = event.getAction();
 			long eventDuration = event.getEventTime() - event.getDownTime();
 			if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
 				touchingView = null;
 				v.removeCallbacks(longClickRunnable);
 				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
+				if (disabled) return true;
 				if (action == MotionEvent.ACTION_UP && eventDuration < ViewConfiguration.getLongPressTimeout()) v.performClick();
 				else v.startAnimation(opacityIn);
 			} else if (action == MotionEvent.ACTION_DOWN) {
 				touchingView = v;
 				// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
 				v.setPivotX(V.dp(20));
+				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(75).start();
+				if (disabled) return true;
 				v.postDelayed(longClickRunnable, ViewConfiguration.getLongPressTimeout());
 				v.startAnimation(opacityOut);
-				v.animate().scaleX(0.85f).scaleY(0.85f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(75).start();
 			}
 			return true;
 		}
