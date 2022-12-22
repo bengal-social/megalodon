@@ -3,9 +3,9 @@
 - Boost-Button gedrückt halten zum Drüber-Kommentieren
 - Teilen-Button gedrückt halten, um den Link zu kopieren
 - Benachrichtigungen löschen (standardmäßig deaktiviert)
-- Extra Symbole für die einzelnen Benachrichtigungs-Typen
+- Extra Symbole für Benachrichtigungs-Typen
 - Neue Grautöne
-- Einstellung, um Wischen zwischen Tabs auszuschalten
-- Verschiedene Links zu Kontoeinstellungen hinzugefügt
-- Einstellung, um den Übersetzen-Button in der Timeline zu verbergen/anzuzeigen
-- Fehlerbehebungen und Anpassungen
+- Wischen zwischen Tabs ausschaltbar
+- Links zu Kontoeinstellungen hinzugefügt
+- Einstellung, um den Übersetzen-Button in der Timeline anzuzeigen
+- Fehlerbehebungen
