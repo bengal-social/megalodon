@@ -72,4 +72,14 @@
     <string name="sk_settings_translation_availability_note_unavailable">%s sepertinya tidak mendukung penerjemahan.</string>
     <string name="sk_clear_all_notifications_confirm">Apakah Anda yakin ingin menghapus semua notifikasi\?</string>
     <string name="sk_loading_fediverse_resource_title">Mencari di Fedimesta…</string>
+    <string name="sk_settings_rules">Aturan</string>
+    <string name="sk_settings_about">Tentang aplikasi</string>
+    <string name="sk_settings_donate">Donasi</string>
+    <string name="sk_delete_notification">Hapus notifikasi</string>
+    <string name="sk_delete_notification_confirm_action">Hapus notifikasi</string>
+    <string name="sk_delete_notification_confirm">Apakah kamu yakin ingin menghapus notifikasi ini\?</string>
+    <string name="sk_clear_all_notifications_confirm_action">Hapus semua</string>
+    <string name="sk_settings_posting">Preferensi kiriman</string>
+    <string name="sk_settings_auth">Pengaturan keamanan</string>
+    <string name="sk_clear_all_notifications">Hapus semua notifikasi</string>
 </resources>
