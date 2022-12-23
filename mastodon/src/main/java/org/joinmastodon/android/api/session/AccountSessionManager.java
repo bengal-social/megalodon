@@ -13,8 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
-import com.google.gson.JsonParseException;
-
 import org.joinmastodon.android.BuildConfig;
 import org.joinmastodon.android.E;
 import org.joinmastodon.android.MainActivity;
@@ -104,12 +102,11 @@ public class AccountSessionManager{
 
 	public void addAccount(Instance instance, Token token, Account self, Application app, AccountActivationInfo activationInfo){
 		instances.put(instance.uri, instance);
-		updateInstanceInfoV2(instance);
 		AccountSession session=new AccountSession(token, self, app, instance.uri, activationInfo==null, activationInfo);
 		sessions.put(session.getID(), session);
 		lastActiveAccountID=session.getID();
 		writeAccountsFile();
-		updateInstanceEmojis(instance, instance.uri);
+		updateMoreInstanceInfo(instance, instance.uri);
 		if(PushSubscriptionManager.arePushNotificationsAvailable()){
 			session.getPushSubscriptionManager().registerAccountForPush(null);
 		}
@@ -328,10 +325,7 @@ public class AccountSessionManager{
 					@Override
 					public void onSuccess(Instance instance){
 						instances.put(domain, instance);
-						updateInstanceEmojis(instance, domain);
-						try {
-							updateInstanceInfoV2(instance);
-						} catch (Exception ignored) {}
+						updateMoreInstanceInfo(instance, domain);
 					}
 
 					@Override
@@ -342,16 +336,18 @@ public class AccountSessionManager{
 				.execNoAuth(domain);
 	}
 
-	public void updateInstanceInfoV2(Instance instance) {
+	public void updateMoreInstanceInfo(Instance instance, String domain) {
 		new GetInstance.V2().setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(Instance.V2 v2) {
 				if (instance != null) instance.v2 = v2;
-				writeAccountsFile();
+				updateInstanceEmojis(instance, domain);
 			}
 
 			@Override
-			public void onError(ErrorResponse errorResponse) {}
+			public void onError(ErrorResponse errorResponse) {
+				updateInstanceEmojis(instance, domain);
+			}
 		}).execNoAuth(instance.uri);
 	}
 
