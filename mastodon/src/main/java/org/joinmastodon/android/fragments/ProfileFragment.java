@@ -288,11 +288,11 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		followingBtn.setOnClickListener(this::onFollowersOrFollowingClick);
 
 		username.setOnLongClickListener(v->{
-			String username=account.acct;
-			if(!username.contains("@")){
-				username+="@"+AccountSessionManager.getInstance().getAccount(accountID).domain;
+			String usernameString=account.acct;
+			if(!usernameString.contains("@")){
+				usernameString+="@"+AccountSessionManager.getInstance().getAccount(accountID).domain;
 			}
-			UiUtils.copyText(getActivity(), '@'+username);
+			UiUtils.copyText(username, '@'+usernameString);
 			return true;
 		});
 

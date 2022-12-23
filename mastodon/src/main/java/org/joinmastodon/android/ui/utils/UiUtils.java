@@ -32,6 +32,7 @@ import android.provider.OpenableColumns;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -810,14 +811,13 @@ public class UiUtils{
 		launchWebBrowser(context, url);
 	}
 
-	public static void copyText(Context context, String text) {
+	public static void copyText(View v, String text) {
+		Context context = v.getContext();
 		context.getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText(null, text));
 		if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU || UiUtils.isMIUI()){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
 			Toast.makeText(context, R.string.text_copied, Toast.LENGTH_SHORT).show();
 		}
-		Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
-		else vibrator.vibrate(50);
+		v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
 	}
 
 	private static String getSystemProperty(String key){

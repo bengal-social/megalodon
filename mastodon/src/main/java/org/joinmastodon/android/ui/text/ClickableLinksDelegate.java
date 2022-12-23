@@ -24,7 +24,7 @@ public class ClickableLinksDelegate {
 	private TextView view;
 
 	private final Runnable longClickRunnable = () -> {
-		if (selectedSpan != null) selectedSpan.onLongClick(view.getContext());
+		if (selectedSpan != null) selectedSpan.onLongClick(view);
 	};
 
 	public ClickableLinksDelegate(TextView view) {

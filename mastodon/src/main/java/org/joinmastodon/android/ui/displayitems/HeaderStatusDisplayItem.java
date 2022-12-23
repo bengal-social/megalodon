@@ -203,8 +203,10 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					args.putParcelable("status", Parcels.wrap(item.status));
 					args.putParcelable("reportAccount", Parcels.wrap(item.status.account));
 					Nav.go(item.parentFragment.getActivity(), ReportReasonChoiceFragment.class, args);
-				}else if(id==R.id.open_in_browser){
+				}else if(id==R.id.open_in_browser) {
 					UiUtils.launchWebBrowser(activity, item.status.url);
+				}else if(id==R.id.copy_link){
+					UiUtils.copyText(parent, item.status.url);
 				}else if(id==R.id.follow){
 					if(relationship==null)
 						return true;
@@ -320,6 +322,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			menu.findItem(R.id.pin).setVisible(item.status!=null && isOwnPost && !item.status.pinned);
 			menu.findItem(R.id.unpin).setVisible(item.status!=null && isOwnPost && item.status.pinned);
 			menu.findItem(R.id.open_in_browser).setVisible(item.status!=null);
+			menu.findItem(R.id.copy_link).setVisible(item.status!=null);
 			MenuItem blockDomain=menu.findItem(R.id.block_domain);
 			MenuItem mute=menu.findItem(R.id.mute);
 			MenuItem block=menu.findItem(R.id.block);

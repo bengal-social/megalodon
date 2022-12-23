@@ -3,6 +3,7 @@ package org.joinmastodon.android.ui.text;
 import android.content.Context;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
+import android.view.View;
 
 import org.joinmastodon.android.ui.utils.UiUtils;
 
@@ -40,8 +41,8 @@ public class LinkSpan extends CharacterStyle {
 		}
 	}
 
-	public void onLongClick(Context context) {
-		UiUtils.copyText(context, getType() == Type.URL ? link : text);
+	public void onLongClick(View view) {
+		UiUtils.copyText(view, getType() == Type.URL ? link : text);
 	}
 
 	public String getLink(){

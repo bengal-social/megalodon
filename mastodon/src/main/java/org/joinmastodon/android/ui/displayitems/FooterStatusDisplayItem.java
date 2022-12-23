@@ -263,7 +263,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private boolean onShareLongClick(View v){
-			UiUtils.copyText(v.getContext(), item.status.url);
+			UiUtils.copyText(v, item.status.url);
 			return true;
 		}
 

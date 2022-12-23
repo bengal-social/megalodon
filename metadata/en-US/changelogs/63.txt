@@ -1,2 +1,3 @@
 - Reblog with specific visibility on long-click
 - List of followed hashtags
+- Long-click links to copy them
