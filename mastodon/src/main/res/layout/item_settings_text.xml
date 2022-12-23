@@ -5,6 +5,7 @@
 	android:paddingHorizontal="16dp"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	android:minHeight="48dp"
 	android:gravity="center_vertical"
 	android:layoutDirection="locale">
 	<TextView
@@ -12,7 +13,6 @@
 		android:layout_width="0dp"
 		android:layout_weight="1"
 		android:layout_height="wrap_content"
-		android:minHeight="48dp"
 		android:paddingVertical="8dp"
 		android:paddingEnd="16dp"
 		android:gravity="center_vertical"
