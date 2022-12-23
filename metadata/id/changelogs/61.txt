@@ -1,0 +1,5 @@
+- Tema warna baru: Material You dan Merah
+- Tanda abu-abu gelap baru untuk semua tema
+- Ikon bagikan lebih jelas
+- Animasi untuk tombol interaksi
+- Perbaikan kutu (Mogok pada beberapa kiriman, "Daftar dengan", bahasa kiriman bawaan)

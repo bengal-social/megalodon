@@ -1,0 +1,11 @@
+- Tombol Terbitkan dapat diubah
+- Buka tautan Fedimesta dlm aplikasi
+- Klik lama pada tombol boost utk "mengutip" kiriman
+- Salin URL kiriman ketika menekan lama pada tombol bagikan
+- Terapkan penghapusan notifikasi (dinonaktifkan secara bawaan)
+- Ikon tersendiri utk jenis notifikasi berbeda
+- Warna abu-abu baru
+- Tambah pengaturan utk menonaktifkan pengusapan antara tab
+- Tambah tautan ke pengaturan akun
+- Saklar menampilkan/menyembunyikan tombol terjemahkan dalam lini masa
+- Banyak perbaikan

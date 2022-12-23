@@ -61,4 +61,25 @@
     <string name="sk_welcome_text">상어가 당신을 맞이합니다! 시작하기 위해, 아래에 사용하시는 인스턴스의 도메인 이름을 입력해주세요.</string>
     <string name="sk_color_palette_material3">시스템</string>
     <string name="sk_color_palette_red">빨간색</string>
+    <string name="sk_settings_profile">프로필 설정</string>
+    <string name="sk_settings_posting">게시물 설정</string>
+    <string name="sk_settings_filters">필터 설정</string>
+    <string name="sk_settings_auth">보안 설정</string>
+    <string name="sk_settings_rules">서버 규칙</string>
+    <string name="sk_settings_about">이 앱에 관하여</string>
+    <string name="sk_settings_donate">기부</string>
+    <string name="sk_delete_notification_confirm_action">알림 삭제</string>
+    <string name="sk_delete_notification_confirm">정말로 이 알림을 삭제하시겠습니까\?</string>
+    <string name="sk_enable_delete_notifications">알림 삭제 활성화</string>
+    <string name="sk_settings_publish_button_text">게시 버튼 텍스트</string>
+    <string name="sk_settings_publish_button_text_title">게시 버튼 사용자화</string>
+    <string name="sk_settings_hide_translate_in_timeline">타임라인에서 번역 버튼 숨김</string>
+    <string name="sk_delete_notification">알림 삭제</string>
+    <string name="sk_settings_translation_availability_note_available">%s 서버는 번역을 지원합니다!</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s 서버는 번역을 지원하지 않는 것 같습니다.</string>
+    <string name="sk_clear_all_notifications_confirm">정말로 모든 알림을 삭제하시겠습니까\?</string>
+    <string name="sk_clear_all_notifications_confirm_action">모두 삭제</string>
+    <string name="sk_tabs_disable_swipe">스와이프로 탭간 전환 비활성화</string>
+    <string name="sk_clear_all_notifications">모든 알림 삭제</string>
+    <string name="sk_loading_fediverse_resource_title">연합우주에서 찾아보는 중…</string>
 </resources>
