@@ -81,7 +81,13 @@
     <string name="sk_clear_all_notifications_confirm">Wirklich alle Benachrichtigungen löschen\?</string>
     <string name="sk_settings_translation_availability_note_available">%s unterstützt Übersetzung!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s scheint keine Übersetzung zu unterstützen.</string>
-    <string name="sk_loading_fediverse_resource_title">Suche im Fediverse…</string>
+    <string name="sk_loading_fediverse_resource_title">Suche im Fediverse</string>
     <string name="sk_undo_reblog">Reblog rückgängig machen</string>
     <string name="sk_reblog_with_visibility">Rebloggen mit Sichtbarkeit</string>
+    <string name="sk_quote_post">Drüberkommentieren</string>
+    <string name="sk_hashtags_you_follow">Hashtags, denen du folgst</string>
+    <string name="sk_copy_link_to_post">Link zum Beitrag kopieren</string>
+    <string name="sk_open_with_account">Mit anderem Konto öffnen</string>
+    <string name="sk_resource_not_found">Ressource nicht gefunden</string>
+    <string name="sk_loading_resource_on_instance_title">Suche auf %s</string>
 </resources>
