@@ -1,0 +1,4 @@
+- 修复损坏的 HTML 标签并启用以 Markdown 格式呈现
+- 初始化 <a href="https://translate.codeberg.org/projects/megalodon">Weblate 翻译项目</a>
+- 为联邦时间线添加切换
+- 版本 52-54 是针对 Google Play 版本的小幅调整
