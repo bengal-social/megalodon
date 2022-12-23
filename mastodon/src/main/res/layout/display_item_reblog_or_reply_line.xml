@@ -6,12 +6,11 @@
 
 	<TextView
 		android:id="@+id/text"
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:paddingHorizontal="16dp"
 		android:paddingTop="16dp"
 		android:paddingBottom="6dp"
-		android:background="?android:selectableItemBackground"
 		android:textAppearance="@style/m3_title_small"
 		android:drawableStart="@drawable/ic_fluent_arrow_repeat_all_20_filled"
 		android:drawableTint="?android:textColorSecondary"
