@@ -11,6 +11,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -23,6 +24,7 @@ import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
 import org.joinmastodon.android.api.requests.statuses.GetStatusSourceText;
+import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.fragments.ComposeFragment;
@@ -43,6 +45,7 @@ import org.parceler.Parcels;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.APIRequest;
@@ -137,7 +140,12 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			avatar.setOutlineProvider(roundCornersOutline);
 			avatar.setClipToOutline(true);
 			more.setOnClickListener(this::onMoreClick);
-			more.setOnLongClickListener((v) -> { openWithAccount(); return true; });
+			more.setOnLongClickListener((v) -> {
+				PopupMenu popup = new PopupMenu(itemView.getContext(), v);
+				populateAccountsMenu(popup.getMenu());
+				popup.show();
+				return true;
+			});
 			visibility.setOnClickListener(v->item.parentFragment.onVisibilityIconClick(this));
 			deleteNotification.setOnClickListener(v->UiUtils.confirmDeleteNotification(activity, item.parentFragment.getAccountID(), item.notification, ()->{
 				if (item.parentFragment instanceof NotificationsListFragment fragment) {
@@ -150,6 +158,13 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			optionsMenu.setOnMenuItemClickListener(menuItem->{
 				Account account=item.user;
 				int id=menuItem.getItemId();
+
+				SubMenu accountsMenu=id==R.id.open_with_account ? menuItem.getSubMenu() : null;
+				if (accountsMenu != null) {
+					accountsMenu.clear();
+					populateAccountsMenu(accountsMenu);
+				}
+
 				if(id==R.id.edit || id==R.id.delete_and_redraft) {
 					final Bundle args=new Bundle();
 					args.putString("account", item.parentFragment.getAccountID());
@@ -193,8 +208,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				}else if(id==R.id.pin || id==R.id.unpin) {
 					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s -> {
 					});
-				}else if(id==R.id.open_with_account) {
-					openWithAccount();
 				}else if(id==R.id.mute){
 					UiUtils.confirmToggleMuteUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.muting, r->{});
 				}else if(id==R.id.block){
@@ -233,11 +246,15 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			});
 		}
 
-		private void openWithAccount() {
-			UiUtils.pickAccount(item.parentFragment.getActivity(), (session, dialog) -> {
-				UiUtils.openURL(item.parentFragment.getActivity(), session.getID(), item.status.url);
-				return true;
-			}, R.string.sk_open_with_account);
+		private void populateAccountsMenu(Menu menu) {
+			List<AccountSession> sessions=AccountSessionManager.getInstance().getLoggedInAccounts();
+			sessions.stream().filter(s -> !s.getID().equals(item.accountID)).forEach(s -> {
+				String username = "@"+s.self.username+"@"+s.domain;
+				menu.add(username).setOnMenuItemClickListener(c->{
+					UiUtils.openURL(item.parentFragment.getActivity(), s.getID(), item.status.url, false);
+					return true;
+				});
+			});
 		}
 
 		@Override

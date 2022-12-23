@@ -71,6 +71,7 @@ import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Emoji;
+import org.joinmastodon.android.model.Instance;
 import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.Relationship;
@@ -748,9 +749,23 @@ public class UiUtils{
 				it.matches("^/o/[a-f0-9]+$");
 	}
 
-	public static void openURL(Context context, String accountID, String url){
+	public static String getInstanceName(String accountID) {
+		AccountSession session = AccountSessionManager.getInstance().getAccount(accountID);
+		Instance instance = AccountSessionManager.getInstance().getInstanceInfo(session.domain);
+		return instance != null && !instance.title.isBlank() ? instance.title : session.domain;
+	}
+
+	public static void openURL(Context context, String accountID, String url) {
+		openURL(context, accountID, url, true);
+	}
+
+	public static void openURL(Context context, String accountID, String url, boolean launchBrowser){
 		Consumer<ProgressDialog> transformDialogForLookup = dialog -> {
-			dialog.setTitle(R.string.sk_loading_fediverse_resource_title);
+			if (accountID != null) {
+				dialog.setTitle(context.getString(R.string.sk_loading_resource_on_instance_title, getInstanceName(accountID)));
+			} else {
+				dialog.setTitle(R.string.sk_loading_fediverse_resource_title);
+			}
 			dialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.cancel), (d, which) -> d.cancel());
 			dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.open_in_browser), (d, which) -> {
 				d.cancel();
@@ -775,7 +790,7 @@ public class UiUtils{
 							@Override
 							public void onError(ErrorResponse error){
 								error.showToast(context);
-								launchWebBrowser(context, url);
+								if (launchBrowser) launchWebBrowser(context, url);
 							}
 						})
 						.wrapProgress((Activity)context, R.string.loading, true, transformDialogForLookup)
@@ -795,14 +810,15 @@ public class UiUtils{
 									args.putParcelable("profileAccount", Parcels.wrap(results.accounts.get(0)));
 									Nav.go((Activity) context, ProfileFragment.class, args);
 								} else {
-									launchWebBrowser(context, url);
+									if (launchBrowser) launchWebBrowser(context, url);
+									else Toast.makeText(context, R.string.sk_resource_not_found, Toast.LENGTH_SHORT).show();
 								}
 							}
 
 							@Override
 							public void onError(ErrorResponse error) {
 								error.showToast(context);
-								launchWebBrowser(context, url);
+								if (launchBrowser) launchWebBrowser(context, url);
 							}
 						})
 						.wrapProgress((Activity)context, R.string.loading, true, transformDialogForLookup)

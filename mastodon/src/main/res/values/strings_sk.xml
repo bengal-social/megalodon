@@ -82,11 +82,13 @@
     <string name="sk_settings_hide_translate_in_timeline">Hide translate button in timeline</string>
     <string name="sk_settings_translation_availability_note_available">%s supports translation!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s does not appear to support translation.</string>
-    <string name="sk_loading_fediverse_resource_title">Looking it up on the Fediverse…</string>
+    <string name="sk_loading_fediverse_resource_title">Looking it up on the Fediverse</string>
+    <string name="sk_loading_resource_on_instance_title">Looking it up on %s</string>
     <string name="sk_undo_reblog">Undo reblog</string>
     <string name="sk_reblog_with_visibility">Reblog with visibility</string>
     <string name="sk_quote_post">Post about this</string>
     <string name="sk_hashtags_you_follow">Hashtags you follow</string>
     <string name="sk_copy_link_to_post">Copy link to post</string>
     <string name="sk_open_with_account">Open with other account</string>
+    <string name="sk_resource_not_found">Resource could not be found</string>
 </resources>
