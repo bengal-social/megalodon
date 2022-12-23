@@ -638,6 +638,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		} else {
 			publishButton.setText(publishText);
 		}
+		publishButton.setSingleLine();
+		publishButton.setEllipsize(TextUtils.TruncateAt.END);
 		publishButton.setOnClickListener(this::onPublishClick);
 		LinearLayout wrap=new LinearLayout(getActivity());
 		wrap.setOrientation(LinearLayout.HORIZONTAL);
