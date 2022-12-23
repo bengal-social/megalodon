@@ -117,8 +117,8 @@ public class HtmlParser{
 						case "a" -> {
 							String href=el.attr("href");
 							LinkSpan.Type linkType;
+							String text=el.text();
 							if(el.hasClass("hashtag")){
-								String text=el.text();
 								if(text.startsWith("#")){
 									linkType=LinkSpan.Type.HASHTAG;
 									href=text.substring(1);
@@ -136,7 +136,7 @@ public class HtmlParser{
 							}else{
 								linkType=LinkSpan.Type.URL;
 							}
-							openSpans.add(new SpanInfo(new LinkSpan(href, null, linkType, accountID), ssb.length(), el));
+							openSpans.add(new SpanInfo(new LinkSpan(href, null, linkType, accountID, text), ssb.length(), el));
 						}
 						case "br" -> ssb.append('\n');
 						case "span" -> {
@@ -260,7 +260,7 @@ public class HtmlParser{
 			String url=matcher.group(3);
 			if(TextUtils.isEmpty(matcher.group(4)))
 				url="http://"+url;
-			ssb.setSpan(new LinkSpan(url, null, LinkSpan.Type.URL, null), matcher.start(3), matcher.end(3), 0);
+			ssb.setSpan(new LinkSpan(url, null, LinkSpan.Type.URL, null, url), matcher.start(3), matcher.end(3), 0);
 		}while(matcher.find()); // Find more URLs
 		return ssb;
 	}

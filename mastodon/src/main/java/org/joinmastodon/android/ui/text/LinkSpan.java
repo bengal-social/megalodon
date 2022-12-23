@@ -13,12 +13,14 @@ public class LinkSpan extends CharacterStyle {
 	private String link;
 	private Type type;
 	private String accountID;
+	private String text;
 
-	public LinkSpan(String link, OnLinkClickListener listener, Type type, String accountID){
+	public LinkSpan(String link, OnLinkClickListener listener, Type type, String accountID, String text){
 		this.listener=listener;
 		this.link=link;
 		this.type=type;
 		this.accountID=accountID;
+		this.text=text;
 	}
 
 	public int getColor(){
@@ -36,6 +38,10 @@ public class LinkSpan extends CharacterStyle {
 			case MENTION -> UiUtils.openProfileByID(context, accountID, link);
 			case HASHTAG -> UiUtils.openHashtagTimeline(context, accountID, link, null);
 		}
+	}
+
+	public void onLongClick(Context context) {
+		UiUtils.copyText(context, getType() == Type.URL ? link : text);
 	}
 
 	public String getLink(){

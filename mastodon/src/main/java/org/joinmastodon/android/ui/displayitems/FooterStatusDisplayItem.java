@@ -150,7 +150,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 				v.removeCallbacks(longClickRunnable);
 				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
 				if (disabled) return true;
-				if (action == MotionEvent.ACTION_UP && eventDuration < ViewConfiguration.getLongPressTimeout()) v.performClick();
+				if (action == MotionEvent.ACTION_UP && eventDuration <= ViewConfiguration.getLongPressTimeout()) v.performClick();
 				else v.startAnimation(opacityIn);
 			} else if (action == MotionEvent.ACTION_DOWN) {
 				touchingView = v;

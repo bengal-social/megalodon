@@ -10,6 +10,8 @@ import android.text.Layout;
 import android.text.Spanned;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
+import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.TextView;
 
 import me.grishka.appkit.utils.V;
@@ -20,7 +22,11 @@ public class ClickableLinksDelegate {
 	private Path hlPath;
 	private LinkSpan selectedSpan;
 	private TextView view;
-	
+
+	private final Runnable longClickRunnable = () -> {
+		if (selectedSpan != null) selectedSpan.onLongClick(view.getContext());
+	};
+
 	public ClickableLinksDelegate(TextView view) {
 		this.view=view;
 		hlPaint=new Paint();
@@ -30,6 +36,7 @@ public class ClickableLinksDelegate {
 	}
 
 	public boolean onTouch(MotionEvent event) {
+		long eventDuration = event.getEventTime() - event.getDownTime();
 		if(event.getAction()==MotionEvent.ACTION_DOWN){
 			int line=-1;
 			Rect rect=new Rect();
@@ -63,6 +70,7 @@ public class ClickableLinksDelegate {
 							}
 							hlPath=new Path();
 							selectedSpan=span;
+							view.postDelayed(longClickRunnable, ViewConfiguration.getLongPressTimeout());
 							hlPaint.setColor((span.getColor() & 0x00FFFFFF) | 0x33000000);
 							//l.getSelectionPath(start, end, hlPath);
 							for(int j=lstart;j<=lend;j++){
@@ -90,8 +98,11 @@ public class ClickableLinksDelegate {
 			}
 		}
 		if(event.getAction()==MotionEvent.ACTION_UP && selectedSpan!=null){
-			view.playSoundEffect(SoundEffectConstants.CLICK);
-			selectedSpan.onClick(view.getContext());
+			if (eventDuration <= ViewConfiguration.getLongPressTimeout()) {
+				view.playSoundEffect(SoundEffectConstants.CLICK);
+				selectedSpan.onClick(view.getContext());
+			}
+			view.removeCallbacks(longClickRunnable);
 			hlPath=null;
 			selectedSpan=null;
 			view.invalidate();
@@ -100,6 +111,7 @@ public class ClickableLinksDelegate {
 		if(event.getAction()==MotionEvent.ACTION_CANCEL){
 			hlPath=null;
 			selectedSpan=null;
+			view.removeCallbacks(longClickRunnable);
 			view.invalidate();
 			return false;
 		}
