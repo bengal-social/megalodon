@@ -378,12 +378,13 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				mute.setTitle(item.parentFragment.getString(relationship!=null && relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
 				block.setTitle(item.parentFragment.getString(relationship!=null && relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
 				report.setTitle(item.parentFragment.getString(R.string.report_user, account.getDisplayUsername()));
-				if(!account.isLocal()){
-					blockDomain.setVisible(true);
-					blockDomain.setTitle(item.parentFragment.getString(relationship!=null && relationship.domainBlocking ? R.string.unblock_domain : R.string.block_domain, account.getDomain()));
-				}else{
+				// disabled in megalodon. domain blocks from a post clutters the context menu and looks out of place
+//				if(!account.isLocal()){
+//					blockDomain.setVisible(true);
+//					blockDomain.setTitle(item.parentFragment.getString(relationship!=null && relationship.domainBlocking ? R.string.unblock_domain : R.string.block_domain, account.getDomain()));
+//				}else{
 					blockDomain.setVisible(false);
-				}
+//				}
 				follow.setTitle(item.parentFragment.getString(relationship!=null && relationship.following ? R.string.unfollow_user : R.string.follow_user, account.getDisplayUsername()));
 			}
 		}
