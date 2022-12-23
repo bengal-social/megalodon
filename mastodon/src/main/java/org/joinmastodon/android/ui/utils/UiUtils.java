@@ -850,12 +850,4 @@ public class UiUtils{
 	public static boolean isMIUI(){
 		return !TextUtils.isEmpty(getSystemProperty("ro.miui.ui.version.code"));
 	}
-
-	public static void pickAccount(Context context, BiPredicate<AccountSession, DialogInterface> pick, @StringRes int title) {
-		List<AccountSession> sessions=AccountSessionManager.getInstance().getLoggedInAccounts();
-		new M3AlertDialogBuilder(context)
-				.setItems(sessions.stream().map(as->"@"+as.self.username+"@"+as.domain).toArray(String[]::new), (d, which)->pick.test(sessions.get(which), d))
-				.setTitle(title == 0 ? R.string.choose_account : title)
-				.show();
-	}
 }
