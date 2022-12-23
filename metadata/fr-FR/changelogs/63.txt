@@ -1,0 +1,3 @@
+- Rebloguer avec une visibilité spécifique sur clic long
+- Liste des hashtags suivis
+- Cliquez longuement sur les liens pour les copier
