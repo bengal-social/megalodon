@@ -19,7 +19,7 @@
 
 **Allows you to post publicly without having your post show up in trends, hashtags or public timelines (i.e., in the tabs “Community”, “Federated” and “Posts”).**
 
-When posting with Unlisted visibility, your posts will still be publicly accessible in your profile. They will also be shown in people’s Home timelines, but only if they follow you or someone they follow reposted/replied to your post.
+When posting with Unlisted visibility, your posts will still be publicly accessible in your profile. They will also be shown in people’s Home timelines, but only if they follow you or someone they follow reblogged/replied to your post.
   
 The Mastodon documentation has some more information about [Unlisted posting](https://docs.joinmastodon.org/user/posting/#unlisted) and [Public timelines](https://docs.joinmastodon.org/user/network/#timelines).
 
@@ -117,7 +117,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Implement a bookmark button and list](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/bookmarks) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/22))
 * [Add “Check for update” button in addition to integrated update checker](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/check-for-update-button)
 * [Add “Mark media as sensitive” option](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/mark-media-as-sensitive)
-* [Add settings to hide replies and reposts from the timeline](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/filter-home-timeline) ([Pull request](https://github.com/mastodon/mastodon-android/pull/317))
+* [Add settings to hide replies and reblogs from the timeline](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/filter-home-timeline) ([Pull request](https://github.com/mastodon/mastodon-android/pull/317))
 * [Follow and unfollow hashtags](https://github.com/sk22/megalodon/commit/7d38f031f197aa6cefaf53e39d929538689c1e4e) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/233))
 * [Notification bell for posts](https://github.com/sk22/megalodon/commit/b166ca705eb9169025ef32bbe6315b42491b57ea) ([Closes issue](https://github.com/mastodon/mastodon-android/issues/81))
 * [Viewing lists and adding/removing users from lists](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:list-timeline-views) based on [@obstsalatschuessel](https://github.com/obstsalatschuessel)'s [Pull request](https://github.com/mastodon/mastodon-android/pull/286)
@@ -133,6 +133,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Add translate function](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/translate-button)
 * [Add language selector](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/language-selector)
 * [Implement deleting notifications](https://github.com/sk22/megalodon/commit/b0f9ce081f69f29ad59658fc00ca41372cd2677d) (disabled by default)
+* [Long-click boost button to "quote" a post](https://github.com/sk22/megalodon/commit/b25a237c20c6a924ed4d9b357999867c3a32b32b)
 
 
 ### Behavior
@@ -153,8 +154,8 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Copy post URL when long-pressing share button](https://github.com/sk22/megalodon/commit/ba36347f03278763ecec617b1ce57ba89db7be72)
 * [Add option to disable swiping between tabs](https://github.com/sk22/megalodon/commit/1f20b21fc84bf006c1ec14bd2229cbfad5215ec8)
 * [Resolve Fediverse links in the app](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/open-urls-in-app)
-* [Long-click boost button to "quote" a post](https://github.com/sk22/megalodon/commit/b25a237c20c6a924ed4d9b357999867c3a32b32b)
 * [Preserve whitespaces in HTML](https://github.com/sk22/megalodon/commit/7d876bddc7a07d98f0fecbf62b13bdb9fcce3412)
+* [Long-click to copy links](https://github.com/sk22/megalodon/commit/b32e32274923a94742a9926ef38785f746d41405)
 
 
 ### Visual
