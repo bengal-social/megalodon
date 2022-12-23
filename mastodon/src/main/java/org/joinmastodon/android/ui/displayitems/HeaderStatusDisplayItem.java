@@ -208,10 +208,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				}else if(id==R.id.pin || id==R.id.unpin) {
 					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s -> {
 					});
-				}else if(id==R.id.mute){
-					UiUtils.confirmToggleMuteUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.muting, r->{});
-				}else if(id==R.id.block){
-					UiUtils.confirmToggleBlockUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.blocking, r->{});
 				}else if(id==R.id.report){
 					Bundle args=new Bundle();
 					args.putString("account", item.parentFragment.getAccountID());

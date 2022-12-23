@@ -82,4 +82,7 @@
     <string name="sk_settings_translation_availability_note_available">¡%s admite traducción!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s no parece soportar la traducción.</string>
     <string name="sk_loading_fediverse_resource_title">Buscándolo en Fediverse…</string>
+    <string name="sk_quote_post">Publicar sobre esto</string>
+    <string name="sk_undo_reblog">Deshacer reblogueo</string>
+    <string name="sk_reblog_with_visibility">Rebloguea con visibilidad</string>
 </resources>

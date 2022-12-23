@@ -82,4 +82,6 @@
     <string name="sk_settings_translation_availability_note_available">%s unterstützt Übersetzung!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s scheint keine Übersetzung zu unterstützen.</string>
     <string name="sk_loading_fediverse_resource_title">Suche im Fediverse…</string>
+    <string name="sk_undo_reblog">Reblog rückgängig machen</string>
+    <string name="sk_reblog_with_visibility">Rebloggen mit Sichtbarkeit</string>
 </resources>

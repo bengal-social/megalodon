@@ -82,4 +82,10 @@
     <string name="sk_settings_posting">Preferensi kiriman</string>
     <string name="sk_settings_auth">Pengaturan keamanan</string>
     <string name="sk_clear_all_notifications">Hapus semua notifikasi</string>
+    <string name="sk_undo_reblog">Urungkan pembagian</string>
+    <string name="sk_quote_post">Kirim tentang ini</string>
+    <string name="sk_reblog_with_visibility">Bagikan dengan keterlihatan</string>
+    <string name="sk_copy_link_to_post">Salin tautan ke kiriman</string>
+    <string name="sk_open_in_account">Buka di akun lain</string>
+    <string name="sk_hashtags_you_follow">Tagar yang Anda ikuti</string>
 </resources>
