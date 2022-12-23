@@ -1,0 +1,6 @@
+- Option zum Auswählen der Sichtbarkeit durch Gedrückthalten des Reblog-Buttons
+- Sichtbarkeit eigener Reblogs wird nun angezeigt
+- Liste der gefolgten Hashtags hinzugefügt
+- Links gedrückt halten, um sie zu kopieren
+- Option, um Beiträge mit einem anderen Konto zu öffnen
+- Fehlerbehebungen und kleinere Tweaks
