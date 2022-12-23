@@ -97,7 +97,7 @@ public class ReblogOrReplyLineStatusDisplayItem extends StatusDisplayItem{
 				case PRIVATE -> R.string.visibility_followers_only;
 				default -> 0;
 			} : 0;
-			if (visibilityText != 0) text.setContentDescription(item.text + "." + ctx.getString(R.string.post_visibility) + " " + ctx.getString(visibilityText));
+			if (visibilityText != 0) text.setContentDescription(item.text + " (" + ctx.getString(visibilityText) + ")");
 			if(Build.VERSION.SDK_INT<Build.VERSION_CODES.N)
 				UiUtils.fixCompoundDrawableTintOnAndroid6(text);
 		}
