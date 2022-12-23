@@ -32,7 +32,7 @@ public class M3AlertDialogBuilder extends AlertDialog.Builder{
 			View title=alert.findViewById(titleID);
 			if(title!=null){
 				int pad=V.dp(24);
-				title.setPadding(pad, pad, pad, pad);
+				title.setPadding(pad, pad, pad, V.dp(18));
 			}
 		}
 		int titleDividerID=getContext().getResources().getIdentifier("titleDividerNoCustom", "id", "android");
