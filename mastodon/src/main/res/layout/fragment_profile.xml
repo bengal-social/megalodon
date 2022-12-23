@@ -241,17 +241,14 @@
 						android:textAppearance="@style/m3_headline_small"
 						tools:text="Eugen" />
 
-
 					<TextView
 						android:id="@+id/username"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_marginTop="2dp"
+						android:layout_marginStart="16dp"
 						android:layout_below="@id/name"
-						android:paddingHorizontal="16dp"
-						android:paddingTop="2dp"
-						android:paddingBottom="4dp"
-						android:background="?android:selectableItemBackground"
+						android:paddingTop="4dp"
+						android:paddingBottom="8dp"
 						android:textAppearance="@style/m3_title_medium"
 						android:textColor="?android:textColorSecondary"
 						tools:text="\@Gargron" />
@@ -262,7 +259,6 @@
 						android:layout_height="wrap_content"
 						android:layout_below="@id/username"
 						android:layout_marginLeft="16dp"
-						android:layout_marginTop="4dp"
 						android:layout_marginRight="16dp"
 						android:textAppearance="@style/m3_body_large"
 						android:textSize="16sp"
@@ -291,7 +287,6 @@
 						android:layout_height="wrap_content"
 						android:layout_below="@id/username"
 						android:layout_marginLeft="16dp"
-						android:layout_marginTop="8dp"
 						android:layout_marginRight="16dp"
 						android:textAppearance="@style/m3_body_large"
 						android:textSize="16sp"
