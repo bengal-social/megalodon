@@ -19,8 +19,6 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
@@ -139,6 +137,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			avatar.setOutlineProvider(roundCornersOutline);
 			avatar.setClipToOutline(true);
 			more.setOnClickListener(this::onMoreClick);
+			more.setOnLongClickListener((v) -> { openWithAccount(); return true; });
 			visibility.setOnClickListener(v->item.parentFragment.onVisibilityIconClick(this));
 			deleteNotification.setOnClickListener(v->UiUtils.confirmDeleteNotification(activity, item.parentFragment.getAccountID(), item.notification, ()->{
 				if (item.parentFragment instanceof NotificationsListFragment fragment) {
@@ -191,8 +190,11 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					}
 				}else if(id==R.id.delete){
 					UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{});
-				}else if(id==R.id.pin || id==R.id.unpin){
-					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s->{});
+				}else if(id==R.id.pin || id==R.id.unpin) {
+					UiUtils.confirmPinPost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, !item.status.pinned, s -> {
+					});
+				}else if(id==R.id.open_with_account) {
+					openWithAccount();
 				}else if(id==R.id.mute){
 					UiUtils.confirmToggleMuteUser(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), account, relationship!=null && relationship.muting, r->{});
 				}else if(id==R.id.block){
@@ -229,6 +231,13 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				}
 				return true;
 			});
+		}
+
+		private void openWithAccount() {
+			UiUtils.pickAccount(item.parentFragment.getActivity(), (session, dialog) -> {
+				UiUtils.openURL(item.parentFragment.getActivity(), session.getID(), item.status.url);
+				return true;
+			}, R.string.sk_open_in_account);
 		}
 
 		@Override
