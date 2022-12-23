@@ -85,4 +85,7 @@
     <string name="sk_reblog_with_visibility">Rebloguer avec visibilité</string>
     <string name="sk_undo_reblog">Annuler le reblogage</string>
     <string name="sk_quote_post">Poster à ce sujet</string>
+    <string name="sk_hashtags_you_follow">Hashtags que vous suivez</string>
+    <string name="sk_open_in_account">Ouvrir dans un autre compte</string>
+    <string name="sk_copy_link_to_post">Copier le lien du post</string>
 </resources>
