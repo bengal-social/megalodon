@@ -1,3 +1,6 @@
-- Bagikan dengan keterlihatan khusu pada klik lama
-- Daftar tagar yang diikuti
+- Opsi untuk membagikan dengan keterlihatan khusus pada klik lama
+- Tampilkan keterlihatan pembagian sendiri
+- Ditambahkan daftar tagar yang diikuti
 - Klik lama pada tautan untuk menyalinnya
+- Opsi untuk membuka kiriman dengan akun lain
+- Perbaikan kutu dan perubahan kecil
