@@ -1,11 +1,11 @@
-- Texto del botón "Publicar" personalizable
-- Los enlaces de Fediverse ahora se abren en la aplicación
-- Mantenga presionado el botón Impulsar para comentar sobre él
-- Mantenga presionado el botón de compartir para copiar el enlace
+- Botón "Publicar" personalizable
+- Los enlaces del Fediverso se abren en la aplicación
+- Mantén el botón Impulsar para citar
+- Mantén el botón compartir para copiar el enlace
 - Borrar notificaciones (deshabilitado por defecto)
-- Iconos adicionales para tipos de notificación.
-- Nuevos tonos de gris.
-- Deslizar entre pestañas se puede desactivar
-- Se agregaron enlaces a la configuración de la cuenta.
-- Configuración para mostrar el botón de traducción en la línea de tiempo
+- Iconos específicos para cada notificación
+- Nuevos tonos de gris
+- El deslizamiento entre pestañas se puede desactivar
+- Se añadieron enlaces para la configuración de la cuenta
+- Configuración para mostrar el botón de traducción en la cronología
 - Corrección de errores
