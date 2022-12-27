@@ -91,4 +91,15 @@
     <string name="sk_loading_resource_on_instance_title">Rechercher sur %s</string>
     <string name="sk_open_with_account">Ouvrir avec un autre compte</string>
     <string name="sk_resource_not_found">La ressource est introuvable</string>
+    <string name="sk_favorite_as">Favoris d\'un autre compte</string>
+    <string name="sk_already_bookmarked">Déjà mis en signet</string>
+    <string name="sk_already_favorited">Déjà mis en favori</string>
+    <string name="sk_reblogged_as">Reposté en tant que %s</string>
+    <string name="sk_already_reblogged">Déjà reposté</string>
+    <string name="sk_bookmarked_as">Ajouté aux signets en tant que %s</string>
+    <string name="sk_favorited_as">Ajouté aux favoris en tant que %s</string>
+    <string name="sk_reply_as">Répondre avec un autre compte</string>
+    <string name="sk_bookmark_as">Mettre en signet sur un autre compte</string>
+    <string name="sk_reblog_as">Reposter depuis un autre compte</string>
+    <string name="sk_settings_uniform_icon_for_notifications">Icône uniforme pour toutes les notifications</string>
 </resources>
