@@ -184,7 +184,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.save();
 			needAppRestart=true;
 		}));
-		items.add(new SwitchItem(R.string.sk_enable_delete_notifications, R.drawable.ic_fluent_delete_24_regular, GlobalUserPreferences.enableDeleteNotifications, i->{
+		items.add(new SwitchItem(R.string.sk_enable_delete_notifications, R.drawable.ic_fluent_mail_inbox_dismiss_24_regular, GlobalUserPreferences.enableDeleteNotifications, i->{
 			GlobalUserPreferences.enableDeleteNotifications=i.checked;
 			GlobalUserPreferences.save();
 			needAppRestart=true;
