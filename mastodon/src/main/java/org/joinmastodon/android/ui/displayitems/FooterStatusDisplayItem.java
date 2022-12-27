@@ -184,7 +184,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 
 		private boolean onReplyLongClick(View v) {
 			if (AccountSessionManager.getInstance().getLoggedInAccounts().size() < 2) return false;
-			UiUtils.pickAccount(v.getContext(), item.accountID, R.string.sk_reply_as, R.drawable.ic_fluent_arrow_reply_24_regular, session -> {
+			UiUtils.pickAccount(v.getContext(), item.accountID, R.string.sk_reply_as, R.drawable.ic_fluent_arrow_reply_28_regular, session -> {
 				Bundle args=new Bundle();
 				String accountID = session.getID();
 				args.putString("account", accountID);
@@ -269,6 +269,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 						R.string.sk_reblog_as,
 						R.string.sk_reblogged_as,
 						R.string.sk_already_reblogged,
+						// TODO: replace once available: https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/android/library/src/main/res/drawable/ic_fluent_arrow_repeat_all_28_regular.xml
 						R.drawable.ic_fluent_arrow_repeat_all_24_regular
 				);
 			});
@@ -304,7 +305,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 					R.string.sk_favorite_as,
 					R.string.sk_favorited_as,
 					R.string.sk_already_favorited,
-					R.drawable.ic_fluent_star_24_regular
+					R.drawable.ic_fluent_star_28_regular
 			);
 			return true;
 		}
@@ -325,7 +326,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 					R.string.sk_bookmark_as,
 					R.string.sk_bookmarked_as,
 					R.string.sk_already_bookmarked,
-					R.drawable.ic_fluent_bookmark_24_regular
+					R.drawable.ic_fluent_bookmark_28_regular
 			);
 			return true;
 		}

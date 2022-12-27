@@ -553,16 +553,24 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		if(relationship==null && !isOwnProfile)
 			return;
 		inflater.inflate(isOwnProfile ? R.menu.profile_own : R.menu.profile, menu);
+		UiUtils.enableOptionsMenuIcons(getActivity(), menu, R.id.bookmarks, R.id.followed_hashtags);
 		menu.findItem(R.id.share).setTitle(getString(R.string.share_user, account.getDisplayUsername()));
 		if(isOwnProfile)
 			return;
 
-		menu.findItem(R.id.mute).setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
+		MenuItem mute = menu.findItem(R.id.mute);
+		mute.setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
+		mute.setIcon(relationship.muting ? R.drawable.ic_fluent_speaker_2_24_regular : R.drawable.ic_fluent_speaker_mute_24_regular);
+		UiUtils.insetPopupMenuIcon(getContext(), mute);
+
 		menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
 		menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getDisplayUsername()));
 		MenuItem manageUserLists=menu.findItem(R.id.manage_user_lists);
 		if(relationship.following) {
-			menu.findItem(R.id.hide_boosts).setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getDisplayUsername()));
+			MenuItem hideBoosts = menu.findItem(R.id.hide_boosts);
+			hideBoosts.setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getDisplayUsername()));
+			hideBoosts.setIcon(relationship.showingReblogs ? R.drawable.ic_fluent_arrow_repeat_all_off_24_regular : R.drawable.ic_fluent_arrow_repeat_all_24_regular);
+			UiUtils.insetPopupMenuIcon(getContext(), hideBoosts);
 			manageUserLists.setTitle(getString(R.string.sk_lists_with_user, account.getDisplayUsername()));
 			manageUserLists.setVisible(true);
 		}else {

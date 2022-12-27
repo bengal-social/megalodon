@@ -75,6 +75,7 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
 		inflater.inflate(R.menu.notifications, menu);
 		menu.findItem(R.id.clear_notifications).setVisible(GlobalUserPreferences.enableDeleteNotifications);
+		UiUtils.enableOptionsMenuIcons(getActivity(), menu, R.id.follow_requests);
 	}
 
 	@Override

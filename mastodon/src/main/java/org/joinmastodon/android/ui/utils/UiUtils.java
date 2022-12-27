@@ -102,6 +102,7 @@ import java.util.stream.Collectors;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -345,22 +346,29 @@ public class UiUtils{
 	}
 
 	public static void showConfirmationAlert(Context context, @StringRes int title, @StringRes int message, @StringRes int confirmButton, Runnable onConfirmed){
-		showConfirmationAlert(context, context.getString(title), context.getString(message), context.getString(confirmButton), onConfirmed);
+		showConfirmationAlert(context, title, message, confirmButton, 0, onConfirmed);
 	}
 
-	public static void showConfirmationAlert(Context context, CharSequence title, CharSequence message, CharSequence confirmButton, Runnable onConfirmed){
+	public static void showConfirmationAlert(Context context, @StringRes int title, @StringRes int message, @StringRes int confirmButton, @DrawableRes int icon, Runnable onConfirmed){
+		showConfirmationAlert(context, context.getString(title), context.getString(message), context.getString(confirmButton), icon, onConfirmed);
+	}
+
+	public static void showConfirmationAlert(Context context, CharSequence title, CharSequence message, CharSequence confirmButton, int icon, Runnable onConfirmed){
 		new M3AlertDialogBuilder(context)
 				.setTitle(title)
 				.setMessage(message)
 				.setPositiveButton(confirmButton, (dlg, i)->onConfirmed.run())
 				.setNegativeButton(R.string.cancel, null)
+				.setIcon(icon)
 				.show();
 	}
 
 	public static void confirmToggleBlockUser(Activity activity, String accountID, Account account, boolean currentlyBlocked, Consumer<Relationship> resultCallback){
 		showConfirmationAlert(activity, activity.getString(currentlyBlocked ? R.string.confirm_unblock_title : R.string.confirm_block_title),
 				activity.getString(currentlyBlocked ? R.string.confirm_unblock : R.string.confirm_block, account.displayName),
-				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block), ()->{
+				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block),
+				currentlyBlocked ? R.drawable.ic_fluent_person_28_regular : R.drawable.ic_fluent_person_prohibited_28_regular,
+				()->{
 					new SetAccountBlocked(account.id, !currentlyBlocked)
 							.setCallback(new Callback<>(){
 								@Override
@@ -384,7 +392,9 @@ public class UiUtils{
 	public static void confirmToggleBlockDomain(Activity activity, String accountID, String domain, boolean currentlyBlocked, Runnable resultCallback){
 		showConfirmationAlert(activity, activity.getString(currentlyBlocked ? R.string.confirm_unblock_domain_title : R.string.confirm_block_domain_title),
 				activity.getString(currentlyBlocked ? R.string.confirm_unblock : R.string.confirm_block, domain),
-				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block), ()->{
+				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block),
+				R.drawable.ic_fluent_shield_28_regular,
+				()->{
 					new SetDomainBlocked(domain, !currentlyBlocked)
 							.setCallback(new Callback<>(){
 								@Override
@@ -405,7 +415,9 @@ public class UiUtils{
 	public static void confirmToggleMuteUser(Activity activity, String accountID, Account account, boolean currentlyMuted, Consumer<Relationship> resultCallback){
 		showConfirmationAlert(activity, activity.getString(currentlyMuted ? R.string.confirm_unmute_title : R.string.confirm_mute_title),
 				activity.getString(currentlyMuted ? R.string.confirm_unmute : R.string.confirm_mute, account.displayName),
-				activity.getString(currentlyMuted ? R.string.do_unmute : R.string.do_mute), ()->{
+				activity.getString(currentlyMuted ? R.string.do_unmute : R.string.do_mute),
+				currentlyMuted ? R.drawable.ic_fluent_speaker_2_28_regular : R.drawable.ic_fluent_speaker_mute_28_regular,
+				()->{
 					new SetAccountMuted(account.id, !currentlyMuted)
 							.setCallback(new Callback<>(){
 								@Override
@@ -430,24 +442,28 @@ public class UiUtils{
 	}
 
 	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback, boolean forRedraft){
-		showConfirmationAlert(activity, forRedraft ? R.string.sk_confirm_delete_and_redraft_title : R.string.confirm_delete_title, forRedraft ? R.string.sk_confirm_delete_and_redraft : R.string.confirm_delete, forRedraft ? R.string.sk_delete_and_redraft : R.string.delete, ()->{
-			new DeleteStatus(status.id)
-					.setCallback(new Callback<>(){
-						@Override
-						public void onSuccess(Status result){
-							resultCallback.accept(result);
-							AccountSessionManager.getInstance().getAccount(accountID).getCacheController().deleteStatus(status.id);
-							E.post(new StatusDeletedEvent(status.id, accountID));
-						}
+		showConfirmationAlert(activity,
+				forRedraft ? R.string.sk_confirm_delete_and_redraft_title : R.string.confirm_delete_title,
+				forRedraft ? R.string.sk_confirm_delete_and_redraft : R.string.confirm_delete,
+				forRedraft ? R.string.sk_delete_and_redraft : R.string.delete,
+				forRedraft ? R.drawable.ic_fluent_arrow_clockwise_28_regular : R.drawable.ic_fluent_delete_28_regular,
+				() -> new DeleteStatus(status.id)
+						.setCallback(new Callback<>(){
+							@Override
+							public void onSuccess(Status result){
+								resultCallback.accept(result);
+								AccountSessionManager.getInstance().getAccount(accountID).getCacheController().deleteStatus(status.id);
+								E.post(new StatusDeletedEvent(status.id, accountID));
+							}
 
-						@Override
-						public void onError(ErrorResponse error){
-							error.showToast(activity);
-						}
-					})
-					.wrapProgress(activity, R.string.deleting, false)
-					.exec(accountID);
-		});
+							@Override
+							public void onError(ErrorResponse error){
+								error.showToast(activity);
+							}
+						})
+						.wrapProgress(activity, R.string.deleting, false)
+						.exec(accountID)
+		);
 	}
 
 	public static void confirmPinPost(Activity activity, String accountID, Status status, boolean pinned, Consumer<Status> resultCallback){
@@ -455,6 +471,7 @@ public class UiUtils{
 				pinned ? R.string.sk_confirm_pin_post_title : R.string.sk_confirm_unpin_post_title,
 				pinned ? R.string.sk_confirm_pin_post : R.string.sk_confirm_unpin_post,
 				pinned ? R.string.sk_pin_post : R.string.sk_unpin_post,
+				pinned ? R.drawable.ic_fluent_pin_off_28_regular : R.drawable.ic_fluent_pin_28_regular,
 				()->{
 					new SetStatusPinned(status.id, pinned)
 							.setCallback(new Callback<>() {
@@ -482,7 +499,8 @@ public class UiUtils{
 				notification == null ? R.string.sk_clear_all_notifications : R.string.sk_delete_notification,
 				notification == null ? R.string.sk_clear_all_notifications_confirm : R.string.sk_delete_notification_confirm,
 				notification == null ? R.string.sk_clear_all_notifications_confirm_action : R.string.sk_delete_notification_confirm_action,
-				()-> new DismissNotification(notification != null ? notification.id : null).setCallback(new Callback<>() {
+				notification == null ? R.drawable.ic_fluent_mail_inbox_dismiss_28_regular : R.drawable.ic_fluent_delete_28_regular,
+				() -> new DismissNotification(notification != null ? notification.id : null).setCallback(new Callback<>() {
 					@Override
 					public void onSuccess(Object o) {
 						callback.run();
@@ -663,6 +681,42 @@ public class UiUtils{
 		return bitmap;
 	}
 
+	public static void insetPopupMenuIcon(Context context, MenuItem item) {
+		ColorStateList iconTint=ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
+		insetPopupMenuIcon(item, iconTint);
+	}
+	public static void insetPopupMenuIcon(MenuItem item, ColorStateList iconTint) {
+		Drawable icon=item.getIcon().mutate();
+		if(Build.VERSION.SDK_INT>=26) item.setIconTintList(iconTint);
+		else icon.setTintList(iconTint);
+		icon=new InsetDrawable(icon, V.dp(8), 0, V.dp(8), 0);
+		item.setIcon(icon);
+		SpannableStringBuilder ssb=new SpannableStringBuilder(item.getTitle());
+		item.setTitle(ssb);
+	}
+
+	public static void enableOptionsMenuIcons(Context context, Menu menu, @IdRes int... asAction) {
+		if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+			try {
+				Method m = menu.getClass().getDeclaredMethod(
+						"setOptionalIconsVisible", Boolean.TYPE);
+				m.setAccessible(true);
+				m.invoke(menu, true);
+				enableMenuIcons(context, menu, asAction);
+			}
+			catch(Exception ignored){}
+		}
+	}
+
+	public static void enableMenuIcons(Context context, Menu m, @IdRes int... exclude) {
+		ColorStateList iconTint=ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
+		for(int i=0;i<m.size();i++){
+			MenuItem item=m.getItem(i);
+			if (item.getIcon() == null || Arrays.stream(exclude).anyMatch(id -> id == item.getItemId())) continue;
+			insetPopupMenuIcon(item, iconTint);
+		}
+	}
+
 	public static void enablePopupMenuIcons(Context context, PopupMenu menu){
 		Menu m=menu.getMenu();
 		if(Build.VERSION.SDK_INT>=29){
@@ -674,23 +728,7 @@ public class UiUtils{
 				setOptionalIconsVisible.invoke(m, true);
 			}catch(Exception ignore){}
 		}
-		ColorStateList iconTint=ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
-		for(int i=0;i<m.size();i++){
-			MenuItem item=m.getItem(i);
-			Drawable icon=item.getIcon().mutate();
-			if(Build.VERSION.SDK_INT>=26){
-				item.setIconTintList(iconTint);
-			}else{
-				icon.setTintList(iconTint);
-			}
-			icon=new InsetDrawable(icon, V.dp(8), 0, 0, 0);
-			item.setIcon(icon);
-			SpannableStringBuilder ssb=new SpannableStringBuilder(item.getTitle());
-			ssb.insert(0, " ");
-			ssb.setSpan(new SpacerSpan(V.dp(24), 1), 0, 1, 0);
-			ssb.append(" ", new SpacerSpan(V.dp(8), 1), 0);
-			item.setTitle(ssb);
-		}
+		enableMenuIcons(context, m);
 	}
 
 	public static void setUserPreferredTheme(Context context){

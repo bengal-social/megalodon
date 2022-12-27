@@ -231,6 +231,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				}
 				return true;
 			});
+			UiUtils.enablePopupMenuIcons(activity, optionsMenu);
 		}
 
 		private void populateAccountsMenu(Menu menu) {
@@ -351,6 +352,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			menu.findItem(R.id.copy_link).setVisible(item.status!=null);
 			MenuItem blockDomain=menu.findItem(R.id.block_domain);
 			MenuItem mute=menu.findItem(R.id.mute);
+			MenuItem hideBoosts=menu.findItem(R.id.hide_boosts);
 			MenuItem block=menu.findItem(R.id.block);
 			MenuItem report=menu.findItem(R.id.report);
 			MenuItem follow=menu.findItem(R.id.follow);
@@ -366,6 +368,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			*/
 			if(isOwnPost){
 				mute.setVisible(false);
+				hideBoosts.setVisible(false);
 				block.setVisible(false);
 				report.setVisible(false);
 				follow.setVisible(false);
@@ -376,6 +379,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				report.setVisible(true);
 				follow.setVisible(relationship==null || relationship.following || (!relationship.blocking && !relationship.blockedBy && !relationship.domainBlocking && !relationship.muting));
 				mute.setTitle(item.parentFragment.getString(relationship!=null && relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
+				mute.setIcon(relationship!=null && relationship.muting ? R.drawable.ic_fluent_speaker_2_24_regular : R.drawable.ic_fluent_speaker_mute_24_regular);
+				UiUtils.insetPopupMenuIcon(item.parentFragment.getContext(), mute);
 				block.setTitle(item.parentFragment.getString(relationship!=null && relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
 				report.setTitle(item.parentFragment.getString(R.string.report_user, account.getDisplayUsername()));
 				// disabled in megalodon. domain blocks from a post clutters the context menu and looks out of place
@@ -385,7 +390,10 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 //				}else{
 					blockDomain.setVisible(false);
 //				}
-				follow.setTitle(item.parentFragment.getString(relationship!=null && relationship.following ? R.string.unfollow_user : R.string.follow_user, account.getDisplayUsername()));
+				boolean following = relationship!=null && relationship.following;
+				follow.setTitle(item.parentFragment.getString(following ? R.string.unfollow_user : R.string.follow_user, account.getDisplayUsername()));
+				follow.setIcon(following ? R.drawable.ic_fluent_person_delete_24_regular : R.drawable.ic_fluent_person_add_24_regular);
+				UiUtils.insetPopupMenuIcon(item.parentFragment.getContext(), follow);
 			}
 		}
 	}
