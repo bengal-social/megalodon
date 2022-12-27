@@ -164,6 +164,10 @@ public class Account extends BaseModel{
 		return '@'+acct;
 	}
 
+	public String getShortUsername() {
+		return '@'+acct.split("@")[0];
+	}
+
 	@Override
 	public String toString(){
 		return "Account{"+

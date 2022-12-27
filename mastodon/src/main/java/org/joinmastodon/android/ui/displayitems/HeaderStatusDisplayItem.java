@@ -222,7 +222,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 							progress.dismiss();
 					}, rel->{
 						relationship=rel;
-						Toast.makeText(activity, activity.getString(rel.following ? R.string.followed_user : R.string.unfollowed_user, account.getDisplayUsername()), Toast.LENGTH_SHORT).show();
+						Toast.makeText(activity, activity.getString(rel.following ? R.string.followed_user : R.string.unfollowed_user, account.getShortUsername()), Toast.LENGTH_SHORT).show();
 					});
 				}else if(id==R.id.block_domain){
 					UiUtils.confirmToggleBlockDomain(activity, item.parentFragment.getAccountID(), account.getDomain(), relationship!=null && relationship.domainBlocking, ()->{});
@@ -378,11 +378,11 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				block.setVisible(true);
 				report.setVisible(true);
 				follow.setVisible(relationship==null || relationship.following || (!relationship.blocking && !relationship.blockedBy && !relationship.domainBlocking && !relationship.muting));
-				mute.setTitle(item.parentFragment.getString(relationship!=null && relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
+				mute.setTitle(item.parentFragment.getString(relationship!=null && relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getShortUsername()));
 				mute.setIcon(relationship!=null && relationship.muting ? R.drawable.ic_fluent_speaker_2_24_regular : R.drawable.ic_fluent_speaker_mute_24_regular);
 				UiUtils.insetPopupMenuIcon(item.parentFragment.getContext(), mute);
-				block.setTitle(item.parentFragment.getString(relationship!=null && relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
-				report.setTitle(item.parentFragment.getString(R.string.report_user, account.getDisplayUsername()));
+				block.setTitle(item.parentFragment.getString(relationship!=null && relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getShortUsername()));
+				report.setTitle(item.parentFragment.getString(R.string.report_user, account.getShortUsername()));
 				// disabled in megalodon. domain blocks from a post clutters the context menu and looks out of place
 //				if(!account.isLocal()){
 //					blockDomain.setVisible(true);
@@ -391,7 +391,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					blockDomain.setVisible(false);
 //				}
 				boolean following = relationship!=null && relationship.following;
-				follow.setTitle(item.parentFragment.getString(following ? R.string.unfollow_user : R.string.follow_user, account.getDisplayUsername()));
+				follow.setTitle(item.parentFragment.getString(following ? R.string.unfollow_user : R.string.follow_user, account.getShortUsername()));
 				follow.setIcon(following ? R.drawable.ic_fluent_person_delete_24_regular : R.drawable.ic_fluent_person_add_24_regular);
 				UiUtils.insetPopupMenuIcon(item.parentFragment.getContext(), follow);
 			}
