@@ -94,6 +94,7 @@ public class PollOptionStatusDisplayItem extends StatusDisplayItem{
 			}else{
 				itemView.setSelected(item.poll.selectedOptions!=null && item.poll.selectedOptions.contains(item.option));
 				button.setBackgroundResource(R.drawable.bg_poll_option_clickable);
+				icon.setSelected(itemView.isSelected());
 				icon.setVisibility(View.VISIBLE);
 			}
 		}
