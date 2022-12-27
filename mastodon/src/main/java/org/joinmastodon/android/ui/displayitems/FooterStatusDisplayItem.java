@@ -101,6 +101,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			View bookmark=findViewById(R.id.bookmark_btn);
 			reply.setOnTouchListener(this::onButtonTouch);
 			reply.setOnClickListener(this::onReplyClick);
+			reply.setOnLongClickListener(this::onReplyLongClick);
 			reply.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			boost.setOnTouchListener(this::onButtonTouch);
 			boost.setOnClickListener(this::onBoostClick);
@@ -108,9 +109,11 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			boost.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			favorite.setOnTouchListener(this::onButtonTouch);
 			favorite.setOnClickListener(this::onFavoriteClick);
+			favorite.setOnLongClickListener(this::onFavoriteLongClick);
 			favorite.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			bookmark.setOnTouchListener(this::onButtonTouch);
 			bookmark.setOnClickListener(this::onBookmarkClick);
+			bookmark.setOnLongClickListener(this::onBookmarkLongClick);
 			bookmark.setAccessibilityDelegate(buttonAccessibilityDelegate);
 			share.setOnTouchListener(this::onButtonTouch);
 			share.setOnClickListener(this::onShareClick);
@@ -172,6 +175,19 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 		}
 
+		private boolean onReplyLongClick(View v) {
+			UiUtils.pickAccount(v.getContext(), item.accountID, R.string.sk_reply_as, R.drawable.ic_fluent_arrow_reply_24_regular, session -> {
+				Bundle args=new Bundle();
+				String accountID = session.getID();
+				args.putString("account", accountID);
+				UiUtils.lookupStatus(v.getContext(), item.status, accountID, item.accountID, status -> {
+					args.putParcelable("replyTo", Parcels.wrap(status));
+					Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
+				});
+			}, null);
+			return true;
+		}
+
 		private void onBoostClick(View v){
 			boost.setSelected(!item.status.reblogged);
 			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setReblogged(item.status, !item.status.reblogged, null, r->boostConsumer(v, r));
@@ -198,6 +214,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			View separator = menu.findViewById(R.id.separator);
 			TextView reblogHeader = menu.findViewById(R.id.reblog_header);
 			TextView undoReblog = menu.findViewById(R.id.delete_reblog);
+			TextView reblogAs = menu.findViewById(R.id.reblog_as);
 			TextView itemPublic = menu.findViewById(R.id.vis_public);
 			TextView itemUnlisted = menu.findViewById(R.id.vis_unlisted);
 			TextView itemFollowers = menu.findViewById(R.id.vis_followers);
@@ -205,6 +222,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			undoReblog.setVisibility(item.status.reblogged ? View.VISIBLE : View.GONE);
 			separator.setVisibility(item.status.reblogged ? View.GONE : View.VISIBLE);
 			reblogHeader.setVisibility(item.status.reblogged ? View.GONE : View.VISIBLE);
+			reblogAs.setVisibility(AccountSessionManager.getInstance().getLoggedInAccounts().size() > 1 ? View.VISIBLE : View.GONE);
 
 			itemPublic.setVisibility(item.status.reblogged || item.status.visibility.isLessVisibleThan(StatusPrivacy.PUBLIC) ? View.GONE : View.VISIBLE);
 			itemUnlisted.setVisibility(item.status.reblogged || item.status.visibility.isLessVisibleThan(StatusPrivacy.UNLISTED) ? View.GONE : View.VISIBLE);
@@ -234,6 +252,18 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			itemPublic.setOnClickListener(c->doReblog.accept(StatusPrivacy.PUBLIC));
 			itemUnlisted.setOnClickListener(c->doReblog.accept(StatusPrivacy.UNLISTED));
 			itemFollowers.setOnClickListener(c->doReblog.accept(StatusPrivacy.PRIVATE));
+			reblogAs.setOnClickListener(c->{
+				dialog.dismiss();
+				UiUtils.pickInteractAs(v.getContext(),
+						item.accountID, item.status,
+						s -> s.reblogged,
+						(ic, status, consumer) -> ic.setReblogged(status, true, null, consumer),
+						R.string.sk_reblog_as,
+						R.string.sk_reblogged_as,
+						R.string.sk_already_reblogged,
+						R.drawable.ic_fluent_arrow_repeat_all_24_regular
+				);
+			});
 
 			menu.findViewById(R.id.quote).setOnClickListener(c->{
 				dialog.dismiss();
@@ -257,11 +287,37 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			});
 		}
 
+		private boolean onFavoriteLongClick(View v) {
+			UiUtils.pickInteractAs(v.getContext(),
+					item.accountID, item.status,
+					s -> s.favourited,
+					(ic, status, consumer) -> ic.setFavorited(status, true, consumer),
+					R.string.sk_favorite_as,
+					R.string.sk_favorited_as,
+					R.string.sk_already_favorited,
+					R.drawable.ic_fluent_star_24_regular
+			);
+			return true;
+		}
+
 		private void onBookmarkClick(View v){
 			bookmark.setSelected(!item.status.bookmarked);
 			AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setBookmarked(item.status, !item.status.bookmarked, r->{
 				v.startAnimation(opacityIn);
 			});
+		}
+
+		private boolean onBookmarkLongClick(View v) {
+			UiUtils.pickInteractAs(v.getContext(),
+					item.accountID, item.status,
+					s -> s.bookmarked,
+					(ic, status, consumer) -> ic.setBookmarked(status, true, consumer),
+					R.string.sk_bookmark_as,
+					R.string.sk_bookmarked_as,
+					R.string.sk_already_bookmarked,
+					R.drawable.ic_fluent_bookmark_24_regular
+			);
+			return true;
 		}
 
 		private void onShareClick(View v){

@@ -32,7 +32,7 @@ public class AccountSession{
 	public Preferences preferences;
 	public AccountActivationInfo activationInfo;
 	private transient MastodonAPIController apiController;
-	private transient StatusInteractionController statusInteractionController;
+	private transient StatusInteractionController statusInteractionController, remoteStatusInteractionController;
 	private transient CacheController cacheController;
 	private transient PushSubscriptionManager pushSubscriptionManager;
 
@@ -52,6 +52,10 @@ public class AccountSession{
 		return domain+"_"+self.id;
 	}
 
+	public String getFullUsername() {
+		return "@"+self.username+"@"+domain;
+	}
+
 	public MastodonAPIController getApiController(){
 		if(apiController==null)
 			apiController=new MastodonAPIController(this);
@@ -62,6 +66,12 @@ public class AccountSession{
 		if(statusInteractionController==null)
 			statusInteractionController=new StatusInteractionController(getID());
 		return statusInteractionController;
+	}
+
+	public StatusInteractionController getRemoteStatusInteractionController(){
+		if(remoteStatusInteractionController==null)
+			remoteStatusInteractionController=new StatusInteractionController(getID(), false);
+		return remoteStatusInteractionController;
 	}
 
 	public CacheController getCacheController(){

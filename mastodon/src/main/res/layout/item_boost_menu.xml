@@ -79,6 +79,20 @@
         android:layout_marginVertical="8dp"
         android:background="?colorPollVoted" />
     <TextView
+        android:id="@+id/reblog_as"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="36dp"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="24dp"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:textColor="?android:textColorPrimary"
+        android:drawablePadding="16dp"
+        android:background="?android:selectableItemBackground"
+        android:text="@string/sk_reblog_as"
+        android:drawableStart="@drawable/ic_fluent_person_swap_24_regular" />
+    <TextView
         android:id="@+id/quote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

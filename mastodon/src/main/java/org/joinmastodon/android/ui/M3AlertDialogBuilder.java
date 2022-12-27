@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import me.grishka.appkit.utils.V;
 
@@ -31,8 +32,16 @@ public class M3AlertDialogBuilder extends AlertDialog.Builder{
 		if(titleID!=0){
 			View title=alert.findViewById(titleID);
 			if(title!=null){
+				int iconID=getContext().getResources().getIdentifier("icon", "id", "android");
+				int alertTitleID=getContext().getResources().getIdentifier("alertTitle", "id", "android");
+				if (alertTitleID != 0 && iconID != 0) {
+					ImageView icon = title.findViewById(iconID);
+					if (icon.getDrawable() != null) {
+						title.findViewById(alertTitleID).setPadding(V.dp(8), 0, 0, 0);
+					}
+				}
 				int pad=V.dp(24);
-				title.setPadding(pad, pad, pad, V.dp(18));
+				title.setPadding(pad, pad, pad, V.dp(12));
 			}
 		}
 		int titleDividerID=getContext().getResources().getIdentifier("titleDividerNoCustom", "id", "android");

@@ -5,6 +5,7 @@ import static org.joinmastodon.android.GlobalUserPreferences.trueBlackTheme;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
@@ -26,8 +27,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.provider.OpenableColumns;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -46,6 +45,7 @@ import org.joinmastodon.android.E;
 import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.R;
+import org.joinmastodon.android.api.StatusInteractionController;
 import org.joinmastodon.android.api.requests.accounts.SetAccountBlocked;
 import org.joinmastodon.android.api.requests.accounts.SetAccountFollowed;
 import org.joinmastodon.android.api.requests.accounts.SetAccountMuted;
@@ -96,6 +96,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import androidx.annotation.AttrRes;
@@ -755,24 +756,87 @@ public class UiUtils{
 		return instance != null && !instance.title.isBlank() ? instance.title : session.domain;
 	}
 
+	public static void pickAccount(Context context, String exceptFor, @StringRes int titleRes, @DrawableRes int iconRes, Consumer<AccountSession> sessionConsumer, Consumer<AlertDialog.Builder> transformDialog) {
+		List<AccountSession> sessions=AccountSessionManager.getInstance().getLoggedInAccounts()
+				.stream().filter(s->!s.getID().equals(exceptFor)).collect(Collectors.toList());
+
+		AlertDialog.Builder builder = new M3AlertDialogBuilder(context)
+				.setItems(
+						sessions.stream().map(AccountSession::getFullUsername).toArray(String[]::new),
+						(dialog, which) -> sessionConsumer.accept(sessions.get(which))
+				)
+				.setTitle(titleRes == 0 ? R.string.choose_account : titleRes)
+				.setIcon(iconRes);
+		if (transformDialog != null) transformDialog.accept(builder);
+		builder.show();
+	}
+
+	@FunctionalInterface
+	public interface InteractionPerformer {
+		void interact(StatusInteractionController ic, Status status, Consumer<Status> resultConsumer);
+	}
+
+	public static void pickInteractAs(Context context, String accountID, Status sourceStatus, Predicate<Status> checkInteracted, InteractionPerformer interactionPerformer, @StringRes int interactAsRes, @StringRes int interactedAsAccountRes, @StringRes int alreadyInteractedRes, @DrawableRes int iconRes) {
+		pickAccount(context, accountID, interactAsRes, iconRes, session -> {
+			lookupStatus(context, sourceStatus, session.getID(), accountID, status -> {
+				if (checkInteracted.test(status)) {
+					Toast.makeText(context, alreadyInteractedRes, Toast.LENGTH_SHORT).show();
+					return;
+				}
+
+				StatusInteractionController ic = AccountSessionManager.getInstance().getAccount(session.getID()).getRemoteStatusInteractionController();
+				interactionPerformer.interact(ic, status, s -> {
+					if (checkInteracted.test(s)) {
+						Toast.makeText(context, context.getString(interactedAsAccountRes, session.getFullUsername()), Toast.LENGTH_SHORT).show();
+					}
+				});
+			});
+		}, null);
+	}
+
+	public static void lookupStatus(Context context, Status queryStatus, String targetAccountID, @Nullable String sourceAccountID, Consumer<Status> statusConsumer) {
+		if (sourceAccountID != null && targetAccountID.startsWith(sourceAccountID.substring(0, sourceAccountID.indexOf('_')))) {
+			statusConsumer.accept(queryStatus);
+			return;
+		}
+
+		new GetSearchResults(queryStatus.url, GetSearchResults.Type.STATUSES, true).setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(SearchResults results) {
+				if (!results.statuses.isEmpty()) statusConsumer.accept(results.statuses.get(0));
+				else Toast.makeText(context, R.string.sk_resource_not_found, Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {
+				error.showToast(context);
+			}
+		})
+				.wrapProgress((Activity)context, R.string.loading, true,
+						d -> transformDialogForLookup(context, targetAccountID, null, d))
+				.exec(targetAccountID);
+	}
+
 	public static void openURL(Context context, String accountID, String url) {
 		openURL(context, accountID, url, true);
 	}
 
-	public static void openURL(Context context, String accountID, String url, boolean launchBrowser){
-		Consumer<ProgressDialog> transformDialogForLookup = dialog -> {
-			if (accountID != null) {
-				dialog.setTitle(context.getString(R.string.sk_loading_resource_on_instance_title, getInstanceName(accountID)));
-			} else {
-				dialog.setTitle(R.string.sk_loading_fediverse_resource_title);
-			}
-			dialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.cancel), (d, which) -> d.cancel());
+	private static void transformDialogForLookup(Context context, String accountID, @Nullable String url, ProgressDialog dialog) {
+		if (accountID != null) {
+			dialog.setTitle(context.getString(R.string.sk_loading_resource_on_instance_title, getInstanceName(accountID)));
+		} else {
+			dialog.setTitle(R.string.sk_loading_fediverse_resource_title);
+		}
+		dialog.setButton(DialogInterface.BUTTON_NEGATIVE, context.getString(R.string.cancel), (d, which) -> d.cancel());
+		if (url != null) {
 			dialog.setButton(DialogInterface.BUTTON_POSITIVE, context.getString(R.string.open_in_browser), (d, which) -> {
 				d.cancel();
 				launchWebBrowser(context, url);
 			});
-		};
+		}
+	}
 
+	public static void openURL(Context context, String accountID, String url, boolean launchBrowser){
 		Uri uri=Uri.parse(url);
 		List<String> path=uri.getPathSegments();
 		if(accountID!=null && "https".equals(uri.getScheme())){
@@ -793,7 +857,8 @@ public class UiUtils{
 								if (launchBrowser) launchWebBrowser(context, url);
 							}
 						})
-						.wrapProgress((Activity)context, R.string.loading, true, transformDialogForLookup)
+						.wrapProgress((Activity)context, R.string.loading, true,
+								d -> transformDialogForLookup(context, accountID, url, d))
 						.exec(accountID);
 				return;
 			} else if (looksLikeMastodonUrl(url)) {
@@ -821,7 +886,8 @@ public class UiUtils{
 								if (launchBrowser) launchWebBrowser(context, url);
 							}
 						})
-						.wrapProgress((Activity)context, R.string.loading, true, transformDialogForLookup)
+						.wrapProgress((Activity)context, R.string.loading, true,
+								d -> transformDialogForLookup(context, accountID, url, d))
 						.exec(accountID);
 				return;
 			}

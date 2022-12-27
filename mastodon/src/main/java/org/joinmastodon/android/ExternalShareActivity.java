@@ -12,7 +12,6 @@ import android.widget.Toast;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.ComposeFragment;
-import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.utils.UiUtils;
 
 import java.util.ArrayList;
@@ -36,13 +35,10 @@ public class ExternalShareActivity extends FragmentStackActivity{
 				openComposeFragment(sessions.get(0).getID());
 			}else{
 				getWindow().setBackgroundDrawable(new ColorDrawable(0xff000000));
-				new M3AlertDialogBuilder(this)
-						.setItems(sessions.stream().map(as->"@"+as.self.username+"@"+as.domain).toArray(String[]::new), (dialog, which)->{
-							openComposeFragment(sessions.get(which).getID());
-						})
-						.setTitle(R.string.choose_account)
-						.setOnCancelListener(dialog -> finish())
-						.show();
+				UiUtils.pickAccount(this, null, R.string.choose_account, 0,
+						session -> openComposeFragment(session.getID()),
+						b -> b.setOnCancelListener(d -> finish())
+				);
 			}
 		}
 	}

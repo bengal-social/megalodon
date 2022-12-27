@@ -91,4 +91,14 @@
     <string name="sk_copy_link_to_post">Copy link to post</string>
     <string name="sk_open_with_account">Open with other account</string>
     <string name="sk_resource_not_found">Resource could not be found</string>
+    <string name="sk_bookmark_as">Bookmark in other account</string>
+    <string name="sk_bookmarked_as">Bookmarked as %s</string>
+    <string name="sk_already_bookmarked">Already bookmarked</string>
+    <string name="sk_favorite_as">Favorite from other account</string>
+    <string name="sk_favorited_as">Favorited as %s</string>
+    <string name="sk_already_favorited">Already favorited</string>
+    <string name="sk_reblog_as">Reblog from other account</string>
+    <string name="sk_reblogged_as">Reblogged as %s</string>
+    <string name="sk_already_reblogged">Already reblogged</string>
+    <string name="sk_reply_as">Reply with other account</string>
 </resources>
