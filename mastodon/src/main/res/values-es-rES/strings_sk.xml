@@ -90,4 +90,15 @@
     <string name="sk_open_with_account">Abrir con otra cuenta</string>
     <string name="sk_resource_not_found">El recurso no se pudo encontrar</string>
     <string name="sk_loading_resource_on_instance_title">Buscándolo en %s</string>
+    <string name="sk_bookmarked_as">Añadido a favoritos como %s</string>
+    <string name="sk_already_bookmarked">Ya marcado</string>
+    <string name="sk_favorited_as">Favorito como %s</string>
+    <string name="sk_already_favorited">Ya es un favorito</string>
+    <string name="sk_reblog_as">Compartir desde otra cuenta</string>
+    <string name="sk_reblogged_as">Compartido como %s</string>
+    <string name="sk_already_reblogged">Ya se volvió a publicar</string>
+    <string name="sk_reply_as">Responder con otra cuenta</string>
+    <string name="sk_bookmark_as">Marcador de otra cuenta</string>
+    <string name="sk_favorite_as">Favoritos de otra cuenta</string>
+    <string name="sk_settings_uniform_icon_for_notifications">Mismo icono para todas las notificaciones</string>
 </resources>
