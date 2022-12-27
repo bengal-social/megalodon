@@ -140,12 +140,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			avatar.setOutlineProvider(roundCornersOutline);
 			avatar.setClipToOutline(true);
 			more.setOnClickListener(this::onMoreClick);
-			more.setOnLongClickListener((v) -> {
-				PopupMenu popup = new PopupMenu(itemView.getContext(), v);
-				populateAccountsMenu(popup.getMenu());
-				popup.show();
-				return true;
-			});
 			visibility.setOnClickListener(v->item.parentFragment.onVisibilityIconClick(this));
 			deleteNotification.setOnClickListener(v->UiUtils.confirmDeleteNotification(activity, item.parentFragment.getAccountID(), item.notification, ()->{
 				if (item.parentFragment instanceof NotificationsListFragment fragment) {
@@ -158,12 +152,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			optionsMenu.setOnMenuItemClickListener(menuItem->{
 				Account account=item.user;
 				int id=menuItem.getItemId();
-
-				SubMenu accountsMenu=id==R.id.open_with_account ? menuItem.getSubMenu() : null;
-				if (accountsMenu != null) {
-					accountsMenu.clear();
-					populateAccountsMenu(accountsMenu);
-				}
 
 				if(id==R.id.edit || id==R.id.delete_and_redraft) {
 					final Bundle args=new Bundle();
@@ -335,9 +323,22 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void updateOptionsMenu(){
-			Account account=item.user;
+			boolean hasMultipleAccounts = AccountSessionManager.getInstance().getLoggedInAccounts().size() > 1;
 			Menu menu=optionsMenu.getMenu();
+
+			MenuItem openWithAccounts = menu.findItem(R.id.open_with_account);
+			SubMenu accountsMenu = openWithAccounts != null ? openWithAccounts.getSubMenu() : null;
+			if (hasMultipleAccounts && accountsMenu != null) {
+				openWithAccounts.setVisible(true);
+				accountsMenu.clear();
+				populateAccountsMenu(accountsMenu);
+			} else if (openWithAccounts != null) {
+				openWithAccounts.setVisible(false);
+			}
+
+			Account account=item.user;
 			boolean isOwnPost=AccountSessionManager.getInstance().isSelf(item.parentFragment.getAccountID(), account);
+			menu.findItem(R.id.open_with_account).setVisible(hasMultipleAccounts);
 			menu.findItem(R.id.edit).setVisible(item.status!=null && isOwnPost);
 			menu.findItem(R.id.delete).setVisible(item.status!=null && isOwnPost);
 			menu.findItem(R.id.delete_and_redraft).setVisible(item.status!=null && isOwnPost);

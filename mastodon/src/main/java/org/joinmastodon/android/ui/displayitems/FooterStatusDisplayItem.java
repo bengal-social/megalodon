@@ -60,7 +60,14 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		private static final Animation opacityOut, opacityIn;
 
 		private View touchingView = null;
-		private final Runnable longClickRunnable = () -> { if (touchingView != null) touchingView.performLongClick(); };
+		private boolean longClickPerformed = false;
+		private final Runnable longClickRunnable = () -> {
+			longClickPerformed = touchingView != null && touchingView.performLongClick();
+			if (longClickPerformed && touchingView != null) {
+				touchingView.startAnimation(opacityIn);
+				touchingView.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
+			}
+		};
 
 		private final View.AccessibilityDelegate buttonAccessibilityDelegate=new View.AccessibilityDelegate(){
 			@Override
@@ -77,7 +84,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			opacityOut.setInterpolator(CubicBezierInterpolator.DEFAULT);
 			opacityOut.setFillAfter(true);
 			opacityIn = new AlphaAnimation(0.55f, 1);
-			opacityIn.setDuration(300);
+			opacityIn.setDuration(500);
 			opacityIn.setInterpolator(CubicBezierInterpolator.DEFAULT);
 		}
 
@@ -147,15 +154,15 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			boolean disabled = !v.isEnabled() || (v instanceof FrameLayout parentFrame &&
 					parentFrame.getChildCount() > 0 && !parentFrame.getChildAt(0).isEnabled());
 			int action = event.getAction();
-			long eventDuration = event.getEventTime() - event.getDownTime();
 			if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
 				touchingView = null;
 				v.removeCallbacks(longClickRunnable);
-				v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
+				if (!longClickPerformed) v.animate().scaleX(1).scaleY(1).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150).start();
 				if (disabled) return true;
-				if (action == MotionEvent.ACTION_UP && eventDuration <= ViewConfiguration.getLongPressTimeout()) v.performClick();
-				else v.startAnimation(opacityIn);
+				if (action == MotionEvent.ACTION_UP && !longClickPerformed) v.performClick();
+				else if (!longClickPerformed) v.startAnimation(opacityIn);
 			} else if (action == MotionEvent.ACTION_DOWN) {
+				longClickPerformed = false;
 				touchingView = v;
 				// 20dp to center in middle of icon, because: (icon width = 24dp) / 2 + (paddingStart = 8dp)
 				v.setPivotX(V.dp(20));
@@ -176,6 +183,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private boolean onReplyLongClick(View v) {
+			if (AccountSessionManager.getInstance().getLoggedInAccounts().size() < 2) return false;
 			UiUtils.pickAccount(v.getContext(), item.accountID, R.string.sk_reply_as, R.drawable.ic_fluent_arrow_reply_24_regular, session -> {
 				Bundle args=new Bundle();
 				String accountID = session.getID();
@@ -288,6 +296,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private boolean onFavoriteLongClick(View v) {
+			if (AccountSessionManager.getInstance().getLoggedInAccounts().size() < 2) return false;
 			UiUtils.pickInteractAs(v.getContext(),
 					item.accountID, item.status,
 					s -> s.favourited,
@@ -308,6 +317,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private boolean onBookmarkLongClick(View v) {
+			if (AccountSessionManager.getInstance().getLoggedInAccounts().size() < 2) return false;
 			UiUtils.pickInteractAs(v.getContext(),
 					item.accountID, item.status,
 					s -> s.bookmarked,
