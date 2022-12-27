@@ -8,7 +8,7 @@
 
 <a href="https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk"><img height="50" alt="Get it on Google Play" src="img/google-play-badge.png"></a>
 &nbsp;
-<a href="https://apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk"><img height="50" alt="Get it on F-Droid" src="img/f-droid-badge.png"></a>
+<a href="#installation"><img height="50" alt="Get it on IzzyOnDroid" src="img/izzy-badge.png"></a>
 
 > A fork of the [official Mastodon Android app](https://github.com/mastodon/mastodon-android) adding important features that are missing in the official app and possibly won’t ever be implemented, such as the federated timeline, unlisted posting and an image description viewer.
 
@@ -45,21 +45,29 @@ On the Fediverse, it’s quite common for people to pin posts they want others t
 
 ## Installation
 
-### From app stores
+### IzzyOnDroid
 
-* **[Izzy's F-Droid repository](https://apt.izzysoft.de/fdroid/repo)**: [apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk](https://apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk)
+[apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk](https://apt.izzysoft.de/fdroid/index/apk/org.joinmastodon.android.sk)
 
-  Note that you'll need to add Izzy's F-Droid repository to your F-Droid app first:
-  
-  `https://apt.izzysoft.de/fdroid/repo`
+<a href="#installation"><img height="50" alt="Get it on IzzyOnDroid" src="img/izzy-badge.png"></a>
 
-* **[Google Play Store](https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk)**: [play.google.com/store/apps/details?id=org.joinmastodon.android.sk](https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk)
+Note that you'll need to add Izzy's F-Droid repository to your F-Droid app first:
 
-* **[F-Droid.org](https://f-droid.org)?** Not yet, sorry!
+[`https://apt.izzysoft.de/fdroid/repo`](https://apt.izzysoft.de/fdroid/repo)
 
-  If you want, you can help me figure out if something's missing in the [Issue #47: F-Droid.org](https://github.com/sk22/megalodon/issues/47)
+### Google Play Store
 
-### Directly from GitHub
+[play.google.com/store/apps/details?id=org.joinmastodon.android.sk](https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk)
+
+<a href="https://play.google.com/store/apps/details?id=org.joinmastodon.android.sk"><img height="50" alt="Get it on Google Play" src="img/google-play-badge.png"></a>
+
+### F-Droid
+
+**[F-Droid.org?](https://f-droid.org)** Not yet, sorry!
+
+If you want, you can help me figure out if something's missing in the [Issue #47: F-Droid.org](https://github.com/sk22/megalodon/issues/47)
+
+### Direct
 
 Press the download button to download the APK. Open the downloaded file on your Android device to install it. Megalodon will automatically notify you about new updates inside the app.
 
