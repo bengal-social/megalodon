@@ -241,10 +241,10 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			Drawable unlistedDrawable = ctx.getDrawable(R.drawable.ic_fluent_people_community_24_regular);
 			Drawable followersDrawable = ctx.getDrawable(R.drawable.ic_fluent_people_checkmark_24_regular);
 
-			StatusPrivacy defaultVisibility = session.preferences.postingDefaultVisibility;
+			StatusPrivacy defaultVisibility = session.preferences != null ? session.preferences.postingDefaultVisibility : null;
 			// e.g. post visibility is unlisted, but default is public
 			// in this case, we want to display the check mark on the most visible visibility
-			if (item.status.visibility.isLessVisibleThan(defaultVisibility)) {
+			if (defaultVisibility != null && item.status.visibility.isLessVisibleThan(defaultVisibility)) {
 				for (StatusPrivacy vis : StatusPrivacy.values()) {
 					if (vis.equals(item.status.visibility)) {
 						defaultVisibility = vis;
