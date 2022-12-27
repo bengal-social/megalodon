@@ -90,4 +90,15 @@
     <string name="sk_loading_resource_on_instance_title">Пошук на %s</string>
     <string name="sk_open_with_account">Відкрити через інший обліковий запис</string>
     <string name="sk_resource_not_found">Ресурс не знайдено</string>
+    <string name="sk_bookmarked_as">Додано до закладок як %s</string>
+    <string name="sk_already_bookmarked">Уже в закладках</string>
+    <string name="sk_favorited_as">Уподобано як %s</string>
+    <string name="sk_already_favorited">Уже вподобано</string>
+    <string name="sk_reblog_as">Поширити з іншого облікового запису</string>
+    <string name="sk_already_reblogged">Уже поширено</string>
+    <string name="sk_settings_uniform_icon_for_notifications">Єдина піктограма для всіх сповіщень</string>
+    <string name="sk_bookmark_as">Додати до закладок іншого облікового запису</string>
+    <string name="sk_favorite_as">Уподобане з іншого облікового запису</string>
+    <string name="sk_reblogged_as">Поширено як %s</string>
+    <string name="sk_reply_as">Відповісти з іншого облікового запису</string>
 </resources>
