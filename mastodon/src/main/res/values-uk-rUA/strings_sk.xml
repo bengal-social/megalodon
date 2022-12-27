@@ -78,11 +78,16 @@
     <string name="sk_settings_translation_availability_note_unavailable">%s не підтримує переклад.</string>
     <string name="sk_clear_all_notifications">Очистити всі сповіщення</string>
     <string name="sk_clear_all_notifications_confirm">Ви впевнені, що хочете очистити всі сповіщення\?</string>
-    <string name="sk_loading_fediverse_resource_title">Переглядаємо Федісвіт…</string>
+    <string name="sk_loading_fediverse_resource_title">Переглядаємо Федісвіт</string>
     <string name="sk_undo_reblog">Скасувати репост</string>
     <string name="sk_reblog_with_visibility">Репост з видимістю</string>
     <string name="sk_quote_post">Цитувати пост</string>
     <string name="sk_tabs_disable_swipe">Вимкнути перегортання вкладок</string>
     <string name="sk_settings_auth">Налаштування безпеці</string>
     <string name="sk_clear_all_notifications_confirm_action">Видалити все</string>
+    <string name="sk_copy_link_to_post">Скопіювати посилання на пост</string>
+    <string name="sk_hashtags_you_follow">Відстежувані хештеги</string>
+    <string name="sk_loading_resource_on_instance_title">Переглядаємо %s</string>
+    <string name="sk_open_with_account">Відкрити через інший акаунт</string>
+    <string name="sk_resource_not_found">Ресурс не знайдено</string>
 </resources>

@@ -1,0 +1,6 @@
+- Opción de rebloguear con visibilidad específica via clic-largo
+- Mostrar visibilidad de reblogueos propios
+- Añadir lista de hashtags seguidos
+- Clic-largo para copiar enlaces
+- Opción de abrir publicaciones con otra cuenta
+- Corrección de errores y ajustes menores
