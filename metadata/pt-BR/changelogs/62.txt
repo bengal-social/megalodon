@@ -1,0 +1,11 @@
+- Botão de Publicar personalizável
+- Links do Fediverso no abertos no aplicativo
+- Clique longo em impulsionar para "citar" uma postagem
+- Copie o URL da postagem ao pressionar e segurar o compartilhar
+- Exclusão de notificações (desativado por padrão)
+- Ícones para diferentes tipos de notificação
+- Novas cores de cinza
+- Opção de desativar o deslizamento entre abas
+- Links para as configurações da conta
+- Opção para mostrar/ocultar o botão traduzir na timeline
+- Correções de bugs e ajustes

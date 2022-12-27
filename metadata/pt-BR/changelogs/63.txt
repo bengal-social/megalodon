@@ -1,0 +1,6 @@
+- Opção para reblogar com visibilidade específica em clique longo
+- Mostrar visibilidade dos próprios reblogs
+- Adicionada lista de hashtags seguidas
+- Clique longo para copiar links
+- Opção para abrir postagens com outra conta
+- Correções de bugs e pequenos ajustes

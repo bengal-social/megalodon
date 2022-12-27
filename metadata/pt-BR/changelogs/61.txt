@@ -1,0 +1,5 @@
+- Novos temas de cores: Material You and Vermelho
+- Novos tons de cinza escuro para todos os temas
+- Ícone de impulsionar mais distinto e preenchido
+- Animações para botões de interação
+- Correções de bugs (Falha em algumas postagens, "Listas com", idioma de postagem padrão)
