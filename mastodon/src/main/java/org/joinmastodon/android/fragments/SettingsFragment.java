@@ -152,6 +152,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 						.show();
 			});
 		}));
+		items.add(new SwitchItem(R.string.sk_settings_uniform_icon_for_notifications, R.drawable.ic_ntf_logo, GlobalUserPreferences.uniformNotificationIcon, i->{
+			GlobalUserPreferences.uniformNotificationIcon =i.checked;
+			GlobalUserPreferences.save();
+		}));
 
 		items.add(new HeaderItem(R.string.settings_behavior));
 		items.add(new SwitchItem(R.string.sk_settings_show_federated_timeline, R.drawable.ic_fluent_earth_24_regular, GlobalUserPreferences.showFederatedTimeline, i->{

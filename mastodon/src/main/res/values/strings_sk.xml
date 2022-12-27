@@ -101,4 +101,5 @@
     <string name="sk_reblogged_as">Reblogged as %s</string>
     <string name="sk_already_reblogged">Already reblogged</string>
     <string name="sk_reply_as">Reply with other account</string>
+    <string name="sk_settings_uniform_icon_for_notifications">Uniform icon for all notifications</string>
 </resources>
