@@ -673,7 +673,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	}
 
 	private void updateLanguage(String lang) {
-		updateLanguage(languageResolver.from(lang));
+		updateLanguage(lang == null ? languageResolver.getDefault() : languageResolver.from(lang));
 	}
 
 	private void updateLanguage(MastodonLanguage loc) {
