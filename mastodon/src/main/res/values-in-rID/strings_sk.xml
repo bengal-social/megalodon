@@ -91,4 +91,15 @@
     <string name="sk_open_with_account">Buka dengan akun lain</string>
     <string name="sk_loading_resource_on_instance_title">Mencari di %s</string>
     <string name="sk_resource_not_found">Sumber daya tidak dapat ditemukan</string>
+    <string name="sk_bookmarked_as">Dimarkahi sebagai %s</string>
+    <string name="sk_already_bookmarked">Sudah dimarkahi</string>
+    <string name="sk_favorited_as">Difavorit sebagai %s</string>
+    <string name="sk_already_favorited">Sudah difavorit</string>
+    <string name="sk_reblog_as">Bagikan dari akun lain</string>
+    <string name="sk_reblogged_as">Dibagikan sebagai %s</string>
+    <string name="sk_already_reblogged">Sudah dibagikan</string>
+    <string name="sk_reply_as">Balas dengan akun lain</string>
+    <string name="sk_bookmark_as">Markahi dalam akun lain</string>
+    <string name="sk_favorite_as">Favorit dari akun lain</string>
+    <string name="sk_settings_uniform_icon_for_notifications">Ikon yang sama untuk semua notifikasi</string>
 </resources>
