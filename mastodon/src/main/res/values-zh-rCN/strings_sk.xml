@@ -75,7 +75,7 @@
     <string name="sk_delete_notification_confirm_action">删除通知</string>
     <string name="sk_settings_publish_button_text">发布按钮文本</string>
     <string name="sk_settings_publish_button_text_title">自定义发布按钮文本</string>
-    <string name="sk_settings_hide_translate_in_timeline">在时间轴中隐藏翻译按钮</string>
+    <string name="sk_settings_translate_only_opened">在时间轴中隐藏翻译按钮</string>
     <string name="sk_settings_translation_availability_note_available">%s 支持翻译！</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s 似乎不支持翻译。</string>
     <string name="sk_clear_all_notifications">清除所有通知</string>

@@ -73,7 +73,7 @@
     <string name="sk_enable_delete_notifications">알림 삭제 활성화</string>
     <string name="sk_settings_publish_button_text">게시 버튼 텍스트</string>
     <string name="sk_settings_publish_button_text_title">게시 버튼 사용자화</string>
-    <string name="sk_settings_hide_translate_in_timeline">타임라인에서 번역 버튼 숨김</string>
+    <string name="sk_settings_translate_only_opened">타임라인에서 번역 버튼 숨김</string>
     <string name="sk_delete_notification">알림 삭제</string>
     <string name="sk_settings_translation_availability_note_available">%s 서버는 번역을 지원합니다!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s 서버는 번역을 지원하지 않는 것 같습니다.</string>

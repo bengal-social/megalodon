@@ -77,7 +77,7 @@
     <string name="sk_enable_delete_notifications">Activer la suppression des notifications</string>
     <string name="sk_settings_publish_button_text_title">Personnaliser le texte du bouton Publier</string>
     <string name="sk_settings_publish_button_text">Texte du bouton Publier</string>
-    <string name="sk_settings_hide_translate_in_timeline">Masquer le bouton de traduction dans la timeline</string>
+    <string name="sk_settings_translate_only_opened">Masquer le bouton de traduction dans la timeline</string>
     <string name="sk_settings_translation_availability_note_available">%s prend en charge la traduction !</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s ne semble pas prendre en charge la traduction.</string>
     <string name="sk_clear_all_notifications_confirm">Voulez-vous vraiment supprimer toutes les notifications \?</string>

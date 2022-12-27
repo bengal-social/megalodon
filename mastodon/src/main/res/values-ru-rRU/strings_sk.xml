@@ -75,7 +75,7 @@
     <string name="sk_enable_delete_notifications">Включить удаление уведомлений</string>
     <string name="sk_settings_publish_button_text">Текст кнопки публикации</string>
     <string name="sk_settings_publish_button_text_title">Настройка текста кнопки публикации</string>
-    <string name="sk_settings_hide_translate_in_timeline">Спрятать кнопку перевода во временной шкале</string>
+    <string name="sk_settings_translate_only_opened">Спрятать кнопку перевода во временной шкале</string>
     <string name="sk_settings_translation_availability_note_available">%s поддерживает функцию перевода!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s не имеет поддержки функции перевода.</string>
     <string name="sk_clear_all_notifications">Очистить все уведомления</string>

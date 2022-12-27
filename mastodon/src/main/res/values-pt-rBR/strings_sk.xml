@@ -72,7 +72,7 @@
     <string name="sk_delete_notification_confirm_action">Deletar notificação</string>
     <string name="sk_enable_delete_notifications">Habilitar deletar notificações</string>
     <string name="sk_settings_publish_button_text_title">Customizar o texto do botão de publicar</string>
-    <string name="sk_settings_hide_translate_in_timeline">Esconder botão de tradução na linha do tempo</string>
+    <string name="sk_settings_translate_only_opened">Esconder botão de tradução na linha do tempo</string>
     <string name="sk_settings_translation_availability_note_available">%s possui tradução!</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s parece que não possui tradução</string>
     <string name="sk_clear_all_notifications">Limpar todas as notificações</string>
