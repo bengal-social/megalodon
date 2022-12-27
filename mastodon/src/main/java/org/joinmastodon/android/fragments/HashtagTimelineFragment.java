@@ -16,6 +16,7 @@ import org.joinmastodon.android.api.requests.tags.SetHashtagFollowed;
 import org.joinmastodon.android.api.requests.timelines.GetHashtagTimeline;
 import org.joinmastodon.android.model.Hashtag;
 import org.joinmastodon.android.model.Status;
+import org.joinmastodon.android.ui.utils.UiUtils;
 
 import java.util.List;
 
@@ -117,6 +118,7 @@ public class HashtagTimelineFragment extends StatusListFragment{
 		super.onViewCreated(view, savedInstanceState);
 		fab=view.findViewById(R.id.fab);
 		fab.setOnClickListener(this::onFabClick);
+		fab.setOnLongClickListener(v -> UiUtils.pickAccountForCompose(getActivity(), accountID, '#'+hashtag+' '));
 	}
 
 	private void onFabClick(View v){

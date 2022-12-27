@@ -138,6 +138,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	private WindowInsets childInsets;
 	private PhotoViewer currentPhotoViewer;
 	private boolean editModeLoading;
+	private String prefilledText;
 
 	public ProfileFragment(){
 		super(R.layout.loader_fragment_overlay_toolbar);
@@ -162,6 +163,8 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			if(!getArguments().getBoolean("noAutoLoad", false))
 				loadData();
 		}
+
+		prefilledText = AccountSessionManager.getInstance().isSelf(accountID, account) ? null : '@'+account.acct+' ';
 	}
 
 	@Override
@@ -275,6 +278,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		cover.setOnClickListener(this::onCoverClick);
 		refreshLayout.setOnRefreshListener(this);
 		fab.setOnClickListener(this::onFabClick);
+		fab.setOnLongClickListener(v->UiUtils.pickAccountForCompose(getActivity(), accountID, prefilledText));
 
 		if(loaded){
 			bindHeaderView();
@@ -939,9 +943,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	private void onFabClick(View v){
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
-		if(!AccountSessionManager.getInstance().isSelf(accountID, account)){
-			args.putString("prefilledText", '@'+account.acct+' ');
-		}
+		if(prefilledText != null) args.putString("prefilledText", prefilledText);
 		Nav.go(getActivity(), ComposeFragment.class, args);
 	}
 

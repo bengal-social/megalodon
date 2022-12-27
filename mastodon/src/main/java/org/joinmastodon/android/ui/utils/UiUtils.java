@@ -65,6 +65,7 @@ import org.joinmastodon.android.events.NotificationDeletedEvent;
 import org.joinmastodon.android.events.RemoveAccountPostsEvent;
 import org.joinmastodon.android.events.StatusDeletedEvent;
 import org.joinmastodon.android.events.StatusUnpinnedEvent;
+import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.HashtagTimelineFragment;
 import org.joinmastodon.android.fragments.ListTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
@@ -915,5 +916,19 @@ public class UiUtils{
 
 	public static boolean isMIUI(){
 		return !TextUtils.isEmpty(getSystemProperty("ro.miui.ui.version.code"));
+	}
+
+	public static boolean pickAccountForCompose(Activity activity, String accountID, String prefilledText){
+		if (AccountSessionManager.getInstance().getLoggedInAccounts().size() > 1) {
+			UiUtils.pickAccount(activity, accountID, 0, 0, session -> {
+				Bundle args=new Bundle();
+				args.putString("account", session.getID());
+				if (prefilledText != null) args.putString("prefilledText", prefilledText);
+				Nav.go(activity, ComposeFragment.class, args);
+			}, null);
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
