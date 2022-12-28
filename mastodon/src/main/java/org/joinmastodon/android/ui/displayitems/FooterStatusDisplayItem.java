@@ -84,7 +84,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			opacityOut.setInterpolator(CubicBezierInterpolator.DEFAULT);
 			opacityOut.setFillAfter(true);
 			opacityIn = new AlphaAnimation(0.55f, 1);
-			opacityIn.setDuration(500);
+			opacityIn.setDuration(400);
 			opacityIn.setInterpolator(CubicBezierInterpolator.DEFAULT);
 		}
 
