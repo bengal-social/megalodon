@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
@@ -28,15 +29,17 @@ import java.util.ArrayList;
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
-import me.grishka.appkit.fragments.ToolbarFragment;
 import me.grishka.appkit.utils.V;
 
 public class ReportCommentFragment extends MastodonToolbarFragment{
 	private String accountID;
 	private Account reportAccount;
 	private Button btn;
-	private View buttonBar;
+	private View buttonBar, forwardReportItem;
+	private TextView forwardReportText;
+	private Switch forwardReportSwitch;
 	private EditText commentEdit;
+	private boolean forwardReport;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -77,7 +80,17 @@ public class ReportCommentFragment extends MastodonToolbarFragment{
 		view.findViewById(R.id.btn_back).setOnClickListener(this::onButtonClick);
 		buttonBar=view.findViewById(R.id.button_bar);
 		commentEdit=view.findViewById(R.id.text);
-
+		forwardReportSwitch = view.findViewById(R.id.forward_report_switch);
+		forwardReportItem = view.findViewById(R.id.forward_report);
+		forwardReportText = view.findViewById(R.id.forward_report_text);
+		String domain = reportAccount.getDomain();
+		if (domain == null) {
+			forwardReportItem.setVisibility(View.GONE);
+		} else {
+			forwardReportItem.setOnClickListener(this::onForwardReportClick);
+			forwardReportText.setText(getActivity().getString(R.string.sk_forward_report_to, domain));
+			forwardReportSwitch.setChecked(forwardReport = true);
+		}
 		return view;
 	}
 
@@ -102,7 +115,7 @@ public class ReportCommentFragment extends MastodonToolbarFragment{
 		ReportReason reason=ReportReason.valueOf(getArguments().getString("reason"));
 		ArrayList<String> statusIDs=getArguments().getStringArrayList("statusIDs");
 		ArrayList<String> ruleIDs=getArguments().getStringArrayList("ruleIDs");
-		new SendReport(reportAccount.id, reason, statusIDs, ruleIDs, v.getId()==R.id.btn_back ? null : commentEdit.getText().toString(), true)
+		new SendReport(reportAccount.id, reason, statusIDs, ruleIDs, v.getId()==R.id.btn_back ? null : commentEdit.getText().toString(), forwardReport)
 				.setCallback(new Callback<>(){
 					@Override
 					public void onSuccess(Object result){
@@ -121,6 +134,11 @@ public class ReportCommentFragment extends MastodonToolbarFragment{
 				})
 				.wrapProgress(getActivity(), R.string.sending_report, false)
 				.exec(accountID);
+	}
+
+	private void onForwardReportClick(View v) {
+		forwardReport = !forwardReport;
+		forwardReportSwitch.setChecked(forwardReport);
 	}
 
 	@Subscribe
