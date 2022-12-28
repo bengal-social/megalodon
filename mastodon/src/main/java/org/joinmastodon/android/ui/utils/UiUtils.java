@@ -416,7 +416,7 @@ public class UiUtils{
 		showConfirmationAlert(activity, activity.getString(currentlyMuted ? R.string.confirm_unmute_title : R.string.confirm_mute_title),
 				activity.getString(currentlyMuted ? R.string.confirm_unmute : R.string.confirm_mute, account.displayName),
 				activity.getString(currentlyMuted ? R.string.do_unmute : R.string.do_mute),
-				currentlyMuted ? R.drawable.ic_fluent_speaker_2_28_regular : R.drawable.ic_fluent_speaker_mute_28_regular,
+				currentlyMuted ? R.drawable.ic_fluent_speaker_0_28_regular : R.drawable.ic_fluent_speaker_off_28_regular,
 				()->{
 					new SetAccountMuted(account.id, !currentlyMuted)
 							.setCallback(new Callback<>(){
