@@ -352,7 +352,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			menu.findItem(R.id.copy_link).setVisible(item.status!=null);
 			MenuItem blockDomain=menu.findItem(R.id.block_domain);
 			MenuItem mute=menu.findItem(R.id.mute);
-			MenuItem hideBoosts=menu.findItem(R.id.hide_boosts);
 			MenuItem block=menu.findItem(R.id.block);
 			MenuItem report=menu.findItem(R.id.report);
 			MenuItem follow=menu.findItem(R.id.follow);
@@ -368,7 +367,6 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			*/
 			if(isOwnPost){
 				mute.setVisible(false);
-				hideBoosts.setVisible(false);
 				block.setVisible(false);
 				report.setVisible(false);
 				follow.setVisible(false);
