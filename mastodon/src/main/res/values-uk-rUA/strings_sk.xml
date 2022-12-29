@@ -101,4 +101,17 @@
     <string name="sk_favorite_as">Уподобане з іншого облікового запису</string>
     <string name="sk_reblogged_as">Поширено як %s</string>
     <string name="sk_reply_as">Відповісти з іншого облікового запису</string>
+    <string name="sk_forward_report_to">Переслати до %s</string>
+    <string name="sk_unsent_posts">Не надіслані дописи</string>
+    <string name="sk_draft">Чернетка</string>
+    <string name="sk_schedule">Заплановане</string>
+    <string name="sk_confirm_delete_draft_title">Видалити чернетку</string>
+    <string name="sk_confirm_delete_scheduled_post_title">Видалити запланований допис</string>
+    <string name="sk_confirm_delete_scheduled_post">Ви дійсно хочете видалити цей запланований допис\?</string>
+    <string name="sk_compose_draft">Допис збережеться до чернеток.</string>
+    <string name="sk_compose_scheduled">Заплановано на</string>
+    <string name="sk_draft_saved">Чернетку збережено</string>
+    <string name="sk_post_scheduled">Допис заплановано</string>
+    <string name="sk_confirm_delete_draft">Ви дійсно хочете видалити чернетку цього допису\?</string>
+    <string name="sk_draft_or_schedule">У чернетки чи до запланованих</string>
 </resources>
