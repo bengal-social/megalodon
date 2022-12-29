@@ -2,4 +2,5 @@
 - Adicionada a função de tradução
 - Melhorada a semântica para votação em enquetes (botões de opção e caixas de seleção)
 - Adicionada a opção que permite a votação de várias opções nas enquetes
+- Nova tela de login
 - Correções de bugs
