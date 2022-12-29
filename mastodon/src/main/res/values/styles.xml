@@ -223,6 +223,7 @@
 
 	<style name="Theme.Mastodon.Toolbar.Dark.TrueBlack" parent="android:ThemeOverlay.Material.Dark.ActionBar">
 		<item name="android:colorPrimary">@color/black</item>
+		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Profile">
