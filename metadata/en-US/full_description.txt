@@ -4,6 +4,7 @@ Megalodon is a modified version of the <a href="https://github.com/mastodon/mast
 
 - <b>Unlisted posting</b>: Post publicly without having your post show up in trends, hashtags or public timelines.
 - <b>Federated timeline</b>: See all public posts from people on all other Fediverse neighborhoods your home instance is connected to.
+- <b>Drafts and scheduled posts</b>: Allows for preparing a post and scheduling it to send it automatically at a specific time.
 - <b>Image description viewer</b>: Quickly check whether an image or video has an alt text attached to it.
 - <b>Pinning posts</b>: Pin your most important posts to your profile and see what others have pinned using the “Pinned“ tab.
 - <b>Follow hashtags</b>: See new posts from specific hashtags directly in your home timeline by following them.

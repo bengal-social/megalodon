@@ -31,6 +31,12 @@ Despite being one of the main features of federated social media, the Federated 
   
 That’s one of the reasons why choosing a small, **well-moderated instance is important**. Instance admins and moderators should always make sure to ban abusive users and stop federating with instances who platform them. On well-moderated instances, the Federated timeline can be a welcoming place to meet new people!
 
+## Draft and schedule posts
+
+**Allows for preparing a post and scheduling it to send it automatically at a specific time.**
+
+You can create drafts, edit them, send them manually later or set a scheduled date. Drafts are technically saved as scheduled posts, so you can view and edit them from other apps that support scheduled posts. Scheduled posts are handled by your home instance, so they'll work even if you uninstall Megalodon.
+
 ### **Image description viewer**
 
 **Allows you to quickly check whether an image or video has an alternative text attached to it.**
@@ -142,6 +148,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Add language selector](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/language-selector)
 * [Implement deleting notifications](https://github.com/sk22/megalodon/commit/b0f9ce081f69f29ad59658fc00ca41372cd2677d) (disabled by default)
 * [Long-click boost button to "quote" a post](https://github.com/sk22/megalodon/commit/b25a237c20c6a924ed4d9b357999867c3a32b32b)
+* [Draft and schedule posts](https://github.com/sk22/megalodon/pull/217)
 
 
 ### Behavior
