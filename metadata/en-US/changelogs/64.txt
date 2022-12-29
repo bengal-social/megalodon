@@ -4,4 +4,5 @@
 - Icons in all menus
 - Add mention when using "Post about this" function
 - Option to use uniform notifications icon instead of distinct icons
+- Option to access in-app rules list from settings
 - Bugfixes
