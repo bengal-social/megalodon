@@ -26,6 +26,7 @@
 			android:layout_marginBottom="16dp"
 			android:minWidth="145dp"
 			style="@style/Widget.Mastodon.M3.Button.Filled"
+			android:visibility="gone"
 			android:text="@string/i_agree" />
 
 	</LinearLayout>
