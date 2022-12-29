@@ -102,4 +102,21 @@
     <string name="sk_bookmark_as">Markahi dalam akun lain</string>
     <string name="sk_favorite_as">Favorit dari akun lain</string>
     <string name="sk_settings_uniform_icon_for_notifications">Ikon yang sama untuk semua notifikasi</string>
+    <string name="sk_unsent_posts">Kiriman yang belum dikirim</string>
+    <string name="sk_draft">Draf</string>
+    <string name="sk_confirm_delete_draft_title">Hapus draf</string>
+    <string name="sk_confirm_delete_scheduled_post_title">Hapus kiriman yang dijadwalkan</string>
+    <string name="sk_confirm_delete_scheduled_post">Apakah Anda yakin untuk menghapus kiriman yang dijadwalkan ini\?</string>
+    <string name="sk_draft_or_schedule">Draf atau jadwalkan</string>
+    <string name="sk_schedule">Jadwalkan</string>
+    <string name="sk_compose_draft">Kiriman akan disimpan sebagai draf.</string>
+    <string name="sk_compose_scheduled">Dijadwalkan untuk</string>
+    <string name="sk_post_scheduled">Kiriman dijadwalkan</string>
+    <string name="sk_scheduled_too_soon_title">Waktu jadwal terlalu dekat</string>
+    <string name="sk_save_draft">Simpan draf\?</string>
+    <string name="sk_save_changes">Simpan perubahan\?</string>
+    <string name="sk_forward_report_to">Teruskan ke %s</string>
+    <string name="sk_confirm_delete_draft">Apakah Anda yakin ingin menghapus draf kiriman ini\?</string>
+    <string name="sk_draft_saved">Draf disimpan</string>
+    <string name="sk_scheduled_too_soon">Kiriman setidaknya harus 10 menit di masa depan.</string>
 </resources>
