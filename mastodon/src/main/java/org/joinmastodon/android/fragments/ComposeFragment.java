@@ -853,7 +853,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			InputMethodManager imm=getActivity().getSystemService(InputMethodManager.class);
 			imm.hideSoftInputFromWindow(draftsBtn.getWindowToken(), 0);
 			Nav.go(getActivity(), ScheduledStatusListFragment.class, args);
-			if (!hasDraft()) Nav.finish(this);
+			// TODO: figure out a better way to handle the back stack
+//			if (!hasDraft()) content.postDelayed(()->Nav.finish(this), 200);
 		});
 		getToolbar().addView(draftsBtn);
 		getToolbar().setNavigationIcon(R.drawable.ic_fluent_dismiss_24_regular);
