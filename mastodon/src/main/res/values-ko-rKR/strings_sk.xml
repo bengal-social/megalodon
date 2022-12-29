@@ -81,5 +81,24 @@
     <string name="sk_clear_all_notifications_confirm_action">모두 삭제</string>
     <string name="sk_tabs_disable_swipe">스와이프로 탭간 전환 비활성화</string>
     <string name="sk_clear_all_notifications">모든 알림 삭제</string>
-    <string name="sk_loading_fediverse_resource_title">연합우주에서 찾아보는 중…</string>
+    <string name="sk_loading_fediverse_resource_title">연합우주에서 찾아보는 중</string>
+    <string name="sk_bookmark_as">다른 계정으로 보관</string>
+    <string name="sk_reblog_as">다른 계정으로 리블로그</string>
+    <string name="sk_already_reblogged">이미 리블로그했습니다</string>
+    <string name="sk_reply_as">다른 계정으로 답글 달기</string>
+    <string name="sk_favorite_as">다른 계정으로 좋아요 표시</string>
+    <string name="sk_favorited_as">%s 계정으로 좋아요 표시했습니다</string>
+    <string name="sk_already_favorited">이미 좋아요 표시했습니다</string>
+    <string name="sk_undo_reblog">리블로그 취소</string>
+    <string name="sk_reblog_with_visibility">리블로그 및 공개 범위 설정</string>
+    <string name="sk_bookmarked_as">%s 계정으로 보관했습니다</string>
+    <string name="sk_already_bookmarked">이미 보관했습니다</string>
+    <string name="sk_reblogged_as">%s 계정으로 리블로그했습니다</string>
+    <string name="sk_settings_uniform_icon_for_notifications">모든 알림에 같은 아이콘 사용</string>
+    <string name="sk_hashtags_you_follow">팔로우한 해시태그</string>
+    <string name="sk_copy_link_to_post">게시물 링크 복사</string>
+    <string name="sk_open_with_account">다른 계정으로 열기</string>
+    <string name="sk_resource_not_found">리소스를 찾을 수 없습니다</string>
+    <string name="sk_loading_resource_on_instance_title">%s에서 찾아보는 중</string>
+    <string name="sk_quote_post">언급하여 게시</string>
 </resources>
