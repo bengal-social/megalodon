@@ -31,7 +31,7 @@ Despite being one of the main features of federated social media, the Federated 
   
 That’s one of the reasons why choosing a small, **well-moderated instance is important**. Instance admins and moderators should always make sure to ban abusive users and stop federating with instances who platform them. On well-moderated instances, the Federated timeline can be a welcoming place to meet new people!
 
-## Draft and schedule posts
+### Draft and schedule posts
 
 **Allows for preparing a post and scheduling it to send it automatically at a specific time.**
 
