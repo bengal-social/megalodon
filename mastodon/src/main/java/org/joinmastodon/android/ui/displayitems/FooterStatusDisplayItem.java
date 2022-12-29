@@ -280,7 +280,11 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 				v.startAnimation(opacityIn);
 				Bundle args=new Bundle();
 				args.putString("account", item.accountID);
-				args.putString("prefilledText", "\n\n" + item.status.url);
+				StringBuilder prefilledText = new StringBuilder().append("\n\n");
+				String ownID = AccountSessionManager.getInstance().getAccount(item.accountID).self.id;
+				if (!item.status.account.id.equals(ownID)) prefilledText.append('@').append(item.status.account.acct).append(' ');
+				prefilledText.append(item.status.url);
+				args.putString("prefilledText", prefilledText.toString());
 				args.putInt("selectionStart", 0);
 				Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 			});
