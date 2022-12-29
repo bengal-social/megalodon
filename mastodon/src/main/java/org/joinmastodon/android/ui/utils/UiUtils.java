@@ -54,11 +54,13 @@ import org.joinmastodon.android.api.requests.accounts.AuthorizeFollowRequest;
 import org.joinmastodon.android.api.requests.accounts.RejectFollowRequest;
 import org.joinmastodon.android.api.requests.notifications.DismissNotification;
 import org.joinmastodon.android.api.requests.search.GetSearchResults;
+import org.joinmastodon.android.api.requests.statuses.CreateStatus;
 import org.joinmastodon.android.api.requests.statuses.DeleteStatus;
 import org.joinmastodon.android.api.requests.statuses.GetStatusByID;
 import org.joinmastodon.android.api.requests.statuses.SetStatusPinned;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
+import org.joinmastodon.android.events.ScheduledStatusDeletedEvent;
 import org.joinmastodon.android.events.StatusCountersUpdatedEvent;
 import org.joinmastodon.android.events.FollowRequestHandledEvent;
 import org.joinmastodon.android.events.NotificationDeletedEvent;
@@ -76,11 +78,11 @@ import org.joinmastodon.android.model.Instance;
 import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.Relationship;
+import org.joinmastodon.android.model.ScheduledStatus;
 import org.joinmastodon.android.model.SearchResults;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.text.CustomEmojiSpan;
-import org.joinmastodon.android.ui.text.SpacerSpan;
 import org.parceler.Parcels;
 
 import java.io.File;
@@ -454,6 +456,31 @@ public class UiUtils{
 								resultCallback.accept(result);
 								AccountSessionManager.getInstance().getAccount(accountID).getCacheController().deleteStatus(status.id);
 								E.post(new StatusDeletedEvent(status.id, accountID));
+							}
+
+							@Override
+							public void onError(ErrorResponse error){
+								error.showToast(activity);
+							}
+						})
+						.wrapProgress(activity, R.string.deleting, false)
+						.exec(accountID)
+		);
+	}
+
+	public static void confirmDeleteScheduledPost(Activity activity, String accountID, ScheduledStatus status, Runnable resultCallback){
+		boolean isDraft = status.scheduledAt.isAfter(CreateStatus.DRAFTS_AFTER_INSTANT);
+		showConfirmationAlert(activity,
+				isDraft ? R.string.sk_confirm_delete_draft_title : R.string.sk_confirm_delete_scheduled_post_title,
+				isDraft ? R.string.sk_confirm_delete_draft : R.string.sk_confirm_delete_scheduled_post,
+				R.string.delete,
+				R.drawable.ic_fluent_delete_28_regular,
+				() -> new DeleteStatus.Scheduled(status.id)
+						.setCallback(new Callback<>(){
+							@Override
+							public void onSuccess(Object nothing){
+								resultCallback.run();
+								E.post(new ScheduledStatusDeletedEvent(status.id, accountID));
 							}
 
 							@Override
