@@ -40,6 +40,9 @@
 		<item name="colorAccentLightest">?colorPrimary100</item>
 		<item name="profileHeaderBackground">?colorGray500</item>
 		<item name="toolbarBackground">?colorGray50</item>
+		<item name="colorComposeButtonBackground">?colorBackgroundPopup</item>
+		<item name="colorComposeButton">?android:textColorPrimary</item>
+		<item name="composeButtonStyle">@style/Widget.Mastodon.Button.Compose</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_dark_on_light</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_light</item>
@@ -136,6 +139,10 @@
 		<item name="colorSearchField">?colorGray700</item>
 		<item name="colorSearchHint">?colorGray300</item>
 		<item name="toolbarBackground">?colorGray800</item>
+		<item name="colorComposeButton">?colorPrimary700</item>
+		<item name="colorComposeButtonBackground">?colorGray100</item>
+
+		<item name="composeButtonStyle">@style/Widget.Mastodon.Button.Compose</item>
 
 		<item name="buttonBackground">@drawable/bg_button_primary_light_on_dark</item>
 		<item name="android:editTextBackground">@drawable/bg_edittext_dark</item>
@@ -203,6 +210,8 @@
 		<item name="colorBackgroundLightest">@color/black</item>
 		<item name="colorBackgroundPopup">?colorGray900</item>
 		<item name="colorWindowBackground">@color/black</item>
+		<item name="colorComposeButton">?android:colorAccent</item>
+		<item name="colorComposeButtonBackground">?colorGray900</item>
 
 		<item name="colorM3Background">#000</item>
 <!--		<item name="colorButtonBackgroundPrimaryLightOnDarkDisabled">?colorGray900</item>-->
@@ -239,6 +248,20 @@
 		<item name="android:titleTextColor">?colorGray25</item>
 		<item name="android:subtitleTextAppearance">@style/m3_body_medium</item>
 		<item name="android:subtitleTextColor">?colorGray25</item>
+	</style>
+
+	<style name="Widget.Mastodon.Button.Compose">
+		<item name="android:layout_width">64dp</item>
+		<item name="android:layout_height">64dp</item>
+		<item name="android:layout_gravity">end|bottom</item>
+		<item name="android:layout_marginEnd">16dp</item>
+		<item name="android:layout_marginBottom">24dp</item>
+		<item name="android:background">@drawable/bg_fab</item>
+		<item name="android:scaleType">center</item>
+		<item name="android:tint">?colorComposeButton</item>
+		<item name="android:stateListAnimator">@animator/fab_shadow</item>
+		<item name="android:src">@drawable/ic_fluent_edit_28_filled</item>
+		<item name="android:contentDescription">@string/new_post</item>
 	</style>
 
 	<style name="Widget.Mastodon.Button" parent="android:Widget.Material.Button">

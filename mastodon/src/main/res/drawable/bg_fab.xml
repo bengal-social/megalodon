@@ -3,7 +3,7 @@
 	android:color="?android:colorControlHighlight">
 	<item>
 		<shape>
-			<solid android:color="?colorSecondary"/>
+			<solid android:color="?attr/colorComposeButtonBackground"/>
 			<corners android:radius="16dp"/>
 		</shape>
 	</item>

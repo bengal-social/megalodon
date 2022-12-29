@@ -5,10 +5,13 @@
 	<attr name="colorBackgroundLight" format="color"/>
 	<attr name="colorBackgroundLightest" format="color"/>
 	<attr name="colorBackgroundPopup" format="color"/>
+	<attr name="colorComposeButtonBackground" format="color"/>
+	<attr name="colorComposeButton" format="color"/>
 	<attr name="colorDarkIcon" format="color"/>
 	<attr name="colorPollMostVoted" format="color"/>
 	<attr name="colorPollVoted" format="color"/>
 	<attr name="colorWindowBackground" format="color"/>
+	<attr name="composeButtonStyle" format="reference"/>
 	<attr name="secondaryButtonStyle" format="reference"/>
 	<attr name="buttonBackground" format="reference"/>
 	<attr name="colorAccentLight" format="color"/>
