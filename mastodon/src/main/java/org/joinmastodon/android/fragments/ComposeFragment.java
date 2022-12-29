@@ -168,8 +168,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private int charCount, charLimit, trimmedCharCount;
 
 	private Button publishButton, languageButton, scheduleTimeBtn;
-	private PopupMenu languagePopup, visibilityPopup, scheduleDraftPopup;
-	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn, scheduleBtn, scheduleDraftDismiss;
+	private PopupMenu languagePopup, visibilityPopup, moreOptionsPopup;
+	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn, moreBtn, scheduleDraftDismiss;
 	private ImageView sensitiveIcon;
 	private ComposeMediaLayout attachmentsView;
 	private TextView replyText;
@@ -315,7 +315,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		emojiBtn=view.findViewById(R.id.btn_emoji);
 		spoilerBtn=view.findViewById(R.id.btn_spoiler);
 		visibilityBtn=view.findViewById(R.id.btn_visibility);
-		scheduleBtn=view.findViewById(R.id.btn_schedule);
+		moreBtn=view.findViewById(R.id.btn_more);
 		scheduleDraftView=view.findViewById(R.id.schedule_draft_view);
 		scheduleDraftText=view.findViewById(R.id.schedule_draft_text);
 		scheduleDraftDismiss=view.findViewById(R.id.schedule_draft_dismiss);
@@ -332,19 +332,16 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		visibilityBtn.setOnClickListener(v->visibilityPopup.show());
 		visibilityBtn.setOnTouchListener(visibilityPopup.getDragToOpenListener());
 
-		scheduleDraftPopup=new PopupMenu(getContext(), scheduleBtn);
-		scheduleDraftPopup.inflate(R.menu.schedule_draft);
-		scheduleDraftPopup.setOnMenuItemClickListener(item->{
+		moreOptionsPopup =new PopupMenu(getContext(), moreBtn);
+		moreOptionsPopup.inflate(R.menu.compose_more);
+		moreOptionsPopup.setOnMenuItemClickListener(item->{
 			if (item.getItemId() == R.id.draft) updateScheduledAt(getDraftInstant());
 			else pickScheduledDateTime();
 			return true;
 		});
-		UiUtils.enablePopupMenuIcons(getContext(), scheduleDraftPopup);
-		scheduleBtn.setOnClickListener(v->{
-			if (scheduledAt != null) updateScheduledAt(null);
-			else scheduleDraftPopup.show();
-		});
-		scheduleBtn.setOnTouchListener(scheduleDraftPopup.getDragToOpenListener());
+		UiUtils.enablePopupMenuIcons(getContext(), moreOptionsPopup);
+		moreBtn.setOnClickListener(v->moreOptionsPopup.show());
+		moreBtn.setOnTouchListener(moreOptionsPopup.getDragToOpenListener());
 		scheduleDraftDismiss.setOnClickListener(v->updateScheduledAt(null));
 		scheduleTimeBtn.setOnClickListener(v->pickScheduledDateTime());
 
@@ -1079,7 +1076,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	private void confirmDiscardDraftAndFinish(){
 		new M3AlertDialogBuilder(getActivity())
-				.setTitle(editingStatus != null ? R.string.sk_save_changes : R.string.sk_save_draft)
+				.setTitle(editingStatus != null ? R.string.sk_confirm_save_changes : R.string.sk_confirm_save_draft)
 				.setPositiveButton(R.string.save, (d, w) -> {
 					updateScheduledAt(scheduledAt == null ? getDraftInstant() : scheduledAt);
 					publish();
@@ -1577,7 +1574,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private void updateScheduledAt(Instant scheduledAt) {
 		this.scheduledAt = scheduledAt;
 		scheduleDraftView.setVisibility(scheduledAt == null ? View.GONE : View.VISIBLE);
-		scheduleBtn.setSelected(scheduledAt != null);
+		moreBtn.setSelected(scheduledAt != null);
 		updatePublishButtonState();
 		if (scheduledAt != null) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.getDefault());
