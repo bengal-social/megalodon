@@ -144,6 +144,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	private static final int MEDIA_RESULT=717;
 	private static final int IMAGE_DESCRIPTION_RESULT=363;
+	private static final int SCHEDULED_STATUS_OPENED_RESULT=161;
 	private static final int MAX_ATTACHMENTS=4;
 	private static final String TAG="ComposeFragment";
 
@@ -249,7 +250,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			AccountSessionManager.getInstance().updateInstanceInfo(instanceDomain);
 		}
 
-		// sorry about all this ugly code, but i can't find any consistency in ComposeFragment.java
 		Bundle bundle = savedInstanceState != null ? savedInstanceState : getArguments();
 		if (bundle.containsKey("scheduledStatus")) scheduledStatus=Parcels.unwrap(bundle.getParcelable("scheduledStatus"));
 		if (bundle.containsKey("scheduledAt")) scheduledAt=(Instant) bundle.getSerializable("scheduledAt");
@@ -708,9 +708,14 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		args.putString("account", accountID);
 		InputMethodManager imm=getActivity().getSystemService(InputMethodManager.class);
 		imm.hideSoftInputFromWindow(draftsBtn.getWindowToken(), 0);
-		Nav.go(getActivity(), ScheduledStatusListFragment.class, args);
-		// TODO: figure out a better way to handle the back stack
-//			if (!hasDraft()) content.postDelayed(()->Nav.finish(this), 200);
+		if (hasDraft()) {
+			Nav.go(getActivity(), ScheduledStatusListFragment.class, args);
+		} else {
+			// result for the previous ScheduledStatusList
+			setResult(true, null);
+			// finishing fragment in "onFragmentResult"
+			Nav.goForResult(getActivity(), ScheduledStatusListFragment.class, args, SCHEDULED_STATUS_OPENED_RESULT, this);
+		}
 	}
 
 	private void updateLanguage(String lang) {
@@ -1040,6 +1045,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					break;
 				}
 			}
+		} else if (reqCode == SCHEDULED_STATUS_OPENED_RESULT && success && getActivity() != null) {
+			Nav.finish(this);
 		}
 	}
 

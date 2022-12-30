@@ -2,6 +2,8 @@ package org.joinmastodon.android.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.squareup.otto.Subscribe;
 
@@ -18,6 +20,7 @@ import org.joinmastodon.android.model.HeaderPaginationList;
 import org.joinmastodon.android.model.ScheduledStatus;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.ui.displayitems.StatusDisplayItem;
+import org.joinmastodon.android.ui.utils.UiUtils;
 import org.parceler.Parcels;
 
 import java.util.Collections;
@@ -28,6 +31,7 @@ import me.grishka.appkit.api.SimpleCallback;
 
 public class ScheduledStatusListFragment extends BaseStatusListFragment<ScheduledStatus> {
 	private String nextMaxID;
+	private static final int SCHEDULED_STATUS_LIST_OPENED = 161;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -68,7 +72,17 @@ public class ScheduledStatusListFragment extends BaseStatusListFragment<Schedule
 		args.putString("sourceText", status.text);
 		args.putString("sourceSpoiler", status.spoilerText);
 		args.putBoolean("redraftStatus", true);
-		Nav.go(getActivity(), ComposeFragment.class, args);
+		setResult(true, null);
+
+		// closing this scheduled status list if another status list is opened from compose fragment
+		Nav.goForResult(getActivity(), ComposeFragment.class, args, SCHEDULED_STATUS_LIST_OPENED, this);
+	}
+
+	@Override
+	public void onFragmentResult(int reqCode, boolean success, Bundle result) {
+		if (reqCode == SCHEDULED_STATUS_LIST_OPENED && success && getActivity() != null) {
+			Nav.finish(this);
+		}
 	}
 
 	@Override
