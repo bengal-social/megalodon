@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="8dp">
+
+    <ProgressBar
+        android:id="@+id/send_progress"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/send_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_fluent_error_circle_24_regular"
+        android:tint="@color/error_600"
+        android:scaleType="center"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/language_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:paddingHorizontal="8dp"
+        android:drawableStart="@drawable/ic_fluent_local_language_16_regular"
+        android:drawablePadding="8dp"
+        android:drawableTint="?android:textColorSecondary"
+        android:textColor="?android:textColorSecondary"
+        android:background="@drawable/bg_text_button" />
+
+    <Button
+        android:id="@+id/drafts_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:paddingHorizontal="8dp"
+        android:drawableStart="@drawable/ic_fluent_drafts_20_regular"
+        android:drawableTint="?android:textColorSecondary"
+        android:textColor="?android:textColorSecondary"
+        android:background="@drawable/bg_text_button"
+        android:contentDescription="@string/sk_unsent_posts"
+        android:tooltipText="@string/sk_unsent_posts" />
+
+    <Button
+        android:id="@+id/publish_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+</LinearLayout>

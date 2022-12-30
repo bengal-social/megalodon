@@ -247,10 +247,18 @@
 
 			<TextView
 				android:id="@+id/schedule_draft_text"
-				android:layout_width="0dp"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_weight="1"
+				android:drawableStart="@drawable/ic_fluent_drafts_20_regular"
+				android:drawableTint="?android:textColorSecondary"
+				android:drawablePadding="16dp"
 				android:text="@string/sk_compose_draft" />
+
+			<Space
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1" />
+
 			<Button
 				android:id="@+id/scheduled_time_btn"
 				android:layout_width="wrap_content"
@@ -259,7 +267,7 @@
 				android:gravity="center"
 				android:padding="8dp"
 				android:textSize="14sp"
-				android:minHeight="48dp"
+				android:minHeight="40dp"
 				android:textColor="?android:textColorSecondary"
 				android:background="@drawable/bg_text_button"
 				android:fontFamily="sans-serif"
@@ -349,11 +357,6 @@
 				android:tooltipText="@string/post_visibility"
 				android:src="@drawable/ic_fluent_earth_24_regular"/>
 
-			<Space
-				android:layout_width="0px"
-				android:layout_height="1px"
-				android:layout_weight="1"/>
-
 			<ImageButton
 				android:id="@+id/btn_more"
 				android:layout_width="24dp"
@@ -367,6 +370,11 @@
 				android:tooltipText="@string/more_options"
 				android:src="@drawable/ic_fluent_more_vertical_24_regular"/>
 
+			<Space
+				android:layout_width="0px"
+				android:layout_height="1px"
+				android:layout_weight="1"/>
+
 			<TextView
 				android:id="@+id/char_counter"
 				android:layout_width="wrap_content"
@@ -374,7 +382,6 @@
 				android:textAppearance="@style/m3_body_large"
 				android:textColor="?android:textColorSecondary"
 				tools:text="500"/>
-
 		</LinearLayout>
 	</LinearLayout>
 
