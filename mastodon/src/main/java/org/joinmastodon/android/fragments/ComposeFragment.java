@@ -706,6 +706,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private void navigateToUnsentPosts() {
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
+		args.putBoolean("hide_fab", true);
 		InputMethodManager imm=getActivity().getSystemService(InputMethodManager.class);
 		imm.hideSoftInputFromWindow(draftsBtn.getWindowToken(), 0);
 		if (hasDraft()) {

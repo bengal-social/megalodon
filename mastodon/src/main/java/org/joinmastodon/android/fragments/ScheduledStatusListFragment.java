@@ -9,13 +9,10 @@ import com.squareup.otto.Subscribe;
 
 import org.joinmastodon.android.E;
 import org.joinmastodon.android.R;
-import org.joinmastodon.android.api.requests.statuses.GetBookmarkedStatuses;
+import org.joinmastodon.android.api.requests.statuses.CreateStatus;
 import org.joinmastodon.android.api.requests.statuses.GetScheduledStatuses;
-import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.ScheduledStatusCreatedEvent;
 import org.joinmastodon.android.events.ScheduledStatusDeletedEvent;
-import org.joinmastodon.android.events.StatusCreatedEvent;
-import org.joinmastodon.android.events.StatusDeletedEvent;
 import org.joinmastodon.android.model.HeaderPaginationList;
 import org.joinmastodon.android.model.ScheduledStatus;
 import org.joinmastodon.android.model.Status;
@@ -31,7 +28,12 @@ import me.grishka.appkit.api.SimpleCallback;
 
 public class ScheduledStatusListFragment extends BaseStatusListFragment<ScheduledStatus> {
 	private String nextMaxID;
+	private ImageButton fab;
 	private static final int SCHEDULED_STATUS_LIST_OPENED = 161;
+
+	public ScheduledStatusListFragment() {
+		setListLayoutId(R.layout.recycler_fragment_with_fab);
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -51,6 +53,18 @@ public class ScheduledStatusListFragment extends BaseStatusListFragment<Schedule
 		super.onAttach(activity);
 		setTitle(R.string.sk_unsent_posts);
 		loadData();
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		fab=view.findViewById(R.id.fab);
+		Bundle args=new Bundle();
+		args.putString("account", accountID);
+		args.putSerializable("scheduledAt", CreateStatus.getDraftInstant());
+		fab.setOnClickListener(v -> Nav.go(getActivity(), ComposeFragment.class, args));
+		fab.setOnLongClickListener(v -> UiUtils.pickAccountForCompose(getActivity(), accountID, args));
+		if (getArguments().getBoolean("hide_fab", false)) fab.setVisibility(View.GONE);
 	}
 
 	@Override

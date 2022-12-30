@@ -105,7 +105,7 @@ public class HomeTimelineFragment extends StatusListFragment{
 		super.onViewCreated(view, savedInstanceState);
 		fab=view.findViewById(R.id.fab);
 		fab.setOnClickListener(this::onFabClick);
-		fab.setOnLongClickListener(v->UiUtils.pickAccountForCompose(getActivity(), accountID, null));
+		fab.setOnLongClickListener(v->UiUtils.pickAccountForCompose(getActivity(), accountID));
 
 		updateToolbarLogo();
 		list.addOnScrollListener(new RecyclerView.OnScrollListener(){

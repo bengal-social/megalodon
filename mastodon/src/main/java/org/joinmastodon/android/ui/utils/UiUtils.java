@@ -984,11 +984,19 @@ public class UiUtils{
 	}
 
 	public static boolean pickAccountForCompose(Activity activity, String accountID, String prefilledText){
+		Bundle args = new Bundle();
+		if (prefilledText != null) args.putString("prefilledText", prefilledText);
+		return pickAccountForCompose(activity, accountID, args);
+	}
+
+	public static boolean pickAccountForCompose(Activity activity, String accountID){
+		return pickAccountForCompose(activity, accountID, (String) null);
+	}
+
+	public static boolean pickAccountForCompose(Activity activity, String accountID, Bundle args){
 		if (AccountSessionManager.getInstance().getLoggedInAccounts().size() > 1) {
 			UiUtils.pickAccount(activity, accountID, 0, 0, session -> {
-				Bundle args=new Bundle();
 				args.putString("account", session.getID());
-				if (prefilledText != null) args.putString("prefilledText", prefilledText);
 				Nav.go(activity, ComposeFragment.class, args);
 			}, null);
 			return true;
