@@ -1,0 +1,8 @@
+- Borradores y publicaciones programadas
+- Filtros compatibles con Mastodon 4.0 de @thiagojedi
+- Clic largo para interactuar con publicaciones (respuesta, impulso, me gusta, marcador) de otras cuentas registradas
+- Iconos en todos los menús
+- Agregar mención al usar la función "Escribir sobre"
+- Opción para usar un ícono de notificación uniforme en lugar de íconos diferentes
+- Opción para acceder a la lista de reglas en la aplicación desde la configuración
+- Corrección de errores
