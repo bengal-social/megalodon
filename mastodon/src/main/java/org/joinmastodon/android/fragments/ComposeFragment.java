@@ -22,7 +22,6 @@ import android.graphics.PixelFormat;
 import android.graphics.RenderEffect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.icu.text.BreakIterator;
 import android.media.MediaMetadataRetriever;
@@ -39,7 +38,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -170,8 +168,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private int charCount, charLimit, trimmedCharCount;
 
 	private Button publishButton, languageButton, scheduleTimeBtn, draftsBtn;
-	private PopupMenu languagePopup, visibilityPopup, moreOptionsPopup;
-	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn, moreBtn, scheduleDraftDismiss;
+	private PopupMenu languagePopup, visibilityPopup, draftOptionsPopup;
+	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn, scheduleDraftDismiss;
 	private ImageView sensitiveIcon;
 	private ComposeMediaLayout attachmentsView;
 	private TextView replyText;
@@ -184,6 +182,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private TextView scheduleDraftText;
 	private CheckBox pollAllowMultipleCheckbox;
 	private TextView pollDurationView;
+	private MenuItem draftMenuItem, undraftMenuItem, scheduleMenuItem, unscheduleMenuItem;
 
 	private ArrayList<DraftPollOption> pollOptions=new ArrayList<>();
 
@@ -317,7 +316,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		emojiBtn=view.findViewById(R.id.btn_emoji);
 		spoilerBtn=view.findViewById(R.id.btn_spoiler);
 		visibilityBtn=view.findViewById(R.id.btn_visibility);
-		moreBtn=view.findViewById(R.id.btn_more);
 		scheduleDraftView=view.findViewById(R.id.schedule_draft_view);
 		scheduleDraftText=view.findViewById(R.id.schedule_draft_text);
 		scheduleDraftDismiss=view.findViewById(R.id.schedule_draft_dismiss);
@@ -334,16 +332,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		visibilityBtn.setOnClickListener(v->visibilityPopup.show());
 		visibilityBtn.setOnTouchListener(visibilityPopup.getDragToOpenListener());
 
-		moreOptionsPopup =new PopupMenu(getContext(), moreBtn);
-		moreOptionsPopup.inflate(R.menu.compose_more);
-		moreOptionsPopup.setOnMenuItemClickListener(item->{
-			if (item.getItemId() == R.id.draft) updateScheduledAt(getDraftInstant());
-			else pickScheduledDateTime();
-			return true;
-		});
-		UiUtils.enablePopupMenuIcons(getContext(), moreOptionsPopup);
-		moreBtn.setOnClickListener(v->moreOptionsPopup.show());
-		moreBtn.setOnTouchListener(moreOptionsPopup.getDragToOpenListener());
 		scheduleDraftDismiss.setOnClickListener(v->updateScheduledAt(null));
 		scheduleTimeBtn.setOnClickListener(v->pickScheduledDateTime());
 
@@ -671,7 +659,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		}
 
 		updateSensitive();
-		updateScheduledAt(scheduledAt != null ? scheduledAt : scheduledStatus != null ? scheduledStatus.scheduledAt : null);
 
 		if(editingStatus!=null){
 			updateCharCounter();
@@ -687,19 +674,36 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		item.setActionView(wrap);
 		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-		publishButton = wrap.findViewById(R.id.publish_btn);
 		draftsBtn = wrap.findViewById(R.id.drafts_btn);
+		draftOptionsPopup = new PopupMenu(getContext(), draftsBtn);
+		draftOptionsPopup.inflate(R.menu.compose_more);
+		draftMenuItem = draftOptionsPopup.getMenu().findItem(R.id.draft);
+		undraftMenuItem = draftOptionsPopup.getMenu().findItem(R.id.undraft);
+		scheduleMenuItem = draftOptionsPopup.getMenu().findItem(R.id.schedule);
+		unscheduleMenuItem = draftOptionsPopup.getMenu().findItem(R.id.unschedule);
+		draftOptionsPopup.setOnMenuItemClickListener(i->{
+			int id = i.getItemId();
+			if (id == R.id.draft) updateScheduledAt(getDraftInstant());
+			else if (id == R.id.schedule) pickScheduledDateTime();
+			else if (id == R.id.unschedule || id == R.id.undraft) updateScheduledAt(null);
+			else navigateToUnsentPosts();
+			return true;
+		});
+		UiUtils.enablePopupMenuIcons(getContext(), draftOptionsPopup);
+
+		publishButton = wrap.findViewById(R.id.publish_btn);
 		languageButton = wrap.findViewById(R.id.language_btn);
 		sendProgress = wrap.findViewById(R.id.send_progress);
 		sendError = wrap.findViewById(R.id.send_error);
 
 		publishButton.setOnClickListener(this::onPublishClick);
-		draftsBtn.setOnClickListener(this::onDraftsClick);
-		updatePublishButtonState();
+		draftsBtn.setOnClickListener(v-> draftOptionsPopup.show());
+		draftsBtn.setOnTouchListener(draftOptionsPopup.getDragToOpenListener());
+		updateScheduledAt(scheduledAt != null ? scheduledAt : scheduledStatus != null ? scheduledStatus.scheduledAt : null);
 		buildLanguageSelector(languageButton);
 	}
 
-	private void onDraftsClick(View v) {
+	private void navigateToUnsentPosts() {
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
 		InputMethodManager imm=getActivity().getSystemService(InputMethodManager.class);
@@ -1538,27 +1542,39 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 	private void updateScheduledAt(Instant scheduledAt) {
 		this.scheduledAt = scheduledAt;
-		scheduleDraftView.setVisibility(scheduledAt == null ? View.GONE : View.VISIBLE);
-		moreBtn.setSelected(scheduledAt != null);
 		updatePublishButtonState();
+		scheduleDraftView.setVisibility(scheduledAt == null ? View.GONE : View.VISIBLE);
+		draftMenuItem.setVisible(true);
+		scheduleMenuItem.setVisible(true);
+		undraftMenuItem.setVisible(false);
+		unscheduleMenuItem.setVisible(false);
 		if (scheduledAt != null) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.getDefault());
 			if (scheduledAt.isAfter(DRAFTS_AFTER_INSTANT)) {
+				draftMenuItem.setVisible(false);
+				undraftMenuItem.setVisible(true);
 				scheduleTimeBtn.setVisibility(View.GONE);
 				scheduleDraftText.setText(R.string.sk_compose_draft);
 				scheduleDraftText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fluent_drafts_20_regular, 0, 0, 0);
+				scheduleDraftDismiss.setContentDescription(getString(R.string.sk_compose_no_draft));
+				draftsBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fluent_drafts_20_filled, 0, 0, 0);
 				publishButton.setText(scheduledStatus != null && scheduledStatus.scheduledAt.isAfter(DRAFTS_AFTER_INSTANT)
 						? R.string.save : R.string.sk_draft);
 			} else {
+				scheduleMenuItem.setVisible(false);
+				unscheduleMenuItem.setVisible(true);
 				String at = scheduledAt.atZone(ZoneId.systemDefault()).format(formatter);
 				scheduleTimeBtn.setVisibility(View.VISIBLE);
 				scheduleTimeBtn.setText(at);
 				scheduleDraftText.setText(R.string.sk_compose_scheduled);
 				scheduleDraftText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+				scheduleDraftDismiss.setContentDescription(getString(R.string.sk_compose_no_schedule));
+				draftsBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fluent_clock_20_filled, 0, 0, 0);
 				publishButton.setText(scheduledStatus != null && scheduledStatus.scheduledAt.equals(scheduledAt)
 						? R.string.save : R.string.sk_schedule);
 			}
 		} else {
+			draftsBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fluent_clock_20_regular, 0, 0, 0);
 			resetPublishButtonText();
 		}
 	}

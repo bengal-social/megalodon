@@ -121,4 +121,7 @@
     <string name="sk_confirm_save_changes">Save changes?</string>
     <string name="sk_mark_as_draft">Mark as draft</string>
     <string name="sk_schedule_post">Schedule post</string>
+    <string name="sk_schedule_or_draft">Schedule or draft</string>
+    <string name="sk_compose_no_schedule">Don’t schedule</string>
+    <string name="sk_compose_no_draft">Don’t draft</string>
 </resources>

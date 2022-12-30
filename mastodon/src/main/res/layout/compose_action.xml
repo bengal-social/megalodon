@@ -31,7 +31,6 @@
         android:id="@+id/language_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:paddingHorizontal="8dp"
         android:drawableStart="@drawable/ic_fluent_local_language_16_regular"
         android:drawablePadding="8dp"
@@ -45,12 +44,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:paddingHorizontal="8dp"
-        android:drawableStart="@drawable/ic_fluent_drafts_20_regular"
+        android:drawableStart="@drawable/ic_fluent_clock_20_regular"
         android:drawableTint="?android:textColorSecondary"
         android:textColor="?android:textColorSecondary"
         android:background="@drawable/bg_text_button"
-        android:contentDescription="@string/sk_unsent_posts"
-        android:tooltipText="@string/sk_unsent_posts" />
+        android:contentDescription="@string/sk_schedule_or_draft"
+        android:tooltipText="@string/sk_schedule_or_draft" />
 
     <Button
         android:id="@+id/publish_btn"
