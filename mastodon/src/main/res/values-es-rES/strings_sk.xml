@@ -101,4 +101,23 @@
     <string name="sk_bookmark_as">Marcador de otra cuenta</string>
     <string name="sk_favorite_as">Favoritos de otra cuenta</string>
     <string name="sk_settings_uniform_icon_for_notifications">Mismo icono para todas las notificaciones</string>
+    <string name="sk_forward_report_to">Reenviar a %s</string>
+    <string name="sk_unsent_posts">Mensajes no enviados</string>
+    <string name="sk_draft">Borrador</string>
+    <string name="sk_schedule">Programar</string>
+    <string name="sk_confirm_delete_draft_title">Borrar el borrador</string>
+    <string name="sk_confirm_delete_draft">¿Seguro que quieres borrar este borrador\?</string>
+    <string name="sk_confirm_delete_scheduled_post_title">Borrar la entrada programada</string>
+    <string name="sk_confirm_delete_scheduled_post">¿Está seguro de que desea eliminar esta publicación programada\?</string>
+    <string name="sk_draft_or_schedule">A borrador o programar el envio</string>
+    <string name="sk_compose_draft">El mensaje se guardará como borrador.</string>
+    <string name="sk_compose_scheduled">Programado para</string>
+    <string name="sk_draft_saved">Borrador guardado</string>
+    <string name="sk_post_scheduled">Publicación programada</string>
+    <string name="sk_scheduled_too_soon_title">La hora programada es demasiado pronto</string>
+    <string name="sk_scheduled_too_soon">El mensaje debe programarse con al menos 10 minutos de antelación.</string>
+    <string name="sk_confirm_save_draft">¿Guardar el borrador\?</string>
+    <string name="sk_confirm_save_changes">¿Guardar los cambios\?</string>
+    <string name="sk_mark_as_draft">Marcar como borrador</string>
+    <string name="sk_schedule_post">Programar la publicación</string>
 </resources>
