@@ -108,10 +108,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new HeaderItem(R.string.settings_theme));
 		items.add(themeItem=new ThemeItem());
 		items.add(new SwitchItem(R.string.theme_true_black, R.drawable.ic_fluent_dark_theme_24_regular, GlobalUserPreferences.trueBlackTheme, this::onTrueBlackThemeChanged));
-		items.add(new SwitchItem(R.string.sk_disable_marquee, R.drawable.ic_fluent_text_more_24_regular, GlobalUserPreferences.disableMarquee, i->{
-			GlobalUserPreferences.disableMarquee=i.checked;
-			GlobalUserPreferences.save();
-		}));
 		items.add(new ButtonItem(R.string.sk_settings_color_palette, R.drawable.ic_fluent_color_24_regular, b->{
 			PopupMenu popupMenu=new PopupMenu(getActivity(), b, Gravity.CENTER_HORIZONTAL);
 			popupMenu.inflate(R.menu.color_palettes);
@@ -159,6 +155,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}));
 		items.add(new SwitchItem(R.string.sk_settings_uniform_icon_for_notifications, R.drawable.ic_ntf_logo, GlobalUserPreferences.uniformNotificationIcon, i->{
 			GlobalUserPreferences.uniformNotificationIcon=i.checked;
+			GlobalUserPreferences.save();
+		}));
+		items.add(new SwitchItem(R.string.sk_disable_marquee, R.drawable.ic_fluent_text_more_24_regular, GlobalUserPreferences.disableMarquee, i->{
+			GlobalUserPreferences.disableMarquee=i.checked;
 			GlobalUserPreferences.save();
 		}));
 		items.add(new SwitchItem(R.string.sk_settings_reduce_motion, R.drawable.ic_fluent_star_emphasis_24_regular, GlobalUserPreferences.reduceMotion, i->{
