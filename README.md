@@ -149,6 +149,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Implement deleting notifications](https://github.com/sk22/megalodon/commit/b0f9ce081f69f29ad59658fc00ca41372cd2677d) (disabled by default)
 * [Long-click boost button to "quote" a post](https://github.com/sk22/megalodon/commit/b25a237c20c6a924ed4d9b357999867c3a32b32b)
 * [Draft and schedule posts](https://github.com/sk22/megalodon/pull/217)
+* [Display original post when replying](https://github.com/sk22/megalodon/commit/375f8ceb2747705fedf43686681cc0e0b812f899)
 
 
 ### Behavior
