@@ -40,7 +40,7 @@
 		<item name="colorAccentLightest">?colorPrimary100</item>
 		<item name="profileHeaderBackground">?colorGray500</item>
 		<item name="toolbarBackground">?colorGray50</item>
-		<item name="colorComposeButtonBackground">?colorBackgroundPopup</item>
+		<item name="colorComposeButtonBackground">?colorGray50</item>
 		<item name="colorComposeButton">?android:textColorPrimary</item>
 		<item name="composeButtonStyle">@style/Widget.Mastodon.Button.Compose</item>
 
