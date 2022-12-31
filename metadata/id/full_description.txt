@@ -3,7 +3,8 @@ Megalodon adalah versi modifikasi <a href="https://github.com/mastodon/mastodon-
 <b>Fitur unggulan</b>
 
 - <b>Pengiriman tidak terdaftar</b>: Kirim secara publik tanpa memasukkan kiriman Anda dalam tren, tagar, atau lini masa publik.
-- <b>Lini masa federasi</b>: Lihat semua kiriman publik dari orang-orang di semua tetangga Fediverse lainnya yang instansi rumah Anda terhubung.
+- <b>Lini masa federasi</b>: Lihat semua kiriman publik dari orang-orang di semua tetangga Fedimesta lainnya yang instansi rumah Anda terhubung.
+- <b>Draf dan kiriman terjadwal</b>: Memungkinkan untuk menyiapkan kiriman dan menjadwalkannya untuk dikirim secara otomatis pada waktu yang ditentukan.
 - <b>Penampil deskripsi gambar</b>: Periksa secara cepat jika gambar atau video nemiliki deskripsi alternatif.
 - <b>Menyematkan kiriman</b>: Sematkan kiriman penting Anda ke profil Anda dan lihat apa yang telah disematkan oleh orang lain menggunakan tab “Disematkan”.
 - <b>Ikuti tagar</b>: Lihat kiriman baru dari tagar spesifik secara langsung dalam lini masa beranda Anda dengan mengikutinya.

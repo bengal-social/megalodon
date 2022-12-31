@@ -1,0 +1,8 @@
+- Draft dan kiriman terjadwal
+- Saringan kompatibel dengan Mastodon 4.0 oleh @thiagojedi
+- Klik lama untuk berinteraksi dengan kiriman (balas, bagikan, sukai, markahi) dari akun yang sudah masuk
+- Ikon di semua menu
+- Tambahkan sebutan ketika menggunakan fungsi "Kirim tentang ini"
+- Opsi untuk menggunakan ikon notifikasi yang sama daripada ikon yang berbeda
+- Opsi untuk mengakses daftar dalam aplikasi dari pengaturan
+- Perbaikan kutu

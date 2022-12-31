@@ -4,6 +4,7 @@ Megalodon est une version modifiée de <a href="https://github.com/mastodon/mast
 
 - <b>Publication non répertoriée</b> : Publiez publiquement sans que votre message apparaisse dans les tendances, les hashtags ou les timelines publiques.
 - <b>Timeline fédérée</b> : Affichez tous les messages publics des personnes de tout le voisinage du Fediverse auxquel votre instance est connectée.
+- <b>Brouillons et messages planifiés</b> : permet de préparer un message et de programmer son envoi automatiquement à une heure précise.
 - <b>Visionneuse de description d'image</b> : Vérifiez rapidement si une image ou une vidéo est associée à un texte alternatif.
 - <b>Épingler des publications</b> : Épinglez vos publications les plus importantes à votre profil et voyez ce que les autres ont épinglé en utilisant l'onglet "Épinglé".
 - <b>Suivez des hashtags</b> : Voir les nouveaux messages avec des hashtags spécifiques directement dans votre timeline d'accueil en les suivant.

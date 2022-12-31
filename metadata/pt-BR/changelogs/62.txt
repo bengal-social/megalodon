@@ -1,5 +1,5 @@
 - Botão de Publicar personalizável
-- Links do Fediverso no abertos no aplicativo
+- Links do Fediverso abertos no aplicativo
 - Clique longo em impulsionar para "citar" uma postagem
 - Copie o URL da postagem ao pressionar e segurar o compartilhar
 - Exclusão de notificações (desativado por padrão)
