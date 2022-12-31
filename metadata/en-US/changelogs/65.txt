@@ -3,6 +3,7 @@
 - Mastodon 4.0 compatible filters (no "hide with warning" function yet)
 - Long-click to interact with posts (reply, boost, like, bookmark) from other logged-in accounts
 - Icons in all menus
+- Toggle for forwarding reports
 - Add mention when using "Post about this" function
 - Option to use uniform notifications icon instead of distinct icons
 - Option to access in-app rules list from settings
