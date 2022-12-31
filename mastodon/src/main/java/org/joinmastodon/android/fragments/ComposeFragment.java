@@ -226,14 +226,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private String language;
 	private MastodonLanguage.LanguageResolver languageResolver;
 
-	private int navigationBarColorBefore;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
-		navigationBarColorBefore = getActivity().getWindow().getNavigationBarColor();
-		getActivity().getWindow().setNavigationBarColor(UiUtils.getThemeColor(getActivity(), R.attr.colorBackgroundLightest));
 
 		accountID=getArguments().getString("account");
 		AccountSession session=AccountSessionManager.getInstance().getAccount(accountID);
@@ -277,7 +273,6 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			UiUtils.removeCallbacks(updateUploadEtaRunnable);
 			updateUploadEtaRunnable=null;
 		}
-		getActivity().getWindow().setNavigationBarColor(navigationBarColorBefore);
 	}
 
 	@Override
