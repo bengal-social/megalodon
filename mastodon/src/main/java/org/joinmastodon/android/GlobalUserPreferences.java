@@ -29,6 +29,7 @@ public class GlobalUserPreferences{
 	public static boolean enableDeleteNotifications;
 	public static boolean translateButtonOpenedOnly;
 	public static boolean uniformNotificationIcon;
+	public static boolean reduceMotion;
 	public static String publishButtonText;
 	public static ThemePreference theme;
 	public static ColorPreference color;
@@ -62,6 +63,7 @@ public class GlobalUserPreferences{
 		enableDeleteNotifications=prefs.getBoolean("enableDeleteNotifications", false);
 		translateButtonOpenedOnly=prefs.getBoolean("translateButtonOpenedOnly", false);
 		uniformNotificationIcon=prefs.getBoolean("uniformNotificationIcon", false);
+		reduceMotion=prefs.getBoolean("reduceMotion", false);
 		publishButtonText=prefs.getString("publishButtonText", "");
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 		recentLanguages=fromJson(prefs.getString("recentLanguages", "{}"), recentLanguagesType, new HashMap<>());
@@ -90,6 +92,7 @@ public class GlobalUserPreferences{
 				.putBoolean("enableDeleteNotifications", enableDeleteNotifications)
 				.putBoolean("translateButtonOpenedOnly", translateButtonOpenedOnly)
 				.putBoolean("uniformNotificationIcon", uniformNotificationIcon)
+				.putBoolean("reduceMotion", reduceMotion)
 				.putString("publishButtonText", publishButtonText)
 				.putInt("theme", theme.ordinal())
 				.putString("color", color.name())

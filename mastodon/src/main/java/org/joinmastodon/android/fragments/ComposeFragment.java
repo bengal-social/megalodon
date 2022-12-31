@@ -574,9 +574,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 						scrollView.post(() -> {
 							int bottom = scrollView.getChildAt(0).getBottom();
 							int delta = bottom - (scrollView.getScrollY() + scrollView.getHeight());
-							int space = Math.min(V.dp(150), delta);
+							int space = GlobalUserPreferences.reduceMotion ? 0 : Math.min(V.dp(150), delta);
 							scrollView.scrollBy(0, delta - space);
-							scrollView.postDelayed(() -> scrollView.smoothScrollBy(0, space), 150);
+							if (!GlobalUserPreferences.reduceMotion) {
+								scrollView.postDelayed(() -> scrollView.smoothScrollBy(0, space), 150);
+							}
 						});
 					}
 				}

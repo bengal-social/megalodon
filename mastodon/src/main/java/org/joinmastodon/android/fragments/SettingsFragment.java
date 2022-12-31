@@ -158,7 +158,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			});
 		}));
 		items.add(new SwitchItem(R.string.sk_settings_uniform_icon_for_notifications, R.drawable.ic_ntf_logo, GlobalUserPreferences.uniformNotificationIcon, i->{
-			GlobalUserPreferences.uniformNotificationIcon =i.checked;
+			GlobalUserPreferences.uniformNotificationIcon=i.checked;
+			GlobalUserPreferences.save();
+		}));
+		items.add(new SwitchItem(R.string.sk_settings_reduce_motion, R.drawable.ic_fluent_star_emphasis_24_regular, GlobalUserPreferences.reduceMotion, i->{
+			GlobalUserPreferences.reduceMotion=i.checked;
 			GlobalUserPreferences.save();
 		}));
 
