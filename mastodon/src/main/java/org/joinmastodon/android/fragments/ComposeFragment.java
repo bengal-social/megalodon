@@ -33,6 +33,7 @@ import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Layout;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -625,7 +626,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				((TextView) view.findViewById(R.id.spoiler_title_inline)).setText(replyTo.spoilerText);
 			}
 
-			((LinkedTextView) view.findViewById(R.id.text)).setText(HtmlParser.parse(replyTo.content, replyTo.emojis, replyTo.mentions, replyTo.tags, accountID));
+			SpannableStringBuilder content = HtmlParser.parse(replyTo.content, replyTo.emojis, replyTo.mentions, replyTo.tags, accountID);
+			LinkedTextView text = view.findViewById(R.id.text);
+			if (content.length() > 0) text.setText(content);
+			else view.findViewById(R.id.display_item_text).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, V.dp(16)));
 
 			replyText.setText(getString(R.string.in_reply_to, replyTo.account.displayName));
 			int visibilityNameRes = switch (replyTo.visibility) {
