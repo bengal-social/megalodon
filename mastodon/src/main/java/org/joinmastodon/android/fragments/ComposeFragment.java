@@ -59,6 +59,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -107,6 +108,7 @@ import org.joinmastodon.android.ui.utils.TransferSpeedTracker;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.ui.views.ComposeEditText;
 import org.joinmastodon.android.ui.views.ComposeMediaLayout;
+import org.joinmastodon.android.ui.views.LinkedTextView;
 import org.joinmastodon.android.ui.views.ReorderableLinearLayout;
 import org.joinmastodon.android.ui.views.SizeListenerLinearLayout;
 import org.joinmastodon.android.utils.MastodonLanguage;
@@ -180,6 +182,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private View sensitiveItem;
 	private View pollAllowMultipleItem;
 	private View scheduleDraftView;
+	private ScrollView scrollView;
+	private boolean initiallyScrolled = false;
 	private TextView scheduleDraftText;
 	private CheckBox pollAllowMultipleCheckbox;
 	private TextView pollDurationView;
@@ -295,10 +299,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		mainEditTextWrap=view.findViewById(R.id.toot_text_wrap);
 		charCounter=view.findViewById(R.id.char_counter);
 		charCounter.setText(String.valueOf(charLimit));
+		scrollView=view.findViewById(R.id.scroll_view);
 
-		selfName=view.findViewById(R.id.name);
-		selfUsername=view.findViewById(R.id.username);
-		selfAvatar=view.findViewById(R.id.avatar);
+		selfName=view.findViewById(R.id.self_name);
+		selfUsername=view.findViewById(R.id.self_username);
+		selfAvatar=view.findViewById(R.id.self_avatar);
 		HtmlParser.setTextWithCustomEmoji(selfName, self.displayName, self.emojis);
 		selfUsername.setText('@'+self.username+'@'+instanceDomain);
 		ViewImageLoader.load(selfAvatar, null, new UrlImageLoaderRequest(self.avatar));
@@ -559,6 +564,71 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		});
 		spoilerEdit.addTextChangedListener(new SimpleTextWatcher(e->updateCharCounter()));
 		if(replyTo!=null){
+			View replyWrap = view.findViewById(R.id.reply_wrap);
+			scrollView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+				int scrollHeight = scrollView.getHeight();
+				if (replyWrap.getMinimumHeight() != scrollHeight) {
+					replyWrap.setMinimumHeight(scrollHeight);
+					if (!initiallyScrolled) {
+						initiallyScrolled = true;
+						scrollView.post(() -> {
+							int bottom = scrollView.getChildAt(0).getBottom();
+							int sy = scrollView.getScrollY();
+							int sh = scrollView.getHeight();
+							scrollView.scrollBy(0, bottom - (sy + sh));
+						});
+					}
+				}
+			});
+			View originalPost = view.findViewById(R.id.original_post);
+			originalPost.setVisibility(View.VISIBLE);
+			originalPost.setOnClickListener(v->{
+				Bundle args=new Bundle();
+				args.putString("account", accountID);
+				args.putParcelable("status", Parcels.wrap(replyTo));
+				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+				Nav.go(getActivity(), ThreadFragment.class, args);
+			});
+
+			ImageView avatar = view.findViewById(R.id.avatar);
+			ViewImageLoader.load(avatar, null, new UrlImageLoaderRequest(replyTo.account.avatar));
+			ViewOutlineProvider roundCornersOutline=new ViewOutlineProvider(){
+				@Override
+				public void getOutline(View view, Outline outline){
+					outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), V.dp(12));
+				}
+			};
+			avatar.setOutlineProvider(roundCornersOutline);
+			avatar.setClipToOutline(true);
+			avatar.setOnClickListener(v->{
+				Bundle args=new Bundle();
+				args.putString("account", accountID);
+				args.putParcelable("profileAccount", Parcels.wrap(replyTo.account));
+				Nav.go(getActivity(), ProfileFragment.class, args);
+			});
+
+			((TextView) view.findViewById(R.id.name)).setText(replyTo.account.displayName);
+			((TextView) view.findViewById(R.id.username)).setText(replyTo.account.getDisplayUsername());
+			view.findViewById(R.id.visibility).setVisibility(View.GONE);
+			Drawable visibilityIcon = getActivity().getDrawable(switch(replyTo.visibility){
+				case PUBLIC -> R.drawable.ic_fluent_earth_20_regular;
+				case UNLISTED -> R.drawable.ic_fluent_people_community_20_regular;
+				case PRIVATE -> R.drawable.ic_fluent_people_checkmark_20_regular;
+				case DIRECT -> R.drawable.ic_fluent_mention_20_regular;
+			});
+			ImageView moreBtn = view.findViewById(R.id.more);
+			moreBtn.setImageDrawable(visibilityIcon);
+			moreBtn.setBackground(null);
+			TextView timestamp = view.findViewById(R.id.timestamp);
+			if (replyTo.editedAt==null) timestamp.setText(UiUtils.formatRelativeTimestamp(getContext(), replyTo.createdAt));
+			else timestamp.setText(getString(R.string.edited_timestamp, UiUtils.formatRelativeTimestamp(getContext(), replyTo.editedAt)));
+			if (replyTo.spoilerText != null && !replyTo.spoilerText.isBlank()) {
+				view.findViewById(R.id.spoiler_header).setVisibility(View.VISIBLE);
+				((TextView) view.findViewById(R.id.spoiler_title_inline)).setText(replyTo.spoilerText);
+			}
+
+			((LinkedTextView) view.findViewById(R.id.text)).setText(HtmlParser.parse(replyTo.content, replyTo.emojis, replyTo.mentions, replyTo.tags, accountID));
+
 			replyText.setText(getString(R.string.in_reply_to, replyTo.account.displayName));
 			int visibilityNameRes = switch (replyTo.visibility) {
 				case PUBLIC -> R.string.visibility_public;
@@ -567,24 +637,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				case DIRECT -> R.string.visibility_private;
 			};
 			replyText.setContentDescription(getString(R.string.in_reply_to, replyTo.account.displayName) + ". " + getString(R.string.post_visibility) + ": " + getString(visibilityNameRes));
-			Drawable visibilityIcon = getActivity().getDrawable(switch(replyTo.visibility){
-				case PUBLIC -> R.drawable.ic_fluent_earth_20_regular;
-				case UNLISTED -> R.drawable.ic_fluent_people_community_20_regular;
-				case PRIVATE -> R.drawable.ic_fluent_people_checkmark_20_regular;
-				case DIRECT -> R.drawable.ic_fluent_mention_20_regular;
-			});
-			visibilityIcon.setBounds(0, 0, V.dp(20), V.dp(20));
-			Drawable replyArrow = getActivity().getDrawable(R.drawable.ic_fluent_arrow_reply_20_filled);
-			replyArrow.setBounds(0, 0, V.dp(20), V.dp(20));
-			replyText.setCompoundDrawables(replyArrow, null, visibilityIcon, null);
 
-			replyText.setOnClickListener(v->{
-				Bundle args=new Bundle();
-				args.putString("account", accountID);
-				args.putParcelable("status", Parcels.wrap(replyTo));
-				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-				Nav.go(getActivity(), ThreadFragment.class, args);
-			});
 			ArrayList<String> mentions=new ArrayList<>();
 			String ownID=AccountSessionManager.getInstance().getAccount(accountID).self.id;
 			if(!replyTo.account.id.equals(ownID))

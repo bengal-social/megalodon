@@ -6,6 +6,7 @@
 	android:layout_height="match_parent">
 
 	<ScrollView
+		android:id="@+id/scroll_view"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1"
@@ -16,142 +17,205 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical">
 
-			<EditText
-				android:id="@+id/content_warning"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:elevation="0dp"
-				android:hint="@string/content_warning"
-				android:inputType="textMultiLine|textCapSentences"
-				android:visibility="gone"
-				android:textColorHint="?android:textColorSecondary"
-				android:background="@drawable/bg_cw_edit"
-				android:padding="16dp"
-				android:minHeight="56dp"
-				android:textSize="16sp"
-				tools:visibility="visible"/>
-
-			<TextView
-				android:id="@+id/reply_text"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="-12dp"
-				android:paddingHorizontal="16dp"
-				android:paddingTop="16dp"
-				android:paddingBottom="6dp"
-				android:textAppearance="@style/m3_title_small"
-				android:drawableStart="@drawable/ic_fluent_arrow_reply_20_filled"
-				tools:drawableEnd="@drawable/ic_fluent_earth_20_regular"
-				android:drawableTint="?android:textColorSecondary"
-				android:drawablePadding="6dp"
-				android:singleLine="true"
-				android:ellipsize="end"
-				android:background="?android:selectableItemBackground"/>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:paddingTop="16dp"
-				android:paddingRight="16dp"
-				android:paddingLeft="16dp">
-
-				<ImageView
-					android:id="@+id/avatar"
-					android:layout_width="46dp"
-					android:layout_height="46dp"
-					android:layout_alignParentStart="true"
-					android:layout_alignParentTop="true"
-					android:layout_marginEnd="12dp" />
-
-				<TextView
-					android:id="@+id/name"
-					android:layout_width="match_parent"
-					android:layout_height="24dp"
-					android:layout_toEndOf="@id/avatar"
-					android:ellipsize="end"
-					android:singleLine="true"
-					android:textAppearance="@style/m3_title_medium"
-					tools:text="Eugen" />
-
-				<TextView
-					android:id="@+id/username"
-					android:layout_width="match_parent"
-					android:layout_height="20dp"
-					android:layout_below="@id/name"
-					android:layout_toEndOf="@id/avatar"
-					android:ellipsize="end"
-					android:singleLine="true"
-					android:textAppearance="@style/m3_title_small"
-					tools:text="\@Gargron" />
-
-			</RelativeLayout>
-
-			<FrameLayout
-				android:id="@+id/toot_text_wrap"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="10dp">
-
-				<org.joinmastodon.android.ui.views.ComposeEditText
-					android:id="@+id/toot_text"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingLeft="16dp"
-					android:paddingRight="16dp"
-					android:paddingBottom="16dp"
-					android:textAppearance="@style/m3_body_large"
-					android:textSize="16sp"
-					android:gravity="top"
-					android:background="@null"
-					android:hint="@string/compose_hint"
-					android:elevation="0dp"
-					android:inputType="textMultiLine|textCapSentences"/>
-
-			</FrameLayout>
-
 			<LinearLayout
-				android:id="@+id/poll_wrap"
+				android:id="@+id/original_post"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
 				android:visibility="gone"
-				tools:visibility="visible">
-				<org.joinmastodon.android.ui.views.ReorderableLinearLayout
-					android:id="@+id/poll_options"
+				android:background="?android:selectableItemBackground">
+				<include layout="@layout/display_item_header" />
+				<include layout="@layout/display_item_text" />
+				<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:background="?attr/colorPollVoted"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/reply_wrap"
+				android:orientation="vertical"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<EditText
+					android:id="@+id/content_warning"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:orientation="vertical"/>
-				<LinearLayout
-					android:id="@+id/add_poll_option"
-					android:layout_width="match_parent"
-					android:layout_height="56dp"
-					android:layout_marginStart="16dp"
-					android:layout_marginEnd="56dp"
-					android:layout_marginBottom="8dp"
-					android:background="@drawable/bg_poll_option_clickable"
-					android:outlineProvider="background"
-					android:elevation="2dp">
-					<ImageView
-						android:id="@+id/add_poll_option_icon"
-						android:layout_width="24dp"
-						android:layout_height="24dp"
-						android:layout_margin="16dp"
-						android:tint="?colorDarkIcon"
-						android:src="@drawable/ic_fluent_add_circle_24_regular"/>
-				</LinearLayout>
+					android:elevation="0dp"
+					android:hint="@string/content_warning"
+					android:inputType="textMultiLine|textCapSentences"
+					android:visibility="gone"
+					android:textColorHint="?android:textColorSecondary"
+					android:background="@drawable/bg_cw_edit"
+					android:padding="16dp"
+					android:minHeight="56dp"
+					android:textSize="16sp"
+					tools:visibility="visible"/>
+
 				<TextView
-					android:id="@+id/poll_duration"
+					android:id="@+id/reply_text"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginLeft="16dp"
-					android:layout_marginRight="16dp"
-					android:layout_marginBottom="8dp"
-					android:textAppearance="@style/m3_label_large"
-					android:textColor="?android:textColorPrimary"
-					tools:text="Duration: 7 days"/>
+					android:layout_marginBottom="-12dp"
+					android:paddingHorizontal="16dp"
+					android:paddingTop="16dp"
+					android:paddingBottom="6dp"
+					android:textAppearance="@style/m3_title_small"
+					android:drawableStart="@drawable/ic_fluent_arrow_reply_20_filled"
+					tools:drawableEnd="@drawable/ic_fluent_earth_20_regular"
+					android:drawableTint="?android:textColorSecondary"
+					android:drawablePadding="6dp"
+					android:singleLine="true"
+					android:ellipsize="end"
+					android:background="?android:selectableItemBackground"/>
+
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:paddingTop="16dp"
+					android:paddingRight="16dp"
+					android:paddingLeft="16dp">
+
+					<ImageView
+						android:id="@+id/self_avatar"
+						android:layout_width="46dp"
+						android:layout_height="46dp"
+						android:layout_alignParentStart="true"
+						android:layout_alignParentTop="true"
+						android:layout_marginEnd="12dp" />
+
+					<TextView
+						android:id="@+id/self_name"
+						android:layout_width="match_parent"
+						android:layout_height="24dp"
+						android:layout_toEndOf="@id/self_avatar"
+						android:ellipsize="end"
+						android:singleLine="true"
+						android:textAppearance="@style/m3_title_medium"
+						tools:text="Eugen" />
+
+					<TextView
+						android:id="@+id/self_username"
+						android:layout_width="match_parent"
+						android:layout_height="20dp"
+						android:layout_below="@id/self_name"
+						android:layout_toEndOf="@id/self_avatar"
+						android:ellipsize="end"
+						android:singleLine="true"
+						android:textAppearance="@style/m3_title_small"
+						tools:text="\@Gargron" />
+
+				</RelativeLayout>
+
+				<FrameLayout
+					android:id="@+id/toot_text_wrap"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dp">
+
+					<org.joinmastodon.android.ui.views.ComposeEditText
+						android:id="@+id/toot_text"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:paddingLeft="16dp"
+						android:paddingRight="16dp"
+						android:paddingBottom="16dp"
+						android:textAppearance="@style/m3_body_large"
+						android:textSize="16sp"
+						android:gravity="top"
+						android:background="@null"
+						android:hint="@string/compose_hint"
+						android:elevation="0dp"
+						android:inputType="textMultiLine|textCapSentences"/>
+
+				</FrameLayout>
 
 				<LinearLayout
-					android:id="@+id/poll_allow_multiple"
+					android:id="@+id/poll_wrap"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:visibility="gone"
+					tools:visibility="visible">
+					<org.joinmastodon.android.ui.views.ReorderableLinearLayout
+						android:id="@+id/poll_options"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"/>
+					<LinearLayout
+						android:id="@+id/add_poll_option"
+						android:layout_width="match_parent"
+						android:layout_height="56dp"
+						android:layout_marginStart="16dp"
+						android:layout_marginEnd="56dp"
+						android:layout_marginBottom="8dp"
+						android:background="@drawable/bg_poll_option_clickable"
+						android:outlineProvider="background"
+						android:elevation="2dp">
+						<ImageView
+							android:id="@+id/add_poll_option_icon"
+							android:layout_width="24dp"
+							android:layout_height="24dp"
+							android:layout_margin="16dp"
+							android:tint="?colorDarkIcon"
+							android:src="@drawable/ic_fluent_add_circle_24_regular"/>
+					</LinearLayout>
+					<TextView
+						android:id="@+id/poll_duration"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="16dp"
+						android:layout_marginRight="16dp"
+						android:layout_marginBottom="8dp"
+						android:textAppearance="@style/m3_label_large"
+						android:textColor="?android:textColorPrimary"
+						tools:text="Duration: 7 days"/>
+
+					<LinearLayout
+						android:id="@+id/poll_allow_multiple"
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="16dp"
+						android:layout_marginTop="8dp"
+						android:gravity="center_vertical"
+						android:layoutDirection="locale"
+						android:paddingLeft="16dp"
+						android:paddingRight="16dp"
+						android:paddingTop="12dp"
+						android:paddingBottom="12dp"
+						android:background="?android:selectableItemBackground">
+
+						<CheckBox
+							android:id="@+id/poll_allow_multiple_checkbox"
+							android:clickable="false"
+							android:layout_width="wrap_content"
+							android:layout_height="24dp"
+							android:layout_marginEnd="24dp"
+							android:duplicateParentState="true"
+							android:importantForAccessibility="no"/>
+
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:textSize="16sp"
+							android:singleLine="true"
+							android:text="@string/sk_poll_allow_multiple" />
+					</LinearLayout>
+				</LinearLayout>
+
+				<org.joinmastodon.android.ui.views.ComposeMediaLayout
+					android:id="@+id/attachments"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:visibility="gone"/>
+
+				<LinearLayout
+					android:id="@+id/sensitive_item"
 					android:orientation="horizontal"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
@@ -163,15 +227,16 @@
 					android:paddingRight="16dp"
 					android:paddingTop="12dp"
 					android:paddingBottom="12dp"
-					android:background="?android:selectableItemBackground">
+					android:background="?android:selectableItemBackground"
+					android:visibility="gone">
 
-					<CheckBox
-						android:id="@+id/poll_allow_multiple_checkbox"
-						android:clickable="false"
-						android:layout_width="wrap_content"
+					<ImageView
+						android:id="@+id/sensitive_icon"
+						android:layout_width="24dp"
 						android:layout_height="24dp"
-						android:layout_marginEnd="24dp"
-						android:duplicateParentState="true"
+						android:layout_marginEnd="32dp"
+						android:src="@drawable/ic_fluent_flag_24_selector"
+						android:tint="?android:textColorPrimary"
 						android:importantForAccessibility="no"/>
 
 					<TextView
@@ -180,49 +245,8 @@
 						android:layout_weight="1"
 						android:textSize="16sp"
 						android:singleLine="true"
-						android:text="@string/sk_poll_allow_multiple" />
+						android:text="@string/sk_mark_media_as_sensitive" />
 				</LinearLayout>
-			</LinearLayout>
-
-			<org.joinmastodon.android.ui.views.ComposeMediaLayout
-				android:id="@+id/attachments"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:visibility="gone"/>
-
-			<LinearLayout
-				android:id="@+id/sensitive_item"
-				android:orientation="horizontal"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="16dp"
-				android:layout_marginTop="8dp"
-				android:gravity="center_vertical"
-				android:layoutDirection="locale"
-				android:paddingLeft="16dp"
-				android:paddingRight="16dp"
-				android:paddingTop="12dp"
-				android:paddingBottom="12dp"
-				android:background="?android:selectableItemBackground"
-				android:visibility="gone">
-
-				<ImageView
-					android:id="@+id/sensitive_icon"
-					android:layout_width="24dp"
-					android:layout_height="24dp"
-					android:layout_marginEnd="32dp"
-					android:src="@drawable/ic_fluent_flag_24_selector"
-					android:tint="?android:textColorPrimary"
-					android:importantForAccessibility="no"/>
-
-				<TextView
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_weight="1"
-					android:textSize="16sp"
-					android:singleLine="true"
-					android:text="@string/sk_mark_media_as_sensitive" />
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
