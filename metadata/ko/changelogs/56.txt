@@ -1,5 +1,5 @@
-- @LucasGGamerM 님의 색상 테마 사용자화
-- @LucasGGamerM 님이 제시한 새로운 "megalodon" 텍스트 로고
+- @LucasGGamerM 님이 제공한 색상 테마 사용자화
+- @LucasGGamerM 님이 제공한 새로운 "megalodon" 텍스트 로고
 - 게시물 작성 시 더 나은 에모지 검색
 - 투표 변경 (소유한 투표 표시, 항상 투표 버튼 표시, 긴 항목을 자르지 않음)
 - 게시물 알림 설정 추가
