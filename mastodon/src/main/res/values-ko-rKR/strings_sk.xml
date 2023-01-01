@@ -101,4 +101,26 @@
     <string name="sk_resource_not_found">리소스를 찾을 수 없습니다</string>
     <string name="sk_loading_resource_on_instance_title">%s에서 찾아보는 중</string>
     <string name="sk_quote_post">언급하여 게시</string>
+    <string name="sk_unsent_posts">게시하지 않은 게시물</string>
+    <string name="sk_draft">초안 작성</string>
+    <string name="sk_schedule">게시 예약</string>
+    <string name="sk_confirm_delete_draft_title">초안 삭제</string>
+    <string name="sk_confirm_delete_draft">정말로 이 초안을 삭제하시겠습니까\?</string>
+    <string name="sk_confirm_delete_scheduled_post_title">예약 게시물 삭제</string>
+    <string name="sk_confirm_delete_scheduled_post">정말로 이 예약 게시물을 삭제하시겠습니까\?</string>
+    <string name="sk_compose_draft">게시물이 초안으로 저장됩니다.</string>
+    <string name="sk_compose_scheduled">예약한 시각</string>
+    <string name="sk_post_scheduled">게시 예약함</string>
+    <string name="sk_scheduled_too_soon">게시 예약은 최소한 10분 뒤로 설정해야 합니다.</string>
+    <string name="sk_draft_or_schedule">초안 작성 및 게시 예약</string>
+    <string name="sk_scheduled_too_soon_title">예약한 시각이 머지않았습니다</string>
+    <string name="sk_draft_saved">초안 저장함</string>
+    <string name="sk_forward_report_to">%s 인스턴스로 전달</string>
+    <string name="sk_schedule_post">게시 예약</string>
+    <string name="sk_confirm_save_changes">변경 사항을 저장하시겠습니까\?</string>
+    <string name="sk_compose_no_schedule">예약하지 않음</string>
+    <string name="sk_compose_no_draft">초안 작성하지 않음</string>
+    <string name="sk_confirm_save_draft">초안을 저장하시겠습니까\?</string>
+    <string name="sk_schedule_or_draft">게시 예약 및 초안 작성</string>
+    <string name="sk_mark_as_draft">초안으로 표시</string>
 </resources>
