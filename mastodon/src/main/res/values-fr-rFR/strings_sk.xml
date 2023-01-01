@@ -91,7 +91,7 @@
     <string name="sk_loading_resource_on_instance_title">Rechercher sur %s</string>
     <string name="sk_open_with_account">Ouvrir avec un autre compte</string>
     <string name="sk_resource_not_found">La ressource est introuvable</string>
-    <string name="sk_favorite_as">Favoris d\'un autre compte</string>
+    <string name="sk_favorite_as">Mettre en favoris sur un autre compte</string>
     <string name="sk_already_bookmarked">Déjà mis en signet</string>
     <string name="sk_already_favorited">Déjà mis en favori</string>
     <string name="sk_reblogged_as">Reposté en tant que %s</string>
@@ -110,9 +110,9 @@
     <string name="sk_confirm_delete_scheduled_post">Voulez-vous vraiment supprimer ce message planifié \?</string>
     <string name="sk_schedule">Planifier</string>
     <string name="sk_confirm_delete_scheduled_post_title">Supprimer le message planifié</string>
-    <string name="sk_draft_or_schedule">Rédiger ou planifier</string>
+    <string name="sk_draft_or_schedule">Rédiger un brouillon ou planifier</string>
     <string name="sk_compose_draft">Le message sera enregistré en tant que brouillon.</string>
-    <string name="sk_compose_scheduled">Planifié pour</string>
+    <string name="sk_compose_scheduled">Planifié pour le</string>
     <string name="sk_draft_saved">Brouillon enregistré</string>
     <string name="sk_post_scheduled">Message planifié</string>
     <string name="sk_scheduled_too_soon_title">L\'heure prévue est trop proche</string>
@@ -121,4 +121,7 @@
     <string name="sk_mark_as_draft">Marquer comme brouillon</string>
     <string name="sk_schedule_post">Planifier le message</string>
     <string name="sk_confirm_save_changes">Sauvegarder les modifications \?</string>
+    <string name="sk_compose_no_schedule">Ne pas planifier</string>
+    <string name="sk_compose_no_draft">Ne pas marquer comme brouillon</string>
+    <string name="sk_schedule_or_draft">Planifier ou rédiger un brouillon</string>
 </resources>
