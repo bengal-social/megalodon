@@ -95,12 +95,12 @@
     <string name="sk_already_bookmarked">Sudah dimarkahi</string>
     <string name="sk_favorited_as">Difavorit sebagai %s</string>
     <string name="sk_already_favorited">Sudah difavorit</string>
-    <string name="sk_reblog_as">Bagikan dari akun lain</string>
+    <string name="sk_reblog_as">Bagikan dengan akun lain</string>
     <string name="sk_reblogged_as">Dibagikan sebagai %s</string>
     <string name="sk_already_reblogged">Sudah dibagikan</string>
     <string name="sk_reply_as">Balas dengan akun lain</string>
-    <string name="sk_bookmark_as">Markahi dalam akun lain</string>
-    <string name="sk_favorite_as">Favorit dari akun lain</string>
+    <string name="sk_bookmark_as">Markahi dengan akun lain</string>
+    <string name="sk_favorite_as">Favorit dengan akun lain</string>
     <string name="sk_settings_uniform_icon_for_notifications">Ikon yang sama untuk semua notifikasi</string>
     <string name="sk_unsent_posts">Kiriman yang belum dikirim</string>
     <string name="sk_draft">Draf</string>
@@ -126,4 +126,5 @@
     <string name="sk_compose_no_schedule">Jangan dijadwalkan</string>
     <string name="sk_compose_no_draft">Jangan didraf</string>
     <string name="sk_schedule_or_draft">Jadwalkan atau draf</string>
+    <string name="sk_settings_reduce_motion">Kurangi gerakan dalam animasi</string>
 </resources>
