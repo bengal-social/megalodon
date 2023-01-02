@@ -123,4 +123,5 @@
     <string name="sk_confirm_save_draft">초안을 저장하시겠습니까\?</string>
     <string name="sk_schedule_or_draft">게시 예약 및 초안 작성</string>
     <string name="sk_mark_as_draft">초안으로 표시</string>
+    <string name="sk_settings_reduce_motion">애니메이션의 동작 감소</string>
 </resources>
