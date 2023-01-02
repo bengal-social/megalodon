@@ -4,6 +4,7 @@ Megalodon é uma versão modificada do aplicativo <a href="https://github.com/ma
 
 - <b>Publicação na lista</b>: Postar publicamente sem que seu post apareça em tendências, hashtags ou linhas de tempo públicas.
 - <b>Linha de tempo federada</b>: Veja todas as postagens públicas de pessoas em todos os outros bairros Fediverse aos quais sua instância de origem está conectada.
+- <b>Rascunhos e postagens agendadas</b>: Permite preparar uma postagem e agendá-la para envio automático em um horário específico.
 - <b>Visualizador de descrição de imagens</b>: Verifique rapidamente se uma imagem ou vídeo tem um texto alt anexado a ele.
 - <b>Fixar posts</b>: Fixe seus posts mais importantes em seu perfil e veja o que os outros fixaram usando a aba "Fixado".
 - <b>Seguir hashtags</b>: Veja novos posts de hashtags específicos diretamente em sua linha de tempo de casa, seguindo-os.
