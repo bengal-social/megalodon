@@ -94,12 +94,12 @@
     <string name="sk_already_bookmarked">Ya marcado</string>
     <string name="sk_favorited_as">Favorito como %s</string>
     <string name="sk_already_favorited">Ya es un favorito</string>
-    <string name="sk_reblog_as">Compartir desde otra cuenta</string>
+    <string name="sk_reblog_as">Compartir con otra cuenta</string>
     <string name="sk_reblogged_as">Compartido como %s</string>
     <string name="sk_already_reblogged">Ya se volvió a publicar</string>
     <string name="sk_reply_as">Responder con otra cuenta</string>
-    <string name="sk_bookmark_as">Marcador de otra cuenta</string>
-    <string name="sk_favorite_as">Favoritos de otra cuenta</string>
+    <string name="sk_bookmark_as">Marcar con otra cuenta</string>
+    <string name="sk_favorite_as">Favoritos con otra cuenta</string>
     <string name="sk_settings_uniform_icon_for_notifications">Mismo icono para todas las notificaciones</string>
     <string name="sk_forward_report_to">Reenviar a %s</string>
     <string name="sk_unsent_posts">Mensajes no enviados</string>
@@ -120,4 +120,8 @@
     <string name="sk_confirm_save_changes">¿Guardar los cambios\?</string>
     <string name="sk_mark_as_draft">Marcar como borrador</string>
     <string name="sk_schedule_post">Programar la publicación</string>
+    <string name="sk_schedule_or_draft">Calendario o proyecto</string>
+    <string name="sk_compose_no_schedule">No programar</string>
+    <string name="sk_compose_no_draft">No hagas borradores</string>
+    <string name="sk_settings_reduce_motion">Reducir el movimiento en las animaciones</string>
 </resources>
