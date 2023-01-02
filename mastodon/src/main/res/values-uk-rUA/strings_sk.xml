@@ -94,11 +94,11 @@
     <string name="sk_already_bookmarked">Уже в закладках</string>
     <string name="sk_favorited_as">Уподобано як %s</string>
     <string name="sk_already_favorited">Уже вподобано</string>
-    <string name="sk_reblog_as">Поширити з іншого облікового запису</string>
+    <string name="sk_reblog_as">Поширити в іншому обліковому записі</string>
     <string name="sk_already_reblogged">Уже поширено</string>
     <string name="sk_settings_uniform_icon_for_notifications">Єдина піктограма для всіх сповіщень</string>
     <string name="sk_bookmark_as">Додати до закладок іншого облікового запису</string>
-    <string name="sk_favorite_as">Уподобане з іншого облікового запису</string>
+    <string name="sk_favorite_as">Уподобане іншим обліковим записом</string>
     <string name="sk_reblogged_as">Поширено як %s</string>
     <string name="sk_reply_as">Відповісти з іншого облікового запису</string>
     <string name="sk_forward_report_to">Переслати до %s</string>
@@ -120,4 +120,8 @@
     <string name="sk_mark_as_draft">Позначити чернеткою</string>
     <string name="sk_schedule_post">Запланувати допис</string>
     <string name="sk_confirm_save_draft">Зберегти чернетку\?</string>
+    <string name="sk_schedule_or_draft">Запланувати або перемістити до чернеток</string>
+    <string name="sk_compose_no_schedule">Не планувати</string>
+    <string name="sk_compose_no_draft">Не переміщувати до чернеток</string>
+    <string name="sk_settings_reduce_motion">Зменшити рух в анімації</string>
 </resources>
