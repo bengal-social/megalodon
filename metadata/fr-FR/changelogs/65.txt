@@ -1,8 +1,10 @@
 - Brouillons et messages planifiés
-- Filtres compatibles Mastodon 4.0 par @thiagojedi
-- Appuis long pour interagir avec les messages (répondre, booster, aimer, signet) d'autres comptes connectés
+- Afficher le message d'origine lors de la réponse
+- Filtres compatibles Mastodon 4.0 (pas encore de fonction "masquer avec avertissement")
+- Appui long pour interagir avec les messages (répondre, booster, favoris, signet) d'autres comptes connectés
 - Icônes dans tous les menus
-- Ajout d'une mention lors de l'utilisation de la fonction "Publier à ce sujet"
+- Option pour transmettre les rapports
+- Ajouter une mention lors de l'utilisation de la fonction "Publier à ce sujet"
 - Possibilité d'utiliser une icône de notification uniforme au lieu d'icônes distinctes
 - Option pour accéder à la liste des règles de l'application à partir des paramètres
 - Corrections de bugs
