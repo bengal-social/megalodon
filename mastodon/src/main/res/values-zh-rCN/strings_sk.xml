@@ -90,13 +90,13 @@
     <string name="sk_loading_resource_on_instance_title">在 %s 上查找</string>
     <string name="sk_resource_not_found">找不到资源</string>
     <string name="sk_open_with_account">用另一个帐户打开</string>
-    <string name="sk_bookmark_as">在其他帐户中添加书签</string>
+    <string name="sk_bookmark_as">与其他帐户的书签</string>
     <string name="sk_bookmarked_as">已标记为 %s</string>
     <string name="sk_already_bookmarked">已加入书签</string>
-    <string name="sk_favorite_as">从其他帐户收藏</string>
+    <string name="sk_favorite_as">用其他账号收藏</string>
     <string name="sk_favorited_as">收藏为 %s</string>
     <string name="sk_already_favorited">已收藏</string>
-    <string name="sk_reblog_as">从其他帐户重新登录</string>
+    <string name="sk_reblog_as">用其他账号转发</string>
     <string name="sk_reblogged_as">重新登录为 %s</string>
     <string name="sk_already_reblogged">已重新登录</string>
     <string name="sk_reply_as">用其他帐号回复</string>
@@ -118,4 +118,12 @@
     <string name="sk_scheduled_too_soon">嘟文必须预订在未来至少 10 分钟后。</string>
     <string name="sk_save_draft">保存草稿？</string>
     <string name="sk_save_changes">保存更改？</string>
+    <string name="sk_confirm_save_draft">保存草稿？</string>
+    <string name="sk_confirm_save_changes">保存更改？</string>
+    <string name="sk_mark_as_draft">标记为草稿</string>
+    <string name="sk_schedule_post">预订嘟文</string>
+    <string name="sk_compose_no_schedule">不预订</string>
+    <string name="sk_compose_no_draft">不要标记为草稿</string>
+    <string name="sk_settings_reduce_motion">减少动画中的效果</string>
+    <string name="sk_schedule_or_draft">预订或草稿</string>
 </resources>
