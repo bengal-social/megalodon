@@ -91,7 +91,7 @@
     <string name="sk_loading_resource_on_instance_title">Rechercher sur %s</string>
     <string name="sk_open_with_account">Ouvrir avec un autre compte</string>
     <string name="sk_resource_not_found">La ressource est introuvable</string>
-    <string name="sk_favorite_as">Mettre en favoris sur un autre compte</string>
+    <string name="sk_favorite_as">Mettre en favoris avec un autre compte</string>
     <string name="sk_already_bookmarked">Déjà mis en signet</string>
     <string name="sk_already_favorited">Déjà mis en favori</string>
     <string name="sk_reblogged_as">Reposté en tant que %s</string>
@@ -99,8 +99,8 @@
     <string name="sk_bookmarked_as">Ajouté aux signets en tant que %s</string>
     <string name="sk_favorited_as">Ajouté aux favoris en tant que %s</string>
     <string name="sk_reply_as">Répondre avec un autre compte</string>
-    <string name="sk_bookmark_as">Mettre en signet sur un autre compte</string>
-    <string name="sk_reblog_as">Reposter depuis un autre compte</string>
+    <string name="sk_bookmark_as">Mettre en signet avec un autre compte</string>
+    <string name="sk_reblog_as">Reposter avec un autre compte</string>
     <string name="sk_settings_uniform_icon_for_notifications">Icône uniforme pour toutes les notifications</string>
     <string name="sk_forward_report_to">Transférer à %s</string>
     <string name="sk_unsent_posts">Messages non envoyés</string>
@@ -124,4 +124,5 @@
     <string name="sk_compose_no_schedule">Ne pas planifier</string>
     <string name="sk_compose_no_draft">Ne pas marquer comme brouillon</string>
     <string name="sk_schedule_or_draft">Planifier ou rédiger un brouillon</string>
+    <string name="sk_settings_reduce_motion">Réduire le mouvement dans les animations</string>
 </resources>
