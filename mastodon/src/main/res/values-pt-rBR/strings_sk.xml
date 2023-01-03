@@ -81,7 +81,7 @@
     <string name="sk_undo_reblog">Desfazer reblog</string>
     <string name="sk_reblog_with_visibility">Reblog com visibilidade</string>
     <string name="sk_hashtags_you_follow">Hashtags que você segue</string>
-    <string name="sk_copy_link_to_post">Copiar link para postagem</string>
+    <string name="sk_copy_link_to_post">Copiar link da postagem</string>
     <string name="sk_loading_resource_on_instance_title">Procurando em %s</string>
     <string name="sk_open_with_account">Abrir com outra conta</string>
     <string name="sk_resource_not_found">Recurso não pode ser encontrado</string>
@@ -89,4 +89,28 @@
     <string name="sk_settings_auth">Configurações de segurança</string>
     <string name="sk_settings_publish_button_text">Texto do botão de publicar</string>
     <string name="sk_clear_all_notifications_confirm">Você tem certeza que deseja excluir todas as notificações\?</string>
+    <string name="sk_favorite_as">Favoritar com outra conta</string>
+    <string name="sk_bookmark_as">Salvar com outra conta</string>
+    <string name="sk_already_bookmarked">Já salvo</string>
+    <string name="sk_already_favorited">Já favoritado</string>
+    <string name="sk_reply_as">Responder com outra conta</string>
+    <string name="sk_already_reblogged">Já reblogado</string>
+    <string name="sk_reblog_as">Reblogar com outra conta</string>
+    <string name="sk_schedule">Agendar</string>
+    <string name="sk_draft">Rascunho</string>
+    <string name="sk_unsent_posts">Postagens não enviadas</string>
+    <string name="sk_confirm_delete_draft_title">Excluir rascunho</string>
+    <string name="sk_confirm_delete_draft">Você tem certeza que deseja excluir este rascunho\?</string>
+    <string name="sk_confirm_delete_scheduled_post_title">Excluir postagem agendada</string>
+    <string name="sk_confirm_delete_scheduled_post">Você tem certeza que deseja excluir esta postagem agendada\?</string>
+    <string name="sk_compose_draft">A postagem será salva como rascunho.</string>
+    <string name="sk_compose_scheduled">Agendado para</string>
+    <string name="sk_draft_saved">Rascunho salvo</string>
+    <string name="sk_post_scheduled">Postagem agendada</string>
+    <string name="sk_forward_report_to">Encaminhar para %s</string>
+    <string name="sk_scheduled_too_soon_title">O horário agendado está muito próximo</string>
+    <string name="sk_scheduled_too_soon">A postagem deve ser agendada com pelo menos 10 minutos de antecedência.</string>
+    <string name="sk_confirm_save_draft">Salvar rascunho\?</string>
+    <string name="sk_confirm_save_changes">Salvar alterações\?</string>
+    <string name="sk_mark_as_draft">Marcar como rascunho</string>
 </resources>
