@@ -1,10 +1,10 @@
 - Rascunhos e postagens agendadas
-- Exibir postagem original ao responder
+- Exibe postagem original ao responder
 - Filtros compatíveis com Mastodon 4.0 (ainda sem a função "ocultar com aviso")
-- Clique longo para interagir com postagens (responder, aumentar, curtir, marcar) de outras contas conectadas
+- Clique longo para interagir com posts (responder, aumentar, curtir, marcar) de outras contas conectadas
 - Ícones em todos os menus
 - Alternar para encaminhar relatórios
-- Adicionar menção ao usar a função "Postar sobre isso"
-- Opção para usar o ícone de notificações uniforme em vez de ícones distintos
-- Opção para acessar a lista de regras no aplicativo nas configurações
-- Correções de bugs
+- Adicionada menção na função "Postar sobre isso"
+- Opção para usar ícones de notificações uniforme
+- Opção para acessar a lista de regras nas configurações
+- Correção de bugs
