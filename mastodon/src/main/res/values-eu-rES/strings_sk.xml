@@ -36,12 +36,12 @@
     <string name="sk_translated_using">%s-ekin itzulia</string>
     <string name="sk_post_language">Hizkuntza: %s</string>
     <string name="sk_language_name">%s (%s)</string>
-    <string name="sk_bookmark_as">Beste kontu bateko laster-marka</string>
+    <string name="sk_bookmark_as">Beste kontu baten laster-marka</string>
     <string name="sk_bookmarked_as">%s bezala laster-markara eramana</string>
     <string name="sk_already_bookmarked">Dagoeneko laster-marka da</string>
-    <string name="sk_favorite_as">Beste kontu bateko gogokoa</string>
+    <string name="sk_favorite_as">Beste kontu baten gogokoa</string>
     <string name="sk_favorited_as">%s bezela dago gogokoetan</string>
-    <string name="sk_reblog_as">Beste kontu batetik bultzatua</string>
+    <string name="sk_reblog_as">Beste kontu batekin bultzatua</string>
     <string name="sk_reblogged_as">%s bezela bultzatua</string>
     <string name="sk_already_reblogged">Dagoeneko bultzatua izan da</string>
     <string name="sk_reply_as">Erantzun beste kontu batekin</string>
@@ -70,7 +70,7 @@
     <string name="sk_settings_publish_button_text">Argitaratze botoiaren testua</string>
     <string name="sk_settings_publish_button_text_title">Pertsonalizatu argitaratze botoiaren testua</string>
     <string name="sk_settings_translation_availability_note_available">%s-k itzulpena onartzen du!</string>
-    <string name="sk_settings_translation_availability_note_unavailable">%s ez da itzulpena onartzen duten hizkuntzen artean ageri.</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s ez da itzulpena onartzen duten instantzien artean ageri.</string>
     <string name="sk_clear_all_notifications">Ezabatu jakinarazpen guztiak</string>
     <string name="sk_clear_all_notifications_confirm_action">Ezabatu dena</string>
     <string name="sk_clear_all_notifications_confirm">Ziur al zaude jakinarazpen guztiak ezabatu nahi dituzula\?</string>
@@ -101,4 +101,19 @@
     <string name="sk_settings_translate_only_opened">Irekitako argitalpenak soilik itzuli</string>
     <string name="sk_already_favorited">Dagoeneko gogokoen artean dago</string>
     <string name="sk_settings_uniform_icon_for_notifications">Ikono berdina jakinarazpen guztietarako</string>
+    <string name="sk_forward_report_to">%s-(e)ri birbidali</string>
+    <string name="sk_unsent_posts">Bidali gabeko argitalpenak</string>
+    <string name="sk_draft">Zirriborroa</string>
+    <string name="sk_schedule">Programatu</string>
+    <string name="sk_confirm_delete_draft_title">Ezabatu zirriborroa</string>
+    <string name="sk_confirm_delete_draft">Ziur al zaude zirriborro hau ezabatu nahi duzula\?</string>
+    <string name="sk_confirm_delete_scheduled_post_title">Ezabatu programatutako argitalpena</string>
+    <string name="sk_confirm_delete_scheduled_post">Ziur al zaude programatutako argitalpena ezabatu nahi duzula\?</string>
+    <string name="sk_draft_or_schedule">Zirriborrotara bidali edo programatu</string>
+    <string name="sk_compose_draft">Argitalpena zirriborro bezala gordeko da.</string>
+    <string name="sk_compose_scheduled">Honentzako programatu</string>
+    <string name="sk_draft_saved">Zirriborroa gorde da</string>
+    <string name="sk_post_scheduled">Argitalpena programatu da</string>
+    <string name="sk_scheduled_too_soon_title">Programatze denbora murritzegia da</string>
+    <string name="sk_scheduled_too_soon">Argitalpena gutxienez 10 minutu lehenago programatu behar da.</string>
 </resources>
