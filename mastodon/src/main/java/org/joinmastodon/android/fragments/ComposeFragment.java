@@ -603,6 +603,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				Bundle args=new Bundle();
 				args.putString("account", accountID);
 				args.putParcelable("profileAccount", Parcels.wrap(replyTo.account));
+				imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 				Nav.go(getActivity(), ProfileFragment.class, args);
 			});
 
