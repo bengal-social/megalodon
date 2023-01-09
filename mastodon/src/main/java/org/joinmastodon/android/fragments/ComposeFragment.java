@@ -639,6 +639,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				case DIRECT -> R.string.visibility_private;
 			};
 			replyText.setContentDescription(getString(R.string.in_reply_to, replyTo.account.displayName) + ". " + getString(R.string.post_visibility) + ": " + getString(visibilityNameRes));
+			replyText.setOnClickListener(v->{
+				scrollView.smoothScrollTo(0, 0);
+			});
 
 			ArrayList<String> mentions=new ArrayList<>();
 			String ownID=AccountSessionManager.getInstance().getAccount(accountID).self.id;

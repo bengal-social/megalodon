@@ -56,10 +56,10 @@
 
 				<TextView
 					android:id="@+id/reply_text"
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginBottom="-12dp"
-					android:paddingHorizontal="16dp"
+					android:layout_marginStart="16dp"
 					android:paddingTop="16dp"
 					android:paddingBottom="6dp"
 					android:textAppearance="@style/m3_title_small"
@@ -68,8 +68,7 @@
 					android:drawableTint="?android:textColorSecondary"
 					android:drawablePadding="6dp"
 					android:singleLine="true"
-					android:ellipsize="end"
-					android:background="?android:selectableItemBackground"/>
+					android:ellipsize="end"/>
 
 				<RelativeLayout
 					android:layout_width="match_parent"
