@@ -498,7 +498,7 @@ public class UiUtils{
 				pinned ? R.string.sk_confirm_pin_post_title : R.string.sk_confirm_unpin_post_title,
 				pinned ? R.string.sk_confirm_pin_post : R.string.sk_confirm_unpin_post,
 				pinned ? R.string.sk_pin_post : R.string.sk_unpin_post,
-				pinned ? R.drawable.ic_fluent_pin_off_28_regular : R.drawable.ic_fluent_pin_28_regular,
+				pinned ? R.drawable.ic_fluent_pin_28_regular : R.drawable.ic_fluent_pin_off_28_regular,
 				()->{
 					new SetStatusPinned(status.id, pinned)
 							.setCallback(new Callback<>() {
