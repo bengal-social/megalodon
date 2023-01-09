@@ -49,7 +49,10 @@ public class ExternalShareActivity extends FragmentStackActivity{
 		Intent intent=getIntent();
 		StringBuilder builder=new StringBuilder();
 		String subject = "";
-		if (intent.hasExtra(Intent.EXTRA_SUBJECT)) builder.append(subject = intent.getStringExtra(Intent.EXTRA_SUBJECT)).append("\n\n");
+		if (intent.hasExtra(Intent.EXTRA_SUBJECT)) {
+			subject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+			if (!subject.isBlank()) builder.append(subject).append("\n\n");
+		}
 		if (intent.hasExtra(Intent.EXTRA_TEXT)) builder.append(intent.getStringExtra(Intent.EXTRA_TEXT)).append("\n");
 		String text=builder.toString();
 		List<Uri> mediaUris;
