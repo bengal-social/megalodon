@@ -45,7 +45,7 @@
 						android:textColor="?colorGray50t"
 						android:textAllCaps="true"
 						android:fontFamily="sans-serif-medium"
-						android:textSize="14dp"
+						android:textSize="14sp"
 						android:gravity="center"
 						android:background="@drawable/bg_profile_follows_you"
 						android:visibility="gone"

@@ -22,7 +22,7 @@
 		android:textAllCaps="true"
 		android:textColor="?android:textColorPrimary"
 		android:fontFamily="sans-serif-medium"
-		android:textSize="14dp"
+		android:textSize="14sp"
 		android:gravity="center_vertical"
 		android:singleLine="true"
 		android:ellipsize="end"

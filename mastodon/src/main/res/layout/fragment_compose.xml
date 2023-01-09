@@ -79,8 +79,8 @@
 
 					<ImageView
 						android:id="@+id/self_avatar"
-						android:layout_width="46dp"
-						android:layout_height="46dp"
+						android:layout_width="46sp"
+						android:layout_height="46sp"
 						android:layout_alignParentStart="true"
 						android:layout_alignParentTop="true"
 						android:layout_marginEnd="12dp" />
@@ -88,8 +88,9 @@
 					<TextView
 						android:id="@+id/self_name"
 						android:layout_width="match_parent"
-						android:layout_height="24dp"
+						android:layout_height="wrap_content"
 						android:layout_toEndOf="@id/self_avatar"
+						android:minHeight="24sp"
 						android:ellipsize="end"
 						android:singleLine="true"
 						android:textAppearance="@style/m3_title_medium"
@@ -98,9 +99,10 @@
 					<TextView
 						android:id="@+id/self_username"
 						android:layout_width="match_parent"
-						android:layout_height="20dp"
+						android:layout_height="wrap_content"
 						android:layout_below="@id/self_name"
 						android:layout_toEndOf="@id/self_avatar"
+						android:minHeight="20sp"
 						android:ellipsize="end"
 						android:singleLine="true"
 						android:textAppearance="@style/m3_title_small"

@@ -37,7 +37,7 @@
 				android:background="?android:selectableItemBackground"
 				android:textColor="?android:textColorPrimary"
 				android:textAllCaps="true"
-				android:textSize="14dp"
+				android:textSize="14sp"
 				android:paddingLeft="16dp"
 				android:paddingRight="16dp"
 				android:stateListAnimator="@null"
