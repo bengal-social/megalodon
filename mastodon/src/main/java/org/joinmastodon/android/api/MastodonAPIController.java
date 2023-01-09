@@ -12,11 +12,14 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 import org.joinmastodon.android.BuildConfig;
+import org.joinmastodon.android.MastodonApp;
 import org.joinmastodon.android.api.gson.IsoInstantTypeAdapter;
 import org.joinmastodon.android.api.gson.IsoLocalDateTypeAdapter;
 import org.joinmastodon.android.api.session.AccountSession;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -47,9 +50,22 @@ public class MastodonAPIController{
 	private static OkHttpClient httpClient=new OkHttpClient.Builder().build();
 
 	private AccountSession session;
+	private static List<String> badDomains = new ArrayList<>();
 
 	static{
 		thread.start();
+		try {
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(
+					MastodonApp.context.getAssets().open("blocks.tsv")
+			));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.isBlank() || line.startsWith("#")) continue;
+				badDomains.add(line.toLowerCase().trim());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public MastodonAPIController(@Nullable AccountSession session){
@@ -57,8 +73,11 @@ public class MastodonAPIController{
 	}
 
 	public <T> void submitRequest(final MastodonAPIRequest<T> req){
+		final String host = req.getURL().getHost().toLowerCase();
+		final boolean isBad = badDomains.stream().anyMatch(host::endsWith);
 		thread.postRunnable(()->{
 			try{
+				if (isBad) throw new IllegalArgumentException();
 				if(req.canceled)
 					return;
 				Request.Builder builder=new Request.Builder()
