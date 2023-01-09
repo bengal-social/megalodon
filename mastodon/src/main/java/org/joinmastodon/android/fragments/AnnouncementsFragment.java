@@ -1,0 +1,107 @@
+package org.joinmastodon.android.fragments;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageButton;
+
+import com.squareup.otto.Subscribe;
+
+import org.joinmastodon.android.E;
+import org.joinmastodon.android.R;
+import org.joinmastodon.android.api.requests.announcements.GetAnnouncements;
+import org.joinmastodon.android.api.requests.statuses.CreateStatus;
+import org.joinmastodon.android.api.requests.statuses.GetScheduledStatuses;
+import org.joinmastodon.android.api.session.AccountSession;
+import org.joinmastodon.android.api.session.AccountSessionManager;
+import org.joinmastodon.android.events.ScheduledStatusCreatedEvent;
+import org.joinmastodon.android.events.ScheduledStatusDeletedEvent;
+import org.joinmastodon.android.model.Account;
+import org.joinmastodon.android.model.Announcement;
+import org.joinmastodon.android.model.HeaderPaginationList;
+import org.joinmastodon.android.model.Instance;
+import org.joinmastodon.android.model.ScheduledStatus;
+import org.joinmastodon.android.model.Status;
+import org.joinmastodon.android.ui.displayitems.HeaderStatusDisplayItem;
+import org.joinmastodon.android.ui.displayitems.StatusDisplayItem;
+import org.joinmastodon.android.ui.displayitems.TextStatusDisplayItem;
+import org.joinmastodon.android.ui.text.HtmlParser;
+import org.joinmastodon.android.ui.utils.UiUtils;
+import org.parceler.Parcels;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import me.grishka.appkit.Nav;
+import me.grishka.appkit.api.PaginatedList;
+import me.grishka.appkit.api.SimpleCallback;
+
+public class AnnouncementsFragment extends BaseStatusListFragment<Announcement> {
+	private Instance instance;
+	private AccountSession session;
+	private List<String> unreadIDs = null;
+
+	@Override
+	public void onAttach(Activity activity){
+		super.onAttach(activity);
+		setTitle(R.string.sk_announcements);
+		session = AccountSessionManager.getInstance().getAccount(accountID);
+		instance = AccountSessionManager.getInstance().getInstanceInfo(session.domain);
+		loadData();
+	}
+
+	@Override
+	protected List<StatusDisplayItem> buildDisplayItems(Announcement a) {
+		if(TextUtils.isEmpty(a.content)) return List.of();
+		Account instanceUser = new Account();
+		instanceUser.id = instanceUser.acct = instanceUser.username = session.domain;
+		instanceUser.displayName = instance.title;
+		instanceUser.url = "https://"+session.domain+"/about";
+		instanceUser.avatar = instanceUser.avatarStatic = instance.thumbnail;
+		instanceUser.emojis = List.of();
+		Status fakeStatus = a.toStatus();
+		return List.of(
+				HeaderStatusDisplayItem.fromAnnouncement(a, fakeStatus, instanceUser, this, accountID, this::onMarkAsRead),
+				new TextStatusDisplayItem(a.id, HtmlParser.parse(a.content, a.emojis, a.mentions, a.tags, accountID), this, fakeStatus)
+		);
+	}
+
+	public void onMarkAsRead(String id) {
+		if (unreadIDs == null) return;
+		unreadIDs.remove(id);
+		if (unreadIDs.size() == 0) setResult(true, null);
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+	}
+
+	@Override
+	protected void addAccountToKnown(Announcement s) {}
+
+	@Override
+	public void onItemClick(String id) {
+	}
+
+	@Override
+	protected void onDataLoaded(List<Announcement> d, boolean more) {
+		unreadIDs = d.stream().filter(a -> !a.read).map(a -> a.id).collect(Collectors.toList());
+		super.onDataLoaded(d, more);
+	}
+
+	@Override
+	protected void doLoadData(int offset, int count){
+		currentRequest=new GetAnnouncements(true)
+				.setCallback(new SimpleCallback<>(this){
+					@Override
+					public void onSuccess(List<Announcement> result){
+						onDataLoaded(result, false);
+					}
+				})
+				.exec(accountID);
+	}
+}

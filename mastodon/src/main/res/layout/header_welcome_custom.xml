@@ -14,8 +14,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="16dp"
 		android:layout_marginVertical="12dp"
-		android:text="@string/sk_welcome_title"
-		/>
+		android:text="@string/sk_welcome_title" />
 
 	<TextView
 		style="@style/m3_body_large"

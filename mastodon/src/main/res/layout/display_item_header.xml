@@ -18,7 +18,7 @@
 		android:background="?android:selectableItemBackgroundBorderless"
 		android:contentDescription="@string/more_options"
 		android:scaleType="center"
-		android:src="@drawable/ic_post_more"
+		android:src="@drawable/ic_fluent_more_vertical_20_filled"
 		android:tint="?android:textColorSecondary" />
 
 	<ImageView
@@ -48,6 +48,17 @@
 		android:tint="?android:textColorSecondary" />
 
 	<ImageView
+		android:id="@+id/unread_indicator"
+		android:layout_width="36dp"
+		android:layout_height="36dp"
+		android:layout_marginTop="-6dp"
+		android:layout_toStartOf="@id/visibility"
+		android:visibility="gone"
+		android:tint="?android:colorAccent"
+		android:scaleType="center"
+		android:src="@drawable/ic_fluent_circle_small_20_filled" />
+
+	<ImageView
 		android:id="@+id/avatar"
 		android:layout_width="46sp"
 		android:layout_height="46sp"
@@ -61,7 +72,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginEnd="12dp"
 		android:layout_marginTop="2sp"
-		android:layout_toStartOf="@id/visibility"
+		android:layout_toStartOf="@id/unread_indicator"
 		android:layout_toEndOf="@id/avatar"
 		android:minHeight="24sp">
 
@@ -94,7 +105,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/name_wrap"
 		android:layout_marginEnd="8dp"
-		android:layout_toStartOf="@id/visibility"
+		android:layout_toStartOf="@id/unread_indicator"
 		android:layout_toEndOf="@id/avatar"
 		android:layoutDirection="locale"
 		android:minHeight="20sp"

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
+import org.joinmastodon.android.api.requests.announcements.DismissAnnouncement;
 import org.joinmastodon.android.api.requests.statuses.CreateStatus;
 import org.joinmastodon.android.api.requests.statuses.GetStatusSourceText;
 import org.joinmastodon.android.api.session.AccountSession;
@@ -34,6 +35,7 @@ import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.fragments.report.ReportReasonChoiceFragment;
 import org.joinmastodon.android.model.Account;
+import org.joinmastodon.android.model.Announcement;
 import org.joinmastodon.android.model.Attachment;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.Relationship;
@@ -51,6 +53,7 @@ import java.time.format.FormatStyle;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Consumer;
 
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.APIRequest;
@@ -74,6 +77,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 	private String extraText;
 	private Notification notification;
 	private ScheduledStatus scheduledStatus;
+	private Announcement announcement;
+	private Consumer<String> consumeReadAnnouncement;
 
 	public HeaderStatusDisplayItem(String parentID, Account user, Instant createdAt, BaseStatusListFragment parentFragment, String accountID, Status status, String extraText, Notification notification, ScheduledStatus scheduledStatus){
 		super(parentID, parentFragment);
@@ -102,6 +107,13 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 		this.extraText=extraText;
 	}
 
+	public static HeaderStatusDisplayItem fromAnnouncement(Announcement a, Status fakeStatus, Account instanceUser, BaseStatusListFragment parentFragment, String accountID, Consumer<String> consumeReadID) {
+		HeaderStatusDisplayItem item = new HeaderStatusDisplayItem(a.id, instanceUser, a.startsAt, parentFragment, accountID, fakeStatus, null, null, null);
+		item.announcement = a;
+		item.consumeReadAnnouncement = consumeReadID;
+		return item;
+	}
+
 	@Override
 	public Type getType(){
 		return Type.HEADER;
@@ -121,8 +133,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 	}
 
 	public static class Holder extends StatusDisplayItem.Holder<HeaderStatusDisplayItem> implements ImageLoaderViewHolder{
-		private final TextView name, username, timestamp, extraText;
-		private final ImageView avatar, more, visibility, deleteNotification;
+		private final TextView name, username, timestamp, extraText, separator;
+		private final ImageView avatar, more, visibility, deleteNotification, unreadIndicator;
 		private final PopupMenu optionsMenu;
 		private Relationship relationship;
 		private APIRequest<?> currentRelationshipRequest;
@@ -138,11 +150,13 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			super(activity, R.layout.display_item_header, parent);
 			name=findViewById(R.id.name);
 			username=findViewById(R.id.username);
+			separator=findViewById(R.id.separator);
 			timestamp=findViewById(R.id.timestamp);
 			avatar=findViewById(R.id.avatar);
 			more=findViewById(R.id.more);
 			visibility=findViewById(R.id.visibility);
 			deleteNotification=findViewById(R.id.delete_notification);
+			unreadIndicator=findViewById(R.id.unread_indicator);
 			extraText=findViewById(R.id.extra_text);
 			avatar.setOnClickListener(this::onAvaClick);
 			avatar.setOutlineProvider(roundCornersOutline);
@@ -267,6 +281,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 		public void onBind(HeaderStatusDisplayItem item){
 			name.setText(item.parsedName);
 			username.setText('@'+item.user.acct);
+			separator.setVisibility(View.VISIBLE);
+
 			if (item.scheduledStatus!=null)
 				if (item.scheduledStatus.scheduledAt.isAfter(CreateStatus.DRAFTS_AFTER_INSTANT)) {
 					timestamp.setText(R.string.sk_draft);
@@ -274,10 +290,14 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(Locale.getDefault());
 					timestamp.setText(item.scheduledStatus.scheduledAt.atZone(ZoneId.systemDefault()).format(formatter));
 				}
-			else if(item.status==null || item.status.editedAt==null)
+			else if ((item.status==null || item.status.editedAt==null) && item.createdAt != null)
 				timestamp.setText(UiUtils.formatRelativeTimestamp(itemView.getContext(), item.createdAt));
-			else
+			else if (item.status != null && item.status.editedAt != null)
 				timestamp.setText(item.parentFragment.getString(R.string.edited_timestamp, UiUtils.formatRelativeTimestamp(itemView.getContext(), item.status.editedAt)));
+			else {
+				separator.setVisibility(View.GONE);
+				timestamp.setText("");
+			}
 			visibility.setVisibility(item.hasVisibilityToggle && !item.inset ? View.VISIBLE : View.GONE);
 			deleteNotification.setVisibility(GlobalUserPreferences.enableDeleteNotifications && item.notification!=null && !item.inset ? View.VISIBLE : View.GONE);
 			if(item.hasVisibilityToggle){
@@ -301,6 +321,42 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				currentRelationshipRequest.cancel();
 			}
 			relationship=null;
+
+			String desc;
+			if (item.announcement != null) {
+				if (unreadIndicator.getVisibility() == View.GONE) {
+					more.setAlpha(0f);
+					unreadIndicator.setAlpha(0f);
+					unreadIndicator.setVisibility(View.VISIBLE);
+				}
+				float alpha = item.announcement.read ? 0 : 1;
+				more.setImageResource(R.drawable.ic_fluent_checkmark_20_filled);
+				desc = item.parentFragment.getString(R.string.sk_mark_as_read);
+				more.animate().alpha(alpha);
+				unreadIndicator.animate().alpha(alpha);
+				more.setOnClickListener(v -> {
+					new DismissAnnouncement(item.announcement.id).setCallback(new Callback<>() {
+						@Override
+						public void onSuccess(Object o) {
+							item.consumeReadAnnouncement.accept(item.announcement.id);
+							item.announcement.read = true;
+							rebind();
+						}
+
+						@Override
+						public void onError(ErrorResponse error) {
+							error.showToast(item.parentFragment.getActivity());
+						}
+					}).exec(item.accountID);
+				});
+			} else {
+				more.setImageResource(R.drawable.ic_fluent_more_vertical_20_filled);
+				desc = item.parentFragment.getString(R.string.more_options);
+				more.setOnClickListener(this::onMoreClick);
+			}
+
+			more.setContentDescription(desc);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) more.setTooltipText(desc);
 		}
 
 		@Override
@@ -321,6 +377,10 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void onAvaClick(View v){
+			if (item.announcement != null) {
+				UiUtils.openURL(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.user.url);
+				return;
+			}
 			Bundle args=new Bundle();
 			args.putString("account", item.accountID);
 			args.putParcelable("profileAccount", Parcels.wrap(item.user));
@@ -352,6 +412,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void updateOptionsMenu(){
+			if (item.announcement != null) return;
 			boolean hasMultipleAccounts = AccountSessionManager.getInstance().getLoggedInAccounts().size() > 1;
 			Menu menu=optionsMenu.getMenu();
 

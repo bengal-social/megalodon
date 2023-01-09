@@ -29,10 +29,12 @@ import com.squareup.otto.Subscribe;
 import org.joinmastodon.android.E;
 import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
+import org.joinmastodon.android.api.requests.announcements.GetAnnouncements;
 import org.joinmastodon.android.api.requests.timelines.GetHomeTimeline;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.SelfUpdateStateChangedEvent;
 import org.joinmastodon.android.events.StatusCreatedEvent;
+import org.joinmastodon.android.model.Announcement;
 import org.joinmastodon.android.model.CacheablePaginatedResponse;
 import org.joinmastodon.android.model.Filter;
 import org.joinmastodon.android.model.Status;
@@ -56,11 +58,14 @@ import me.grishka.appkit.utils.CubicBezierInterpolator;
 import me.grishka.appkit.utils.V;
 
 public class HomeTimelineFragment extends StatusListFragment{
+	private static final int ANNOUNCEMENTS_RESULT = 654;
+
 	private ImageButton fab;
 	private ImageView toolbarLogo;
 	private Button toolbarShowNewPostsBtn;
 	private boolean newPostsBtnShown;
 	private AnimatorSet currentNewPostsAnim;
+	private MenuItem announcements;
 
 	private String maxID;
 
@@ -126,14 +131,38 @@ public class HomeTimelineFragment extends StatusListFragment{
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
 		inflater.inflate(R.menu.home, menu);
+		announcements = menu.findItem(R.id.announcements);
+
+		new GetAnnouncements(false).setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(List<Announcement> result) {
+				boolean hasUnread = result.stream().anyMatch(a -> !a.read);
+				announcements.setIcon(hasUnread ? R.drawable.ic_announcements_24_badged : R.drawable.ic_fluent_megaphone_24_regular);
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {
+				error.showToast(getActivity());
+			}
+		}).exec(accountID);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
-		Nav.go(getActivity(), SettingsFragment.class, args);
+		if (item.getItemId() == R.id.settings) Nav.go(getActivity(), SettingsFragment.class, args);
+		if (item.getItemId() == R.id.announcements) {
+			Nav.goForResult(getActivity(), AnnouncementsFragment.class, args, ANNOUNCEMENTS_RESULT, this);
+		}
 		return true;
+	}
+
+	@Override
+	public void onFragmentResult(int reqCode, boolean noMoreUnread, Bundle result){
+		if (reqCode == ANNOUNCEMENTS_RESULT && noMoreUnread) {
+			announcements.setIcon(R.drawable.ic_fluent_megaphone_24_regular);
+		}
 	}
 
 	@Override

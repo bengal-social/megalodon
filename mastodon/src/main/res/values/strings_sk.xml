@@ -125,4 +125,6 @@
     <string name="sk_compose_no_schedule">Don’t schedule</string>
     <string name="sk_compose_no_draft">Don’t draft</string>
     <string name="sk_settings_reduce_motion">Reduce motion in animations</string>
+    <string name="sk_announcements">Announcements</string>
+    <string name="sk_mark_as_read">Mark as read</string>
 </resources>
