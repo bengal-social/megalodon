@@ -19,6 +19,7 @@ import org.joinmastodon.android.api.requests.lists.CreateList;
 import org.joinmastodon.android.api.requests.lists.GetLists;
 import org.joinmastodon.android.api.requests.lists.RemoveAccountsFromList;
 import org.joinmastodon.android.model.ListTimeline;
+import org.joinmastodon.android.ui.DividerItemDecoration;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.views.ListTimelineEditor;
 
@@ -71,6 +72,12 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
         super.onShown();
         if(!getArguments().getBoolean("noAutoLoad") && !loaded && !dataLoading)
             loadData();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        list.addItemDecoration(new DividerItemDecoration(getActivity(), R.attr.colorPollVoted, 0.5f, 56, 0));
     }
 
     @Override

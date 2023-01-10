@@ -1,6 +1,7 @@
 package org.joinmastodon.android.fragments;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.tags.GetFollowedHashtags;
 import org.joinmastodon.android.model.Hashtag;
 import org.joinmastodon.android.model.HeaderPaginationList;
+import org.joinmastodon.android.ui.DividerItemDecoration;
 import org.joinmastodon.android.ui.utils.UiUtils;
 
 import me.grishka.appkit.api.SimpleCallback;
@@ -39,6 +41,12 @@ public class FollowedHashtagsFragment extends BaseRecyclerFragment<Hashtag> impl
         super.onShown();
         if(!getArguments().getBoolean("noAutoLoad") && !loaded && !dataLoading)
             loadData();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        list.addItemDecoration(new DividerItemDecoration(getActivity(), R.attr.colorPollVoted, 0.5f, 56, 0));
     }
 
     @Override
