@@ -225,6 +225,7 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 			contextMenu=new PopupMenu(getActivity(), menuAnchor);
 			contextMenu.inflate(R.menu.profile);
 			contextMenu.setOnMenuItemClickListener(this::onContextMenuItemSelected);
+			UiUtils.enablePopupMenuIcons(getActivity(), contextMenu);
 		}
 
 		@Override
@@ -283,29 +284,31 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 			Menu menu=contextMenu.getMenu();
 			Account account=item.account;
 
-			menu.findItem(R.id.share).setTitle(getString(R.string.share_user, account.getDisplayUsername()));
-			menu.findItem(R.id.mute).setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getDisplayUsername()));
-			menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getDisplayUsername()));
-			menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getDisplayUsername()));
-			menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.sk_lists_with_user, account.getDisplayUsername())).setVisible(relationship.following);
+			menu.findItem(R.id.share).setTitle(getString(R.string.share_user, account.getShortUsername()));
+
+			MenuItem mute = menu.findItem(R.id.mute);
+			mute.setTitle(getString(relationship.muting ? R.string.unmute_user : R.string.mute_user, account.getShortUsername()));
+			mute.setIcon(relationship.muting ? R.drawable.ic_fluent_speaker_0_24_regular : R.drawable.ic_fluent_speaker_off_24_regular);
+			UiUtils.insetPopupMenuIcon(getContext(), mute);
+
+			menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getShortUsername()));
+			menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getShortUsername()));
+			menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.sk_lists_with_user, account.getShortUsername())).setVisible(relationship.following);
 			MenuItem hideBoosts=menu.findItem(R.id.hide_boosts);
 			MenuItem manageUserLists=menu.findItem(R.id.manage_user_lists);
 			if(relationship.following){
-				hideBoosts.setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getDisplayUsername()));
+				hideBoosts.setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getShortUsername()));
+				hideBoosts.setIcon(relationship.showingReblogs ? R.drawable.ic_fluent_arrow_repeat_all_off_24_regular : R.drawable.ic_fluent_arrow_repeat_all_24_regular);
 				hideBoosts.setVisible(true);
-				manageUserLists.setTitle(getString(R.string.sk_lists_with_user, account.getDisplayUsername()));
+				UiUtils.insetPopupMenuIcon(getContext(), hideBoosts);
+
+				manageUserLists.setTitle(getString(R.string.sk_lists_with_user, account.getShortUsername()));
 				manageUserLists.setVisible(true);
 			}else{
 				hideBoosts.setVisible(false);
 				manageUserLists.setVisible(true);
 			}
-			MenuItem blockDomain=menu.findItem(R.id.block_domain);
-			if(!account.isLocal()){
-				blockDomain.setTitle(getString(relationship.domainBlocking ? R.string.unblock_domain : R.string.block_domain, account.getDomain()));
-				blockDomain.setVisible(true);
-			}else{
-				blockDomain.setVisible(false);
-			}
+			menu.findItem(R.id.block_domain).setVisible(false);
 
 			menuAnchor.setTranslationX(x);
 			menuAnchor.setTranslationY(y);
