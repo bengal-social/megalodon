@@ -55,12 +55,14 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
         super.onCreate(savedInstanceState);
         Bundle args=getArguments();
         accountId=args.getString("account");
+        setHasOptionsMenu(true);
 
         if(args.containsKey("profileAccount")){
             profileAccountId=args.getString("profileAccount");
             profileDisplayUsername=args.getString("profileDisplayUsername");
             setTitle(getString(R.string.sk_lists_with_user, profileDisplayUsername));
-            setHasOptionsMenu(true);
+        } else {
+            setTitle(R.string.sk_your_lists);
         }
     }
 
@@ -82,6 +84,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
             ListTimelineEditor editor = new ListTimelineEditor(getContext());
             new M3AlertDialogBuilder(getActivity())
                     .setTitle(R.string.sk_create_list_title)
+                    .setIcon(R.drawable.ic_fluent_people_add_28_regular)
                     .setView(editor)
                     .setPositiveButton(R.string.sk_create, (d, which) -> {
                         new CreateList(editor.getTitle(), editor.getRepliesPolicy()).setCallback(new Callback<>() {
@@ -208,7 +211,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
         @Override
         public void onBind(ListTimeline item) {
             title.setText(item.title);
-            title.setCompoundDrawablesRelativeWithIntrinsicBounds(itemView.getContext().getDrawable(R.drawable.ic_fluent_people_community_24_regular), null, null, null);
+            title.setCompoundDrawablesRelativeWithIntrinsicBounds(itemView.getContext().getDrawable(R.drawable.ic_fluent_people_list_24_regular), null, null, null);
             if (profileAccountId != null) {
                 Boolean checked = userInList.get(item.id);
                 listToggle.setVisibility(View.VISIBLE);

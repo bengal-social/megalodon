@@ -567,17 +567,14 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 
 		menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getShortUsername()));
 		menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getShortUsername()));
-		MenuItem manageUserLists=menu.findItem(R.id.manage_user_lists);
 		if(relationship.following) {
 			MenuItem hideBoosts = menu.findItem(R.id.hide_boosts);
 			hideBoosts.setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getShortUsername()));
 			hideBoosts.setIcon(relationship.showingReblogs ? R.drawable.ic_fluent_arrow_repeat_all_off_24_regular : R.drawable.ic_fluent_arrow_repeat_all_24_regular);
 			UiUtils.insetPopupMenuIcon(getContext(), hideBoosts);
-			manageUserLists.setTitle(getString(R.string.sk_lists_with_user, account.getShortUsername()));
-			manageUserLists.setVisible(true);
+			menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.sk_lists_with_user, account.getShortUsername()));
 		}else {
 			menu.findItem(R.id.hide_boosts).setVisible(false);
-			manageUserLists.setVisible(false);
 		}
 		if(!account.isLocal())
 			menu.findItem(R.id.block_domain).setTitle(getString(relationship.domainBlocking ? R.string.unblock_domain : R.string.block_domain, account.getDomain()));
@@ -635,8 +632,10 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		}else if(id==R.id.manage_user_lists){
 			final Bundle args=new Bundle();
 			args.putString("account", accountID);
-			args.putString("profileAccount", profileAccountID);
-			args.putString("profileDisplayUsername", account.getDisplayUsername());
+			if (!isOwnProfile) {
+				args.putString("profileAccount", profileAccountID);
+				args.putString("profileDisplayUsername", account.getDisplayUsername());
+			}
 			Nav.go(getActivity(), ListTimelinesFragment.class, args);
 		}else if(id==R.id.followed_hashtags){
 			Bundle args=new Bundle();

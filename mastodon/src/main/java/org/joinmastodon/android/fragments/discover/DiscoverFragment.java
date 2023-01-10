@@ -18,11 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.joinmastodon.android.BuildConfig;
 import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.fragments.ScrollableToTop;
-import org.joinmastodon.android.fragments.ListTimelinesFragment;
 import org.joinmastodon.android.ui.SimpleViewHolder;
 import org.joinmastodon.android.ui.tabs.TabLayout;
 import org.joinmastodon.android.ui.tabs.TabLayoutMediator;
@@ -57,7 +55,6 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 	private SearchFragment searchFragment;
 	private LocalTimelineFragment localTimelineFragment;
 	private FederatedTimelineFragment federatedTimelineFragment;
-	private ListTimelinesFragment listTimelinesFragment;
 
 	private String accountID;
 	private Runnable searchDebouncer=this::onSearchChangedDebounced;
@@ -81,7 +78,7 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 		tabLayout=view.findViewById(R.id.tabbar);
 		pager=view.findViewById(R.id.pager);
 
-		tabViews=new FrameLayout[noFederated ? 6 : 7];
+		tabViews=new FrameLayout[noFederated ? 5 : 6];
 		for(int i=0;i<tabViews.length;i++){
 			FrameLayout tabView=new FrameLayout(getActivity());
 			int switchIndex = noFederated && i > 0 ? i + 1 : i;
@@ -92,7 +89,6 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 				case 3 -> R.id.discover_posts;
 				case 4 -> R.id.discover_news;
 				case 5 -> R.id.discover_users;
-				case 6 -> R.id.discover_lists;
 				default -> throw new IllegalStateException("Unexpected value: "+switchIndex);
 			});
 			tabView.setVisibility(View.GONE);
@@ -139,16 +135,12 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 			localTimelineFragment=new LocalTimelineFragment();
 			localTimelineFragment.setArguments(args);
 
-			listTimelinesFragment=new ListTimelinesFragment();
-			listTimelinesFragment.setArguments(args);
-
 			FragmentTransaction transaction = getChildFragmentManager().beginTransaction()
 					.add(R.id.discover_posts, postsFragment)
 					.add(R.id.discover_local_timeline, localTimelineFragment)
 					.add(R.id.discover_hashtags, hashtagsFragment)
 					.add(R.id.discover_news, newsFragment)
-					.add(R.id.discover_users, accountsFragment)
-					.add(R.id.discover_lists, listTimelinesFragment);
+					.add(R.id.discover_users, accountsFragment);
 
 			if (!noFederated) {
 				federatedTimelineFragment=new FederatedTimelineFragment();
@@ -170,7 +162,6 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 					case 3 -> R.string.posts;
 					case 4 -> R.string.news;
 					case 5 -> R.string.for_you;
-					case 6 -> R.string.sk_list_timelines;
 					default -> throw new IllegalStateException("Unexpected value: "+position);
 				});
 				tab.view.textView.setAllCaps(true);
@@ -300,7 +291,6 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 			case 3 -> postsFragment;
 			case 4 -> newsFragment;
 			case 5 -> accountsFragment;
-			case 6 -> listTimelinesFragment;
 			default -> throw new IllegalStateException("Unexpected value: "+page);
 		};
 	}

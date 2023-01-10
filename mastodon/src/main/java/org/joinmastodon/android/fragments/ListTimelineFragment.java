@@ -65,6 +65,7 @@ public class ListTimelineFragment extends StatusListFragment {
             editor.applyList(listTitle, repliesPolicy);
             new M3AlertDialogBuilder(getActivity())
                     .setTitle(R.string.sk_edit_list_title)
+                    .setIcon(R.drawable.ic_fluent_people_list_28_regular)
                     .setView(editor)
                     .setPositiveButton(R.string.save, (d, which) -> {
                         new UpdateList(listID, editor.getTitle(), editor.getRepliesPolicy()).setCallback(new Callback<>() {
