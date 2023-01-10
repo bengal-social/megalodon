@@ -37,6 +37,7 @@ public class PushNotificationReceiver extends BroadcastReceiver{
 	private static final String TAG="PushNotificationReceive";
 
 	public static final int NOTIFICATION_ID=178;
+	private static int notificationId = 0;
 
 	@Override
 	public void onReceive(Context context, Intent intent){
@@ -157,6 +158,6 @@ public class PushNotificationReceiver extends BroadcastReceiver{
 		if(AccountSessionManager.getInstance().getLoggedInAccounts().size()>1){
 			builder.setSubText(accountName);
 		}
-		nm.notify(accountID, NOTIFICATION_ID, builder.build());
+		nm.notify(accountID, GlobalUserPreferences.keepOnlyLatestNotification ? NOTIFICATION_ID : notificationId++, builder.build());
 	}
 }
