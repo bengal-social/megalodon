@@ -90,13 +90,13 @@
     <string name="sk_open_with_account">Mit anderem Konto öffnen</string>
     <string name="sk_resource_not_found">Ressource nicht gefunden</string>
     <string name="sk_loading_resource_on_instance_title">Suche auf %s</string>
-    <string name="sk_bookmark_as">Lesezeichen in anderem Konto</string>
+    <string name="sk_bookmark_as">Lesezeichen mit anderem Konto</string>
     <string name="sk_bookmarked_as">Lesezeichen gesetzt als %s</string>
     <string name="sk_already_bookmarked">Bereits in den Lesezeichen</string>
-    <string name="sk_favorite_as">Favorit von anderem Konto</string>
+    <string name="sk_favorite_as">Favorit mit anderem Konto</string>
     <string name="sk_favorited_as">Favorisiert als %s</string>
     <string name="sk_already_favorited">Bereits favorisiert</string>
-    <string name="sk_reblog_as">Von einem anderen Konto boosten</string>
+    <string name="sk_reblog_as">Mit einem anderen Konto boosten</string>
     <string name="sk_reblogged_as">Geboostet als %s</string>
     <string name="sk_already_reblogged">Bereits geboostet</string>
     <string name="sk_reply_as">Antworten mit anderem Konto</string>
@@ -120,4 +120,5 @@
     <string name="sk_schedule_post">Beitrag planen</string>
     <string name="sk_confirm_save_draft">Entwurf speichern\?</string>
     <string name="sk_mark_as_draft">Als Entwurf markieren</string>
+    <string name="sk_schedule_or_draft">Planen oder Vorlage</string>
 </resources>
