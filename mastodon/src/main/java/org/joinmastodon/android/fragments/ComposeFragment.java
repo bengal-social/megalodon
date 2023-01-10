@@ -412,6 +412,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			spoilerBtn.setSelected(true);
 		}
 
+		sensitive = savedInstanceState==null && editingStatus != null ? editingStatus.sensitive
+				: savedInstanceState!=null && savedInstanceState.getBoolean("sensitive", false);
+		if (sensitive) {
+			sensitiveItem.setVisibility(View.VISIBLE);
+			sensitiveIcon.setSelected(true);
+		}
+
 		if(savedInstanceState!=null && savedInstanceState.containsKey("attachments")){
 			ArrayList<Parcelable> serializedAttachments=savedInstanceState.getParcelableArrayList("attachments");
 			for(Parcelable a:serializedAttachments){
