@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -41,8 +42,22 @@ public class ListTimelineFragment extends StatusListFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        // TODO: implement edit, delete
-        // inflater.inflate(R.menu.list, menu);
+        inflater.inflate(R.menu.list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.edit) {
+
+        } else if (item.getItemId() == R.id.delete) {
+            UiUtils.confirmDeleteList(getActivity(), accountID, listID, () -> {
+                Bundle args = new Bundle();
+                args.putString("listID", listID);
+                setResult(true, args);
+                Nav.finish(this);
+            });
+        }
+        return true;
     }
 
     @Override

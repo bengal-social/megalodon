@@ -20,7 +20,6 @@ import org.joinmastodon.android.api.requests.lists.GetLists;
 import org.joinmastodon.android.api.requests.lists.RemoveAccountsFromList;
 import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
-import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.ui.views.ListTimelineEditor;
 
 import java.util.ArrayList;
@@ -28,6 +27,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
 import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.api.SimpleCallback;
@@ -36,6 +36,8 @@ import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.views.UsableRecyclerView;
 
 public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> implements ScrollableToTop {
+    private static final int LIST_DELETED_RESULT = 987;
+
     private String accountId;
     private String profileAccountId;
     private String profileDisplayUsername;
@@ -145,7 +147,22 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
     }
 
     @Override
-    protected RecyclerView.Adapter getAdapter() {
+    public void onFragmentResult(int reqCode, boolean listDeleted, Bundle result){
+        if (reqCode == LIST_DELETED_RESULT && listDeleted) {
+            String listID = result.getString("listID");
+
+            for (int i = 0; i < data.size(); i++) {
+                if (data.get(i).id.equals(listID)) {
+                    data.remove(i);
+                    adapter.notifyItemRemoved(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    protected RecyclerView.Adapter<ListViewHolder> getAdapter() {
         return adapter = new ListsAdapter();
     }
 
@@ -202,7 +219,11 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
 
         @Override
         public void onClick() {
-            UiUtils.openListTimeline(getActivity(), accountId, item);
+            Bundle args=new Bundle();
+            args.putString("account", accountId);
+            args.putString("listID", item.id);
+            args.putString("listTitle", item.title);
+            Nav.goForResult(getActivity(), ListTimelineFragment.class, args, LIST_DELETED_RESULT, ListTimelinesFragment.this);
         }
     }
 }

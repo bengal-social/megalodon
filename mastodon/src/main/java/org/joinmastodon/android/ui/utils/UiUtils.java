@@ -52,6 +52,7 @@ import org.joinmastodon.android.api.requests.accounts.SetAccountMuted;
 import org.joinmastodon.android.api.requests.accounts.SetDomainBlocked;
 import org.joinmastodon.android.api.requests.accounts.AuthorizeFollowRequest;
 import org.joinmastodon.android.api.requests.accounts.RejectFollowRequest;
+import org.joinmastodon.android.api.requests.lists.DeleteList;
 import org.joinmastodon.android.api.requests.notifications.DismissNotification;
 import org.joinmastodon.android.api.requests.search.GetSearchResults;
 import org.joinmastodon.android.api.requests.statuses.CreateStatus;
@@ -339,14 +340,6 @@ public class UiUtils{
 		Nav.go((Activity)context, HashtagTimelineFragment.class, args);
 	}
 
-	public static void openListTimeline(Context context, String accountID, ListTimeline list){
-		Bundle args=new Bundle();
-		args.putString("account", accountID);
-		args.putString("listID", list.id);
-		args.putString("listTitle", list.title);
-		Nav.go((Activity)context, ListTimelineFragment.class, args);
-	}
-
 	public static void showConfirmationAlert(Context context, @StringRes int title, @StringRes int message, @StringRes int confirmButton, Runnable onConfirmed){
 		showConfirmationAlert(context, title, message, confirmButton, 0, onConfirmed);
 	}
@@ -539,6 +532,21 @@ public class UiUtils{
 					}
 				}).exec(accountID)
 		);
+	}
+
+	public static void confirmDeleteList(Activity activity, String accountID, String listID, Runnable callback) {
+		showConfirmationAlert(activity, R.string.sk_delete_list, R.string.sk_delete_list_confirm, R.string.delete, R.drawable.ic_fluent_delete_28_regular,
+				() -> new DeleteList(listID).setCallback(new Callback<>() {
+					@Override
+					public void onSuccess(Object o) {
+						callback.run();
+					}
+
+					@Override
+					public void onError(ErrorResponse error) {
+						error.showToast(activity);
+					}
+				}).exec(accountID));
 	}
 
 	public static void setRelationshipToActionButton(Relationship relationship, Button button){

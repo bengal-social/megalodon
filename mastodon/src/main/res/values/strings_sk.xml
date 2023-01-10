@@ -136,4 +136,6 @@
     <string name="sk_list_replies_policy_list">List members</string>
     <string name="sk_list_replies_policy_followed">Any followed user</string>
     <string name="sk_list_replies_policy_none">No one</string>
+    <string name="sk_delete_list">Delete list</string>
+    <string name="sk_delete_list_confirm">Are you sure you want to delete this list?</string>
 </resources>
