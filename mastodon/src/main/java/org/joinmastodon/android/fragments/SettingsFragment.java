@@ -53,6 +53,7 @@ import org.joinmastodon.android.model.PushSubscription;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.OutlineProviders;
 import org.joinmastodon.android.ui.utils.UiUtils;
+import org.joinmastodon.android.ui.views.TextInputFrameLayout;
 import org.joinmastodon.android.updater.GithubSelfUpdater;
 import org.parceler.Parcels;
 
@@ -130,17 +131,14 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			updatePublishText(b);
 
 			b.setOnClickListener(l->{
-				FrameLayout inputWrap = new FrameLayout(getContext());
-				EditText input = new EditText(getContext());
-				input.setHint(R.string.publish);
-				input.setText(GlobalUserPreferences.publishButtonText.trim());
-				FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-				params.setMargins(V.dp(16), V.dp(4), V.dp(16), V.dp(16));
-				input.setLayoutParams(params);
-				inputWrap.addView(input);
-				new M3AlertDialogBuilder(getContext()).setTitle(R.string.sk_settings_publish_button_text_title).setView(inputWrap)
+				TextInputFrameLayout input = new TextInputFrameLayout(
+						getContext(),
+						getString(R.string.publish),
+						GlobalUserPreferences.publishButtonText.trim()
+				);
+				new M3AlertDialogBuilder(getContext()).setTitle(R.string.sk_settings_publish_button_text_title).setView(input)
 						.setPositiveButton(R.string.save, (d, which) -> {
-							GlobalUserPreferences.publishButtonText = input.getText().toString().trim();
+							GlobalUserPreferences.publishButtonText = input.getEditText().getText().toString().trim();
 							GlobalUserPreferences.save();
 							updatePublishText(b);
 						})
