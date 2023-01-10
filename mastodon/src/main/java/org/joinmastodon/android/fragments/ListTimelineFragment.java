@@ -10,13 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import org.joinmastodon.android.R;
+import org.joinmastodon.android.api.requests.lists.CreateList;
+import org.joinmastodon.android.api.requests.lists.UpdateList;
 import org.joinmastodon.android.api.requests.timelines.GetListTimeline;
+import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.model.Status;
+import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.utils.UiUtils;
+import org.joinmastodon.android.ui.views.ListTimelineEditor;
 
 import java.util.List;
 
 import me.grishka.appkit.Nav;
+import me.grishka.appkit.api.Callback;
+import me.grishka.appkit.api.ErrorResponse;
 import me.grishka.appkit.api.SimpleCallback;
 import me.grishka.appkit.utils.V;
 
@@ -24,6 +31,7 @@ import me.grishka.appkit.utils.V;
 public class ListTimelineFragment extends StatusListFragment {
     private String listID;
     private String listTitle;
+    private ListTimeline.RepliesPolicy repliesPolicy;
     private ImageButton fab;
 
     public ListTimelineFragment() {
@@ -33,8 +41,11 @@ public class ListTimelineFragment extends StatusListFragment {
     @Override
     public void onAttach(Activity activity){
         super.onAttach(activity);
-        listID=getArguments().getString("listID");
-        listTitle=getArguments().getString("listTitle");
+        Bundle args = getArguments();
+        listID = args.getString("listID");
+        listTitle = args.getString("listTitle");
+        repliesPolicy = ListTimeline.RepliesPolicy.values()[args.getInt("repliesPolicy", 0)];
+
         setTitle(listTitle);
         setHasOptionsMenu(true);
     }
@@ -47,12 +58,37 @@ public class ListTimelineFragment extends StatusListFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Bundle args = new Bundle();
+        args.putString("listID", listID);
         if (item.getItemId() == R.id.edit) {
+            ListTimelineEditor editor = new ListTimelineEditor(getContext());
+            editor.applyList(listTitle, repliesPolicy);
+            new M3AlertDialogBuilder(getActivity())
+                    .setTitle(R.string.sk_edit_list_title)
+                    .setView(editor)
+                    .setPositiveButton(R.string.save, (d, which) -> {
+                        new UpdateList(listID, editor.getTitle(), editor.getRepliesPolicy()).setCallback(new Callback<>() {
+                            @Override
+                            public void onSuccess(ListTimeline list) {
+                                setTitle(list.title);
+                                listTitle = list.title;
+                                repliesPolicy = list.repliesPolicy;
+                                args.putString("listTitle", listTitle);
+                                args.putInt("repliesPolicy", repliesPolicy.ordinal());
+                                setResult(true, args);
+                            }
 
+                            @Override
+                            public void onError(ErrorResponse error) {
+                                error.showToast(getContext());
+                            }
+                        }).exec(accountID);
+                    })
+                    .setNegativeButton(R.string.cancel, (d, which) -> {})
+                    .show();
         } else if (item.getItemId() == R.id.delete) {
             UiUtils.confirmDeleteList(getActivity(), accountID, listID, () -> {
-                Bundle args = new Bundle();
-                args.putString("listID", listID);
+                args.putBoolean("deleted", true);
                 setResult(true, args);
                 Nav.finish(this);
             });

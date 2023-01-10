@@ -15,8 +15,8 @@ import org.joinmastodon.android.model.ListTimeline;
 
 public class ListTimelineEditor extends LinearLayout {
     private ListTimeline.RepliesPolicy policy = null;
-    private TextInputFrameLayout input;
-    private Button button;
+    private final TextInputFrameLayout input;
+    private final Button button;
 
     @SuppressLint("ClickableViewAccessibility")
     public ListTimelineEditor(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -37,10 +37,9 @@ public class ListTimelineEditor extends LinearLayout {
         setRepliesPolicy(ListTimeline.RepliesPolicy.LIST);
     }
 
-    public void applyList(ListTimeline list) {
-        policy = list.repliesPolicy;
-        input.getEditText().setText(list.title);
-        setRepliesPolicy(list.repliesPolicy);
+    public void applyList(String title, ListTimeline.RepliesPolicy policy) {
+        input.getEditText().setText(title);
+        setRepliesPolicy(policy);
     }
 
     public String getTitle() {

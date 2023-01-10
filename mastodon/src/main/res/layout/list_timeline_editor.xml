@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <org.joinmastodon.android.ui.views.AutoOrientationLinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -12,11 +11,12 @@
         <TextView
             android:id="@+id/text"
             android:text="@string/sk_list_replies_policy"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:paddingVertical="8dp"
+            android:singleLine="true"
+            android:ellipsize="none"
             android:gravity="center_vertical"
             android:textColor="?android:textColorPrimary"
             android:textSize="16sp" />
@@ -25,11 +25,9 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_weight="0"
-            android:maxWidth="140dp"
             android:background="@drawable/bg_inline_button"
             android:elevation="0dp"
-            android:ellipsize="middle"
+            android:ellipsize="none"
             android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:stateListAnimator="@null"

@@ -36,7 +36,7 @@ import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.views.UsableRecyclerView;
 
 public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> implements ScrollableToTop {
-    private static final int LIST_DELETED_RESULT = 987;
+    private static final int LIST_CHANGED_RESULT = 987;
 
     private String accountId;
     private String profileAccountId;
@@ -147,14 +147,20 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
     }
 
     @Override
-    public void onFragmentResult(int reqCode, boolean listDeleted, Bundle result){
-        if (reqCode == LIST_DELETED_RESULT && listDeleted) {
+    public void onFragmentResult(int reqCode, boolean listChanged, Bundle result){
+        if (reqCode == LIST_CHANGED_RESULT && listChanged) {
             String listID = result.getString("listID");
-
             for (int i = 0; i < data.size(); i++) {
-                if (data.get(i).id.equals(listID)) {
-                    data.remove(i);
-                    adapter.notifyItemRemoved(i);
+                ListTimeline item = data.get(i);
+                if (item.id.equals(listID)) {
+                    if (result.getBoolean("deleted")) {
+                        data.remove(i);
+                        adapter.notifyItemRemoved(i);
+                    } else {
+                        item.title = result.getString("listTitle", item.title);
+                        item.repliesPolicy = ListTimeline.RepliesPolicy.values()[result.getInt("repliesPolicy")];
+                        adapter.notifyItemChanged(i);
+                    }
                     break;
                 }
             }
@@ -223,7 +229,8 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
             args.putString("account", accountId);
             args.putString("listID", item.id);
             args.putString("listTitle", item.title);
-            Nav.goForResult(getActivity(), ListTimelineFragment.class, args, LIST_DELETED_RESULT, ListTimelinesFragment.this);
+            args.putInt("repliesPolicy", item.repliesPolicy.ordinal());
+            Nav.goForResult(getActivity(), ListTimelineFragment.class, args, LIST_CHANGED_RESULT, ListTimelinesFragment.this);
         }
     }
 }
