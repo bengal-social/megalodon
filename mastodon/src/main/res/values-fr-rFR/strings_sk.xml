@@ -25,7 +25,7 @@
     <string name="sk_follow_requests">Suivre les demandes</string>
     <string name="sk_accept_follow_request">Accepter la demande de suivi</string>
     <string name="sk_reject_follow_request">Refuser la demande de suivi</string>
-    <string name="sk_lists_with_user">Listes avec %s</string>
+    <string name="sk_lists_with_user">Modifier les listes avec %s</string>
     <string name="sk_settings_always_reveal_content_warnings">Toujours afficher les avertissements de contenu</string>
     <string name="sk_disable_marquee">Désactiver le défilement du texte dans les barres de titre</string>
     <string name="sk_settings_contribute">Contribuez à Megalodon</string>
@@ -125,4 +125,19 @@
     <string name="sk_compose_no_draft">Ne pas marquer comme brouillon</string>
     <string name="sk_schedule_or_draft">Planifier ou rédiger un brouillon</string>
     <string name="sk_settings_reduce_motion">Réduire le mouvement dans les animations</string>
+    <string name="sk_mark_as_read">Marquer comme lu</string>
+    <string name="sk_settings_about_instance">À propos de l\'instance</string>
+    <string name="sk_create">Créer</string>
+    <string name="sk_create_list_title">Créer une liste</string>
+    <string name="sk_list_name_hint">Nom de la liste</string>
+    <string name="sk_list_replies_policy">Afficher les réponses à</string>
+    <string name="sk_list_replies_policy_list">membres de la liste</string>
+    <string name="sk_list_replies_policy_followed">utilisateurs suivis</string>
+    <string name="sk_list_replies_policy_none">personne</string>
+    <string name="sk_delete_list">Supprimer la liste</string>
+    <string name="sk_edit_list_title">Modifier la liste</string>
+    <string name="sk_announcements">Annonces</string>
+    <string name="sk_settings_single_notification">Afficher une seule notification</string>
+    <string name="sk_delete_list_confirm">Voulez-vous vraiment supprimer cette liste \?</string>
+    <string name="sk_your_lists">Vos listes</string>
 </resources>
