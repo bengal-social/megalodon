@@ -41,7 +41,7 @@
     <string name="sk_follow_requests">Запити на стеження</string>
     <string name="sk_accept_follow_request">Погодити запит на стеження</string>
     <string name="sk_reject_follow_request">Відхилити запит на стеження</string>
-    <string name="sk_lists_with_user">Списки з %s</string>
+    <string name="sk_lists_with_user">Редагувати списки з %s</string>
     <string name="sk_disable_marquee">Вимкнути прокручування тексту у рядках заголовка</string>
     <string name="sk_settings_contribute">Допомогти у розробці Megalodon</string>
     <string name="sk_mark_media_as_sensitive">Позначити медіа делікатним</string>
@@ -124,4 +124,19 @@
     <string name="sk_compose_no_schedule">Не планувати</string>
     <string name="sk_compose_no_draft">Не переміщувати до чернеток</string>
     <string name="sk_settings_reduce_motion">Зменшити рух в анімації</string>
+    <string name="sk_mark_as_read">Позначити прочитаним</string>
+    <string name="sk_settings_about_instance">Про сервер</string>
+    <string name="sk_create">Створити</string>
+    <string name="sk_create_list_title">Створити список</string>
+    <string name="sk_list_name_hint">Назва списку</string>
+    <string name="sk_list_replies_policy">Показати відповіді для</string>
+    <string name="sk_list_replies_policy_list">учасники списку</string>
+    <string name="sk_list_replies_policy_none">ніхто</string>
+    <string name="sk_delete_list">Видалити список</string>
+    <string name="sk_delete_list_confirm">Ви впевнені, що хочете видалити цей список\?</string>
+    <string name="sk_edit_list_title">Редагувати список</string>
+    <string name="sk_your_lists">Ваші списки</string>
+    <string name="sk_announcements">Оголошення</string>
+    <string name="sk_settings_single_notification">Показувати лише одне сповіщення</string>
+    <string name="sk_list_replies_policy_followed">відстежувані користувачі</string>
 </resources>
