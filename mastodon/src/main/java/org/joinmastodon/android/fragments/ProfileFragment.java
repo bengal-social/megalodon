@@ -567,6 +567,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 
 		menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getShortUsername()));
 		menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getShortUsername()));
+		menu.findItem(R.id.manage_user_lists).setVisible(relationship.following);
 		if(relationship.following) {
 			MenuItem hideBoosts = menu.findItem(R.id.hide_boosts);
 			hideBoosts.setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getShortUsername()));
