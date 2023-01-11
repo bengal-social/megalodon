@@ -34,7 +34,7 @@
     <string name="sk_visibility_unlisted">Tidak terdaftar</string>
     <string name="sk_mark_media_as_sensitive">Tandai media sebagai sensitif</string>
     <string name="sk_follow_requests">Permintaan pengikut</string>
-    <string name="sk_lists_with_user">Daftar dengan %s</string>
+    <string name="sk_lists_with_user">Sunting daftar dengan %s</string>
     <string name="sk_settings_always_reveal_content_warnings">Selalu ungkap peringatan konten</string>
     <string name="sk_disable_marquee">Nonaktifkan teks bergulir dalam bilah judul</string>
     <string name="sk_settings_show_federated_timeline">Tampilkan lini masa federasi</string>
