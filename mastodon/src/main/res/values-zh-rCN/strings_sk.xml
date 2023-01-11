@@ -32,7 +32,7 @@
     <string name="sk_list_timelines">列表</string>
     <string name="sk_accept_follow_request">接受关注请求</string>
     <string name="sk_reject_follow_request">拒绝关注请求</string>
-    <string name="sk_lists_with_user">%s 的列表</string>
+    <string name="sk_lists_with_user">使用 %s 编辑列表</string>
     <string name="sk_disable_marquee">禁用标题栏的滚动文本</string>
     <string name="sk_settings_contribute">向 Megalodon 贡献</string>
     <string name="sk_settings_show_federated_timeline">显示联邦时间轴</string>
@@ -126,4 +126,19 @@
     <string name="sk_compose_no_draft">不要标记为草稿</string>
     <string name="sk_settings_reduce_motion">减少动画中的效果</string>
     <string name="sk_schedule_or_draft">预订或草稿</string>
+    <string name="sk_announcements">公告</string>
+    <string name="sk_mark_as_read">标记为已读</string>
+    <string name="sk_settings_about_instance">关于实例</string>
+    <string name="sk_settings_single_notification">只显示一个通知</string>
+    <string name="sk_create">创建</string>
+    <string name="sk_create_list_title">创建列表</string>
+    <string name="sk_list_name_hint">列表名</string>
+    <string name="sk_list_replies_policy">显示回复</string>
+    <string name="sk_list_replies_policy_list">列出成员</string>
+    <string name="sk_list_replies_policy_followed">关注的用户</string>
+    <string name="sk_list_replies_policy_none">没有人</string>
+    <string name="sk_delete_list">删除列表</string>
+    <string name="sk_delete_list_confirm">您确定要删除此列表吗？</string>
+    <string name="sk_edit_list_title">编辑列表</string>
+    <string name="sk_your_lists">你的列表</string>
 </resources>
