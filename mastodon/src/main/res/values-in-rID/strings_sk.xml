@@ -127,4 +127,19 @@
     <string name="sk_compose_no_draft">Jangan didraf</string>
     <string name="sk_schedule_or_draft">Jadwalkan atau draf</string>
     <string name="sk_settings_reduce_motion">Kurangi gerakan dalam animasi</string>
+    <string name="sk_list_replies_policy">Tampilkan balasan ke</string>
+    <string name="sk_announcements">Pengumuman</string>
+    <string name="sk_mark_as_read">Tandai sebagai dibaca</string>
+    <string name="sk_settings_about_instance">Tentang server</string>
+    <string name="sk_settings_single_notification">Hanya tampilkan satu notifikasi</string>
+    <string name="sk_create">Buat</string>
+    <string name="sk_create_list_title">Buat daftar</string>
+    <string name="sk_list_name_hint">Nama daftar</string>
+    <string name="sk_list_replies_policy_list">anggota daftar</string>
+    <string name="sk_list_replies_policy_followed">pengguna mengikuti</string>
+    <string name="sk_list_replies_policy_none">tidak ada siapa pun</string>
+    <string name="sk_delete_list">Hapus daftar</string>
+    <string name="sk_delete_list_confirm">Apakah Anda yakin ingin menghapus daftar ini\?</string>
+    <string name="sk_edit_list_title">Sunting daftar</string>
+    <string name="sk_your_lists">Daftar Anda</string>
 </resources>
