@@ -78,13 +78,13 @@
     <string name="sk_clear_all_notifications">Limpar todas as notificações</string>
     <string name="sk_clear_all_notifications_confirm_action">Excluir tudo</string>
     <string name="sk_loading_fediverse_resource_title">Procurando no Fediverso</string>
-    <string name="sk_undo_reblog">Desfazer repostagem</string>
-    <string name="sk_reblog_with_visibility">Repostar com visibilidade</string>
+    <string name="sk_undo_reblog">Desfazer reblog</string>
+    <string name="sk_reblog_with_visibility">Reblogar com visibilidade</string>
     <string name="sk_hashtags_you_follow">Hashtags que você segue</string>
     <string name="sk_copy_link_to_post">Copiar link da postagem</string>
     <string name="sk_loading_resource_on_instance_title">Procurando em %s</string>
     <string name="sk_open_with_account">Abrir com outra conta</string>
-    <string name="sk_resource_not_found">Recurso não pode ser encontrado</string>
+    <string name="sk_resource_not_found">Recurso não foi encontrado</string>
     <string name="sk_settings_about">Sobre o app</string>
     <string name="sk_settings_auth">Configurações de segurança</string>
     <string name="sk_settings_publish_button_text">Texto do botão de publicar</string>
@@ -115,7 +115,7 @@
     <string name="sk_mark_as_draft">Marcar como rascunho</string>
     <string name="sk_bookmarked_as">Salvo em %s</string>
     <string name="sk_favorited_as">Favoritado em %s</string>
-    <string name="sk_reblogged_as">Repostado em %s</string>
+    <string name="sk_reblogged_as">Reblogou como %s</string>
     <string name="sk_settings_uniform_icon_for_notifications">Padronizar ícone para todas as notificações</string>
     <string name="sk_quote_post">Publique sobre isso</string>
     <string name="sk_draft_or_schedule">Rascunhar ou agendar</string>
