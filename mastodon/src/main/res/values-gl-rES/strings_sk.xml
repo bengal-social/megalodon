@@ -1,3 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sk_app_name">Megalodon</string>
+    <string name="sk_delete_and_redraft">Eliminar e rescribir</string>
+    <string name="sk_confirm_delete_and_redraft">Tes a certeza de querere eliminar e rescribir esta publicación\?</string>
+    <string name="sk_pinned_posts">Fixado</string>
+    <string name="sk_confirm_delete_and_redraft_title">Elimina e rescribe a Publicación</string>
+    <string name="sk_pin_post">Fixar no perfil</string>
+    <string name="sk_confirm_pin_post_title">Fixar publicación ao perfil</string>
+    <string name="sk_confirm_pin_post">Queres fixar esta publicación ao teu perfil\?</string>
+    <string name="sk_pinning">Fixando a publicación…</string>
+    <string name="sk_unpin_post">Desafixar do perfil</string>
+    <string name="sk_confirm_unpin_post_title">Desafixar publicación do perfil</string>
+    <string name="sk_confirm_unpin_post">Tes a certeza de querer desafixar esta publicación\?</string>
+    <string name="sk_unpinning">Desafixando publicación…</string>
+    <string name="sk_image_description">Descrición da imaxe</string>
 </resources>
