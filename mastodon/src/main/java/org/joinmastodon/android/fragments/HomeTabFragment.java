@@ -74,6 +74,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	private ViewPager2 pager;
 	private final List<Fragment> fragments = new ArrayList<>();
 	private final List<FrameLayout> tabViews = new ArrayList<>();
+	private View switcher;
 	private FrameLayout toolbarFrame;
 	private ImageView timelineIcon;
 	private ImageView collapsedChevron;
@@ -136,7 +137,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		timelineIcon = toolbarFrame.findViewById(R.id.timeline_icon);
 		timelineTitle = toolbarFrame.findViewById(R.id.timeline_title);
 		collapsedChevron = toolbarFrame.findViewById(R.id.collapsed_chevron);
-		View switcher = toolbarFrame.findViewById(R.id.switcher_btn);
+		switcher = toolbarFrame.findViewById(R.id.switcher_btn);
 		switcherPopup = new PopupMenu(getContext(), switcher);
 		switcherPopup.inflate(R.menu.home_switcher);
 		switcherPopup.setOnMenuItemClickListener(this::onSwitcherItemSelected);
@@ -165,6 +166,16 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				}
 			}
 		});
+
+		if (!GlobalUserPreferences.reduceMotion) {
+			pager.setPageTransformer((v, pos) -> {
+				if (tabViews.get(pager.getCurrentItem()) != v) return;
+				float scaleFactor = Math.max(0.85f, 1 - Math.abs(pos) * 0.06f);
+				switcher.setScaleY(scaleFactor);
+				switcher.setScaleX(scaleFactor);
+				switcher.setAlpha(Math.max(0.65f, 1 - Math.abs(pos)));
+			});
+		}
 
 		updateToolbarLogo();
 
@@ -225,6 +236,8 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			// centering button by applying the same space on the left
 			int padding = toolbar.getWidth() - toolbarFrame.getWidth();
 			((FrameLayout) toolbarShowNewPostsBtn.getParent()).setPadding(padding, 0, 0, 0);
+			switcher.setPivotX(V.dp(28)); // padding + half of icon
+			switcher.setPivotY(switcher.getHeight() / 2f);
 		});
 
 		if(newPostsBtnShown){
