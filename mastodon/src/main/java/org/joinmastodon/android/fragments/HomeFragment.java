@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.graphics.Outline;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -258,15 +257,9 @@ public class HomeFragment extends AppKitFragment implements OnBackPressedListene
 	public void onSaveInstanceState(Bundle outState){
 		super.onSaveInstanceState(outState);
 		outState.putInt("selectedTab", currentTab);
-		try {
-			getChildFragmentManager().putFragment(outState, "homeTabFragment", homeTabFragment);
-			getChildFragmentManager().putFragment(outState, "searchFragment", searchFragment);
-			getChildFragmentManager().putFragment(outState, "notificationsFragment", notificationsFragment);
-			getChildFragmentManager().putFragment(outState, "profileFragment", profileFragment);
-		} catch (IllegalStateException ex) {
-			// java.lang.IllegalStateException: Fragment HomeTabFragment{3447cad} is not currently in the FragmentManager
-			// no idea how to fix this :/
-			Log.e(HomeFragment.class.getSimpleName(), ex.getMessage());
-		}
+		getChildFragmentManager().putFragment(outState, "homeTabFragment", homeTabFragment);
+		getChildFragmentManager().putFragment(outState, "searchFragment", searchFragment);
+		getChildFragmentManager().putFragment(outState, "notificationsFragment", notificationsFragment);
+		getChildFragmentManager().putFragment(outState, "profileFragment", profileFragment);
 	}
 }
