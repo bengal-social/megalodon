@@ -44,7 +44,7 @@
     <string name="sk_already_reblogged">Reblog လုပ်ပြီးသားဖြစ်သည်</string>
     <string name="sk_reply_as">တခြားအကောင့်ဖြင့် ရီပလိုင်းပြန်မည်</string>
     <string name="sk_translated_using">%s ဖြင့် ဘာသာပြန်ထားသည်</string>
-    <string name="sk_post_language">"ဘာသာစကား။  ။%s"</string>
+    <string name="sk_post_language">ဘာသာစကား။ ။%s</string>
     <string name="sk_language_name">%s (%s)</string>
     <string name="sk_settings_filters">Filter များကို စီစဉ်မည်</string>
     <string name="sk_settings_auth">လုံခြုံရေးဆိုင်ရာ ဆက်တင်များ</string>
