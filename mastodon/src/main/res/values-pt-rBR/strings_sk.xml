@@ -130,8 +130,8 @@
     <string name="sk_list_replies_policy">Mostrar respostas para</string>
     <string name="sk_list_replies_policy_list">listar membros</string>
     <string name="sk_list_replies_policy_none">ninguém</string>
-    <string name="sk_delete_list">Deletar lista</string>
-    <string name="sk_delete_list_confirm">Você tem certeza que quer deletar essa lista\?</string>
+    <string name="sk_delete_list">Excluir lista</string>
+    <string name="sk_delete_list_confirm">Tem certeza que deseja excluir esta lista\?</string>
     <string name="sk_edit_list_title">Editar lista</string>
     <string name="sk_your_lists">Suas listas</string>
     <string name="sk_list_name_hint">Lista de nomes</string>
