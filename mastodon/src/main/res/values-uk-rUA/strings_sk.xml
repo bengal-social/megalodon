@@ -139,4 +139,7 @@
     <string name="sk_announcements">Оголошення</string>
     <string name="sk_settings_single_notification">Показувати лише одне сповіщення</string>
     <string name="sk_list_replies_policy_followed">відстежувані користувачі</string>
+    <string name="sk_timeline_home">Головна</string>
+    <string name="sk_timeline_local">Локальна</string>
+    <string name="sk_timeline_federated">Федерація</string>
 </resources>
