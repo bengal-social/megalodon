@@ -366,7 +366,7 @@ public class UiUtils{
 		showConfirmationAlert(activity, activity.getString(currentlyBlocked ? R.string.confirm_unblock_title : R.string.confirm_block_title),
 				activity.getString(currentlyBlocked ? R.string.confirm_unblock : R.string.confirm_block, account.displayName),
 				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block),
-				currentlyBlocked ? R.drawable.ic_fluent_person_28_regular : R.drawable.ic_fluent_person_prohibited_28_regular,
+				R.drawable.ic_fluent_person_prohibited_28_regular,
 				()->{
 					new SetAccountBlocked(account.id, !currentlyBlocked)
 							.setCallback(new Callback<>(){
