@@ -14,4 +14,25 @@
     <string name="sk_confirm_unpin_post">Tes a certeza de querer desafixar esta publicación\?</string>
     <string name="sk_unpinning">Desafixando publicación…</string>
     <string name="sk_image_description">Descrición da imaxe</string>
+    <string name="sk_lists_with_user">Editar listas con %s</string>
+    <string name="sk_visibility_unlisted">Non listado</string>
+    <string name="sk_settings_show_replies">Mostrar respostas</string>
+    <string name="sk_settings_show_boosts">Mostrar promocións</string>
+    <string name="sk_settings_load_new_posts">Cargar automáticamente novas publicacións</string>
+    <string name="sk_settings_show_interaction_counts">Mostrar contadores de interaccións</string>
+    <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
+    <string name="sk_mark_media_as_sensitive">Marcar multimedia como sensible</string>
+    <string name="sk_user_post_notifications_on">Acender notificación de publicación para %s</string>
+    <string name="sk_user_post_notifications_off">Apagar notificación de publicación para %s</string>
+    <string name="sk_federated_timeline">Federación</string>
+    <string name="sk_federated_timeline_info_banner">Estas son as publicacións máis recentes das persoas da túa federación.</string>
+    <string name="sk_update_available">Megalodon %s está lista para descargar.</string>
+    <string name="sk_update_ready">Megalodon %s foi descargada e está lista para instalar.</string>
+    <string name="sk_check_for_update">Comprobar actualizacións</string>
+    <string name="sk_no_update_available">Non hai actualizacións</string>
+    <string name="sk_list_timelines">Listas</string>
+    <string name="sk_follow_requests">Solicitudes de seguimento</string>
+    <string name="sk_accept_follow_request">Aceptar solicitude</string>
+    <string name="sk_reject_follow_request">Rexeitar solicitude</string>
+    <string name="sk_settings_always_reveal_content_warnings">Mostrar sempre o contido con avisos</string>
 </resources>
