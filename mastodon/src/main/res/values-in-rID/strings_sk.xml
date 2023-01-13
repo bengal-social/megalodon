@@ -142,4 +142,7 @@
     <string name="sk_delete_list_confirm">Apakah Anda yakin ingin menghapus daftar ini\?</string>
     <string name="sk_edit_list_title">Sunting daftar</string>
     <string name="sk_your_lists">Daftar Anda</string>
+    <string name="sk_timeline_federated">Federasi</string>
+    <string name="sk_timeline_home">Beranda</string>
+    <string name="sk_timeline_local">Lokal</string>
 </resources>
