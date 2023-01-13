@@ -141,4 +141,5 @@
     <string name="sk_delete_list_confirm">您确定要删除此列表吗？</string>
     <string name="sk_edit_list_title">编辑列表</string>
     <string name="sk_your_lists">你的列表</string>
+    <string name="sk_timeline_federated">联邦</string>
 </resources>
