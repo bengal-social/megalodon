@@ -139,4 +139,7 @@
     <string name="sk_edit_list_title">Editar la lista</string>
     <string name="sk_your_lists">Tus listas</string>
     <string name="sk_list_replies_policy_list">Lista de miembros</string>
+    <string name="sk_timeline_home">Inicio</string>
+    <string name="sk_timeline_federated">Federación</string>
+    <string name="sk_timeline_local">Local</string>
 </resources>
