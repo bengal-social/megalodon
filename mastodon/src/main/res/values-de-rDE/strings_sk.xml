@@ -139,4 +139,7 @@
     <string name="sk_announcements">Ankündigungen</string>
     <string name="sk_settings_single_notification">Nur eine Benachrichtigung anzeigen</string>
     <string name="sk_delete_list_confirm">Liste wirklich löschen\?</string>
+    <string name="sk_timeline_home">Start</string>
+    <string name="sk_timeline_local">Lokal</string>
+    <string name="sk_timeline_federated">Föderiert</string>
 </resources>
