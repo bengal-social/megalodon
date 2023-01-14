@@ -1,0 +1,6 @@
+- Nowe motywy kolorystyczne od @LucasGGamerM
+- Nowe logo "megalodon" od @LucasGGamerM
+- Lepsza wyszukiwarka emoji
+- Ulepszono głosowanie (wyświetl własny głos, zawsze wyświetlaj przycisk głosowania, nie skracaj długich odpowiedzi)
+- Dodano ustawienia notyfikacji push
+- Poprawki błędów

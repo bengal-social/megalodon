@@ -1,0 +1,4 @@
+- Przygotowano pliki pod publikację na F-Droid
+- Naprawiono automatyczną aktualizację
+- Dodano monochromatyczne ikony z powrotem do launchera
+- Poprawiono nieodpowiednią ikonę ukrytego postu w rozszerzonej stopce

@@ -1,0 +1,6 @@
+- Dodano możliwość otwarcia oryginalnego wpisu podczas odpowiadania
+- Scalono zmiany i naprawy błędów
+- Usunięto nieużywany kod "App Center"
+- Dodano publikację aplikacji bez widoku federacji dla Play Store
+- Dodano customowy URL przekierowujący aby ułatwić logowanie
+- Zmieniono link do kontrybucji

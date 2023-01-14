@@ -1,0 +1,4 @@
+- Naprawiono zepsuty rendering tagów HTML i dodano renderowanie formatowania Markdown
+- Rozpoczęto <a href="https://translate.codeberg.org/projects/megalodon">projekt translacji Weblate</a>
+- Dodano wyłącznik federacyjnej osi czasu
+- Małe poprawki pod publikację na Google Play
