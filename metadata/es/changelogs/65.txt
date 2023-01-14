@@ -1,10 +1,10 @@
 - Borradores y mensajes programados
-- Mostrar el mensaje original al responder
-- Filtros compatibles con Mastodon 4.0 (aún no existe la función "ocultar con aviso")
-- Clic prolongado para interactuar con las publicaciones (responder, impulsar, me gusta, marcar) desde otras cuentas
+- Mostrar mensaje original al responder
+- Filtros compatibles con Mastodon 4.0 (todavía no hay función "ocultar con advertencia")
+- Mantenga presionado para interactuar con mensajes (respuesta, impulso, favoritos, marcador) de otras cuentas conectadas
 - Iconos en todos los menús
-- Activar el reenvío de informes
-- Añadir mención al usar "Publicar sobre esto"
-- Opción de notificaciones uniforme en lugar de iconos distintos.
-- Acceder a la lista de reglas desde la configuración.
+- Opción para reenviar informes
+- Agregue una mención cuando use la función "Publicar sobre esto"
+- Posibilidad de usar un ícono de notificación uniforme en lugar de íconos separados
+- Opción para acceder a la lista de reglas de la aplicación desde la configuración
 - Corrección de errores
