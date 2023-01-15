@@ -1,0 +1,5 @@
+- Colors de tema nous: Material You i vermell
+- Nous tons grisos foscos per a tots els temes
+- Icona d'impuls plena millor diferenciada
+- Animacions per als botons d'interacció
+- Correccions d'errors (fallada en algunes publicacions, «Llistes amb», llengua de publicació per defecte)

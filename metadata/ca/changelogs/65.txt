@@ -1,0 +1,10 @@
+- Esborranys i publicacions programades
+- Mostra la publicació original en respondre
+- Filtres compatibles amb Mastodon 4.0 (encara no té la funció «amaga amb un avís»)
+- Feu una pulsació llarga per a interactuar amb les publicacions (respondre, impulsar, agradar, afegir com a marcador) des d'altres comptes connectats
+- Icones en tots els menús
+- Commutador per a reenviar informes
+- Afegeix una menció quan s'utilitze la funció «Publica sobre açò»
+- Opció per a utilitzar una única icona de notificacions en lloc de les icones diferents
+- Opció per accedir a la llista de normes des de la configuració de l'aplicació
+- Correccions d'errors

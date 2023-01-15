@@ -1,0 +1,4 @@
+- Corregeix la renderització trencada d'etiquetes HTML i activa la renderització del format Markdown
+- Inicia el <a href="https://translate.codeberg.org/projects/megalodon">projecte de traducció a Weblate</a>
+- Afegeix un commutador per a la línia de temps federada
+- Les versions 52-54 eren xicotets ajustos per a un llançament a Google Play

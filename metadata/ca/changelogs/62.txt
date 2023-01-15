@@ -1,0 +1,11 @@
+- Botó «Publica» personalitzable
+- Obri els enllaços del Fedivers a l'aplicació
+- Pulsació llarga al botó d'impuls per a «citar» una publicació
+- Copia l'URL de la publicació en mantenir polsat el botó de compartir
+- Incorpora l'eliminació de notificacions (desactivat per defecte)
+- Icones dedicades per a diferents tipus de notificacions
+- Colors grisos nous
+- Afegeix una opció de configuració per desactivar el desplaçament entre pestanyes
+- Afegeix diversos enllaços a la configuració del compte
+- Commutador per a mostrar/amagar el botó de traducció a la línia de temps
+- Correccions d'errors i millores

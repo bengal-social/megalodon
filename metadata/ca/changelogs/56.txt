@@ -1,0 +1,6 @@
+- Temes colorits personalitzats per @LucasGGamerM
+- Nou logotip de «megalodon» enviat per @LucasGGamerM
+- Millor cerca d'emojis en la redacció
+- Votació ajustada (mostra el propi vot, mostra sempre el botó de vot, no talla les respostes llargues)
+- Afegeix la configuració de notificacions emergents per a les notificacions de publicacions
+- Correccions d'errors

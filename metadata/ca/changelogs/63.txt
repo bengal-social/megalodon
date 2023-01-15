@@ -1,0 +1,6 @@
+- Opció per a impulsar amb una visibilitat específica en fer una polsació llarga
+- Mostra la visibilitat dels propis impulsos
+- Afegeix una llista de les etiquetes seguides
+- Pulsació llarga per a copiar enllaços
+- Opció per obrir publicacions des d'un altre compte
+- Correccions d'errors i retocs menors

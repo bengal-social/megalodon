@@ -1,0 +1,6 @@
+- Afegeix un selector d'idioma
+- Afegeix la funció de traducció
+- Millora la semàntica per a votar en les enquestes (botons radials i caselles de selecció)
+- Afegeix una opció per a permetre la votació de múltiples opcions en les enquestes
+- Pantalla d'inici de sessió nova
+- Correccions d'errors
