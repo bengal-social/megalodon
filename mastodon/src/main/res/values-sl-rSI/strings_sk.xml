@@ -1,3 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="sk_delete_and_redraft">Izbriši in ponovno izdelaj</string>
+    <string name="sk_pin_post">Pripni na profil</string>
+    <string name="sk_confirm_pin_post_title">Pripni objavo na profil</string>
+    <string name="sk_pinning">Pripenjam objavo…</string>
+    <string name="sk_unpin_post">Odpni iz profila</string>
+    <string name="sk_confirm_unpin_post_title">Odpni objavo iz profila</string>
+    <string name="sk_image_description">Opis slike</string>
+    <string name="sk_visibility_unlisted">Nenavedeno</string>
+    <string name="sk_settings_show_replies">Prikaži odgovor</string>
+    <string name="sk_mark_media_as_sensitive">Označite medij kot občutljiv</string>
+    <string name="sk_federated_timeline">Federacija</string>
+    <string name="sk_clear_recent_languages">Izbriši nazadnje uporabljene jezike</string>
+    <string name="sk_app_name">Megalodon</string>
+    <string name="sk_pinned_posts">Pripeto</string>
+    <string name="sk_confirm_delete_and_redraft_title">Izbriši ter ponovno izdelaj objavo</string>
+    <string name="sk_confirm_delete_and_redraft">Ali ste prepričani, da želite objavo izbrisati in jo ponovno izdelati\?</string>
+    <string name="sk_confirm_pin_post">Ali želite pripeti to objavo na vaš profil\?</string>
+    <string name="sk_confirm_unpin_post">Ali ste prepričani, da želite odpeti to objavo\?</string>
+    <string name="sk_unpinning">Odpenjanje objave…</string>
+    <string name="sk_settings_load_new_posts">Samodejno naloži nove objave</string>
+    <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
 </resources>
