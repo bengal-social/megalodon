@@ -140,4 +140,6 @@
     <string name="sk_delete_list">Elimina la llista</string>
     <string name="sk_edit_list_title">Edita la llista</string>
     <string name="sk_your_lists">Llistes</string>
+    <string name="sk_loading_fediverse_resource_title">Buscant-ho al Fedivers</string>
+    <string name="sk_loading_resource_on_instance_title">Buscant-ho a %s</string>
 </resources>
