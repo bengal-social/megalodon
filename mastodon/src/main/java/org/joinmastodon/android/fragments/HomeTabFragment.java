@@ -266,7 +266,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 
 					switcher.setPivotX(V.dp(28)); // padding + half of icon
 					switcher.setPivotY(switcher.getHeight() / 2f);
-					timelineTitle.setPivotX(0);
+					timelineTitle.setPivotX(timelineTitle.getWidth() - V.dp(8));
 					timelineTitle.setPivotY(timelineTitle.getHeight() / 2f);
 				}
 			});
@@ -407,9 +407,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.ALPHA, 0f),
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.SCALE_X, .8f),
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.SCALE_Y, .8f),
-				ObjectAnimator.ofFloat(collapsedChevron, View.ALPHA, 0f),
-				ObjectAnimator.ofFloat(collapsedChevron, View.SCALE_X, .8f),
-				ObjectAnimator.ofFloat(collapsedChevron, View.SCALE_Y, .8f)
+				ObjectAnimator.ofFloat(collapsedChevron, View.ALPHA, 0f)
 		);
 		set.setDuration(GlobalUserPreferences.reduceMotion ? 0 : 300);
 		set.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -442,9 +440,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.ALPHA, 1f),
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.SCALE_X, 1f),
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.SCALE_Y, 1f),
-				ObjectAnimator.ofFloat(collapsedChevron, View.ALPHA, 1f),
-				ObjectAnimator.ofFloat(collapsedChevron, View.SCALE_X, 1f),
-				ObjectAnimator.ofFloat(collapsedChevron, View.SCALE_Y, 1f)
+				ObjectAnimator.ofFloat(collapsedChevron, View.ALPHA, 1f)
 		);
 		set.setDuration(GlobalUserPreferences.reduceMotion ? 0 : 300);
 		set.setInterpolator(CubicBezierInterpolator.DEFAULT);
