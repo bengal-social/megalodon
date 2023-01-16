@@ -139,10 +139,11 @@
     <string name="sk_list_replies_policy_followed">pengguna mengikuti</string>
     <string name="sk_list_replies_policy_none">tidak ada siapa pun</string>
     <string name="sk_delete_list">Hapus daftar</string>
-    <string name="sk_delete_list_confirm">Apakah Anda yakin ingin menghapus daftar ini\?</string>
+    <string name="sk_delete_list_confirm">Apakah Anda yakin ingin menghapus daftar “%s”\?</string>
     <string name="sk_edit_list_title">Sunting daftar</string>
     <string name="sk_your_lists">Daftar Anda</string>
     <string name="sk_timeline_federated">Federasi</string>
     <string name="sk_timeline_home">Beranda</string>
     <string name="sk_timeline_local">Lokal</string>
+    <string name="sk_recent_searches_placeholder">Ketik sesuatu untuk memulai mencari</string>
 </resources>
