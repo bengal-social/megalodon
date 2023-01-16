@@ -426,7 +426,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	}
 
 	public void showNewPostsButton(){
-		if(newPostsBtnShown)
+		if(newPostsBtnShown || pager == null || pager.getCurrentItem() != 0)
 			return;
 		newPostsBtnShown=true;
 		if(currentNewPostsAnim!=null){
