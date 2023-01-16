@@ -77,7 +77,7 @@
     <string name="sk_reblogged_as">Impulsat com a %s</string>
     <string name="sk_announcements">Anuncis</string>
     <string name="sk_list_name_hint">Nom de la llista</string>
-    <string name="sk_delete_list_confirm">Segur que vols eliminar la llista\?</string>
+    <string name="sk_delete_list_confirm">Segur que vols eliminar la llista «%s»\?</string>
     <string name="sk_timeline_home">Inici</string>
     <string name="sk_settings_profile">Configura el perfil</string>
     <string name="sk_settings_posting">Preferències de publicació</string>
