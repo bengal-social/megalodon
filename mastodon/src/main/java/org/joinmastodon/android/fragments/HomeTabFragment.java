@@ -338,7 +338,11 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	}
 
 	private void navigateTo(int i) {
-		pager.setCurrentItem(i);
+		navigateTo(i, !GlobalUserPreferences.reduceMotion);
+	}
+
+	private void navigateTo(int i, boolean smooth) {
+		pager.setCurrentItem(i, smooth);
 		updateSwitcherIcon(i);
 	}
 
@@ -482,6 +486,19 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		if(GithubSelfUpdater.needSelfUpdating()){
 			E.unregister(this);
 		}
+	}
+
+	@Override
+	public void onViewStateRestored(Bundle savedInstanceState) {
+		super.onViewStateRestored(savedInstanceState);
+		if (savedInstanceState == null) return;
+		navigateTo(savedInstanceState.getInt("selectedTab"), false);
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt("selectedTab", pager.getCurrentItem());
 	}
 
 	private class HomePagerAdapter extends RecyclerView.Adapter<SimpleViewHolder> {
