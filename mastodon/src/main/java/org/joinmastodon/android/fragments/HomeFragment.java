@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.graphics.Outline;
 import android.os.Build;
 import android.os.Bundle;
+import android.service.notification.StatusBarNotification;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -221,7 +222,11 @@ public class HomeFragment extends AppKitFragment implements OnBackPressedListene
 			((NotificationsFragment) newFragment).loadData();
 			// TODO make an interface?
 			NotificationManager nm=getActivity().getSystemService(NotificationManager.class);
-			nm.cancel(accountID, PushNotificationReceiver.NOTIFICATION_ID);
+			for (StatusBarNotification notification : nm.getActiveNotifications()) {
+				if (accountID.equals(notification.getTag())) {
+					nm.cancel(accountID, notification.getId());
+				}
+			}
 		}
 	}
 
