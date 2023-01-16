@@ -208,26 +208,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				error.showToast(getContext());
 			}
 		}).exec(accountID);
-
-		ViewTreeObserver vto = view.getViewTreeObserver();
-		if (vto.isAlive()) {
-			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-				@Override
-				public void onGlobalLayout() {
-					view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-					HomeTabFragment.this.onGlobalLayout();
-				}
-			});
-		}
-	}
-
-	private void onGlobalLayout() {
-		switcher.setPivotX(V.dp(28)); // padding + half of icon
-		switcher.setPivotY(switcher.getHeight() / 2f);
-		// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
-		// centering button by applying the same space on the left
-		int padding = getToolbar().getWidth() - toolbarFrame.getWidth();
-		((FrameLayout) toolbarShowNewPostsBtn.getParent()).setPaddingRelative(padding, 0, 0, 0);
 	}
 
 	public void updateToolbarLogo(){
@@ -269,6 +249,28 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		}
 
 		showNewPostsButton();
+
+		ViewTreeObserver vto = toolbar.getViewTreeObserver();
+		if (vto.isAlive()) {
+			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+				@Override
+				public void onGlobalLayout() {
+					int toolbarWidth = getToolbar().getWidth();
+					if (toolbarWidth == 0) return;
+					toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+					int toolbarFrameWidth = toolbarFrame.getWidth();
+					int padding = toolbarWidth - toolbarFrameWidth;
+					// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
+					// centering button by applying the same space on the left
+					((FrameLayout) toolbarShowNewPostsBtn.getParent()).setPaddingRelative(padding, 0, 0, 0);
+					toolbarShowNewPostsBtn.setMaxWidth(toolbarWidth - padding * 2);
+
+					switcher.setPivotX(V.dp(28)); // padding + half of icon
+					switcher.setPivotY(switcher.getHeight() / 2f);
+				}
+			});
+		}
 	}
 
 	@Override
