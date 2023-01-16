@@ -253,9 +253,11 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 				@Override
 				public void onGlobalLayout() {
-					int toolbarWidth = getToolbar().getWidth();
+					Toolbar t = getToolbar();
+					if (t == null) return;
+					int toolbarWidth = t.getWidth();
 					if (toolbarWidth == 0) return;
-					toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+					t.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
 					int toolbarFrameWidth = toolbarFrame.getWidth();
 					int padding = toolbarWidth - toolbarFrameWidth;
