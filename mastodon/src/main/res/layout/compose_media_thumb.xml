@@ -101,7 +101,7 @@
 			<TextView
 				android:id="@+id/state_title"
 				android:layout_width="match_parent"
-				android:layout_height="16dp"
+				android:layout_height="wrap_content"
 				android:layout_below="@id/retry_or_cancel_upload"
 				android:layout_marginTop="16dp"
 				android:textColor="?colorGray200"
@@ -116,7 +116,7 @@
 			<TextView
 				android:id="@+id/state_text"
 				android:layout_width="match_parent"
-				android:layout_height="32dp"
+				android:layout_height="wrap_content"
 				android:layout_below="@id/state_title"
 				android:includeFontPadding="false"
 				android:textColor="?colorGray200"
