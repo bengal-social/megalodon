@@ -27,7 +27,7 @@ public class Instance extends BaseModel{
 	/**
 	 * Admin-defined description of the Mastodon site.
 	 */
-	@RequiredField
+//	@RequiredField
 	public String description;
 	/**
 	 * A shorter description defined by the admin.
@@ -37,7 +37,7 @@ public class Instance extends BaseModel{
 	/**
 	 * An email that may be contacted for any inquiries.
 	 */
-	@RequiredField
+//	@RequiredField
 	public String email;
 	/**
 	 * The version of Mastodon installed on the instance.
