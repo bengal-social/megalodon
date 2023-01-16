@@ -569,6 +569,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getShortUsername()));
 		menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getShortUsername()));
 		menu.findItem(R.id.manage_user_lists).setVisible(relationship.following);
+		menu.findItem(R.id.soft_block).setVisible(relationship.followedBy && !relationship.following);
 		if(relationship.following) {
 			MenuItem hideBoosts = menu.findItem(R.id.hide_boosts);
 			hideBoosts.setTitle(getString(relationship.showingReblogs ? R.string.hide_boosts_from_user : R.string.show_boosts_from_user, account.getShortUsername()));
@@ -596,6 +597,8 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 			confirmToggleMuted();
 		}else if(id==R.id.block){
 			confirmToggleBlocked();
+		}else if(id==R.id.soft_block){
+			confirmSoftBlockUser();
 		}else if(id==R.id.report){
 			Bundle args=new Bundle();
 			args.putString("account", accountID);
@@ -900,6 +903,10 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 
 	private void confirmToggleBlocked(){
 		UiUtils.confirmToggleBlockUser(getActivity(), accountID, account, relationship.blocking, this::updateRelationship);
+	}
+
+	private void confirmSoftBlockUser(){
+		UiUtils.confirmSoftBlockUser(getActivity(), accountID, account, this::updateRelationship);
 	}
 
 	private void updateRelationship(Relationship r){

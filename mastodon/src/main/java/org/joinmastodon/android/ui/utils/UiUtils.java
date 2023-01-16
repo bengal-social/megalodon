@@ -388,6 +388,38 @@ public class UiUtils{
 				});
 	}
 
+	public static void confirmSoftBlockUser(Activity activity, String accountID, Account account, Consumer<Relationship> resultCallback){
+		showConfirmationAlert(activity,
+				activity.getString(R.string.sk_remove_follower),
+				activity.getString(R.string.sk_remove_follower_confirm, account.displayName),
+				activity.getString(R.string.sk_do_remove_follower),
+				R.drawable.ic_fluent_person_delete_24_regular,
+				() -> new SetAccountBlocked(account.id, true).setCallback(new Callback<>() {
+						@Override
+						public void onSuccess(Relationship relationship) {
+							new SetAccountBlocked(account.id, false).setCallback(new Callback<>() {
+								@Override
+								public void onSuccess(Relationship relationship) {
+									Toast.makeText(activity, R.string.sk_remove_follower_success, Toast.LENGTH_SHORT).show();
+									resultCallback.accept(relationship);
+								}
+
+								@Override
+								public void onError(ErrorResponse error) {
+									error.showToast(activity);
+									resultCallback.accept(relationship);
+								}
+							}).exec(accountID);
+						}
+
+						@Override
+						public void onError(ErrorResponse error) {
+							error.showToast(activity);
+						}
+					}).exec(accountID)
+		);
+	}
+
 	public static void confirmToggleBlockDomain(Activity activity, String accountID, String domain, boolean currentlyBlocked, Runnable resultCallback){
 		showConfirmationAlert(activity, activity.getString(currentlyBlocked ? R.string.confirm_unblock_domain_title : R.string.confirm_block_domain_title),
 				activity.getString(currentlyBlocked ? R.string.confirm_unblock : R.string.confirm_block, domain),

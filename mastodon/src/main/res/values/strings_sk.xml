@@ -144,4 +144,8 @@
     <string name="sk_timeline_local">Local</string>
     <string name="sk_timeline_federated">Federation</string>
     <string name="sk_recent_searches_placeholder">Type something to start searching</string>
+    <string name="sk_remove_follower">Remove as follower</string>
+    <string name="sk_remove_follower_confirm">Remove %s as a follower by blocking and immediately unblocking them?</string>
+    <string name="sk_do_remove_follower">Remove</string>
+    <string name="sk_remove_follower_success">Successfully removed follower</string>
 </resources>

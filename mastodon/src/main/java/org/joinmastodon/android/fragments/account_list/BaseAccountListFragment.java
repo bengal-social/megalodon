@@ -294,6 +294,7 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 			menu.findItem(R.id.block).setTitle(getString(relationship.blocking ? R.string.unblock_user : R.string.block_user, account.getShortUsername()));
 			menu.findItem(R.id.report).setTitle(getString(R.string.report_user, account.getShortUsername()));
 			menu.findItem(R.id.manage_user_lists).setTitle(getString(R.string.sk_lists_with_user, account.getShortUsername())).setVisible(relationship.following);
+			menu.findItem(R.id.soft_block).setVisible(relationship.followedBy && !relationship.following);
 			MenuItem hideBoosts=menu.findItem(R.id.hide_boosts);
 			MenuItem manageUserLists=menu.findItem(R.id.manage_user_lists);
 			if(relationship.following){
@@ -349,6 +350,8 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 				UiUtils.confirmToggleMuteUser(getActivity(), accountID, account, relationship.muting, this::updateRelationship);
 			}else if(id==R.id.block){
 				UiUtils.confirmToggleBlockUser(getActivity(), accountID, account, relationship.blocking, this::updateRelationship);
+			}else if(id==R.id.soft_block){
+				UiUtils.confirmSoftBlockUser(getActivity(), accountID, account, this::updateRelationship);
 			}else if(id==R.id.report){
 				Bundle args=new Bundle();
 				args.putString("account", accountID);
