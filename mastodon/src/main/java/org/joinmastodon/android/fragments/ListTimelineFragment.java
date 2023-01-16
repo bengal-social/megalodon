@@ -88,7 +88,7 @@ public class ListTimelineFragment extends StatusListFragment {
                     .setNegativeButton(R.string.cancel, (d, which) -> {})
                     .show();
         } else if (item.getItemId() == R.id.delete) {
-            UiUtils.confirmDeleteList(getActivity(), accountID, listID, () -> {
+            UiUtils.confirmDeleteList(getActivity(), accountID, listID, listTitle, () -> {
                 args.putBoolean("deleted", true);
                 setResult(true, args);
                 Nav.finish(this);

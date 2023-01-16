@@ -538,8 +538,12 @@ public class UiUtils{
 		);
 	}
 
-	public static void confirmDeleteList(Activity activity, String accountID, String listID, Runnable callback) {
-		showConfirmationAlert(activity, R.string.sk_delete_list, R.string.sk_delete_list_confirm, R.string.delete, R.drawable.ic_fluent_delete_28_regular,
+	public static void confirmDeleteList(Activity activity, String accountID, String listID, String listTitle, Runnable callback) {
+		showConfirmationAlert(activity,
+				activity.getString(R.string.sk_delete_list),
+				activity.getString(R.string.sk_delete_list_confirm, listTitle),
+				activity.getString(R.string.delete),
+				R.drawable.ic_fluent_delete_28_regular,
 				() -> new DeleteList(listID).setCallback(new Callback<>() {
 							@Override
 							public void onSuccess(Object o) {
