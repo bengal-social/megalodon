@@ -266,6 +266,8 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 
 					switcher.setPivotX(V.dp(28)); // padding + half of icon
 					switcher.setPivotY(switcher.getHeight() / 2f);
+					timelineTitle.setPivotX(0);
+					timelineTitle.setPivotY(timelineTitle.getHeight() / 2f);
 				}
 			});
 		}
