@@ -24,8 +24,13 @@
 		android:layout_width="24dp"
 		android:layout_height="24dp"
 		android:layout_gravity="center"
-		android:alpha="0"
-	/>
+		android:alpha="0" />
+	<TextView
+		android:id="@+id/secondary_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:textColor="?android:textColorSecondary" />
 	<ImageView
 		android:id="@+id/icon"
 		android:layout_width="wrap_content"

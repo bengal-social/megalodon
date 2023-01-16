@@ -19,8 +19,6 @@ import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -85,7 +83,8 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	private PushSubscription pushSubscription;
 
 	private ImageView themeTransitionWindowView;
-	private TextItem checkForUpdateItem;
+	private TextItem checkForUpdateItem, clearImageCacheItem;
+	private ImageCache imageCache;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -93,6 +92,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
 			setRetainInstance(true);
 		setTitle(R.string.settings);
+		imageCache = ImageCache.getInstance(getActivity());
 		accountID=getArguments().getString("account");
 		AccountSession session=AccountSessionManager.getInstance().getAccount(accountID);
 		Instance instance = AccountSessionManager.getInstance().getInstanceInfo(session.domain);
@@ -257,7 +257,8 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			checkForUpdateItem = new TextItem(R.string.sk_check_for_update, GithubSelfUpdater.getInstance()::checkForUpdates);
 			items.add(checkForUpdateItem);
 		}
-		items.add(new TextItem(R.string.settings_clear_cache, this::clearImageCache));
+		clearImageCacheItem = new TextItem(R.string.settings_clear_cache, UiUtils.formatFileSize(getContext(), imageCache.getDiskCache().size(), true), this::clearImageCache, 0);
+		items.add(clearImageCacheItem);
 		items.add(new TextItem(R.string.sk_clear_recent_languages, ()->UiUtils.showConfirmationAlert(getActivity(), R.string.sk_clear_recent_languages, R.string.sk_confirm_clear_recent_languages, R.string.clear, ()->{
 			GlobalUserPreferences.recentLanguages.remove(accountID);
 			GlobalUserPreferences.save();
@@ -493,9 +494,13 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	private void clearImageCache(){
 		MastodonAPIController.runInBackground(()->{
 			Activity activity=getActivity();
-			ImageCache.getInstance(getActivity()).clear();
+			imageCache.clear();
 			Toast.makeText(activity, R.string.media_cache_cleared, Toast.LENGTH_SHORT).show();
 		});
+		if (list.findViewHolderForAdapterPosition(items.indexOf(clearImageCacheItem)) instanceof TextViewHolder tvh) {
+			clearImageCacheItem.secondaryText = UiUtils.formatFileSize(getContext(), 0, true);
+			tvh.rebind();
+		}
 	}
 
 	@Subscribe
@@ -619,27 +624,29 @@ public class SettingsFragment extends MastodonToolbarFragment{
 
 	private class TextItem extends Item{
 		private String text;
+		private String secondaryText;
 		private Runnable onClick;
 		private boolean loading;
 		private int icon;
 
 		public TextItem(@StringRes int text, Runnable onClick) {
-			this(text, onClick, false, 0);
-		}
-
-		public TextItem(@StringRes int text, Runnable onClick, boolean loading) {
-			this(text, onClick, loading, 0);
+			this(text, null, onClick, false, 0);
 		}
 
 		public TextItem(@StringRes int text, Runnable onClick, @DrawableRes int icon) {
-			this(text, onClick, false, icon);
+			this(text, null, onClick, false, icon);
 		}
 
-		public TextItem(@StringRes int text, Runnable onClick, boolean loading, @DrawableRes int icon){
+		public TextItem(@StringRes int text, String secondaryText, Runnable onClick, @DrawableRes int icon) {
+			this(text, secondaryText, onClick, false, icon);
+		}
+
+		public TextItem(@StringRes int text, String secondaryText, Runnable onClick, boolean loading, @DrawableRes int icon){
 			this.text=getString(text);
 			this.onClick=onClick;
 			this.loading=loading;
 			this.icon=icon;
+			this.secondaryText = secondaryText;
 		}
 
 		@Override
@@ -890,22 +897,27 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	}
 
 	private class TextViewHolder extends BindableViewHolder<TextItem> implements UsableRecyclerView.Clickable{
-		private final TextView text;
+		private final TextView text, secondaryText;
 		private final ProgressBar progress;
 		private final ImageView icon;
 
 		public TextViewHolder(){
 			super(getActivity(), R.layout.item_settings_text, list);
 			text = itemView.findViewById(R.id.text);
+			secondaryText = itemView.findViewById(R.id.secondary_text);
 			progress = itemView.findViewById(R.id.progress);
 			icon = itemView.findViewById(R.id.icon);
 		}
 
 		@Override
 		public void onBind(TextItem item){
+			icon.setVisibility(item.icon != 0 ? View.VISIBLE : View.GONE);
+			secondaryText.setVisibility(item.secondaryText != null ? View.VISIBLE : View.GONE);
+
 			text.setText(item.text);
 			progress.animate().alpha(item.loading ? 1 : 0);
-			if (item.icon != 0) icon.setImageDrawable(getActivity().getTheme().getDrawable(item.icon));
+			icon.setImageResource(item.icon);
+			secondaryText.setText(item.secondaryText);
 		}
 
 		@Override
