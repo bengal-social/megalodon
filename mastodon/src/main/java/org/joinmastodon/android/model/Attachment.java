@@ -14,9 +14,11 @@ import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 import org.parceler.ParcelProperty;
 
+import java.util.UUID;
+
 @Parcel
 public class Attachment extends BaseModel{
-	@RequiredField
+//	@RequiredField
 	public String id;
 	@RequiredField
 	public Type type;
@@ -84,6 +86,12 @@ public class Attachment extends BaseModel{
 			Bitmap placeholder=BlurHashDecoder.decode(blurhash, 16, 16);
 			if(placeholder!=null)
 				blurhashPlaceholder=new BlurHashDrawable(placeholder, getWidth(), getHeight());
+		}
+
+		if (id == null) {
+			// akkoma servers doesn't provide IDs for attachments,
+			// but IDs are needed by the AudioPlayerService
+			id = "" + this.hashCode();
 		}
 	}
 
