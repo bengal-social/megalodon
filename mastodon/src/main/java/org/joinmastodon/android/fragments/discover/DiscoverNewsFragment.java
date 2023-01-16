@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.trends.GetTrendingLinks;
+import org.joinmastodon.android.fragments.IsOnTop;
 import org.joinmastodon.android.fragments.ScrollableToTop;
 import org.joinmastodon.android.model.Card;
 import org.joinmastodon.android.ui.DividerItemDecoration;
@@ -34,7 +35,7 @@ import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.utils.V;
 import me.grishka.appkit.views.UsableRecyclerView;
 
-public class DiscoverNewsFragment extends BaseRecyclerFragment<Card> implements ScrollableToTop{
+public class DiscoverNewsFragment extends BaseRecyclerFragment<Card> implements ScrollableToTop, IsOnTop {
 	private String accountID;
 	private List<ImageLoaderRequest> imageRequests=Collections.emptyList();
 	private DiscoverInfoBannerHelper bannerHelper=new DiscoverInfoBannerHelper(DiscoverInfoBannerHelper.BannerType.TRENDING_LINKS);
@@ -79,6 +80,11 @@ public class DiscoverNewsFragment extends BaseRecyclerFragment<Card> implements 
 	@Override
 	public void scrollToTop(){
 		smoothScrollRecyclerViewToTop(list);
+	}
+
+	@Override
+	public boolean isOnTop() {
+		return isRecyclerViewOnTop(list);
 	}
 
 	private class LinksAdapter extends UsableRecyclerView.Adapter<LinkViewHolder> implements ImageLoaderRecyclerAdapter{

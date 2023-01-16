@@ -21,6 +21,7 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.discover.DiscoverFragment;
+import org.joinmastodon.android.fragments.discover.SearchFragment;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.ui.AccountSwitcherSheet;
 import org.joinmastodon.android.ui.utils.UiUtils;
@@ -202,7 +203,9 @@ public class HomeFragment extends AppKitFragment implements OnBackPressedListene
 	private void onTabSelected(@IdRes int tab){
 		Fragment newFragment=fragmentForTab(tab);
 		if(tab==currentTab){
-			if(newFragment instanceof ScrollableToTop scrollable)
+			if (tab == R.id.tab_search)
+				searchFragment.onSelect();
+			else if(newFragment instanceof ScrollableToTop scrollable)
 				scrollable.scrollToTop();
 			return;
 		}

@@ -1,7 +1,6 @@
 package org.joinmastodon.android.fragments.discover;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +19,7 @@ import android.widget.TextView;
 
 import org.joinmastodon.android.GlobalUserPreferences;
 import org.joinmastodon.android.R;
+import org.joinmastodon.android.fragments.IsOnTop;
 import org.joinmastodon.android.fragments.ScrollableToTop;
 import org.joinmastodon.android.ui.SimpleViewHolder;
 import org.joinmastodon.android.ui.tabs.TabLayout;
@@ -36,7 +36,7 @@ import me.grishka.appkit.fragments.BaseRecyclerFragment;
 import me.grishka.appkit.fragments.OnBackPressedListener;
 import me.grishka.appkit.utils.V;
 
-public class DiscoverFragment extends AppKitFragment implements ScrollableToTop, OnBackPressedListener{
+public class DiscoverFragment extends AppKitFragment implements ScrollableToTop, OnBackPressedListener, IsOnTop {
 
 	private TabLayout tabLayout;
 	private ViewPager2 pager;
@@ -225,6 +225,23 @@ public class DiscoverFragment extends AppKitFragment implements ScrollableToTop,
 		}else{
 			searchFragment.scrollToTop();
 		}
+	}
+
+	@Override
+	public boolean isOnTop() {
+		return searchActive ? searchFragment.isOnTop()
+				: ((IsOnTop)getFragmentForPage(pager.getCurrentItem())).isOnTop();
+	}
+
+	public void onSelect() {
+		if (isOnTop()) selectSearch();
+		else scrollToTop();
+	}
+
+	private void selectSearch() {
+		searchEdit.requestFocus();
+		onSearchEditFocusChanged(searchEdit, true);
+		getActivity().getSystemService(InputMethodManager.class).showSoftInput(searchEdit, 0);
 	}
 
 	public void loadData(){

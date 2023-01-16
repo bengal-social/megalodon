@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.joinmastodon.android.api.requests.trends.GetTrendingStatuses;
+import org.joinmastodon.android.fragments.IsOnTop;
 import org.joinmastodon.android.fragments.StatusListFragment;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.ui.utils.DiscoverInfoBannerHelper;
@@ -12,7 +13,7 @@ import java.util.List;
 
 import me.grishka.appkit.api.SimpleCallback;
 
-public class DiscoverPostsFragment extends StatusListFragment{
+public class DiscoverPostsFragment extends StatusListFragment implements IsOnTop {
 	private DiscoverInfoBannerHelper bannerHelper=new DiscoverInfoBannerHelper(DiscoverInfoBannerHelper.BannerType.TRENDING_POSTS);
 
 	@Override
@@ -30,5 +31,10 @@ public class DiscoverPostsFragment extends StatusListFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
 		bannerHelper.maybeAddBanner(contentWrap);
+	}
+
+	@Override
+	public boolean isOnTop() {
+		return isRecyclerViewOnTop(list);
 	}
 }

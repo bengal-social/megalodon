@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.trends.GetTrendingHashtags;
+import org.joinmastodon.android.fragments.IsOnTop;
 import org.joinmastodon.android.fragments.ScrollableToTop;
 import org.joinmastodon.android.model.Hashtag;
 import org.joinmastodon.android.ui.DividerItemDecoration;
@@ -23,7 +24,7 @@ import me.grishka.appkit.fragments.BaseRecyclerFragment;
 import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.views.UsableRecyclerView;
 
-public class TrendingHashtagsFragment extends BaseRecyclerFragment<Hashtag> implements ScrollableToTop{
+public class TrendingHashtagsFragment extends BaseRecyclerFragment<Hashtag> implements ScrollableToTop, IsOnTop {
 	private String accountID;
 	private DiscoverInfoBannerHelper bannerHelper=new DiscoverInfoBannerHelper(DiscoverInfoBannerHelper.BannerType.TRENDING_HASHTAGS);
 
@@ -64,6 +65,11 @@ public class TrendingHashtagsFragment extends BaseRecyclerFragment<Hashtag> impl
 	@Override
 	public void scrollToTop(){
 		smoothScrollRecyclerViewToTop(list);
+	}
+
+	@Override
+	public boolean isOnTop() {
+		return isRecyclerViewOnTop(list);
 	}
 
 	private class HashtagsAdapter extends RecyclerView.Adapter<HashtagViewHolder>{

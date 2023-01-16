@@ -15,6 +15,7 @@ import android.widget.TextView;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.accounts.GetAccountRelationships;
 import org.joinmastodon.android.api.requests.accounts.GetFollowSuggestions;
+import org.joinmastodon.android.fragments.IsOnTop;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ScrollableToTop;
 import org.joinmastodon.android.model.Account;
@@ -48,7 +49,7 @@ import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.utils.V;
 import me.grishka.appkit.views.UsableRecyclerView;
 
-public class DiscoverAccountsFragment extends BaseRecyclerFragment<DiscoverAccountsFragment.AccountWrapper> implements ScrollableToTop{
+public class DiscoverAccountsFragment extends BaseRecyclerFragment<DiscoverAccountsFragment.AccountWrapper> implements ScrollableToTop, IsOnTop {
 	private String accountID;
 	private Map<String, Relationship> relationships=Collections.emptyMap();
 	private GetAccountRelationships relationshipsRequest;
@@ -135,6 +136,11 @@ public class DiscoverAccountsFragment extends BaseRecyclerFragment<DiscoverAccou
 	@Override
 	public void scrollToTop(){
 		smoothScrollRecyclerViewToTop(list);
+	}
+
+	@Override
+	public boolean isOnTop() {
+		return isRecyclerViewOnTop(list);
 	}
 
 	private class AccountsAdapter extends UsableRecyclerView.Adapter<AccountViewHolder> implements ImageLoaderRecyclerAdapter{
