@@ -1,5 +1,7 @@
 package org.joinmastodon.android.fragments;
 
+import static java.util.stream.Collectors.toList;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.PaginatedList;
@@ -88,18 +91,16 @@ public class AnnouncementsFragment extends BaseStatusListFragment<Announcement> 
 	}
 
 	@Override
-	protected void onDataLoaded(List<Announcement> d, boolean more) {
-		unreadIDs = d.stream().filter(a -> !a.read).map(a -> a.id).collect(Collectors.toList());
-		super.onDataLoaded(d, more);
-	}
-
-	@Override
 	protected void doLoadData(int offset, int count){
 		currentRequest=new GetAnnouncements(true)
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(List<Announcement> result){
-						onDataLoaded(result, false);
+						List<Announcement> unread = result.stream().filter(a -> !a.read).collect(toList());
+						List<Announcement> read = result.stream().filter(a -> a.read).collect(toList());
+						onDataLoaded(unread, true);
+						onDataLoaded(read, false);
+						unreadIDs = unread.stream().map(a -> a.id).collect(toList());
 					}
 				})
 				.exec(accountID);
