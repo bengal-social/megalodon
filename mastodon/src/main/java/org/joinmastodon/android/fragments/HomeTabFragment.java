@@ -187,7 +187,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		new GetLists().setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(List<ListTimeline> lists) {
-				addListsToSwitcher(lists);
+				addItemsToMap(lists, listItems);
 			}
 
 			@Override
@@ -199,7 +199,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		new GetFollowedHashtags().setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(HeaderPaginationList<Hashtag> hashtags) {
-				addHashtagsToSwitcher(hashtags);
+				addItemsToMap(hashtags, hashtagsItems);
 			}
 
 			@Override
@@ -276,23 +276,9 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		}).exec(accountID);
 	}
 
-	private void addListsToSwitcher(List<ListTimeline> lists) {
-		if (lists.size() == 0) return;
-		for (int i = 0; i < lists.size(); i++) {
-			ListTimeline list = lists.get(i);
-			int id = View.generateViewId();
-			listItems.put(id, list);
-		}
-		updateSwitcherMenu();
-	}
-
-	private void addHashtagsToSwitcher(List<Hashtag> hashtags) {
-		if (hashtags.size() == 0) return;
-		for (int i = 0; i < hashtags.size(); i++) {
-			Hashtag tag = hashtags.get(i);
-			int id = View.generateViewId();
-			hashtagsItems.put(id, tag);
-		}
+	private <T> void addItemsToMap(List<T> addItems, Map<Integer, T> items) {
+		if (addItems.size() == 0) return;
+		for (int i = 0; i < addItems.size(); i++) items.put(View.generateViewId(), addItems.get(i));
 		updateSwitcherMenu();
 	}
 
