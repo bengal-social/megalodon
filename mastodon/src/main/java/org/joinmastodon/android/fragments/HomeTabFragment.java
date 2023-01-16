@@ -19,6 +19,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -207,6 +208,26 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				error.showToast(getContext());
 			}
 		}).exec(accountID);
+
+		ViewTreeObserver vto = view.getViewTreeObserver();
+		if (vto.isAlive()) {
+			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+				@Override
+				public void onGlobalLayout() {
+					view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+					HomeTabFragment.this.onGlobalLayout();
+				}
+			});
+		}
+	}
+
+	private void onGlobalLayout() {
+		switcher.setPivotX(V.dp(28)); // padding + half of icon
+		switcher.setPivotY(switcher.getHeight() / 2f);
+		// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
+		// centering button by applying the same space on the left
+		int padding = getToolbar().getWidth() - toolbarFrame.getWidth();
+		((FrameLayout) toolbarShowNewPostsBtn.getParent()).setPaddingRelative(padding, 0, 0, 0);
 	}
 
 	public void updateToolbarLogo(){
@@ -231,15 +252,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		if(Build.VERSION.SDK_INT<Build.VERSION_CODES.N) UiUtils.fixCompoundDrawableTintOnAndroid6(toolbarShowNewPostsBtn);
 		toolbarShowNewPostsBtn.setOnClickListener(this::onNewPostsBtnClick);
 
-		toolbar.post(() -> {
-			// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
-			// centering button by applying the same space on the left
-			int padding = toolbar.getWidth() - toolbarFrame.getWidth();
-			((FrameLayout) toolbarShowNewPostsBtn.getParent()).setPadding(padding, 0, 0, 0);
-			switcher.setPivotX(V.dp(28)); // padding + half of icon
-			switcher.setPivotY(switcher.getHeight() / 2f);
-		});
-
 		if(newPostsBtnShown){
 			toolbarShowNewPostsBtn.setVisibility(View.VISIBLE);
 			collapsedChevron.setVisibility(View.VISIBLE);
@@ -255,6 +267,8 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			toolbarShowNewPostsBtn.setScaleY(.8f);
 			timelineTitle.setVisibility(View.VISIBLE);
 		}
+
+		showNewPostsButton();
 	}
 
 	@Override
@@ -376,6 +390,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	}
 
 	public void hideNewPostsButton(){
+		if (true) return;
 		if(!newPostsBtnShown)
 			return;
 		newPostsBtnShown=false;
