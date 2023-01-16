@@ -18,4 +18,7 @@
     <string name="sk_confirm_delete_draft">Jste si jistý, že chcete tento navržený příspěvek smazat\?</string>
     <string name="sk_confirm_delete_scheduled_post">Určitě chcete tento naplánovaný příspěvek smazat\?</string>
     <string name="sk_delete_list_confirm">Opravdu chcete tento seznam odstranit\?</string>
+    <string name="sk_app_name">Megalodon</string>
+    <string name="sk_pinned_posts">Připnutý</string>
+    <string name="sk_delete_and_redraft">vymazat a přepracovat</string>
 </resources>
