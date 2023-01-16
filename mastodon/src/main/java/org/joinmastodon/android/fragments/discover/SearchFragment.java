@@ -62,6 +62,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
 			setRetainInstance(true);
 		loadData();
+		setEmptyText(R.string.sk_recent_searches_placeholder);
 	}
 
 	@Override
@@ -173,7 +174,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 			return;
 		}
 		UiUtils.updateList(prevDisplayItems, displayItems, list, adapter, (i1, i2)->i1.parentID.equals(i2.parentID) && i1.index==i2.index && i1.getType()==i2.getType());
-		boolean recent=isInRecentMode();
+		boolean recent=isInRecentMode() && !displayItems.isEmpty();
 		if(recent!=headerAdapter.isVisible())
 			headerAdapter.setVisible(recent);
 		imgLoader.forceUpdateImages();

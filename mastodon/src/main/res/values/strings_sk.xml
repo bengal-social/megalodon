@@ -143,4 +143,5 @@
     <string name="sk_timeline_home">Home</string>
     <string name="sk_timeline_local">Local</string>
     <string name="sk_timeline_federated">Federation</string>
+    <string name="sk_recent_searches_placeholder">Type something to search</string>
 </resources>
