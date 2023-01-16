@@ -66,9 +66,11 @@ public class AnnouncementsFragment extends BaseStatusListFragment<Announcement> 
 		instanceUser.avatar = instanceUser.avatarStatic = instance.thumbnail;
 		instanceUser.emojis = List.of();
 		Status fakeStatus = a.toStatus();
+		TextStatusDisplayItem textItem = new TextStatusDisplayItem(a.id, HtmlParser.parse(a.content, a.emojis, a.mentions, a.tags, accountID), this, fakeStatus);
+		textItem.textSelectable = true;
 		return List.of(
 				HeaderStatusDisplayItem.fromAnnouncement(a, fakeStatus, instanceUser, this, accountID, this::onMarkAsRead),
-				new TextStatusDisplayItem(a.id, HtmlParser.parse(a.content, a.emojis, a.mentions, a.tags, accountID), this, fakeStatus)
+				textItem
 		);
 	}
 
@@ -87,8 +89,7 @@ public class AnnouncementsFragment extends BaseStatusListFragment<Announcement> 
 	protected void addAccountToKnown(Announcement s) {}
 
 	@Override
-	public void onItemClick(String id) {
-	}
+	public void onItemClick(String id) {}
 
 	@Override
 	protected void doLoadData(int offset, int count){
