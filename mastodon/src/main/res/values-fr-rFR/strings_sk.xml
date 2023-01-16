@@ -138,7 +138,7 @@
     <string name="sk_edit_list_title">Modifier la liste</string>
     <string name="sk_announcements">Annonces</string>
     <string name="sk_settings_single_notification">Afficher une seule notification</string>
-    <string name="sk_delete_list_confirm">Voulez-vous vraiment supprimer cette liste \?</string>
+    <string name="sk_delete_list_confirm">Êtes-vous sûr de vouloir supprimer la liste \"%s\" \?</string>
     <string name="sk_your_lists">Vos listes</string>
     <string name="sk_timeline_federated">Fédération</string>
     <string name="sk_timeline_local">Communauté</string>
