@@ -143,4 +143,5 @@
     <string name="sk_timeline_federated">Fédération</string>
     <string name="sk_timeline_local">Communauté</string>
     <string name="sk_timeline_home">Accueil</string>
+    <string name="sk_recent_searches_placeholder">Tapez quelque chose pour commencer la recherche</string>
 </resources>
