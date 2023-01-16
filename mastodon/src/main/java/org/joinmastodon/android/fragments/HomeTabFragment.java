@@ -248,8 +248,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			timelineTitle.setVisibility(View.VISIBLE);
 		}
 
-		showNewPostsButton();
-
 		ViewTreeObserver vto = toolbar.getViewTreeObserver();
 		if (vto.isAlive()) {
 			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -392,7 +390,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	}
 
 	public void hideNewPostsButton(){
-		if (true) return;
 		if(!newPostsBtnShown)
 			return;
 		newPostsBtnShown=false;
