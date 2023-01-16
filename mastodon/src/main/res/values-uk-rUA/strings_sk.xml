@@ -133,7 +133,7 @@
     <string name="sk_list_replies_policy_list">учасники списку</string>
     <string name="sk_list_replies_policy_none">ніхто</string>
     <string name="sk_delete_list">Видалити список</string>
-    <string name="sk_delete_list_confirm">Ви впевнені, що хочете видалити цей список\?</string>
+    <string name="sk_delete_list_confirm">Ви впевнені, що хочете видалити список «%s»\?</string>
     <string name="sk_edit_list_title">Редагувати список</string>
     <string name="sk_your_lists">Ваші списки</string>
     <string name="sk_announcements">Оголошення</string>
