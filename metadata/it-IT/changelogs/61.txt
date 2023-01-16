@@ -1,0 +1,5 @@
+- Nuovi temi colore: Material You e Red
+- Nuove tonalità di grigio scuro per tutti i temi
+- Icona boost piena più distinta
+- Animazioni per pulsanti di interazione
+- Correzioni di bug (arresto anomalo in alcuni post, "Liste con", lingua di pubblicazione predefinita)

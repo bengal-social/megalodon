@@ -1,0 +1,6 @@
+- Opzione per reblog con visibilità specifica con clic lungo
+- Mostra visibilità dei propri reblog
+- Aggiunto elenco di hashtag seguiti
+- Fai clic a lungo per copiare i collegamenti
+- Aggiunta opzione per aprire post con altri account
+- Correzioni di bug e modifiche minori

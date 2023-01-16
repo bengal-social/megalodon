@@ -1,0 +1,4 @@
+- Preparati i file per il rilascio su F-Droid
+- Risolto il problema con l'aggiornamento automatico
+- Aggiunte le icone monocromatiche nelle icone di avvio
+- Sostituita l'icona "non elencato" errata nel piè di pagina esteso

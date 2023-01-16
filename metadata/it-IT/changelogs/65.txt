@@ -1,0 +1,10 @@
+- Bozze e post programmati
+- Mostra il post originale quando rispondi
+- Filtri compatibili con Mastodon 4.0 ("nascondi con avviso" ancora assente)
+- Fai clic a lungo per interagire con i post da altri account che hanno effettuato l'accesso
+- Icone in tutti i menu
+- Toggle per l'inoltro dei rapporti
+- Aggiungi menzione quando usi la funzione "Pubblica su questo".
+- Opzione per utilizzare un'icona di notifica uniforme
+- Opzione per accedere all'elenco delle regole in-app
+- Correzioni di bug

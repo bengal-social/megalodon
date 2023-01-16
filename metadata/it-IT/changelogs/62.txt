@@ -1,0 +1,11 @@
+- Pulsante Pubblica personalizzato
+- Apri i collegamenti del Fediverse nell'app
+- Clic lungo su boost per "citare" un post
+- Copia l'URL del post quando premi a lungo condividi
+- Aggiunta eliminazione delle notifiche
+- Icone dedicate per diversi tipi di notifica
+- Nuovi colori grigi
+- Aggiunta impostazione per controllare lo scorrimento tra schede
+- Aggiunti collegamenti alle impostazioni dell'account
+- Controlli per nascondere il pulsante di traduzione
+- Correzioni di bug e modifiche

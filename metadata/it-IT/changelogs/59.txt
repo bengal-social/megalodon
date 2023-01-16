@@ -1,0 +1,6 @@
+- Aggiunto selettore di lingua
+- Aggiunta funzione di traduzione
+- Migliorata la semantica per il voto nei sondaggi (pulsanti di opzione e caselle di controllo)
+- Aggiunta opzione per consentire il voto per più opzioni sui sondaggi
+- Nuova schermata di accesso
+- Correzioni di bug

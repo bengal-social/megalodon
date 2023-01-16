@@ -1,0 +1,4 @@
+- Corretto il rendering interrotto dei tag HTML e abilitato il rendering della formattazione Markdown
+- Inizializzato il <a href="https://translate.codeberg.org/projects/megalodon">progetto di traduzione Weblate</a>
+- Aggiunta dell'interruttore per la sequenza temporale Federata
+- Le versioni 52-54 erano piccoli aggiustamenti per una versione su Google Play

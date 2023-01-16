@@ -1,0 +1,6 @@
+- Adesso è consentito aprire il post originale durante la risposta (cliccando sulla riga "In risposta a...")
+- Unite modifiche a monte e correzioni di bug
+- Rimosso il codice "App Center" inutilizzato
+- Aggiunta versione senza timeline federata per Play Store
+- Aggiunto URI di reindirizzamento personalizzato per un accesso più semplice
+- Cambiato il link per contribuire

@@ -1,0 +1,16 @@
+Megalodon è una versione modificata dell' <a href="https://github.com/mastodon/mastodon-android">app ufficiale di Mastodon per Android</a>, che aggiunge importanti funzionalità mancanti nell'app ufficiale, come la timeline federata, creazione di post non in lista e un visualizzatore della descrizione delle immagini.
+
+<b>Funzionalità chiave</b>
+
+- <b>Creazione di post non in lista</b>: Crea post pubblici senza farli mostrarli nei trend, hashtags o timeline pubbliche.
+- <b>Timeline federata</b>: Vedi tutti i post pubblici delle persone in tutte le istanze federate con la tua.
+- <b>Bozze e post programmati</b>: Permette di preparare un post per essere pubblicato automaticamente in un momento specifico.
+- <b>Visualizzatore della descrizione delle immagini</b>: Controlla velocemente se un'immagine o video ha un testo alternativo allegato.
+- <b>Post fissati</b>: Fissa i tuoi post più importanti sul tuo profilo, e vedi i post fissati degli altri nella scheda "Fissati".
+- <b>Segui gli hashtags</b>: Vedi i nuovi post da hashtags specifici direttamente nella timeline Home seguendoli.
+- <b>Richieste di seguirti</b>: Accetta o rifiuta le richieste di seguirti dalle notifiche o dalla lista delle richieste.
+- <b>Elimina e riscrivi</b>: La funzione più amata, che rende possibile modificare i post senza avere una vera funzione di modifica.
+- <b>Selettore delle lingue</b>: Seleziona facilmente la lingua di ogni post, in modo far fare funzionare correttamente i filtri e le traduzioni.
+- <b>Traduzioni</b>: Traduci facilmente i post in Megalodon! Funziona solo se la traduzione è attivata dall'istanza.
+- <b>Indicatore della visibilità dei post</b>: Quando apri o rispondi ad un post, apparirà un'icona per indicare la visibilità del post.
+- <b>Temi cromatici</b>: Se non ti piace il colore rosa predefinito (lo squalo ti sta giudicando silenziosamente), i temi cromatici di Moshidon ti hanno coperto.
