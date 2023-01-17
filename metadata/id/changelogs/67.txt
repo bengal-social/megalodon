@@ -1,0 +1,10 @@
+- Tab beranda baru dengan lini masa publik
+- Tampilkan pengumuman server
+- Teks diubah ukurannya berdasarkan pengaturan sistem
+- Penyaringan ditingkatkan (belum, "Sembunyikan dengan peringatan" belum bekerja) oleh @thiagojedi
+- Daftarkan fitur pengelolaan
+- Hapus pengikut dengan memblokir mereka secara lembut
+- Tidak perbolehkan hubungan dengan fasis
+- Diperbaiki gambar tidak memuat ketika terhubung ke server Akkoma
+- Perbaikan kutu dan perubahan antarmuka
+- Ditambahkan catatan perubahan ke pembaru oleh @LucasGGamerM
