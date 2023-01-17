@@ -65,7 +65,7 @@
     <string name="sk_settings_posting">게시물 설정</string>
     <string name="sk_settings_filters">필터 설정</string>
     <string name="sk_settings_auth">보안 설정</string>
-    <string name="sk_settings_rules">서버 규칙</string>
+    <string name="sk_settings_rules">인스턴스 규칙</string>
     <string name="sk_settings_about">이 앱에 관하여</string>
     <string name="sk_settings_donate">기부</string>
     <string name="sk_delete_notification_confirm_action">알림 삭제</string>
@@ -75,8 +75,8 @@
     <string name="sk_settings_publish_button_text_title">게시 버튼 사용자화</string>
     <string name="sk_settings_translate_only_opened">타임라인에서 번역 버튼 숨김</string>
     <string name="sk_delete_notification">알림 삭제</string>
-    <string name="sk_settings_translation_availability_note_available">%s 서버는 번역을 지원합니다!</string>
-    <string name="sk_settings_translation_availability_note_unavailable">%s 서버는 번역을 지원하지 않는 것 같습니다.</string>
+    <string name="sk_settings_translation_availability_note_available">%s 인스턴스는 번역을 지원합니다!</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s 인스턴스는 번역을 지원하지 않는 것 같습니다.</string>
     <string name="sk_clear_all_notifications_confirm">정말로 모든 알림을 삭제하시겠습니까\?</string>
     <string name="sk_clear_all_notifications_confirm_action">모두 삭제</string>
     <string name="sk_tabs_disable_swipe">스와이프로 탭간 전환 비활성화</string>
@@ -128,7 +128,7 @@
     <string name="sk_timeline_local">로컬</string>
     <string name="sk_timeline_federated">연합</string>
     <string name="sk_list_replies_policy">답글을 표시할 대상</string>
-    <string name="sk_delete_list_confirm">정말로 이 리스트를 삭제하시겠습니까\?</string>
+    <string name="sk_delete_list_confirm">정말로 \"%s\" 리스트를 삭제하시겠습니까\?</string>
     <string name="sk_announcements">공지사항</string>
     <string name="sk_mark_as_read">읽음으로 표시</string>
     <string name="sk_settings_about_instance">인스턴스에 대하여</string>
@@ -142,4 +142,10 @@
     <string name="sk_edit_list_title">리스트 편집</string>
     <string name="sk_your_lists">리스트</string>
     <string name="sk_settings_single_notification">하나의 알림만 표시</string>
+    <string name="sk_recent_searches_placeholder">검색할 내용을 입력하세요</string>
+    <string name="sk_do_remove_follower">제거</string>
+    <string name="sk_remove_follower_success">성공적으로 팔로워를 제거했습니다</string>
+    <string name="sk_changelog">변경 로그</string>
+    <string name="sk_remove_follower">팔로워에서 제거</string>
+    <string name="sk_remove_follower_confirm">%s 님을 차단하고 바로 차단 해제하여 팔로워에서 제거하시겠습니까\?</string>
 </resources>
