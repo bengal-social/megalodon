@@ -66,7 +66,7 @@ public class ScheduledStatus extends BaseModel implements DisplayItemsParent{
         s.id = id;
         s.mediaAttachments = mediaAttachments;
         s.createdAt = scheduledAt;
-        s.inReplyToId = "" + params.inReplyToId;
+        s.inReplyToId = params.inReplyToId > 0 ? "" + params.inReplyToId : null;
         s.content = s.text = params.text;
         s.spoilerText = params.spoilerText;
         s.visibility = params.visibility;
