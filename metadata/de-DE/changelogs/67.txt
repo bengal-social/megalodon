@@ -1,0 +1,9 @@
+- Neuer Home-Tab mit öffentlichen Timelines
+- Server-Ankündigungen werden nun angezeigt
+- Text wird nach Systemeinstellungen skaliert
+- Verbesserte Filter (noch ohne "Mit Warnung verbergen"-Feature) von @thiagojedi
+- Features zum Listen-Management
+- Keine Verbindungen mit Faschos
+- Fehler beim Laden von Bildern auf Akkoma-Instanzen behoben
+- Fehlerbehebungen und UI-Verbesserungen
+- Versionsverlauf zu Updater hinzugefügt, von @LucasGGamerM
