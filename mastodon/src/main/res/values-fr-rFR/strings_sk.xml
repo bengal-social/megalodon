@@ -144,4 +144,9 @@
     <string name="sk_timeline_local">Communauté</string>
     <string name="sk_timeline_home">Accueil</string>
     <string name="sk_recent_searches_placeholder">Tapez quelque chose pour commencer la recherche</string>
+    <string name="sk_do_remove_follower">Supprimer</string>
+    <string name="sk_remove_follower_success">Abonné supprimé avec succès</string>
+    <string name="sk_changelog">Journal des modifications</string>
+    <string name="sk_remove_follower_confirm">Supprimer %s en tant qu\'abonné en le bloquant et en le débloquant immédiatement \?</string>
+    <string name="sk_remove_follower">Supprimer comme abonné</string>
 </resources>
