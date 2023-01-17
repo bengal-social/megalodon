@@ -138,8 +138,14 @@
     <string name="sk_your_lists">Deine Listen</string>
     <string name="sk_announcements">Ankündigungen</string>
     <string name="sk_settings_single_notification">Nur eine Benachrichtigung anzeigen</string>
-    <string name="sk_delete_list_confirm">Liste wirklich löschen\?</string>
+    <string name="sk_delete_list_confirm">Liste “%s” wirklich löschen\?</string>
     <string name="sk_timeline_home">Start</string>
     <string name="sk_timeline_local">Lokal</string>
     <string name="sk_timeline_federated">Föderiert</string>
+    <string name="sk_recent_searches_placeholder">Tippe, um die Suche zu starten</string>
+    <string name="sk_do_remove_follower">Entfernen</string>
+    <string name="sk_remove_follower_success">Follower_in erfolgreich entfernt</string>
+    <string name="sk_changelog">Änderungsverlauf</string>
+    <string name="sk_remove_follower">Nicht mehr folgen lassen</string>
+    <string name="sk_remove_follower_confirm">%s als Follower_in entfernen\? Die Person wird dabei blockiert und gleich wieder freigegeben.</string>
 </resources>
