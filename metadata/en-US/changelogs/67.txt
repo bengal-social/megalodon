@@ -3,6 +3,7 @@
 - Text is scaled according to system settings
 - Improved filtering (no, "Hide with a warning" doesn't work yet) by @thiagojedi
 - List management features
+- Remove followers by soft-blocking them
 - Disallow connections with fascists
 - Fix images not loading when connected to Akkoma instance
 - Bugfixes and UI tweaks

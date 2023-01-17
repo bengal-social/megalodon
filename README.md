@@ -151,6 +151,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Display original post when replying](https://github.com/sk22/megalodon/commit/375f8ceb2747705fedf43686681cc0e0b812f899)
 * [Display server announcements](https://github.com/sk22/megalodon/commit/84179bc207d6b69cc2a770a3c28fa0a39b0b54e8)
 * [Create](https://github.com/sk22/megalodon/commit/294595513a45037359b31377aafc25ae5b58d8e7), [edit](https://github.com/sk22/megalodon/commit/d47797bf7ac8cff3f9ba1cfee219a1bb2af21da6) and [delete](https://github.com/sk22/megalodon/commit/54c29fd787fc2cd0dfd2787ad796b8190f795973) lists
+* [Soft-blocking (by blocking and immediately unblocking)](https://github.com/sk22/megalodon/commit/e75d350b7a2709259e9fc5138e0e1f361bdb0972)
 
 
 ### Behavior
