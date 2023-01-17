@@ -143,4 +143,8 @@
     <string name="sk_your_lists">你的列表</string>
     <string name="sk_timeline_federated">联邦</string>
     <string name="sk_recent_searches_placeholder">输入内容开始搜索</string>
+    <string name="sk_remove_follower">删除关注者</string>
+    <string name="sk_do_remove_follower">删除</string>
+    <string name="sk_remove_follower_success">成功删除关注者</string>
+    <string name="sk_changelog">变更日志</string>
 </resources>
