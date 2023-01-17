@@ -31,7 +31,7 @@ Despite being one of the main features of federated social media, the Federated 
   
 That’s one of the reasons why choosing a small, **well-moderated instance is important**. Instance admins and moderators should always make sure to ban abusive users and stop federating with instances who platform them. On well-moderated instances, the Federated timeline can be a welcoming place to meet new people!
 
-### Draft and schedule posts
+### **Draft and schedule posts**
 
 **Allows for preparing a post and scheduling it to send it automatically at a specific time.**
 
@@ -149,6 +149,8 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Long-click boost button to "quote" a post](https://github.com/sk22/megalodon/commit/b25a237c20c6a924ed4d9b357999867c3a32b32b)
 * [Draft and schedule posts](https://github.com/sk22/megalodon/pull/217)
 * [Display original post when replying](https://github.com/sk22/megalodon/commit/375f8ceb2747705fedf43686681cc0e0b812f899)
+* [Display server announcements](https://github.com/sk22/megalodon/commit/84179bc207d6b69cc2a770a3c28fa0a39b0b54e8)
+* [Create](https://github.com/sk22/megalodon/commit/294595513a45037359b31377aafc25ae5b58d8e7), [edit](https://github.com/sk22/megalodon/commit/d47797bf7ac8cff3f9ba1cfee219a1bb2af21da6) and [delete](https://github.com/sk22/megalodon/commit/54c29fd787fc2cd0dfd2787ad796b8190f795973) lists
 
 
 ### Behavior
@@ -171,6 +173,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Resolve Fediverse links in the app](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/open-urls-in-app)
 * [Preserve whitespaces in HTML](https://github.com/sk22/megalodon/commit/7d876bddc7a07d98f0fecbf62b13bdb9fcce3412)
 * [Long-click to copy links](https://github.com/sk22/megalodon/commit/b32e32274923a94742a9926ef38785f746d41405)
+* Improved filtering using Mastodon 4.0 API: [#202](https://github.com/sk22/megalodon/pull/202), [#212](https://github.com/sk22/megalodon/pull/212), [#255](https://github.com/sk22/megalodon/pull/255) by [@thiagojedi](https://github.com/thiagojedi)
 
 
 ### Visual
@@ -185,6 +188,7 @@ There's also a handful of custom strings exclusive to this projects that would n
 * Material You color theme by [@LucasGGamerM](https://github.com/LucasGGamerM)
 * [Animations for interaction buttons](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/animate-buttons)
 * [Dedicated icons for different notification types](https://github.com/sk22/megalodon/pull/178) by [@florian-obernberger](https://github.com/florian-obernberger)
+* Scale text according to system settings
 
 
 ## Building

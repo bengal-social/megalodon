@@ -1,0 +1,9 @@
+- Redesigned home tab with public timelines
+- Display server announcements
+- Text is scaled according to system settings
+- Improved filtering (no, "Hide with a warning" doesn't work yet) by @thiagojedi
+- List management features
+- Disallow connections with fascists
+- Fix images not loading when connected to Akkoma instance
+- Bugfixes and UI tweaks
+- Add changelog to updater by @LucasGGamerM
