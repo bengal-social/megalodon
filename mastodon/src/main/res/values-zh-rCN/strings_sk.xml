@@ -138,8 +138,9 @@
     <string name="sk_list_replies_policy_followed">关注的用户</string>
     <string name="sk_list_replies_policy_none">没有人</string>
     <string name="sk_delete_list">删除列表</string>
-    <string name="sk_delete_list_confirm">您确定要删除此列表吗？</string>
+    <string name="sk_delete_list_confirm">您确定要删除列表“%s”吗？</string>
     <string name="sk_edit_list_title">编辑列表</string>
     <string name="sk_your_lists">你的列表</string>
     <string name="sk_timeline_federated">联邦</string>
+    <string name="sk_recent_searches_placeholder">输入内容开始搜索</string>
 </resources>
