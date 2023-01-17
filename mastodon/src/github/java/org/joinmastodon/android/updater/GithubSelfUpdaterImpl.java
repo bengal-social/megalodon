@@ -61,6 +61,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 			info=new UpdateInfo();
 			info.version=prefs.getString("version", null);
 			info.size=prefs.getLong("apkSize", 0);
+			info.changelog=prefs.getString("changelog", null);
 			downloadID=prefs.getLong("downloadID", 0);
 			if(downloadID==0 || !getUpdateApkFile().exists()){
 				state=UpdateState.UPDATE_AVAILABLE;
@@ -84,6 +85,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 					.remove("apkURL")
 					.remove("checkedByBuild")
 					.remove("downloadID")
+					.remove("changelog")
 					.apply();
 		}
 	}
@@ -117,6 +119,7 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 		try(Response resp=call.execute()){
 			JsonObject obj=JsonParser.parseReader(resp.body().charStream()).getAsJsonObject();
 			String tag=obj.get("tag_name").getAsString();
+			String changelog=obj.get("body").getAsString();
 			Pattern pattern=Pattern.compile("v?(\\d+)\\.(\\d+)\\.(\\d+)\\+fork\\.(\\d+)");
 			Matcher matcher=pattern.matcher(tag);
 			if(!matcher.find()){
@@ -151,12 +154,14 @@ public class GithubSelfUpdaterImpl extends GithubSelfUpdater{
 						UpdateInfo info=new UpdateInfo();
 						info.size=size;
 						info.version=version;
+						info.changelog=changelog;
 						this.info=info;
 
 						getPrefs().edit()
 								.putLong("apkSize", size)
 								.putString("version", version)
 								.putString("apkURL", url)
+								.putString("changelog", changelog)
 								.putInt("checkedByBuild", BuildConfig.VERSION_CODE)
 								.remove("downloadID")
 								.apply();

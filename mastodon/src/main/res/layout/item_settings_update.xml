@@ -8,67 +8,83 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:minHeight="64dp"
-		android:gravity="center_vertical"
-		android:paddingStart="16dp"
-		android:background="@drawable/bg_settings_update"
-		android:orientation="horizontal">
+		android:orientation="vertical"
+		android:background="@drawable/bg_settings_update">
 
-		<TextView
-			android:id="@+id/text"
-			android:layout_width="0dp"
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:layout_marginEnd="4dp"
-			android:layout_marginTop="16dp"
-			android:layout_marginBottom="16dp"
-			android:textAppearance="@style/m3_body_medium"
-			tools:text="@string/sk_update_available"/>
+			android:minHeight="64dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
 
-		<FrameLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content">
+			<TextView
+				android:id="@+id/text"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:layout_marginVertical="16dp"
+				android:layout_marginEnd="16dp"
+				android:layout_marginStart="8dp"
+				android:textAppearance="@style/m3_body_medium"
+				tools:text="@string/sk_update_available"/>
 
-			<Button
-				android:id="@+id/button"
+			<FrameLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical|end"
-				android:background="?android:selectableItemBackground"
-				android:textColor="?android:textColorPrimary"
-				android:textAllCaps="true"
-				android:textSize="14sp"
-				android:paddingLeft="16dp"
-				android:paddingRight="16dp"
-				android:stateListAnimator="@null"
-				tools:text="@string/install_update"/>
+				android:layout_marginEnd="16dp">
 
-			<ImageButton
-				android:id="@+id/cancel_btn"
-				android:layout_width="40dp"
-				android:layout_height="40dp"
-				android:layout_gravity="end|center_vertical"
-				android:layout_marginEnd="16dp"
-				android:background="@drawable/bg_update_download_progress"
-				android:tint="?colorSearchHint"
-				android:contentDescription="@string/cancel"
-				android:visibility="gone"
-				android:src="@drawable/ic_fluent_dismiss_16_filled"/>
+				<Button
+					android:id="@+id/button"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical|end"
+					android:stateListAnimator="@null"
+					tools:text="@string/install_update"/>
 
-			<ProgressBar
-				android:id="@+id/progress"
-				android:layout_width="40dp"
-				android:layout_height="40dp"
-				android:layout_gravity="end|center_vertical"
-				android:layout_marginEnd="16dp"
-				android:progressDrawable="@drawable/update_progress"
-				android:max="1000"
-				android:padding="0dp"
-				android:visibility="gone"
-				android:indeterminateOnly="false"
-				android:indeterminate="false"/>
+				<ImageButton
+					android:id="@+id/cancel_btn"
+					android:layout_width="40dp"
+					android:layout_height="40dp"
+					android:layout_gravity="end|center_vertical"
+					android:background="@drawable/bg_update_download_progress"
+					android:tint="?colorSearchHint"
+					android:contentDescription="@string/cancel"
+					android:visibility="gone"
+					android:src="@drawable/ic_fluent_dismiss_16_filled"/>
 
-		</FrameLayout>
+				<ProgressBar
+					android:id="@+id/progress"
+					android:layout_width="40dp"
+					android:layout_height="40dp"
+					android:layout_gravity="end|center_vertical"
+					android:progressDrawable="@drawable/update_progress"
+					android:max="1000"
+					android:padding="0dp"
+					android:visibility="gone"
+					android:indeterminateOnly="false"
+					android:indeterminate="false"/>
+
+			</FrameLayout>
+
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/changelog_header"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/m3_title_medium"
+			android:paddingHorizontal="16dp"
+			android:text="@string/sk_changelog" />
+
+		<TextView
+			android:id="@+id/changelog"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/m3_body_medium"
+			android:paddingHorizontal="16dp"
+			android:paddingTop="8dp"
+			android:paddingBottom="16dp"/>
 
 	</LinearLayout>
 

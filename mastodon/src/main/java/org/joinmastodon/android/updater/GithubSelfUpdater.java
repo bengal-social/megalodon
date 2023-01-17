@@ -51,6 +51,7 @@ public abstract class GithubSelfUpdater{
 
 	public static class UpdateInfo{
 		public String version;
+		public String changelog;
 		public long size;
 	}
 }
