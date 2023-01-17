@@ -136,7 +136,7 @@
     <string name="sk_already_reblogged">Al geboost</string>
     <string name="sk_reblogged_as">Geboost als %s</string>
     <string name="sk_reblog_with_visibility">Boosten met zichtbaarheid</string>
-    <string name="sk_quote_post">Maak bericht hierover</string>
+    <string name="sk_quote_post">Maak een bericht hierover</string>
     <string name="sk_undo_reblog">Boost ongedaan maken</string>
     <string name="sk_reblog_as">Boost met ander account</string>
     <string name="sk_list_replies_policy_list">Leden van lijst</string>
