@@ -143,4 +143,9 @@
     <string name="sk_timeline_local">Локальна</string>
     <string name="sk_timeline_federated">Федерація</string>
     <string name="sk_recent_searches_placeholder">Введіть щось, щоб почати пошук</string>
+    <string name="sk_remove_follower">Вилучити як підписника</string>
+    <string name="sk_remove_follower_confirm">Вилучити %s як підписника заблокувавши й миттєво розблокувавши\?</string>
+    <string name="sk_do_remove_follower">Вилучити</string>
+    <string name="sk_remove_follower_success">Підписника успішно вилучено</string>
+    <string name="sk_changelog">Журнал змін</string>
 </resources>
