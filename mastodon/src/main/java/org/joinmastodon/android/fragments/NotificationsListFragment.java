@@ -21,6 +21,7 @@ import org.joinmastodon.android.ui.displayitems.AccountCardStatusDisplayItem;
 import org.joinmastodon.android.ui.displayitems.HeaderStatusDisplayItem;
 import org.joinmastodon.android.ui.displayitems.ImageStatusDisplayItem;
 import org.joinmastodon.android.ui.displayitems.StatusDisplayItem;
+import org.joinmastodon.android.ui.utils.DiscoverInfoBannerHelper;
 import org.joinmastodon.android.ui.utils.InsetStatusItemDecoration;
 import org.parceler.Parcels;
 
@@ -41,6 +42,7 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 	private boolean onlyMentions;
 	private boolean onlyPosts;
 	private String maxID;
+	private final DiscoverInfoBannerHelper bannerHelper = new DiscoverInfoBannerHelper(DiscoverInfoBannerHelper.BannerType.POST_NOTIFICATIONS);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -175,6 +177,7 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 	public void onViewCreated(View view, Bundle savedInstanceState){
 		super.onViewCreated(view, savedInstanceState);
 		list.addItemDecoration(new InsetStatusItemDecoration(this));
+		if (onlyPosts) bannerHelper.maybeAddBanner(contentWrap);
 	}
 
 	private Notification getNotificationByID(String id){

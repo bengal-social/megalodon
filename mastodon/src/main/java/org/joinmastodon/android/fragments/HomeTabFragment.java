@@ -1,5 +1,7 @@
 package org.joinmastodon.android.fragments;
 
+import static org.joinmastodon.android.GlobalUserPreferences.showFederatedTimeline;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -109,7 +111,12 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 
 			fragments.add(new HomeTimelineFragment());
 			fragments.add(new LocalTimelineFragment());
-			if (GlobalUserPreferences.showFederatedTimeline) fragments.add(new FederatedTimelineFragment());
+			if (showFederatedTimeline) fragments.add(new FederatedTimelineFragment());
+			args=new Bundle(args);
+			args.putBoolean("onlyPosts", true);
+			NotificationsListFragment postsFragment=new NotificationsListFragment();
+			postsFragment.setArguments(args);
+			fragments.add(postsFragment);
 
 			FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
 			for (int i = 0; i < fragments.size(); i++) {
@@ -302,7 +309,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 
 	private void updateSwitcherMenu() {
 		Context context = getContext();
-		switcherPopup.getMenu().findItem(R.id.federated).setVisible(GlobalUserPreferences.showFederatedTimeline);
+		switcherPopup.getMenu().findItem(R.id.federated).setVisible(showFederatedTimeline);
 
 		if (!listItems.isEmpty()) {
 			MenuItem listsItem = switcherPopup.getMenu().findItem(R.id.lists);
@@ -342,6 +349,8 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		} else if (id == R.id.federated) {
 			navigateTo(2);
 			return true;
+		} else if (id == R.id.post_notifications) {
+			navigateTo(showFederatedTimeline ? 3 : 2);
 		} else if ((list = listItems.get(id)) != null) {
 			Bundle args = new Bundle();
 			args.putString("account", accountID);
@@ -365,16 +374,22 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	}
 
 	private void updateSwitcherIcon(int i) {
-		timelineIcon.setImageResource(switch (i) {
-			default -> R.drawable.ic_fluent_home_24_regular;
-			case 1 -> R.drawable.ic_fluent_people_community_24_regular;
-			case 2 -> R.drawable.ic_fluent_earth_24_regular;
-		});
-		timelineTitle.setText(switch (i) {
-			default -> R.string.sk_timeline_home;
-			case 1 -> R.string.sk_timeline_local;
-			case 2 -> R.string.sk_timeline_federated;
-		});
+		// todo: refactor when implementing pinned tabs
+		if (i == (showFederatedTimeline ? 3 : 2)) {
+			timelineIcon.setImageResource(R.drawable.ic_fluent_alert_24_regular);
+			timelineTitle.setText(R.string.sk_notify_posts);
+		} else {
+			timelineIcon.setImageResource(switch (i) {
+				default -> R.drawable.ic_fluent_home_24_regular;
+				case 1 -> R.drawable.ic_fluent_people_community_24_regular;
+				case 2 -> R.drawable.ic_fluent_earth_24_regular;
+			});
+			timelineTitle.setText(switch (i) {
+				default -> R.string.sk_timeline_home;
+				case 1 -> R.string.sk_timeline_local;
+				case 2 -> R.string.sk_timeline_federated;
+			});
+		}
 	}
 
 	@Override
