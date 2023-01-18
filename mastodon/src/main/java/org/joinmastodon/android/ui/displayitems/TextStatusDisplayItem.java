@@ -42,14 +42,16 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 	private CharSequence parsedSpoilerText;
 	public boolean textSelectable;
 	public final Status status;
+	public boolean disableTranslate;
 	public boolean translated = false;
 	public TranslatedStatus translation = null;
 	private AccountSession session;
 
-	public TextStatusDisplayItem(String parentID, CharSequence text, BaseStatusListFragment parentFragment, Status status){
+	public TextStatusDisplayItem(String parentID, CharSequence text, BaseStatusListFragment parentFragment, Status status, boolean disableTranslate){
 		super(parentID, parentFragment);
 		this.text=text;
 		this.status=status;
+		this.disableTranslate=disableTranslate;
 		emojiHelper.setText(text);
 		if(!TextUtils.isEmpty(status.spoilerText)){
 			parsedSpoilerText=HtmlParser.parseCustomEmoji(status.spoilerText, status.emojis);
@@ -139,7 +141,8 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			}
 
 			Instance instanceInfo = AccountSessionManager.getInstance().getInstanceInfo(item.session.domain);
-			boolean translateEnabled = instanceInfo.v2 != null && instanceInfo.v2.configuration.translation != null && instanceInfo.v2.configuration.translation.enabled;
+			boolean translateEnabled = !item.disableTranslate && instanceInfo.v2 != null &&
+					instanceInfo.v2.configuration.translation != null && instanceInfo.v2.configuration.translation.enabled;
 
 			translateWrap.setVisibility(
 					(!GlobalUserPreferences.translateButtonOpenedOnly || item.textSelectable) &&
