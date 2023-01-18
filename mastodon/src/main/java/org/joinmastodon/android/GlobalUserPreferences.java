@@ -31,6 +31,7 @@ public class GlobalUserPreferences{
 	public static boolean uniformNotificationIcon;
 	public static boolean reduceMotion;
 	public static boolean keepOnlyLatestNotification;
+	public static boolean disableAltTextReminder;
 	public static String publishButtonText;
 	public static ThemePreference theme;
 	public static ColorPreference color;
@@ -66,6 +67,7 @@ public class GlobalUserPreferences{
 		uniformNotificationIcon=prefs.getBoolean("uniformNotificationIcon", false);
 		reduceMotion=prefs.getBoolean("reduceMotion", false);
 		keepOnlyLatestNotification=prefs.getBoolean("keepOnlyLatestNotification", false);
+		disableAltTextReminder=prefs.getBoolean("disableAltTextReminder", false);
 		publishButtonText=prefs.getString("publishButtonText", "");
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 		recentLanguages=fromJson(prefs.getString("recentLanguages", "{}"), recentLanguagesType, new HashMap<>());
@@ -96,6 +98,7 @@ public class GlobalUserPreferences{
 				.putBoolean("uniformNotificationIcon", uniformNotificationIcon)
 				.putBoolean("reduceMotion", reduceMotion)
 				.putBoolean("keepOnlyLatestNotification", keepOnlyLatestNotification)
+				.putBoolean("disableAltTextReminder", disableAltTextReminder)
 				.putString("publishButtonText", publishButtonText)
 				.putInt("theme", theme.ordinal())
 				.putString("color", color.name())

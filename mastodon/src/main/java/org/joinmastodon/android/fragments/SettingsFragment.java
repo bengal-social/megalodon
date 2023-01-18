@@ -196,6 +196,10 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.save();
 			needAppRestart=true;
 		}));
+		items.add(new SwitchItem(R.string.sk_settings_disable_alt_text_reminder, R.drawable.ic_fluent_image_alt_text_24_regular, GlobalUserPreferences.disableAltTextReminder, i->{
+			GlobalUserPreferences.disableAltTextReminder=i.checked;
+			GlobalUserPreferences.save();
+		}));
 		items.add(new SwitchItem(R.string.sk_settings_translate_only_opened, R.drawable.ic_fluent_translate_24_regular, GlobalUserPreferences.translateButtonOpenedOnly, i->{
 			GlobalUserPreferences.translateButtonOpenedOnly=i.checked;
 			GlobalUserPreferences.save();

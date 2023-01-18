@@ -149,4 +149,8 @@
     <string name="sk_do_remove_follower">Remove</string>
     <string name="sk_remove_follower_success">Successfully removed follower</string>
     <string name="sk_changelog">Changelog</string>
+    <string name="sk_alt_text_missing_title">Missing alt text</string>
+    <string name="sk_alt_text_missing">At least one attachment does not contain a description.</string>
+    <string name="sk_publish_anyway">Publish anyway</string>
+    <string name="sk_settings_disable_alt_text_reminder">Disable alt text reminder</string>
 </resources>

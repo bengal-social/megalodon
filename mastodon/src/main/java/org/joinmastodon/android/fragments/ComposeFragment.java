@@ -951,6 +951,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	}
 
 	private void publish(){
+		publish(false);
+	}
+
+	private void publish(boolean forceWithoutAltTexts){
 		String text=mainEditText.getText().toString();
 		CreateStatus.Request req=new CreateStatus.Request();
 		req.status=text;
@@ -960,6 +964,17 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		req.scheduledAt = scheduledAt;
 		if(!attachments.isEmpty()){
 			req.mediaIds=attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList());
+			Optional<DraftMediaAttachment> withoutAltText = attachments.stream().filter(a -> a.description == null || a.description.isBlank()).findFirst();
+			boolean isDraft = scheduledAt != null && scheduledAt.isAfter(DRAFTS_AFTER_INSTANT);
+			if (!forceWithoutAltTexts && !GlobalUserPreferences.disableAltTextReminder && !isDraft && withoutAltText.isPresent()) {
+				new M3AlertDialogBuilder(getActivity())
+						.setTitle(R.string.sk_alt_text_missing_title)
+						.setMessage(R.string.sk_alt_text_missing)
+						.setPositiveButton(R.string.add_alt_text, (d, w) -> editMediaDescription(withoutAltText.get()))
+						.setNegativeButton(R.string.sk_publish_anyway, (d, w) -> publish(true))
+						.show();
+				return;
+			}
 		}
 		if(replyTo!=null || (editingStatus != null && editingStatus.inReplyToId!=null)){
 			req.inReplyToId=editingStatus!=null ? editingStatus.inReplyToId : replyTo.id;
@@ -1524,6 +1539,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		DraftMediaAttachment att=(DraftMediaAttachment) v.getTag();
 		if(att.serverAttachment==null)
 			return;
+		editMediaDescription(att);
+	}
+
+	private void editMediaDescription(DraftMediaAttachment att) {
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
 		args.putString("attachment", att.serverAttachment.id);
