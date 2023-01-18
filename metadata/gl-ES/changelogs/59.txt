@@ -1,0 +1,6 @@
+- Engade selector de idioma
+- Engade función de tradución
+- Mellora a semántica para votar nas enquisas (botóns radio no lugar de caixas)
+- Engade opción para votar varias opcións nas enquisas
+- Nova pantalla de acceso
+- Arranxos

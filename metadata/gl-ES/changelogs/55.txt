@@ -1,0 +1,4 @@
+- Arranxar a mostra de etiquetas HTML e permitir o formato Markdown
+- Iniciar a <a href="https://translate.codeberg.org/projects/megalodon">tradución do proxecto en Weblate</a>
+- Permitir engadir cronoloxía Federada
+- As versións 52-54 foron pequenos axustes para publicar en Google Play

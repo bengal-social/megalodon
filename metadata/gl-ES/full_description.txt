@@ -1,0 +1,16 @@
+Megalodon é unha versión modificada da <a href="https://github.com/mastodon/mastodon-android">app Mastodon Android oficial</a> que inclúe varias características que non están na aplicación oficial, como a cronoloxía federada, publicacións non listadas e ver a descrición das imaxes.
+
+<b>Características principais</b>
+
+- <b>Publicación non listada</b>: Publicar de xeito público pero sen que apareza nas tendencias, cancelos ou cronoloxías públicas.
+- <b>Cronoloxía federada</b>: Ver as publicacións públicas das persoas que forman a túa veciñanza no Fediverso ao estar federadas coa túa instancia.
+- <b>Borradores e programación</b>: Permite preparar unha publicación e programala para enviala automáticamente na hora indicada.
+- <b>Ver descrición de imaxes</b>: Comprobar rápidamente se unha imaxe ou vídeo inclúe un texto descritivo.
+- <b>Fixar publicacións</b>: Fixa no teu perfil as publicacións máis importantes e le as das outras persoas na lapela "Fixada".
+- <b>Seguir cancelos</b>: Ver novas publicacións dun cancelo específico directamente na cronoloxía de Inicio ao seguilo.
+- <b>Responder aos seguimentos</b>: Aceptar ou rexeitar as solicitudes de seguimento desde as notificacións ou a lista dedicada Solicitudes de Seguimento.
+- <b>Eliminar e rescribir</b>; A función tan desexada que permite a edición sen realmente usar a función editar.
+- <b>Elexir idioma</b>: Cambiar de xeito doado o idioma da publicación que estás a escribir para que os filtros e a tradución funcionen correctamente.
+- <b>Tradución</b>: Traducir fácilmente as publicacións dentro de Megalodon! Só funciona se a ferramenta tamén está dispoñible no teu Mastodon Web.
+- <b>Indicador de visibilidade</b>: Ao abrir ou responder a unha publicación verás unha icona que indica a visibilidade da publicación.
+- <b>Decorados</b>: Se non che gusta a cor Rosa por defecto (a quenlla mírate de esguello), os decorados de cores de Moshidon permítenche cambialo.

@@ -1,0 +1,6 @@
+- Posibilitar a apertura da publicación orixinal ao responder (premendo na liña "En resposta a...")
+- Fusionar os cambios da app orixinal e arranxos
+- Eliminar código non utilizado "App Center"
+- Engadir versión sen cronoloxía Federada para a Play Store
+- Engadir redirección URI personalizada para facilitar o acceso
+- Cambiar a ligazón de colaboradoras

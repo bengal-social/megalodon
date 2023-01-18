@@ -1,0 +1,6 @@
+- Cores personalizadas grazas a @LucasGGamerM
+- Novo texto do logo "megalodon" enviado por @LucasGGamerM
+- Melloras na busca de emojis ao escribir
+- Cambios nas votacións (mostra o voto propio, mostra sempre o botón de votar, non corta as respostas longas)
+- Engade o axuste para notificacións push para as notificacións da publicación
+- Arranxos varios
