@@ -144,8 +144,8 @@
     <string name="sk_delete_list_confirm">Tes a certeza de querer eliminar a lista “%s”\?</string>
     <string name="sk_delete_notification">Borrar notificación</string>
     <string name="sk_delete_notification_confirm_action">Borrar notificacion</string>
-    <string name="sk_delete_notification_confirm">¿Seguro que queres borrar esta notificación\?</string>
+    <string name="sk_delete_notification_confirm">Tes a certeza de querer borrar esta notificación\?</string>
     <string name="sk_clear_all_notifications">Borrar todas as notificacións</string>
     <string name="sk_clear_all_notifications_confirm_action">Borrar todo</string>
-    <string name="sk_clear_all_notifications_confirm">¿Seguro que queres borrar todas as notificacións\?</string>
+    <string name="sk_clear_all_notifications_confirm">Seguro que queres borrar todas as notificacións\?</string>
 </resources>
