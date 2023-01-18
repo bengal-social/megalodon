@@ -142,4 +142,5 @@
     <string name="sk_delete_list_confirm">Czy jesteś pewien że chcesz usunąć listę “%s”\?</string>
     <string name="sk_edit_list_title">Edytuj listę</string>
     <string name="sk_your_lists">Twoje listy</string>
+    <string name="sk_recent_searches_placeholder">Wpisz coś, aby rozpocząć wyszukiwanie</string>
 </resources>
