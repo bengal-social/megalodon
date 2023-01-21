@@ -48,6 +48,8 @@ public class Notification extends BaseModel implements DisplayItemsParent{
 		@SerializedName("poll")
 		POLL,
 		@SerializedName("status")
-		STATUS
+		STATUS,
+		@SerializedName("update")
+		UPDATE
 	}
 }

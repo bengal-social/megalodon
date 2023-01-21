@@ -2,8 +2,6 @@ package org.joinmastodon.android.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 
 import com.squareup.otto.Subscribe;
@@ -80,6 +78,7 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 			case REBLOG -> getString(R.string.notification_boosted);
 			case FAVORITE -> getString(R.string.user_favorited);
 			case POLL -> getString(R.string.poll_ended);
+			case UPDATE -> getString(R.string.sk_post_edited);
 		};
 		HeaderStatusDisplayItem titleItem=extraText!=null ? new HeaderStatusDisplayItem(n.id, n.account, n.createdAt, this, accountID, null, extraText, n, null) : null;
 		if(n.status!=null){

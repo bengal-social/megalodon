@@ -45,7 +45,9 @@ public class PushNotification extends BaseModel{
 		@SerializedName("poll")
 		POLL(R.string.notification_type_poll),
 		@SerializedName("status")
-		STATUS(R.string.sk_notification_type_status);
+		STATUS(R.string.sk_notification_type_status),
+		@SerializedName("update")
+		UPDATE(R.string.sk_notification_type_update);
 
 		@StringRes
 		public final int localizedName;
