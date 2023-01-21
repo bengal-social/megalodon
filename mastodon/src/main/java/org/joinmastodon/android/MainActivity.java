@@ -39,12 +39,13 @@ public class MainActivity extends FragmentStackActivity{
 				AccountSession session;
 				Bundle args=new Bundle();
 				Intent intent=getIntent();
-				if(intent.getBooleanExtra("fromNotification", false)){
+				boolean fromNotification = intent.getBooleanExtra("fromNotification", false);
+				boolean hasNotification = intent.hasExtra("notification");
+				if(fromNotification){
 					String accountID=intent.getStringExtra("accountID");
 					try{
 						session=AccountSessionManager.getInstance().getAccount(accountID);
-						if(!intent.hasExtra("notification"))
-							args.putString("tab", "notifications");
+						if(!hasNotification) args.putString("tab", "notifications");
 					}catch(IllegalStateException x){
 						session=AccountSessionManager.getInstance().getLastActiveAccount();
 					}
@@ -54,13 +55,13 @@ public class MainActivity extends FragmentStackActivity{
 				args.putString("account", session.getID());
 				Fragment fragment=session.activated ? new HomeFragment() : new AccountActivationFragment();
 				fragment.setArguments(args);
-				showFragmentClearingBackStack(fragment);
-				if(intent.getBooleanExtra("fromNotification", false) && intent.hasExtra("notification")){
+				if(fromNotification && hasNotification){
 					Notification notification=Parcels.unwrap(intent.getParcelableExtra("notification"));
 					showFragmentForNotification(notification, session.getID());
-				}else if(intent.getBooleanExtra("compose", false)){
+				} else if (intent.getBooleanExtra("compose", false)){
 					showCompose();
-				}else{
+				} else {
+					showFragmentClearingBackStack(fragment);
 					maybeRequestNotificationsPermission();
 				}
 			}
@@ -137,6 +138,32 @@ public class MainActivity extends FragmentStackActivity{
 	private void maybeRequestNotificationsPermission(){
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED){
 			requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 100);
+		}
+	}
+
+	/**
+	 * when opening app through a notification: if (thread) fragment "can go back", clear back stack
+	 * and show home fragment. upstream's implementation doesn't require this as it opens home first
+	 * and then immediately switches to the notification's ThreadFragment. this causes a black
+	 * screen in megalodon, for some reason, so i'm working around this that way.
+ 	 */
+	@Override
+	public void onBackPressed() {
+		Fragment currentFragment = getFragmentManager().findFragmentById(
+				(fragmentContainers.get(fragmentContainers.size() - 1)).getId()
+		);
+		Bundle currentArgs = currentFragment.getArguments();
+		if (this.fragmentContainers.size() == 1
+				&& currentArgs.getBoolean("_can_go_back", false)
+				&& currentArgs.containsKey("account")) {
+			Bundle args = new Bundle();
+			args.putString("account", currentArgs.getString("account"));
+			args.putString("tab", "notifications");
+			Fragment fragment=new HomeFragment();
+			fragment.setArguments(args);
+			showFragmentClearingBackStack(fragment);
+		} else {
+			super.onBackPressed();
 		}
 	}
 }
