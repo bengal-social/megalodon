@@ -38,7 +38,6 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
     private String listTitle;
     private ListTimeline.RepliesPolicy repliesPolicy;
     private ImageButton fab;
-    private Bundle resultArgs = new Bundle();
 
     public ListTimelineFragment() {
         setListLayoutId(R.layout.recycler_fragment_with_fab);
@@ -51,7 +50,6 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
         listID = args.getString("listID");
         listTitle = args.getString("listTitle");
         repliesPolicy = ListTimeline.RepliesPolicy.values()[args.getInt("repliesPolicy", 0)];
-        resultArgs.putString("listID", listID);
 
         setTitle(listTitle);
         setHasOptionsMenu(true);
@@ -95,9 +93,11 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
                                 setTitle(list.title);
                                 listTitle = list.title;
                                 repliesPolicy = list.repliesPolicy;
-                                resultArgs.putString("listTitle", listTitle);
-                                resultArgs.putInt("repliesPolicy", repliesPolicy.ordinal());
-                                setResult(true, resultArgs);
+                                Bundle result = new Bundle();
+                                result.putString("listID", listID);
+                                result.putString("listTitle", listTitle);
+                                result.putInt("repliesPolicy", repliesPolicy.ordinal());
+                                setResult(true, result);
                             }
 
                             @Override
@@ -110,17 +110,14 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
                     .show();
         } else if (item.getItemId() == R.id.delete) {
             UiUtils.confirmDeleteList(getActivity(), accountID, listID, listTitle, () -> {
-                resultArgs.putBoolean("deleted", true);
-                setResult(true, resultArgs);
+                Bundle result = new Bundle();
+                result.putBoolean("deleted", true);
+                result.putString("listID", listID);
+                setResult(true, result);
                 Nav.finish(this);
             });
         }
         return true;
-    }
-
-    @Override
-    public Bundle getResultArgs() {
-        return resultArgs;
     }
 
     @Override

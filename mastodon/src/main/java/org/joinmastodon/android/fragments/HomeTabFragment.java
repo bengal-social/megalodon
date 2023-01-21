@@ -64,7 +64,6 @@ import me.grishka.appkit.utils.V;
 
 public class HomeTabFragment extends MastodonToolbarFragment implements ScrollableToTop, OnBackPressedListener {
 	private static final int ANNOUNCEMENTS_RESULT = 654;
-	private static final int PINNED_UPDATED_RESULT = 523;
 
 	private String accountID;
 	private MenuItem announcements;
@@ -86,7 +85,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	private Fragment[] fragments;
 	private FrameLayout[] tabViews;
 	private TimelineDefinition[] timelines;
-	private Map<Integer, TimelineDefinition> timelinesByMenuItem = new HashMap<>();
+	private final Map<Integer, TimelineDefinition> timelinesByMenuItem = new HashMap<>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -378,11 +377,11 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			args.putString("listID", list.id);
 			args.putString("listTitle", list.title);
 			args.putInt("repliesPolicy", list.repliesPolicy.ordinal());
-			Nav.goForResult(getActivity(), ListTimelineFragment.class, args, PINNED_UPDATED_RESULT, this);
+			Nav.go(getActivity(), ListTimelineFragment.class, args);
 		} else if ((hashtag = hashtagsItems.get(id)) != null) {
 			args.putString("hashtag", hashtag.name);
 			args.putBoolean("following", hashtag.following);
-			Nav.goForResult(getActivity(), HashtagTimelineFragment.class, args, PINNED_UPDATED_RESULT, this);
+			Nav.go(getActivity(), HashtagTimelineFragment.class, args);
 		} else {
 			TimelineDefinition tl = timelinesByMenuItem.get(id);
 			if (tl != null) {
@@ -511,8 +510,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			announcements.setIcon(R.drawable.ic_fluent_megaphone_24_regular);
 			announcements.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 			UiUtils.insetPopupMenuIcon(getContext(), announcements);
-		} else if (reqCode == PINNED_UPDATED_RESULT && result != null && result.getBoolean("pinnedUpdated", false)) {
-			UiUtils.restartApp();
 		}
 	}
 
@@ -544,6 +541,13 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		if(GithubSelfUpdater.needSelfUpdating()){
 			E.unregister(this);
 		}
+	}
+
+	@Override
+	protected void onShown() {
+		super.onShown();
+		Object pinnedTimelines = GlobalUserPreferences.pinnedTimelines.get(accountID);
+		if (pinnedTimelines != null && timelineDefinitions != pinnedTimelines) UiUtils.restartApp();
 	}
 
 	@Override

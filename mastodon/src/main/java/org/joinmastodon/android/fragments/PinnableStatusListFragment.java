@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class PinnableStatusListFragment extends StatusListFragment {
-    protected boolean pinnedUpdated;
     protected List<TimelineDefinition> pinnedTimelines;
 
     @Override
@@ -54,7 +53,7 @@ public abstract class PinnableStatusListFragment extends StatusListFragment {
     }
 
     protected void togglePin(MenuItem pin) {
-        pinnedUpdated = true;
+        onPinnedUpdated(true);
         getToolbar().performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
         TimelineDefinition def = makeTimelineDefinition();
         boolean pinned = isPinned();
@@ -66,17 +65,5 @@ public abstract class PinnableStatusListFragment extends StatusListFragment {
         updatePinButton(pin);
     }
 
-    protected Bundle getResultArgs() {
-        return new Bundle();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Bundle resultArgs = getResultArgs();
-        if (pinnedUpdated) {
-            resultArgs.putBoolean("pinnedUpdated", true);
-            setResult(true, resultArgs);
-        }
-    }
+    public void onPinnedUpdated(boolean pinned) {}
 }
