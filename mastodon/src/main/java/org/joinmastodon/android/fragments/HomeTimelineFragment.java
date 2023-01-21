@@ -98,8 +98,10 @@ public class HomeTimelineFragment extends FabStatusListFragment {
 	@Override
 	protected void onHidden(){
 		super.onHidden();
-		if(!data.isEmpty()){
-			String topPostID=displayItems.get(list.getChildAdapterPosition(list.getChildAt(0))-getMainAdapterOffset()).parentID;
+		// workaround for mastodon#512. revert if fixed otherwise
+		int position = list.getChildAdapterPosition(list.getChildAt(0))-getMainAdapterOffset();
+		if(!data.isEmpty() && position >= 0 && position < displayItems.size()){
+			String topPostID=displayItems.get(position).parentID;
 			if(!topPostID.equals(lastSavedMarkerID)){
 				lastSavedMarkerID=topPostID;
 				new SaveMarkers(topPostID, null)
