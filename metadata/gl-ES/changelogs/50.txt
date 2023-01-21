@@ -1,0 +1,4 @@
+- Preparar os ficheiros para publicar en F-Droid
+- Arranxos no actualizador automático
+- Engadir iconas monocromáticas nas iconas do lanzador
+- Replazar a icona non listada na barra extendida ao pé

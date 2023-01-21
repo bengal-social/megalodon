@@ -135,11 +135,17 @@
     <string name="sk_list_replies_policy_followed">Usuarios a los que sigues</string>
     <string name="sk_list_replies_policy_none">Ninguno</string>
     <string name="sk_delete_list">Eliminar la lista</string>
-    <string name="sk_delete_list_confirm">¿Está seguro de que desea eliminar esta lista\?</string>
+    <string name="sk_delete_list_confirm">¿Estás seguro de que quieres borrar la lista \"%s\"\?</string>
     <string name="sk_edit_list_title">Editar la lista</string>
     <string name="sk_your_lists">Tus listas</string>
     <string name="sk_list_replies_policy_list">Lista de miembros</string>
     <string name="sk_timeline_home">Inicio</string>
     <string name="sk_timeline_federated">Federación</string>
     <string name="sk_timeline_local">Local</string>
+    <string name="sk_recent_searches_placeholder">Escribe algo para empezar a buscar</string>
+    <string name="sk_remove_follower">Eliminar como seguidor</string>
+    <string name="sk_remove_follower_confirm">¿Eliminar a %s como seguidor bloqueándolo y desbloqueándolo inmediatamente\?</string>
+    <string name="sk_do_remove_follower">Eliminar</string>
+    <string name="sk_remove_follower_success">Seguidor eliminado con éxito</string>
+    <string name="sk_changelog">Lista de cambios</string>
 </resources>
