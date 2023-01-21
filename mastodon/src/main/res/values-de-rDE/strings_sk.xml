@@ -33,7 +33,7 @@
     <string name="sk_follow_requests">Folgeanfragen</string>
     <string name="sk_accept_follow_request">Folgeanfrage akzeptieren</string>
     <string name="sk_reject_follow_request">Folgeanfrage ablehnen</string>
-    <string name="sk_lists_with_user">Listen mit %s bearbeiten</string>
+    <string name="sk_lists_with_user">Listen mit %s</string>
     <string name="sk_settings_always_reveal_content_warnings">Inhaltswarnungen immer ausklappen</string>
     <string name="sk_disable_marquee">Laufschrift in Titelleisten deaktivieren</string>
     <string name="sk_settings_contribute">Zu Megalodon beitragen</string>
@@ -148,4 +148,15 @@
     <string name="sk_changelog">Änderungsverlauf</string>
     <string name="sk_remove_follower">Nicht mehr folgen lassen</string>
     <string name="sk_remove_follower_confirm">%s als Follower_in entfernen\? Die Person wird dabei blockiert und gleich wieder freigegeben.</string>
+    <string name="sk_alt_text_missing">Mindestens ein Anhang hat keine Beschreibung.</string>
+    <string name="sk_publish_anyway">Trotzdem publizieren</string>
+    <string name="sk_timeline_posts">Beiträge</string>
+    <string name="sk_timelines_add">Hinzufügen</string>
+    <string name="sk_list">Liste</string>
+    <string name="sk_remove">Entfernen</string>
+    <string name="sk_icon_heart">Herz</string>
+    <string name="sk_icon_star">Stern</string>
+    <string name="sk_post_edited">bearbeitet</string>
+    <string name="sk_notification_type_update">Bearbeitete Beiträge</string>
+    <string name="sk_notify_posts_info_banner">Wenn du Beitrags Benachrichtigungen für jemanden aktiviert hast, erscheinen seine neuen Beiträge heir.</string>
 </resources>
