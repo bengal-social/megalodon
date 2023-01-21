@@ -181,7 +181,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					final Bundle args=new Bundle();
 					args.putString("account", item.parentFragment.getAccountID());
 					args.putParcelable("editStatus", Parcels.wrap(item.status));
-					if (id==R.id.delete_and_redraft) {
+					boolean redraft = id==R.id.delete_and_redraft;
+					if (redraft) {
 						args.putBoolean("redraftStatus", true);
 						if (item.parentFragment instanceof ThreadFragment thread && !thread.isItemEnabled(item.status.id)) {
 							// ("enabled" = clickable; opened status is not clickable)
@@ -189,7 +190,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 							args.putBoolean("navigateToStatus", true);
 						}
 					}
-					if(TextUtils.isEmpty(item.status.content) && TextUtils.isEmpty(item.status.spoilerText)){
+					if(!redraft && TextUtils.isEmpty(item.status.content) && TextUtils.isEmpty(item.status.spoilerText)){
 						Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 					}else if(item.scheduledStatus!=null){
 						args.putString("sourceText", item.status.text);
@@ -204,7 +205,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 									public void onSuccess(GetStatusSourceText.Response result){
 										args.putString("sourceText", result.text);
 										args.putString("sourceSpoiler", result.spoilerText);
-										if (id==R.id.delete_and_redraft) {
+										if (redraft) {
 											UiUtils.confirmDeletePost(item.parentFragment.getActivity(), item.parentFragment.getAccountID(), item.status, s->{
 												Nav.go(item.parentFragment.getActivity(), ComposeFragment.class, args);
 											}, true);
