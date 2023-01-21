@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -49,7 +50,6 @@ import org.joinmastodon.android.ui.SimpleViewHolder;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.updater.GithubSelfUpdater;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +66,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	private static final int ANNOUNCEMENTS_RESULT = 654;
 
 	private String accountID;
-	private MenuItem announcements;
+	private MenuItem announcements, announcementsAction, settings, settingsAction;
 //	private ImageView toolbarLogo;
 	private Button toolbarShowNewPostsBtn;
 	private boolean newPostsBtnShown;
@@ -86,6 +86,10 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	private FrameLayout[] tabViews;
 	private TimelineDefinition[] timelines;
 	private final Map<Integer, TimelineDefinition> timelinesByMenuItem = new HashMap<>();
+	private SubMenu hashtagsMenu, listsMenu;
+	private Menu optionsMenu;
+	private MenuInflater optionsMenuInflater;
+	private boolean announcementsBadged, settingsBadged;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -155,15 +159,9 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		switcherPopup = new PopupMenu(getContext(), switcher);
 		switcherPopup.setOnMenuItemClickListener(this::onSwitcherItemSelected);
 		UiUtils.enablePopupMenuIcons(getContext(), switcherPopup);
-		switcher.setOnClickListener(v->{
-			updateSwitcherMenu();
-			switcherPopup.show();
-		});
-		View.OnTouchListener listener = switcherPopup.getDragToOpenListener();
-		switcher.setOnTouchListener((v, m)-> {
-			updateSwitcherMenu();
-			return listener.onTouch(v, m);
-		});
+		switcher.setOnClickListener(v->switcherPopup.show());
+		switcher.setOnTouchListener(switcherPopup.getDragToOpenListener());
+		updateSwitcherMenu();
 
 		UiUtils.reduceSwipeSensitivity(pager);
 		pager.setUserInputEnabled(!GlobalUserPreferences.disableSwipe);
@@ -191,34 +189,60 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 
 		updateToolbarLogo();
 
+		ViewTreeObserver vto = getToolbar().getViewTreeObserver();
+		if (vto.isAlive()) {
+			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+				@Override
+				public void onGlobalLayout() {
+					Toolbar t = getToolbar();
+					if (t == null) return;
+					int toolbarWidth = t.getWidth();
+					if (toolbarWidth == 0) return;
+
+					int toolbarFrameWidth = toolbarFrame.getWidth();
+					int padding = toolbarWidth - toolbarFrameWidth;
+					FrameLayout parent = ((FrameLayout) toolbarShowNewPostsBtn.getParent());
+					if (padding == parent.getPaddingStart()) return;
+
+					// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
+					// centering button by applying the same space on the left
+					parent.setPaddingRelative(padding, 0, 0, 0);
+					toolbarShowNewPostsBtn.setMaxWidth(toolbarWidth - padding * 2);
+
+					switcher.setPivotX(V.dp(28)); // padding + half of icon
+					switcher.setPivotY(switcher.getHeight() / 2f);
+				}
+			});
+		}
+
 		if(GithubSelfUpdater.needSelfUpdating()){
 			E.register(this);
 			updateUpdateState(GithubSelfUpdater.getInstance().getState());
 		}
+	}
 
-		new GetLists().setCallback(new Callback<>() {
-			@Override
-			public void onSuccess(List<ListTimeline> lists) {
-				addItemsToMap(lists, listItems);
-			}
+	private void addListsToOptionsMenu() {
+		Context ctx = getContext();
+		listsMenu.clear();
+		listsMenu.getItem().setVisible(listItems.size() > 0);
+		UiUtils.insetPopupMenuIcon(ctx, UiUtils.makeBackItem(listsMenu));
+		listItems.forEach((id, list) -> {
+			MenuItem item = listsMenu.add(Menu.NONE, id, Menu.NONE, list.title);
+			item.setIcon(R.drawable.ic_fluent_people_list_24_regular);
+			UiUtils.insetPopupMenuIcon(ctx, item);
+		});
+	}
 
-			@Override
-			public void onError(ErrorResponse error) {
-				error.showToast(getContext());
-			}
-		}).exec(accountID);
-
-		new GetFollowedHashtags().setCallback(new Callback<>() {
-			@Override
-			public void onSuccess(HeaderPaginationList<Hashtag> hashtags) {
-				addItemsToMap(hashtags, hashtagsItems);
-			}
-
-			@Override
-			public void onError(ErrorResponse error) {
-				error.showToast(getContext());
-			}
-		}).exec(accountID);
+	private void addHashtagsToOptionsMenu() {
+		Context ctx = getContext();
+		hashtagsMenu.clear();
+		hashtagsMenu.getItem().setVisible(hashtagsItems.size() > 0);
+		UiUtils.insetPopupMenuIcon(ctx, UiUtils.makeBackItem(hashtagsMenu));
+		hashtagsItems.forEach((id, hashtag) -> {
+			MenuItem item = hashtagsMenu.add(Menu.NONE, id, Menu.NONE, hashtag.name);
+			item.setIcon(R.drawable.ic_fluent_number_symbol_24_regular);
+			UiUtils.insetPopupMenuIcon(ctx, item);
+		});
 	}
 
 	public void updateToolbarLogo(){
@@ -258,43 +282,70 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			toolbarShowNewPostsBtn.setScaleY(.8f);
 			timelineTitle.setVisibility(View.VISIBLE);
 		}
+	}
 
-		ViewTreeObserver vto = toolbar.getViewTreeObserver();
-		if (vto.isAlive()) {
-			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-				@Override
-				public void onGlobalLayout() {
-					Toolbar t = getToolbar();
-					if (t == null) return;
-					int toolbarWidth = t.getWidth();
-					if (toolbarWidth == 0) return;
-					t.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+	private void createOptionsMenu() {
+		optionsMenu.clear();
+		optionsMenuInflater.inflate(R.menu.home, optionsMenu);
+		announcements = optionsMenu.findItem(R.id.announcements);
+		announcementsAction = optionsMenu.findItem(R.id.announcements_action);
+		settings = optionsMenu.findItem(R.id.settings);
+		settingsAction = optionsMenu.findItem(R.id.settings_action);
+		hashtagsMenu = optionsMenu.findItem(R.id.hashtags).getSubMenu();
+		listsMenu = optionsMenu.findItem(R.id.lists).getSubMenu();
 
-					int toolbarFrameWidth = toolbarFrame.getWidth();
-					int padding = toolbarWidth - toolbarFrameWidth;
-					// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
-					// centering button by applying the same space on the left
-					((FrameLayout) toolbarShowNewPostsBtn.getParent()).setPaddingRelative(padding, 0, 0, 0);
-					toolbarShowNewPostsBtn.setMaxWidth(toolbarWidth - padding * 2);
+		announcements.setVisible(!announcementsBadged);
+		announcementsAction.setVisible(announcementsBadged);
+		settings.setVisible(!settingsBadged);
+		settingsAction.setVisible(settingsBadged);
 
-					switcher.setPivotX(V.dp(28)); // padding + half of icon
-					switcher.setPivotY(switcher.getHeight() / 2f);
-				}
-			});
-		}
+		UiUtils.enableOptionsMenuIcons(getContext(), optionsMenu,
+				R.id.overflow, R.id.announcements_action, R.id.settings_action);
+
+		addListsToOptionsMenu();
+		addHashtagsToOptionsMenu();
 	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-		inflater.inflate(R.menu.home, menu);
-		announcements = menu.findItem(R.id.announcements);
+		this.optionsMenu = menu;
+		this.optionsMenuInflater = inflater;
+		createOptionsMenu();
+
+		new GetLists().setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(List<ListTimeline> lists) {
+				updateList(lists, listItems);
+				addListsToOptionsMenu();
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {
+				error.showToast(getContext());
+			}
+		}).exec(accountID);
+
+		new GetFollowedHashtags().setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(HeaderPaginationList<Hashtag> hashtags) {
+				updateList(hashtags, hashtagsItems);
+				addHashtagsToOptionsMenu();
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {
+				error.showToast(getContext());
+			}
+		}).exec(accountID);
 
 		new GetAnnouncements(false).setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(List<Announcement> result) {
-				boolean hasUnread = result.stream().anyMatch(a -> !a.read);
-				announcements.setIcon(hasUnread ? R.drawable.ic_announcements_24_badged : R.drawable.ic_fluent_megaphone_24_regular);
-				updateBadgedOptionsItem(announcements, hasUnread);
+				if (result.stream().anyMatch(a -> !a.read)) {
+					announcementsBadged = true;
+					announcements.setVisible(false);
+					announcementsAction.setVisible(true);
+				}
 			}
 
 			@Override
@@ -302,27 +353,14 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				error.showToast(getActivity());
 			}
 		}).exec(accountID);
-
-		UiUtils.enableOptionsMenuIcons(getContext(), menu);
 	}
 
-	private void updateBadgedOptionsItem(MenuItem item, boolean asAction) {
-		item.setShowAsAction(asAction ? MenuItem.SHOW_AS_ACTION_ALWAYS : MenuItem.SHOW_AS_ACTION_NEVER);
-		if (asAction) {
-			UiUtils.resetPopupItemTint(item);
-		} else {
-			UiUtils.insetPopupMenuIcon(getContext(), item);
-		}
-	}
-
-	private <T> void addItemsToMap(List<T> addItems, Map<Integer, T> items) {
+	private <T> void updateList(List<T> addItems, Map<Integer, T> items) {
 		if (addItems.size() == 0) return;
 		for (int i = 0; i < addItems.size(); i++) items.put(View.generateViewId(), addItems.get(i));
-		updateSwitcherMenu();
 	}
 
 	private void updateSwitcherMenu() {
-		Context context = getContext();
 		Menu switcherMenu = switcherPopup.getMenu();
 		switcherMenu.clear();
 		timelinesByMenuItem.clear();
@@ -332,40 +370,16 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			timelinesByMenuItem.put(menuItemId, tl);
 			MenuItem item = switcherMenu.add(0, menuItemId, 0, tl.getTitle(getContext()));
 			item.setIcon(tl.getIcon().iconRes);
-			UiUtils.insetPopupMenuIcon(getContext(), item);
 		}
 
-		if (!listItems.isEmpty()) {
-			SubMenu listsMenu = switcherMenu.addSubMenu(R.string.sk_list_timelines);
-			UiUtils.insetPopupMenuIcon(context, listsMenu.getItem().setVisible(true)
-					.setIcon(R.drawable.ic_fluent_people_list_24_regular));
-			listsMenu.clear();
-			UiUtils.insetPopupMenuIcon(context, UiUtils.makeBackItem(listsMenu));
-			listItems.forEach((id, list) -> {
-				MenuItem item = listsMenu.add(Menu.NONE, id, Menu.NONE, list.title);
-				item.setIcon(R.drawable.ic_fluent_people_list_24_regular);
-				UiUtils.insetPopupMenuIcon(context, item);
-			});
-		}
+		switcherMenu.add(0, R.id.menu_edit, Menu.NONE, R.string.sk_edit_timelines)
+				.setIcon(R.drawable.ic_fluent_edit_24_regular);
 
-		if (!hashtagsItems.isEmpty()) {
-			SubMenu hashtagsMenu = switcherMenu.addSubMenu(R.string.sk_hashtags_you_follow);
-			UiUtils.insetPopupMenuIcon(context, hashtagsMenu.getItem().setVisible(true)
-					.setIcon(R.drawable.ic_fluent_number_symbol_24_regular));
-			hashtagsMenu.clear();
-			UiUtils.insetPopupMenuIcon(context, UiUtils.makeBackItem(hashtagsMenu));
-			hashtagsItems.forEach((id, hashtag) -> {
-				MenuItem item = hashtagsMenu.add(Menu.NONE, id, Menu.NONE, hashtag.name);
-				item.setIcon(R.drawable.ic_fluent_number_symbol_24_regular);
-				UiUtils.insetPopupMenuIcon(context, item);
-			});
-		}
+		UiUtils.enablePopupMenuIcons(getContext(), switcherPopup);
 	}
 
 	private boolean onSwitcherItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		ListTimeline list;
-		Hashtag hashtag;
 
 		Bundle args = new Bundle();
 		args.putString("account", accountID);
@@ -373,15 +387,8 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		if (id == R.id.menu_back) {
 			switcher.post(() -> switcherPopup.show());
 			return true;
-		} else if ((list = listItems.get(id)) != null) {
-			args.putString("listID", list.id);
-			args.putString("listTitle", list.title);
-			args.putInt("repliesPolicy", list.repliesPolicy.ordinal());
-			Nav.go(getActivity(), ListTimelineFragment.class, args);
-		} else if ((hashtag = hashtagsItems.get(id)) != null) {
-			args.putString("hashtag", hashtag.name);
-			args.putBoolean("following", hashtag.following);
-			Nav.go(getActivity(), HashtagTimelineFragment.class, args);
+		} else if (id == R.id.menu_edit) {
+			Nav.go(getActivity(), EditTimelinesFragment.class, args);
 		} else {
 			TimelineDefinition tl = timelinesByMenuItem.get(id);
 			if (tl != null) {
@@ -414,12 +421,26 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		Bundle args=new Bundle();
 		args.putString("account", accountID);
 		int id = item.getItemId();
-		if (id == R.id.settings) {
+		ListTimeline list;
+		Hashtag hashtag;
+
+		if (item.getItemId() == R.id.menu_back) {
+			createOptionsMenu();
+			optionsMenu.performIdentifierAction(R.id.overflow, 0);
+			return true;
+		} else if (id == R.id.settings || id == R.id.settings_action) {
 			Nav.go(getActivity(), SettingsFragment.class, args);
-		} else if (id == R.id.announcements) {
+		} else if (id == R.id.announcements || id == R.id.announcements_action) {
 			Nav.goForResult(getActivity(), AnnouncementsFragment.class, args, ANNOUNCEMENTS_RESULT, this);
-		} else if (id == R.id.edit_timelines) {
-			Nav.go(getActivity(), EditTimelinesFragment.class, args);
+		} else if ((list = listItems.get(id)) != null) {
+			args.putString("listID", list.id);
+			args.putString("listTitle", list.title);
+			args.putInt("repliesPolicy", list.repliesPolicy.ordinal());
+			Nav.go(getActivity(), ListTimelineFragment.class, args);
+		} else if ((hashtag = hashtagsItems.get(id)) != null) {
+			args.putString("hashtag", hashtag.name);
+			args.putBoolean("following", hashtag.following);
+			Nav.go(getActivity(), HashtagTimelineFragment.class, args);
 		}
 		return true;
 	}
@@ -507,17 +528,17 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	@Override
 	public void onFragmentResult(int reqCode, boolean success, Bundle result){
 		if (reqCode == ANNOUNCEMENTS_RESULT && success) {
-			announcements.setIcon(R.drawable.ic_fluent_megaphone_24_regular);
-			announcements.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-			UiUtils.insetPopupMenuIcon(getContext(), announcements);
+			announcementsBadged = false;
+			announcements.setVisible(true);
+			announcementsAction.setVisible(false);
 		}
 	}
 
 	private void updateUpdateState(GithubSelfUpdater.UpdateState state){
 		if(state!=GithubSelfUpdater.UpdateState.NO_UPDATE && state!=GithubSelfUpdater.UpdateState.CHECKING) {
-			MenuItem settings = getToolbar().getMenu().findItem(R.id.settings);
-			settings.setIcon(R.drawable.ic_settings_24_badged);
-			updateBadgedOptionsItem(settings, true);
+			settingsBadged = true;
+			settingsAction.setVisible(true);
+			settings.setVisible(false);
 		}
 	}
 

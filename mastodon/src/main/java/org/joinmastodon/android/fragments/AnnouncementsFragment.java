@@ -77,12 +77,7 @@ public class AnnouncementsFragment extends BaseStatusListFragment<Announcement> 
 	public void onMarkAsRead(String id) {
 		if (unreadIDs == null) return;
 		unreadIDs.remove(id);
-		if (unreadIDs.size() == 0) setResult(true, null);
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
+		if (unreadIDs.isEmpty()) setResult(true, null);
 	}
 
 	@Override
@@ -101,7 +96,8 @@ public class AnnouncementsFragment extends BaseStatusListFragment<Announcement> 
 						List<Announcement> read = result.stream().filter(a -> a.read).collect(toList());
 						onDataLoaded(unread, true);
 						onDataLoaded(read, false);
-						unreadIDs = unread.stream().map(a -> a.id).collect(toList());
+						if (unread.isEmpty()) setResult(true, null);
+						else unreadIDs = unread.stream().map(a -> a.id).collect(toList());
 					}
 				})
 				.exec(accountID);

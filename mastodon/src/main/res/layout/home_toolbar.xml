@@ -47,6 +47,8 @@
             android:layout_height="wrap_content"
             android:paddingVertical="2dp"
             android:minHeight="32sp"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:lineSpacingMultiplier="0.8"
             android:textAppearance="@style/m3_title_medium"
             android:text="@string/see_new_posts"

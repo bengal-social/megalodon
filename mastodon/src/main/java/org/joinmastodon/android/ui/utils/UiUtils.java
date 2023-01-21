@@ -908,7 +908,7 @@ public class UiUtils{
 
 	public static MenuItem makeBackItem(Menu m) {
 		MenuItem back = m.add(0, R.id.menu_back, NONE, R.string.back);
-		back.setIcon(R.drawable.ic_arrow_back);
+		back.setIcon(R.drawable.ic_fluent_arrow_left_24_regular);
 		return back;
 	}
 

@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	tools:ignore="AlwaysShowAction">
 	<item
-		android:id="@+id/announcements"
-		android:icon="@drawable/ic_fluent_megaphone_24_regular"
-		android:title="@string/sk_announcements" />
+		android:id="@+id/announcements_action"
+		android:icon="@drawable/ic_announcements_24_badged"
+		android:title="@string/sk_announcements"
+		android:visible="false"
+		android:showAsAction="always" />
 	<item
-		android:id="@+id/edit_timelines"
-		android:icon="@drawable/ic_fluent_edit_24_regular"
-		android:title="@string/sk_edit_timelines" />
+		android:id="@+id/settings_action"
+		android:icon="@drawable/ic_settings_24_badged"
+		android:title="@string/settings"
+		android:visible="false"
+		android:showAsAction="always" />
 	<item
-		android:id="@+id/settings"
-		android:icon="@drawable/ic_fluent_settings_24_regular"
-		android:title="@string/settings" />
+		android:id="@+id/overflow"
+		android:title="@string/more_options"
+		android:icon="@drawable/ic_fluent_more_vertical_24_regular"
+		android:showAsAction="always">
+		<menu>
+			<item
+				android:id="@+id/settings"
+				android:icon="@drawable/ic_fluent_settings_24_regular"
+				android:title="@string/settings" />
+			<item
+				android:id="@+id/announcements"
+				android:icon="@drawable/ic_fluent_megaphone_24_regular"
+				android:title="@string/sk_announcements" />
+			<item
+				android:id="@+id/lists"
+				android:icon="@drawable/ic_fluent_people_list_24_regular"
+				android:title="@string/sk_your_lists"
+				android:visible="false">
+				<menu />
+			</item>
+			<item
+				android:id="@+id/hashtags"
+				android:icon="@drawable/ic_fluent_number_symbol_24_regular"
+				android:title="@string/sk_hashtags_you_follow"
+				android:visible="false">
+				<menu />
+			</item>
+		</menu>
+	</item>
 </menu>
