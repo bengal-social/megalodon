@@ -142,4 +142,10 @@
     <string name="sk_timeline_home">Home</string>
     <string name="sk_confirm_delete_draft">Sei sicuro di volere eliminare questo post in bozza\?</string>
     <string name="sk_scheduled_too_soon">I post devono essere programmati almeno tra 10 minuti.</string>
+    <string name="sk_recent_searches_placeholder">Scrivi qualcosa per iniziare a cercare</string>
+    <string name="sk_remove_follower">Rimuovi come follower</string>
+    <string name="sk_remove_follower_confirm">Rimuovi %s come follower bloccandolo e sboccandolo immediatamente\?</string>
+    <string name="sk_do_remove_follower">Rimuovi</string>
+    <string name="sk_remove_follower_success">Follower rimosso con successo</string>
+    <string name="sk_changelog">Registro delle modifiche</string>
 </resources>
