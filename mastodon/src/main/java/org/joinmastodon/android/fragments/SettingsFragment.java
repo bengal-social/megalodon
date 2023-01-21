@@ -165,11 +165,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}));
 
 		items.add(new HeaderItem(R.string.settings_behavior));
-		items.add(new SwitchItem(R.string.sk_settings_show_federated_timeline, R.drawable.ic_fluent_earth_24_regular, GlobalUserPreferences.showFederatedTimeline, i->{
-			GlobalUserPreferences.showFederatedTimeline=i.checked;
-			GlobalUserPreferences.save();
-			needAppRestart=true;
-		}));
 		items.add(new SwitchItem(R.string.settings_gif, R.drawable.ic_fluent_gif_24_regular, GlobalUserPreferences.playGifs, i->{
 			GlobalUserPreferences.playGifs=i.checked;
 			GlobalUserPreferences.save();
@@ -321,11 +316,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		if(needUpdateNotificationSettings && PushSubscriptionManager.arePushNotificationsAvailable()){
 			AccountSessionManager.getInstance().getAccount(accountID).getPushSubscriptionManager().updatePushSettings(pushSubscription);
 		}
-		if(needAppRestart){
-			Intent intent = Intent.makeRestartActivityTask(MastodonApp.context.getPackageManager().getLaunchIntentForPackage(MastodonApp.context.getPackageName()).getComponent());
-			MastodonApp.context.startActivity(intent);
-			Runtime.getRuntime().exit(0);
-		}
+		if(needAppRestart) UiUtils.restartApp();
 	}
 
 	@Override

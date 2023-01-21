@@ -154,4 +154,20 @@
     <string name="sk_publish_anyway">Publish anyway</string>
     <string name="sk_settings_disable_alt_text_reminder">Disable alt text reminder</string>
     <string name="sk_notify_posts_info_banner">If you enable post notifications for some people, their new posts will appear here.</string>
+    <string name="sk_timelines">Timelines</string>
+    <string name="sk_timeline_posts">Posts</string>
+    <string name="sk_timelines_add">Add</string>
+    <string name="sk_timeline">Timeline</string>
+    <string name="sk_list">List</string>
+    <string name="sk_hashtag">Hashtag</string>
+    <string name="sk_pin_timeline">Pin timeline</string>
+    <string name="sk_unpin_timeline">Unpin timeline</string>
+    <string name="sk_pinned_timeline">Pinned to home</string>
+    <string name="sk_unpinned_timeline">Unpinned from home</string>
+    <string name="sk_remove">Remove</string>
+    <string name="sk_timeline_icon">Icon</string>
+    <string name="sk_icon_heart">Heart</string>
+    <string name="sk_icon_star">Star</string>
+    <string name="sk_edit_timeline">Edit timeline</string>
+    <string name="sk_edit_timelines">Edit timelines</string>
 </resources>

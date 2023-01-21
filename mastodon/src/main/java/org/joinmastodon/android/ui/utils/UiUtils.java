@@ -1,5 +1,6 @@
 package org.joinmastodon.android.ui.utils;
 
+import static android.view.Menu.NONE;
 import static org.joinmastodon.android.GlobalUserPreferences.theme;
 import static org.joinmastodon.android.GlobalUserPreferences.trueBlackTheme;
 
@@ -35,6 +36,7 @@ import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -772,11 +774,20 @@ public class UiUtils{
 		item.setTitle(ssb);
 	}
 
+	public static void resetPopupItemTint(MenuItem item) {
+		if(Build.VERSION.SDK_INT>=26) {
+			item.setIconTintList(null);
+		} else {
+			Drawable icon=item.getIcon().mutate();
+			icon.setTintList(null);
+			item.setIcon(icon);
+		}
+	}
+
 	public static void enableOptionsMenuIcons(Context context, Menu menu, @IdRes int... asAction) {
 		if(menu.getClass().getSimpleName().equals("MenuBuilder")){
 			try {
-				Method m = menu.getClass().getDeclaredMethod(
-						"setOptionalIconsVisible", Boolean.TYPE);
+				Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
 				m.setAccessible(true);
 				m.invoke(menu, true);
 				enableMenuIcons(context, menu, asAction);
@@ -789,6 +800,8 @@ public class UiUtils{
 		ColorStateList iconTint=ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
 		for(int i=0;i<m.size();i++){
 			MenuItem item=m.getItem(i);
+			SubMenu subMenu = item.getSubMenu();
+			if (subMenu != null) enableMenuIcons(context, subMenu, exclude);
 			if (item.getIcon() == null || Arrays.stream(exclude).anyMatch(id -> id == item.getItemId())) continue;
 			insetPopupMenuIcon(item, iconTint);
 		}
@@ -885,6 +898,18 @@ public class UiUtils{
 				.setIcon(iconRes);
 		if (transformDialog != null) transformDialog.accept(builder);
 		builder.show();
+	}
+
+	public static void restartApp() {
+		Intent intent = Intent.makeRestartActivityTask(MastodonApp.context.getPackageManager().getLaunchIntentForPackage(MastodonApp.context.getPackageName()).getComponent());
+		MastodonApp.context.startActivity(intent);
+		Runtime.getRuntime().exit(0);
+	}
+
+	public static MenuItem makeBackItem(Menu m) {
+		MenuItem back = m.add(0, R.id.menu_back, NONE, R.string.back);
+		back.setIcon(R.drawable.ic_arrow_back);
+		return back;
 	}
 
 	@FunctionalInterface
