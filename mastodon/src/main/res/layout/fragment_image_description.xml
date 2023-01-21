@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:orientation="vertical">
 
-	<LinearLayout
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:layout_height="match_parent"
+		android:layout_marginBottom="250dp"
+		android:layout_gravity="top">
 
 		<org.joinmastodon.android.ui.views.MaxWidthFrameLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center"
 			android:maxWidth="400dp">
 
 			<ImageView
@@ -25,39 +26,40 @@
 
 		</org.joinmastodon.android.ui.views.MaxWidthFrameLayout>
 
-		<TextView
-			android:id="@+id/title"
+	</ScrollView>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_gravity="bottom"
+		android:layout_width="match_parent"
+		android:layout_height="250dp">
+
+		<View
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="8dp"
-			android:layout_marginLeft="16dp"
-			android:layout_marginRight="16dp"
-			android:layout_marginTop="16dp"
-			android:textAppearance="@style/m3_headline_medium"
-			android:minHeight="36dp"
-			android:gravity="center_vertical"
-			android:text="@string/add_alt_text"/>
+			android:layout_height="0.5dp"
+			android:background="?attr/colorPollVoted"/>
 
 		<TextView
 			android:id="@+id/subtitle"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
 			android:layout_marginLeft="16dp"
 			android:layout_marginRight="16dp"
-			android:textAppearance="@style/m3_title_medium"
+			android:textAppearance="@style/m3_title_small"
 			android:textColor="?android:textColorSecondary"
 			android:text="@string/alt_text_subtitle"/>
 
 		<EditText
 			android:id="@+id/edit"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="0dp"
+			android:layout_weight="1"
 			android:layout_margin="16dp"
-			android:minHeight="212dp"
 			android:gravity="top"
 			android:inputType="textCapSentences|textMultiLine"
-			android:hint="@string/alt_text_hint"/>
+			android:hint="@string/alt_text_hint" />
 
 	</LinearLayout>
 
-</ScrollView>
+</FrameLayout>
