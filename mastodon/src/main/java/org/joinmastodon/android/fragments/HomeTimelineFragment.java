@@ -8,6 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.joinmastodon.android.GlobalUserPreferences;
+import org.joinmastodon.android.E;
+import org.joinmastodon.android.R;
+import org.joinmastodon.android.api.requests.markers.SaveMarkers;
 import org.joinmastodon.android.api.requests.timelines.GetHomeTimeline;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.StatusCreatedEvent;
@@ -32,6 +35,7 @@ import me.grishka.appkit.utils.V;
 public class HomeTimelineFragment extends FabStatusListFragment {
 	private HomeTabFragment parent;
 	private String maxID;
+	private String lastSavedMarkerID;
 
 	@Override
 	public void onAttach(Activity activity){
@@ -87,6 +91,29 @@ public class HomeTimelineFragment extends FabStatusListFragment {
 				loadData();
 			}else if(!dataLoading){
 				loadNewPosts();
+			}
+		}
+	}
+
+	@Override
+	protected void onHidden(){
+		super.onHidden();
+		if(!data.isEmpty()){
+			String topPostID=displayItems.get(list.getChildAdapterPosition(list.getChildAt(0))-getMainAdapterOffset()).parentID;
+			if(!topPostID.equals(lastSavedMarkerID)){
+				lastSavedMarkerID=topPostID;
+				new SaveMarkers(topPostID, null)
+						.setCallback(new Callback<>(){
+							@Override
+							public void onSuccess(SaveMarkers.Response result){
+							}
+
+							@Override
+							public void onError(ErrorResponse error){
+								lastSavedMarkerID=null;
+							}
+						})
+						.exec(accountID);
 			}
 		}
 	}
