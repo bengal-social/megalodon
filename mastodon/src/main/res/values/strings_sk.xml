@@ -33,7 +33,7 @@
     <string name="sk_follow_requests">Follow requests</string>
     <string name="sk_accept_follow_request">Accept follow request</string>
     <string name="sk_reject_follow_request">Reject follow request</string>
-    <string name="sk_lists_with_user">Edit lists with %s</string>
+    <string name="sk_lists_with_user">Lists with %s</string>
     <string name="sk_settings_always_reveal_content_warnings">Always reveal content warnings</string>
     <string name="sk_disable_marquee">Disable scrolling text in title bars</string>
     <string name="sk_settings_contribute">Contribute to Megalodon</string>

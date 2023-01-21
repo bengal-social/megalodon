@@ -31,6 +31,7 @@ import org.joinmastodon.android.api.session.AccountSession;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.fragments.ComposeFragment;
+import org.joinmastodon.android.fragments.ListTimelinesFragment;
 import org.joinmastodon.android.fragments.NotificationsListFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
@@ -261,6 +262,12 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 					UiUtils.confirmToggleBlockDomain(activity, item.parentFragment.getAccountID(), account.getDomain(), relationship!=null && relationship.domainBlocking, ()->{});
 				}else if(id==R.id.bookmark){
 					AccountSessionManager.getInstance().getAccount(item.accountID).getStatusInteractionController().setBookmarked(item.status, !item.status.bookmarked);
+				}else if(id==R.id.manage_user_lists){
+					final Bundle args=new Bundle();
+					args.putString("account", item.parentFragment.getAccountID());
+					args.putString("profileAccount", account.id);
+					args.putString("profileDisplayUsername", account.getDisplayUsername());
+					Nav.go(item.parentFragment.getActivity(), ListTimelinesFragment.class, args);
 				}
 				return true;
 			});
@@ -445,6 +452,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			MenuItem block=menu.findItem(R.id.block);
 			MenuItem report=menu.findItem(R.id.report);
 			MenuItem follow=menu.findItem(R.id.follow);
+			MenuItem manageUserLists = menu.findItem(R.id.manage_user_lists);
 			MenuItem bookmark=menu.findItem(R.id.bookmark);
 			bookmark.setVisible(false);
 			/* disabled in megalodon: add/remove bookmark is already available through status footer
@@ -461,6 +469,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				report.setVisible(false);
 				follow.setVisible(false);
 				blockDomain.setVisible(false);
+				manageUserLists.setVisible(false);
 			}else{
 				mute.setVisible(true);
 				block.setVisible(true);
@@ -481,6 +490,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				boolean following = relationship!=null && relationship.following;
 				follow.setTitle(item.parentFragment.getString(following ? R.string.unfollow_user : R.string.follow_user, account.getShortUsername()));
 				follow.setIcon(following ? R.drawable.ic_fluent_person_delete_24_regular : R.drawable.ic_fluent_person_add_24_regular);
+				manageUserLists.setVisible(relationship != null && relationship.following);
+				manageUserLists.setTitle(item.parentFragment.getString(R.string.sk_lists_with_user, account.getShortUsername()));
 				UiUtils.insetPopupMenuIcon(item.parentFragment.getContext(), follow);
 			}
 		}
