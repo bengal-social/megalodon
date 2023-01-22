@@ -1,0 +1,11 @@
+- Galluogi Addasu Botwm Cyhoeddi 
+- Agorwch ddolenni y Fydysawd yn yr app
+- Clicio hir ar y botwm hybu i "ddyfynnu" post
+- Copio URL post wrth wasgu'r botwm rhannu yn hir
+- Gweithredu dileu hysbysiadau (wedi’i anablu yn ddiofyn)
+- Eiconau pwrpasol ar gyfer gwahanol fathau o hysbysiadau
+- Lliwiau llwyd newydd
+- Ychwanegu gosodiad i analluogi sweipio rhwng tabiau
+- Ychwanegu dolenni amrywiol i osodiadau cyfrif
+- Togl i ddangos / cuddio'r botwm cyfieithu yn y ffrwd
+- Trwsio namau a newidiadau bach

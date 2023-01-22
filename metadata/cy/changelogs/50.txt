@@ -1,0 +1,4 @@
+- Paratoi ffeiliau ar gyfer cyhoeddi ar F-Droid
+- Atgyweirio diweddariad awtomatig
+- Ychwanegu eiconau monocromatig yn ôl i eiconau lansiwr
+- Amnewid yr eicon anghywir heb ei restru yn y troedyn estynedig

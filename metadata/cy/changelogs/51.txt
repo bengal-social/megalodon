@@ -1,0 +1,6 @@
+- Gwneud hi'n bosibl agor y post gwreiddiol wrth ateb (trwy glicio ar y llinell “Wrth ateb…”)
+- Cyfuno newidiadau i blaenorol ac atgyweiriadau nam
+- Dileu cod “App Center” heb ei ddefnyddio
+- Ychwanegu fersiwn heb ffrwd y ffederasiwn ar gyfer Play Store
+- Ychwanegu URI ailgyfeirio dewisol ar gyfer mewngofnodi haws
+- Newid dolen cyfrannu

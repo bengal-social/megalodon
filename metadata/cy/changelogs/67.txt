@@ -1,0 +1,10 @@
+- Tab cartref newydd gyda ffrwd cyhoeddus
+- Arddangos cyhoeddiadau gweinydd
+- Mae'r testun wedi'i raddio yn ôl gosodiadau'r system
+- Gwell hidlo (na, nid yw "Cuddio gyda rhybudd" yn gweithio eto) gan @thiagojedi
+- Rheoli rhestrau
+- Tynnwch ddilynwyr trwy eu blocio'n feddal
+- Gwrthod cysylltiadau â ffasgwyr
+- Trwsio delweddau sy ddim yn llwytho pan fyddant wedi'u cysylltu ag gwinydd Akkoma
+- Trwsio namau ac UI
+- Ychwanegu rhestr newidiadau gan @LucasGGamerM

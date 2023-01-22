@@ -1,0 +1,6 @@
+- Ychwanegu dewisydd iaith
+- Ychwanegu opsiwn cyfieithu
+- Gwella semanteg ar gyfer pleidleisio ar arolygon (botymau radio a blychau ticio)
+- Ychwanegu opsiwn i ganiatáu pleidleisio ar gyfer opsiynau lluosog ar arolygon barn
+- Sgrin mewngofnodi newydd
+- Trwsio namau

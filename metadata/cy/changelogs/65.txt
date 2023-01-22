@@ -1,0 +1,10 @@
+- Drafftio a amserlennu negeseuon
+- Dangos post gwreiddiol wrth ateb
+- Hidlwyr cydnaws Mastodon 4.0 (dim opsiwn "cuddio â rhybudd" eto)
+- Clic hir i ryngweithio â negeseuon (ateb, hybu, licio, nodi tudalen) o gyfrifon eraill sydd wedi mewngofnodi
+- Eiconau ym mhob dewislen
+- Togl ar gyfer anfon adroddiadau ymlaen
+- Ychwanegu sôn wrth ddefnyddio opsiwn "Post am hyn".
+- Opsiwn i ddefnyddio eiconau unffurf yn lle eiconau gwahanol
+- Mynediad at restr rheolau yn yr app o'r gosodiadau
+- Trwsio namau

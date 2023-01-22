@@ -1,0 +1,4 @@
+- Trwsio rendro tagiau HTML sydd wedi torri a galluogi rendro fformatio Markdown
+- Rhoi llythyren flaen ar <a href="https://translate.codeberg.org/projects/megalodon">Prosiect cyfieithu Weblate</a>
+- Ychwanegu togl ar gyfer ffrwd y ffederasiwn
+- Roedd fersiynau 52-54 yn addasiadau bach ar gyfer fersiwn newydd ar Google Play

@@ -1,0 +1,15 @@
+<b>Mae Megalodon yn fersiwn wedi'i addasu o'r <href="https://github.com/mastodon/mastodon-android"> app swyddogol Mastodon Android </a> gan ychwanegu nodweddion pwysig sydd ar goll yn yr ap swyddogol, megis ffrwd y ffederasiwn, postio heb ei restru a gwyliwr disgrifiad delwedd.
+
+Nodweddion allweddol
+
+- <b> postio heb ei restru </b>: Postiwch yn gyhoeddus heb gael eich neges yn ymddangos mewn pynciau trendio, hashnodau neu ffrydiau cyhoeddus.
+- <b>Ffrwd y ffederasiwn</b>: Gwelwch yr holl negeseuon cyhoeddus gan bobl ar bob gweinydd arall yn y fydysawd mae eich gweinydd cartref wedi'i gysylltu iddo.
+- <b>Drafftiau a negeseuon wedi'u trefnu</b>: Yn caniatáu paratoi neges a'i threfnu i'w anfon yn awtomatig ar adeg benodol.
+- <b>Disgrifiad o'r llun</b>: Gweld yn gyflym a oes gan ddelwedd neu fideo destun alt ynghlwm wrtho.
+- <b>Pinio negeseuon</b>: Piniwch eich negeseuon pwysicaf i'ch proffil a gweld beth mae eraill wedi pinio gan ddefnyddio'r tab "Pinned".
+- <b>Dilyn hashnodau</b>: Gweler negeseuon newydd gyda hashnodau penodol yn uniongyrchol yn eich llinell amser cartref trwy eu dilyn.
+- <b>Ateb ceisiadau dilyn</b>: Derbyn neu wrthod ceisiadau dilyn yn eich hysbysiadau neu'r rhestr ceisiadau Dilyn pwrpasol.
+- <b>Dileu ac ail-ddrafftio</b>: Y nodwedd boblogaidd a wnaeth olygu'n bosibl heb swyddogaeth olygu go iawn. <b>Dewis iaith</b>: Dewiswch iaith yn ddi-boen ar gyfer pob neges rydych chi'n ei gwneud felly mae hidlyddion a chyfieithu yn gweithio'n gywir.
+- <b>Cyfieithu</b>: Cyfieithu negeseuon yn hawdd y tu mewn i Megalodon! Dim ond os yw'r nodwedd ar gael hefyd ar eich gweinydd Mastodon.
+- <b>Dangosydd gwelededd neges</b>: Wrth agor neu ateb neges, bydd eicon defnyddiol sy'n nodi gwelededd y neges yn ymddangos.
+- <b>Themâu lliw</b>: Oni ddylech chi hoffi'r lliw Pinc diofyn (mae'r siarc yn eich barnu'n dawel), mae themâu lliw Moshidon ar gael.
