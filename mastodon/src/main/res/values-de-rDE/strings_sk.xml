@@ -224,4 +224,6 @@
     <string name="sk_icon_megaphone">Megaphon</string>
     <string name="sk_icon_light_bulb">Glühbirne</string>
     <string name="sk_icon_globe">Globus</string>
+    <string name="sk_attach_file">Datei anhängen</string>
+    <string name="sk_icon_pin">Stecknadel</string>
 </resources>
