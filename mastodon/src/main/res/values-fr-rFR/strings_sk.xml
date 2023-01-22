@@ -25,7 +25,7 @@
     <string name="sk_follow_requests">Suivre les demandes</string>
     <string name="sk_accept_follow_request">Accepter la demande de suivi</string>
     <string name="sk_reject_follow_request">Refuser la demande de suivi</string>
-    <string name="sk_lists_with_user">Modifier les listes avec %s</string>
+    <string name="sk_lists_with_user">Listes avec %s</string>
     <string name="sk_settings_always_reveal_content_warnings">Toujours afficher les avertissements de contenu</string>
     <string name="sk_disable_marquee">Désactiver le défilement du texte dans les barres de titre</string>
     <string name="sk_settings_contribute">Contribuez à Megalodon</string>
@@ -77,7 +77,7 @@
     <string name="sk_enable_delete_notifications">Activer la suppression des notifications</string>
     <string name="sk_settings_publish_button_text_title">Personnaliser le texte du bouton Publier</string>
     <string name="sk_settings_publish_button_text">Texte du bouton Publier</string>
-    <string name="sk_settings_translate_only_opened">Masquer le bouton de traduction dans la timeline</string>
+    <string name="sk_settings_translate_only_opened">Traduire uniquement les messages ouverts</string>
     <string name="sk_settings_translation_availability_note_available">%s prend en charge la traduction !</string>
     <string name="sk_settings_translation_availability_note_unavailable">%s ne semble pas prendre en charge la traduction.</string>
     <string name="sk_clear_all_notifications_confirm">Voulez-vous vraiment supprimer toutes les notifications \?</string>
@@ -149,4 +149,29 @@
     <string name="sk_changelog">Journal des modifications</string>
     <string name="sk_remove_follower_confirm">Supprimer %s en tant qu\'abonné en le bloquant et en le débloquant immédiatement \?</string>
     <string name="sk_remove_follower">Supprimer comme abonné</string>
+    <string name="sk_unpin_timeline">Détacher la timeline</string>
+    <string name="sk_alt_text_missing_title">Texte alternatif manquant</string>
+    <string name="sk_alt_text_missing">Au moins une pièce jointe ne contient pas de description.</string>
+    <string name="sk_publish_anyway">Publier quand même</string>
+    <string name="sk_notify_posts_info_banner">Si vous activez les notifications de message pour certaines personnes, leurs nouveaux messages apparaîtront ici.</string>
+    <string name="sk_timelines">Timelines</string>
+    <string name="sk_timeline_posts">Messages</string>
+    <string name="sk_timelines_add">Ajouter</string>
+    <string name="sk_timeline">Timeline</string>
+    <string name="sk_list">Liste</string>
+    <string name="sk_hashtag">Hashtag</string>
+    <string name="sk_pin_timeline">Épingler la timeline</string>
+    <string name="sk_unpinned_timeline">Détachée de l\'accueil</string>
+    <string name="sk_pinned_timeline">Épinglée à l\'accueil</string>
+    <string name="sk_remove">Supprimer</string>
+    <string name="sk_timeline_icon">Icône</string>
+    <string name="sk_icon_heart">Cœur</string>
+    <string name="sk_icon_star">Favoris</string>
+    <string name="sk_edit_timelines">Modifier les timelines</string>
+    <string name="sk_alt_button">ALT</string>
+    <string name="sk_post_edited">édité</string>
+    <string name="sk_edit_timeline">Modifier la timeline</string>
+    <string name="sk_notify_update">Modifie un article reposté</string>
+    <string name="sk_settings_disable_alt_text_reminder">Désactiver le rappel de texte alternatif</string>
+    <string name="sk_notification_type_update">Messages modifiés</string>
 </resources>
