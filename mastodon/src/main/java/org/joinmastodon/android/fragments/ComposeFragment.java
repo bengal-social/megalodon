@@ -174,7 +174,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private int charCount, charLimit, trimmedCharCount;
 
 	private Button publishButton, languageButton, scheduleTimeBtn, draftsBtn;
-	private PopupMenu languagePopup, visibilityPopup, draftOptionsPopup;
+	private PopupMenu languagePopup, visibilityPopup, draftOptionsPopup, attachPopup;
 	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn, scheduleDraftDismiss;
 	private ImageView sensitiveIcon;
 	private ComposeMediaLayout attachmentsView;
@@ -327,7 +327,19 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		sensitiveItem=view.findViewById(R.id.sensitive_item);
 		replyText=view.findViewById(R.id.reply_text);
 
-		mediaBtn.setOnClickListener(v->openFilePicker());
+		if (isPhotoPickerAvailable()) {
+			PopupMenu attachPopup = new PopupMenu(getContext(), mediaBtn);
+			attachPopup.inflate(R.menu.attach);
+			attachPopup.setOnMenuItemClickListener(i -> {
+				openFilePicker(i.getItemId() == R.id.media);
+				return true;
+			});
+			UiUtils.enablePopupMenuIcons(getContext(), attachPopup);
+			mediaBtn.setOnClickListener(v->attachPopup.show());
+			mediaBtn.setOnTouchListener(attachPopup.getDragToOpenListener());
+		} else {
+			mediaBtn.setOnClickListener(v -> openFilePicker(false));
+		}
 		pollBtn.setOnClickListener(v->togglePoll());
 		emojiBtn.setOnClickListener(v->emojiKeyboard.toggleKeyboardPopup(mainEditText));
 		spoilerBtn.setOnClickListener(v->toggleSpoiler());
@@ -1176,9 +1188,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	 *
 	 * <p>For earlier versions use the built in docs ui via {@link Intent#ACTION_GET_CONTENT}
 	 */
-	private void openFilePicker(){
+	private void openFilePicker(boolean photoPicker){
 		Intent intent;
-		boolean usePhotoPicker = isPhotoPickerAvailable();
+		boolean usePhotoPicker = photoPicker && isPhotoPickerAvailable();
 		if (usePhotoPicker) {
 			intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
 			intent.putExtra(MediaStore.EXTRA_PICK_IMAGES_MAX, MediaStore.getPickImagesMaxLimit());

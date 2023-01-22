@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/media"
+        android:title="@string/sk_add_media"
+        android:icon="@drawable/ic_fluent_image_24_regular" />
+    <item
+        android:id="@+id/file"
+        android:title="@string/sk_attach_file"
+        android:icon="@drawable/ic_fluent_document_24_regular" />
+</menu>
