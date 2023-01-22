@@ -29,7 +29,7 @@
     <string name="sk_follow_requests">팔로우 요청</string>
     <string name="sk_accept_follow_request">팔로우 요청 수락</string>
     <string name="sk_reject_follow_request">팔로우 요청 거부</string>
-    <string name="sk_lists_with_user">%s 님이 포함된 리스트 수정</string>
+    <string name="sk_lists_with_user">%s 님이 포함된 리스트</string>
     <string name="sk_settings_always_reveal_content_warnings">열람주의 게시물을 항상 펼치기</string>
     <string name="sk_disable_marquee">제목 표시줄의 텍스트 스크롤 비활성화</string>
     <string name="sk_app_name">Megalodon</string>
@@ -148,4 +148,7 @@
     <string name="sk_changelog">변경 사항</string>
     <string name="sk_remove_follower">팔로워에서 제거</string>
     <string name="sk_remove_follower_confirm">%s 님을 차단하고 바로 차단 해제하여 팔로워에서 제거하시겠습니까\?</string>
+    <string name="sk_alt_text_missing">하나 이상의 첨부 파일이 설명을 포함하지 않고 있습니다.</string>
+    <string name="sk_publish_anyway">그래도 게시</string>
+    <string name="sk_settings_disable_alt_text_reminder">대체 텍스트 리마인더 해제</string>
 </resources>
