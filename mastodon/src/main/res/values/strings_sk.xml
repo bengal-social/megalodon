@@ -226,6 +226,5 @@
     <string name="sk_post_edited">edited</string>
     <string name="sk_notification_type_update">Edited posts</string>
     <string name="sk_notify_update">Edits a reblogged post</string>
-    <string name="sk_add_media">Add media</string>
     <string name="sk_attach_file">Attach file</string>
 </resources>

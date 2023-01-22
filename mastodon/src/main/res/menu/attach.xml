@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/media"
-        android:title="@string/sk_add_media"
+        android:title="@string/add_media"
         android:icon="@drawable/ic_fluent_image_24_regular" />
     <item
         android:id="@+id/file"
