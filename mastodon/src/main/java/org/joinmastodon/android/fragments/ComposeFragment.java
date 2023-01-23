@@ -791,6 +791,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		draftsBtn.setOnTouchListener(draftOptionsPopup.getDragToOpenListener());
 		updateScheduledAt(scheduledAt != null ? scheduledAt : scheduledStatus != null ? scheduledStatus.scheduledAt : null);
 		buildLanguageSelector(languageButton);
+
+		if (editingStatus != null && scheduledStatus == null) {
+			// editing an already published post
+			draftsBtn.setVisibility(View.GONE);
+		}
 	}
 
 	private void navigateToUnsentPosts() {

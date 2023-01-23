@@ -42,7 +42,6 @@
         android:id="@+id/drafts_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:paddingHorizontal="8dp"
         android:drawableStart="@drawable/ic_fluent_clock_20_regular"
         android:drawableTint="?android:textColorSecondary"
@@ -55,6 +54,7 @@
         android:id="@+id/publish_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:singleLine="true"
         android:ellipsize="end" />
 
