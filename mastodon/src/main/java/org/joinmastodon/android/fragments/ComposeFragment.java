@@ -826,7 +826,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		btn.setOnClickListener(v->languagePopup.show());
 
 		Preferences prefs = AccountSessionManager.getInstance().getAccount(accountID).preferences;
-		updateLanguage(prefs != null && prefs.postingDefaultLanguage != null && prefs.postingDefaultLanguage.length() > 0
+		if (language != null) updateLanguage(language);
+		else updateLanguage(prefs != null && prefs.postingDefaultLanguage != null && prefs.postingDefaultLanguage.length() > 0
 				? languageResolver.from(prefs.postingDefaultLanguage)
 				: languageResolver.getDefault());
 
