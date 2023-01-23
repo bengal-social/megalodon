@@ -316,7 +316,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			@Override
 			public void onSuccess(List<ListTimeline> lists) {
 				updateList(lists, listItems);
-				addListsToOptionsMenu();
 			}
 
 			@Override
@@ -329,7 +328,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			@Override
 			public void onSuccess(HeaderPaginationList<Hashtag> hashtags) {
 				updateList(hashtags, hashtagsItems);
-				addHashtagsToOptionsMenu();
 			}
 
 			@Override
@@ -358,6 +356,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	private <T> void updateList(List<T> addItems, Map<Integer, T> items) {
 		if (addItems.size() == 0) return;
 		for (int i = 0; i < addItems.size(); i++) items.put(View.generateViewId(), addItems.get(i));
+		createOptionsMenu();
 	}
 
 	private void updateSwitcherMenu() {
