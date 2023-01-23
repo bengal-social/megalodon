@@ -231,4 +231,7 @@
     <string name="sk_no_results">No results</string>
     <string name="sk_save_draft">Save draft?</string>
     <string name="sk_save_draft_message">Do you want to save your changes to this draft or publish it now?</string>
+    <string name="sk_no_alt_text">No alt text available</string>
+    <string name="sk_settings_show_alt_indicator">Indicator for alt texts</string>
+    <string name="sk_settings_show_no_alt_indicator">Indicator for missing alt texts</string>
 </resources>

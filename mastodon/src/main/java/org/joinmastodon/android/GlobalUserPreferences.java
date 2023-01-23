@@ -33,6 +33,8 @@ public class GlobalUserPreferences{
 	public static boolean reduceMotion;
 	public static boolean keepOnlyLatestNotification;
 	public static boolean disableAltTextReminder;
+	public static boolean showAltIndicator;
+	public static boolean showNoAltIndicator;
 	public static String publishButtonText;
 	public static ThemePreference theme;
 	public static ColorPreference color;
@@ -71,6 +73,8 @@ public class GlobalUserPreferences{
 		reduceMotion=prefs.getBoolean("reduceMotion", false);
 		keepOnlyLatestNotification=prefs.getBoolean("keepOnlyLatestNotification", false);
 		disableAltTextReminder=prefs.getBoolean("disableAltTextReminder", false);
+		showAltIndicator =prefs.getBoolean("showAltIndicator", true);
+		showNoAltIndicator =prefs.getBoolean("showNoAltIndicator", true);
 		publishButtonText=prefs.getString("publishButtonText", "");
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 		recentLanguages=fromJson(prefs.getString("recentLanguages", null), recentLanguagesType, new HashMap<>());
@@ -102,6 +106,8 @@ public class GlobalUserPreferences{
 				.putBoolean("reduceMotion", reduceMotion)
 				.putBoolean("keepOnlyLatestNotification", keepOnlyLatestNotification)
 				.putBoolean("disableAltTextReminder", disableAltTextReminder)
+				.putBoolean("showAltIndicator", showAltIndicator)
+				.putBoolean("showNoAltIndicator", showNoAltIndicator)
 				.putString("publishButtonText", publishButtonText)
 				.putInt("theme", theme.ordinal())
 				.putString("color", color.name())
