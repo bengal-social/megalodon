@@ -52,6 +52,7 @@ import org.joinmastodon.android.ui.SimpleViewHolder;
 import org.joinmastodon.android.ui.utils.UiUtils;
 import org.joinmastodon.android.updater.GithubSelfUpdater;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -620,6 +621,10 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			existingThings.remove(existingThing.get().getKey());
 			createOptionsMenu();
 		}
+	}
+
+	public Collection<Hashtag> getHashtags() {
+		return hashtagsItems.values();
 	}
 
 	private class HomePagerAdapter extends RecyclerView.Adapter<SimpleViewHolder> {

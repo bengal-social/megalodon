@@ -10,11 +10,15 @@ import android.view.ViewGroup;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.fragments.BaseStatusListFragment;
+import org.joinmastodon.android.fragments.HashtagTimelineFragment;
+import org.joinmastodon.android.fragments.HomeTabFragment;
+import org.joinmastodon.android.fragments.HomeTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Attachment;
 import org.joinmastodon.android.model.DisplayItemsParent;
+import org.joinmastodon.android.model.Hashtag;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.Poll;
 import org.joinmastodon.android.model.ScheduledStatus;
@@ -27,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import me.grishka.appkit.Nav;
@@ -100,6 +105,22 @@ public abstract class StatusDisplayItem{
 				args.putParcelable("profileAccount", Parcels.wrap(account));
 				Nav.go(fragment.getActivity(), ProfileFragment.class, args);
 			}));
+		} else if (!(status.tags.isEmpty() || fragment instanceof HashtagTimelineFragment) &&
+				fragment.getParentFragment() instanceof HomeTabFragment home
+		) {
+			home.getHashtags().stream()
+					.filter(followed -> status.tags.stream()
+							.anyMatch(hashtag -> followed.name.equalsIgnoreCase(hashtag.name)))
+					.findAny()
+					// post contains a hashtag the user is following
+					.ifPresent(hashtag -> items.add(new ReblogOrReplyLineStatusDisplayItem(
+							parentID, fragment, hashtag.name, List.of(),
+							R.drawable.ic_fluent_number_symbol_20_filled, null,
+							i -> {
+								args.putString("hashtag", hashtag.name);
+								Nav.go(fragment.getActivity(), HashtagTimelineFragment.class, args);
+							}
+					)));
 		}
 		HeaderStatusDisplayItem header;
 		items.add(header=new HeaderStatusDisplayItem(parentID, statusForContent.account, statusForContent.createdAt, fragment, accountID, statusForContent, null, notification, scheduledStatus));
