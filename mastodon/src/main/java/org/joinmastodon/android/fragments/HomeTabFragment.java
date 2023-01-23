@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -191,27 +190,24 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 
 		ViewTreeObserver vto = getToolbar().getViewTreeObserver();
 		if (vto.isAlive()) {
-			vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-				@Override
-				public void onGlobalLayout() {
-					Toolbar t = getToolbar();
-					if (t == null) return;
-					int toolbarWidth = t.getWidth();
-					if (toolbarWidth == 0) return;
+			vto.addOnGlobalLayoutListener(() -> {
+				Toolbar t = getToolbar();
+				if (t == null) return;
+				int toolbarWidth = t.getWidth();
+				if (toolbarWidth == 0) return;
 
-					int toolbarFrameWidth = toolbarFrame.getWidth();
-					int padding = toolbarWidth - toolbarFrameWidth;
-					FrameLayout parent = ((FrameLayout) toolbarShowNewPostsBtn.getParent());
-					if (padding == parent.getPaddingStart()) return;
+				int toolbarFrameWidth = toolbarFrame.getWidth();
+				int padding = toolbarWidth - toolbarFrameWidth;
+				FrameLayout parent = ((FrameLayout) toolbarShowNewPostsBtn.getParent());
+				if (padding == parent.getPaddingStart()) return;
 
-					// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
-					// centering button by applying the same space on the left
-					parent.setPaddingRelative(padding, 0, 0, 0);
-					toolbarShowNewPostsBtn.setMaxWidth(toolbarWidth - padding * 2);
+				// toolbar frame goes from screen edge to beginning of right-aligned option buttons.
+				// centering button by applying the same space on the left
+				parent.setPaddingRelative(padding, 0, 0, 0);
+				toolbarShowNewPostsBtn.setMaxWidth(toolbarWidth - padding * 2);
 
-					switcher.setPivotX(V.dp(28)); // padding + half of icon
-					switcher.setPivotY(switcher.getHeight() / 2f);
-				}
+				switcher.setPivotX(V.dp(28)); // padding + half of icon
+				switcher.setPivotY(switcher.getHeight() / 2f);
 			});
 		}
 
@@ -256,11 +252,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		toolbar.setContentInsetsAbsolute(0, toolbar.getContentInsetRight());
 
 		updateSwitcherIcon(pager.getCurrentItem());
-
-//		toolbarLogo=new ImageView(getActivity());
-//		toolbarLogo.setScaleType(ImageView.ScaleType.CENTER);
-//		toolbarLogo.setImageResource(R.drawable.logo);
-//		toolbarLogo.setImageTintList(ColorStateList.valueOf(UiUtils.getThemeColor(getActivity(), android.R.attr.textColorPrimary)));
 
 		toolbarShowNewPostsBtn=toolbarFrame.findViewById(R.id.show_new_posts_btn);
 		toolbarShowNewPostsBtn.setCompoundDrawableTintList(toolbarShowNewPostsBtn.getTextColors());
