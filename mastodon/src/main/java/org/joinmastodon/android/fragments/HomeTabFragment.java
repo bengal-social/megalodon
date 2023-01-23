@@ -39,6 +39,9 @@ import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.announcements.GetAnnouncements;
 import org.joinmastodon.android.api.requests.lists.GetLists;
 import org.joinmastodon.android.api.requests.tags.GetFollowedHashtags;
+import org.joinmastodon.android.events.HashtagUpdatedEvent;
+import org.joinmastodon.android.events.ListDeletedEvent;
+import org.joinmastodon.android.events.ListUpdatedCreatedEvent;
 import org.joinmastodon.android.events.SelfUpdateStateChangedEvent;
 import org.joinmastodon.android.model.Announcement;
 import org.joinmastodon.android.model.Hashtag;
@@ -52,6 +55,9 @@ import org.joinmastodon.android.updater.GithubSelfUpdater;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import me.grishka.appkit.Nav;
 import me.grishka.appkit.api.Callback;
@@ -93,6 +99,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		E.register(this);
 		accountID = getArguments().getString("account");
 		timelineDefinitions = GlobalUserPreferences.pinnedTimelines.getOrDefault(accountID, TimelineDefinition.DEFAULT_TIMELINES);
 		assert timelineDefinitions != null;
@@ -212,7 +219,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		}
 
 		if(GithubSelfUpdater.needSelfUpdating()){
-			E.register(this);
 			updateUpdateState(GithubSelfUpdater.getInstance().getState());
 		}
 	}
@@ -570,6 +576,50 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt("selectedTab", pager.getCurrentItem());
+	}
+
+	@Subscribe
+	public void onHashtagUpdatedEvent(HashtagUpdatedEvent event) {
+		handleListEvent(hashtagsItems, h -> h.name.equalsIgnoreCase(event.name), event.following, () -> {
+			Hashtag hashtag = new Hashtag();
+			hashtag.name = event.name;
+			hashtag.following = true;
+			return hashtag;
+		});
+	}
+
+	@Subscribe
+	public void onListDeletedEvent(ListDeletedEvent event) {
+		handleListEvent(listItems, l -> l.id.equals(event.id), false, null);
+	}
+
+	@Subscribe
+	public void onListUpdatedCreatedEvent(ListUpdatedCreatedEvent event) {
+		handleListEvent(listItems, l -> l.id.equals(event.id), true, () -> {
+			ListTimeline list = new ListTimeline();
+			list.id = event.id;
+			list.title = event.title;
+			list.repliesPolicy = event.repliesPolicy;
+			return list;
+		});
+	}
+
+	private <T> void handleListEvent(
+			Map<Integer, T> existingThings,
+			Predicate<T> matchExisting,
+			boolean shouldBeInList,
+			Supplier<T> makeNewThing
+	) {
+		Optional<Map.Entry<Integer, T>> existingThing = existingThings.entrySet().stream()
+				.filter(e -> matchExisting.test(e.getValue())).findFirst();
+		if (shouldBeInList) {
+			existingThings.put(existingThing.isPresent()
+					? existingThing.get().getKey() : View.generateViewId(), makeNewThing.get());
+			createOptionsMenu();
+		} else if (existingThing.isPresent() && !shouldBeInList) {
+			existingThings.remove(existingThing.get().getKey());
+			createOptionsMenu();
+		}
 	}
 
 	private class HomePagerAdapter extends RecyclerView.Adapter<SimpleViewHolder> {

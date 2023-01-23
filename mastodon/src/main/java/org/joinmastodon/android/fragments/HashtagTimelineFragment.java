@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import org.joinmastodon.android.E;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.tags.GetHashtag;
 import org.joinmastodon.android.api.requests.tags.SetHashtagFollowed;
 import org.joinmastodon.android.api.requests.timelines.GetHashtagTimeline;
+import org.joinmastodon.android.events.HashtagUpdatedEvent;
 import org.joinmastodon.android.model.Hashtag;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.model.TimelineDefinition;
@@ -55,6 +57,7 @@ public class HashtagTimelineFragment extends PinnableStatusListFragment {
 		this.following = newFollowing;
 		followButton.setTitle(getString(newFollowing ? R.string.unfollow_user : R.string.follow_user, "#" + hashtag));
 		followButton.setIcon(newFollowing ? R.drawable.ic_fluent_person_delete_24_filled : R.drawable.ic_fluent_person_add_24_regular);
+		E.post(new HashtagUpdatedEvent(hashtag, following));
 	}
 
 	@Override

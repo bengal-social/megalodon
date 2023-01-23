@@ -11,10 +11,13 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 
+import org.joinmastodon.android.E;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.requests.lists.GetList;
 import org.joinmastodon.android.api.requests.lists.UpdateList;
 import org.joinmastodon.android.api.requests.timelines.GetListTimeline;
+import org.joinmastodon.android.events.ListDeletedEvent;
+import org.joinmastodon.android.events.ListUpdatedCreatedEvent;
 import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.model.TimelineDefinition;
@@ -87,33 +90,30 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
                     .setTitle(R.string.sk_edit_list_title)
                     .setIcon(R.drawable.ic_fluent_people_list_28_regular)
                     .setView(editor)
-                    .setPositiveButton(R.string.save, (d, which) ->
-                            new UpdateList(listID, editor.getTitle(), editor.getRepliesPolicy()).setCallback(new Callback<>() {
-                                @Override
-                                public void onSuccess(ListTimeline list) {
-                                    setTitle(list.title);
-                                    listTitle = list.title;
-                                    repliesPolicy = list.repliesPolicy;
-                                    Bundle result = new Bundle();
-                                    result.putString("listID", listID);
-                                    result.putString("listTitle", listTitle);
-                                    if (repliesPolicy != null) result.putInt("repliesPolicy", repliesPolicy.ordinal());
-                                    setResult(true, result);
-                                }
+                    .setPositiveButton(R.string.save, (d, which) -> {
+                        String newTitle = editor.getTitle().trim();
+                        setTitle(newTitle);
+                        new UpdateList(listID, newTitle, editor.getRepliesPolicy()).setCallback(new Callback<>() {
+                            @Override
+                            public void onSuccess(ListTimeline list) {
+                                setTitle(list.title);
+                                listTitle = list.title;
+                                repliesPolicy = list.repliesPolicy;
+                                E.post(new ListUpdatedCreatedEvent(listID, listTitle, repliesPolicy));
+                            }
 
-                                @Override
-                                public void onError(ErrorResponse error) {
-                                    error.showToast(getContext());
-                                }
-                            }).exec(accountID))
+                            @Override
+                            public void onError(ErrorResponse error) {
+                                setTitle(listTitle);
+                                error.showToast(getContext());
+                            }
+                        }).exec(accountID);
+                    })
                     .setNegativeButton(R.string.cancel, (d, which) -> {})
                     .show();
         } else if (item.getItemId() == R.id.delete) {
             UiUtils.confirmDeleteList(getActivity(), accountID, listID, listTitle, () -> {
-                Bundle result = new Bundle();
-                result.putBoolean("deleted", true);
-                result.putString("listID", listID);
-                setResult(true, result);
+                E.post(new ListDeletedEvent(listID));
                 Nav.finish(this);
             });
         }

@@ -12,12 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.otto.Subscribe;
+
+import org.joinmastodon.android.E;
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.api.MastodonAPIRequest;
 import org.joinmastodon.android.api.requests.lists.AddAccountsToList;
 import org.joinmastodon.android.api.requests.lists.CreateList;
 import org.joinmastodon.android.api.requests.lists.GetLists;
 import org.joinmastodon.android.api.requests.lists.RemoveAccountsFromList;
+import org.joinmastodon.android.events.ListDeletedEvent;
+import org.joinmastodon.android.events.ListUpdatedCreatedEvent;
 import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.ui.DividerItemDecoration;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
@@ -37,8 +42,6 @@ import me.grishka.appkit.utils.BindableViewHolder;
 import me.grishka.appkit.views.UsableRecyclerView;
 
 public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> implements ScrollableToTop {
-	 private static final int LIST_CHANGED_RESULT = 987;
-
 	 private String accountId;
 	 private String profileAccountId;
 	 private final HashMap<String, Boolean> userInListBefore = new HashMap<>();
@@ -55,6 +58,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
 		  Bundle args=getArguments();
 		  accountId=args.getString("account");
 		  setHasOptionsMenu(true);
+		  E.register(this);
 
 		  if(args.containsKey("profileAccount")){
 				profileAccountId=args.getString("profileAccount");
@@ -98,6 +102,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
 												saveListMembership(list.id, true);
 												data.add(0, list);
 												adapter.notifyItemRangeInserted(0, 1);
+												E.post(new ListUpdatedCreatedEvent(list.id, list.title, list.repliesPolicy));
 										  }
 
 										  @Override
@@ -116,9 +121,14 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
 		  userInList.put(listId, isMember);
 		  List<String> accountIdList = Collections.singletonList(profileAccountId);
 		  MastodonAPIRequest<Object> req = isMember ? new AddAccountsToList(listId, accountIdList) : new RemoveAccountsFromList(listId, accountIdList);
-		  req.setCallback(new SimpleCallback<>(this) {
-				@Override
-				public void onSuccess(Object o) {}
+		  req.setCallback(new Callback<>() {
+			  @Override
+			  public void onSuccess(Object o) {}
+
+			  @Override
+			  public void onError(ErrorResponse error) {
+				error.showToast(getContext());
+			  }
 		  }).exec(accountId);
 	 }
 
@@ -154,28 +164,30 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
 					 .exec(accountId);
 	 }
 
-	 @Override
-	 public void onFragmentResult(int reqCode, boolean listChanged, Bundle result){
-		  if (reqCode == LIST_CHANGED_RESULT && listChanged) {
-				String listID = result.getString("listID");
-				for (int i = 0; i < data.size(); i++) {
-					 ListTimeline item = data.get(i);
-					 if (item.id.equals(listID)) {
-						  if (result.getBoolean("deleted")) {
-								data.remove(i);
-								adapter.notifyItemRemoved(i);
-						  } else {
-								item.title = result.getString("listTitle", item.title);
-								if (result.containsKey("repliesPolicy")) {
-									 item.repliesPolicy = ListTimeline.RepliesPolicy.values()[result.getInt("repliesPolicy")];
-								}
-								adapter.notifyItemChanged(i);
-						  }
-						  break;
-					 }
-				}
-		  }
+	 @Subscribe
+	 public void onListDeletedEvent(ListDeletedEvent event) {
+		for (int i = 0; i < data.size(); i++) {
+			ListTimeline item = data.get(i);
+			if (item.id.equals(event.id)) {
+				data.remove(i);
+				adapter.notifyItemRemoved(i);
+				break;
+			}
+		}
 	 }
+
+	@Subscribe
+	public void onListUpdatedCreatedEvent(ListUpdatedCreatedEvent event) {
+		for (int i = 0; i < data.size(); i++) {
+			ListTimeline item = data.get(i);
+			if (item.id.equals(event.id)) {
+				item.title = event.title;
+				item.repliesPolicy = event.repliesPolicy;
+				adapter.notifyItemChanged(i);
+				break;
+			}
+		}
+	}
 
 	 @Override
 	 protected RecyclerView.Adapter<ListViewHolder> getAdapter() {
@@ -240,7 +252,7 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
 				args.putString("listID", item.id);
 				args.putString("listTitle", item.title);
 				if (item.repliesPolicy != null) args.putInt("repliesPolicy", item.repliesPolicy.ordinal());
-				Nav.goForResult(getActivity(), ListTimelineFragment.class, args, LIST_CHANGED_RESULT, ListTimelinesFragment.this);
+				Nav.go(getActivity(), ListTimelineFragment.class, args);
 		  }
 	 }
 }
