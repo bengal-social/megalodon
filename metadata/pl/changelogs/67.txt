@@ -1,0 +1,10 @@
+- Nowa zakładka główna z publicznymi liniami czasu
+- Wyświetlanie ogłoszeń serwera
+- Tekst jest teraz skalowany zgodnie z ustawieniami systemu
+- Poprawione filtrowanie (nie, "Ukryj z ostrzeżeniem" jeszcze nie działa) dzięki @thiagojedi
+- Funkcje zarządzania listami
+- Usuwanie obserwatorów poprzez soft-blokowanie ich
+- Zablokowano połączenia z faszystami
+- Naprawiono nie ładujące się obrazki po podłączeniu do instancji Akkoma
+- Poprawki błędów i ulepszenia UI
+- Dodano changelog do akutalizatora dzięki@LucasGGamerM

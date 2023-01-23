@@ -1,0 +1,5 @@
+- Nowe tematy kolorystyczne: Material You i Czerwony
+- Nowe ciemnoszare odcienie dla wszystkich motywów
+- Bardziej wyrazista, wypełniona ikona reblogowania
+- Animacje dla przycisków interakcji
+- Poprawki błędów (Crash na niektórych postach, "Listy z", domyślny język wpisów)

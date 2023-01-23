@@ -1,0 +1,11 @@
+- Edytowalny przycisk publikacji
+- Otwieranie linków Fediverse w aplikacji
+- Długie kliknięcie przycisku reblogowania "cytuje" wpis
+- Kopiowanie adresu URL postu po długim naciśnięciu przycisku udostępniania
+- Dodano usuwania powiadomień (domyślnie wyłączone)
+- Dedykowane ikony dla wszystkich rodzajów powiadomień
+- Nowe kolory szarości
+- Dodano ustawienia wyłączające "swipowanie" między zakładkami
+- Dodano różne linki do ustawień konta
+- Przełącznik pokazujący/ukrywający przycisk tłumaczenia na osi czasu
+- Poprawki błędów

@@ -1,0 +1,10 @@
+- Wersje robocze i planowanie postów
+- Wyświetlanie oryginalnego postu podczas odpowiadania
+- Filtry zgodne z Mastodon 4.0 (nie ma jeszcze funkcji "ukryj z ostrzeżeniem")
+- Długie kliknięcie w celu interakcji z postami (odpowiedź, reblog, polubienie, zakładka) innym zalogowanym kontem
+- Ikony we wszystkich menu
+- Przełącznik do forwardowania raportów
+- Dodawanie wzmianki przy użyciu funkcji "Post o tym"
+- Opcja używania jednolitej ikony powiadomień zamiast odrębnych ikon
+- Opcja dostępu do listy reguł w aplikacji z poziomu ustawień
+- Poprawki błędów

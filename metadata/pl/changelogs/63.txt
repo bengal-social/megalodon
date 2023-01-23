@@ -1,0 +1,6 @@
+- Opcja reblogowania z określoną widocznością po "długim kliknięciu"
+- Pokaż widoczność własnych reblogów
+- Dodaj listę śledzonych hashtagów
+- Kopiowanie linków po długim kliknięciu
+- Opcja otwierania postów innym kontem
+- Poprawki błędów

@@ -1,0 +1,6 @@
+- Dodano selektor języków
+- Dodano funkcję tłumacza
+- Poprawiono semantykę głosowania w ankietach (przyciski radiowe i pola wyboru)
+- Dodano opcję pozwalającą na głosowanie na wiele opcji w ankietach
+- Nowy ekran logowania
+- Poprawki błędów
