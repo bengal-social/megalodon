@@ -1,0 +1,10 @@
+- Nova guia inicial com as timelines
+- Exibir anúncios do servidor
+- O texto é dimensionado de acordo com as configurações do sistema
+- Filtragem aprimorada ("Ocultar com aviso" ainda não funciona) por @thiagojedi
+- Recursos de gerenciamento de listas
+- Remova seguidores bloqueando-os
+- Conexões com fascistas foi proibida
+- Correção de imagens que não carregam quando conectadas à instância Akkoma
+- Correções de bugs e ajustes de interface
+- Adicionada changelog ao atualizador por @LucasGGamerM
