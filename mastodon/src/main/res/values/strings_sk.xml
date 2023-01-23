@@ -143,7 +143,7 @@
     <string name="sk_timeline_home">Home</string>
     <string name="sk_timeline_local">Local</string>
     <string name="sk_timeline_federated">Federation</string>
-    <string name="sk_recent_searches_placeholder">Type something to start searching</string>
+    <string name="sk_recent_searches_placeholder">Type to start searching</string>
     <string name="sk_remove_follower">Remove as follower</string>
     <string name="sk_remove_follower_confirm">Remove %s as a follower by blocking and immediately unblocking them?</string>
     <string name="sk_do_remove_follower">Remove</string>
@@ -227,4 +227,6 @@
     <string name="sk_notification_type_update">Edited posts</string>
     <string name="sk_notify_update">Edits a reblogged post</string>
     <string name="sk_attach_file">Attach file</string>
+    <string name="sk_searching">Searching…</string>
+    <string name="sk_no_results">No results</string>
 </resources>

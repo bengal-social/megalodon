@@ -62,13 +62,17 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 		if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N)
 			setRetainInstance(true);
 		loadData();
-		setEmptyText(R.string.sk_recent_searches_placeholder);
+		resetEmptyText();
 	}
 
 	@Override
 	public void onAttach(Activity activity){
 		super.onAttach(activity);
 		imm=activity.getSystemService(InputMethodManager.class);
+	}
+
+	private void resetEmptyText() {
+		setEmptyText(R.string.sk_recent_searches_placeholder);
 	}
 
 	@Override
@@ -120,6 +124,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 
 	@Override
 	protected void doLoadData(int offset, int count){
+		resetEmptyText();
 		if(isInRecentMode()){
 			AccountSessionManager.getInstance().getAccount(accountID).getCacheController().getRecentSearches(sr->{
 				if(getActivity()==null)
@@ -129,11 +134,13 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 				onDataLoaded(sr, false);
 			});
 		}else{
+			setEmptyText(R.string.sk_searching);
 			progressVisibilityListener.onProgressVisibilityChanged(true);
 			currentRequest=new GetSearchResults(currentQuery, null, true)
 					.setCallback(new Callback<>(){
 						@Override
 						public void onSuccess(SearchResults result){
+							setEmptyText(R.string.sk_no_results);
 							ArrayList<SearchResult> results=new ArrayList<>();
 							if(result.accounts!=null){
 								for(Account acc:result.accounts)
@@ -154,6 +161,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 
 						@Override
 						public void onError(ErrorResponse error){
+							resetEmptyText();
 							currentRequest=null;
 							Activity a=getActivity();
 							if(a==null)
