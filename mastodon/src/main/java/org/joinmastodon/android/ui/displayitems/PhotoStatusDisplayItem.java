@@ -12,7 +12,6 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.joinmastodon.android.GlobalUserPreferences;
@@ -38,7 +37,7 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 	}
 
 	public static class Holder extends ImageStatusDisplayItem.Holder<PhotoStatusDisplayItem>{
-		private final FrameLayout altTextWrapper;
+		private final FrameLayout altTextWrapper, altTextOpen;
 		private final TextView altTextButton;
 		private final ImageView noAltTextButton;
 		private final View altTextScroller;
@@ -52,14 +51,13 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 		public Holder(Activity activity, ViewGroup parent){
 			super(activity, R.layout.display_item_photo, parent);
 			altTextWrapper=findViewById(R.id.alt_text_wrapper);
+			altTextOpen=findViewById(R.id.alt_text_open);
 			altTextButton=findViewById(R.id.alt_button);
 			noAltTextButton=findViewById(R.id.no_alt_button);
 			altTextScroller=findViewById(R.id.alt_text_scroller);
 			altTextClose=findViewById(R.id.alt_text_close);
 			altText=findViewById(R.id.alt_text);
 
-			altTextButton.setOnClickListener(this::onShowHideClick);
-			noAltTextButton.setOnClickListener(this::onShowHideClick);
 			altTextClose.setOnClickListener(this::onShowHideClick);
 //			altTextScroller.setNestedScrollingEnabled(true);
 		}
@@ -80,6 +78,7 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 			altTextButton.setAlpha(1f);
 			noAltTextButton.setAlpha(1f);
 			altTextWrapper.setVisibility(View.VISIBLE);
+			altTextOpen.setOnClickListener(this::onShowHideClick);
 
 			if (altTextMissing){
 				if (GlobalUserPreferences.showNoAltIndicator) {
@@ -106,7 +105,9 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 		}
 
 		private void onShowHideClick(View v){
-			boolean show=v.getId()==R.id.alt_button || v.getId()==R.id.no_alt_button;
+			boolean show=v.getId()==R.id.alt_text_open;
+
+			altTextOpen.setOnClickListener(show ? null : this::onShowHideClick);
 
 			if(altTextShown==show)
 				return;
@@ -127,7 +128,8 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 			// This is the current size...
 			int prevLeft=altTextWrapper.getLeft();
 			int prevRight=altTextWrapper.getRight();
-			int prevTop=altTextWrapper.getTop();
+			int prevBottom=altTextWrapper.getBottom();
+			int prevTop=altTextOpen.getTop();
 			altTextWrapper.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener(){
 				@Override
 				public boolean onPreDraw(){
@@ -144,7 +146,8 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 					set.playTogether(
 							ObjectAnimator.ofInt(altTextWrapper, "left", prevLeft, altTextWrapper.getLeft()),
 							ObjectAnimator.ofInt(altTextWrapper, "right", prevRight, altTextWrapper.getRight()),
-							ObjectAnimator.ofInt(altTextWrapper, "top", prevTop, altTextWrapper.getTop()),
+							ObjectAnimator.ofInt(altTextWrapper, "bottom", prevBottom, altTextWrapper.getBottom()),
+							ObjectAnimator.ofInt(altTextOpen, "top", prevTop, altTextOpen.getTop()),
 							ObjectAnimator.ofFloat(altOrNoAltButton, View.ALPHA, show ? 1f : 0f, show ? 0f : 1f),
 							ObjectAnimator.ofFloat(altTextScroller, View.ALPHA, show ? 0f : 1f, show ? 1f : 0f),
 							ObjectAnimator.ofFloat(altTextClose, View.ALPHA, show ? 0f : 1f, show ? 1f : 0f)
