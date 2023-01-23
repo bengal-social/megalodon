@@ -225,6 +225,12 @@
 		<item name="android:toolbarStyle">@style/Widget.Mastodon.Toolbar</item>
 		<item name="android:textColorPrimary">?colorGray800</item>
 		<item name="android:textColorSecondary">?colorGray800</item>
+		<item name="android:actionOverflowButtonStyle">@style/Theme.Mastodon.ActionButton.Overflow</item>
+	</style>
+
+	<style name="Theme.Mastodon.ActionButton.Overflow" parent="android:Widget.Material.ActionButton.Overflow">
+		<item name="android:src">@drawable/ic_fluent_more_vertical_24_regular</item>
+		<item name="android:paddingEnd">12dp</item>
 	</style>
 
 	<style name="Theme.Mastodon.Toolbar.Dark" parent="android:ThemeOverlay.Material.Dark.ActionBar">
