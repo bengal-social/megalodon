@@ -153,7 +153,7 @@
     <string name="sk_publish_anyway">仍然发布</string>
     <string name="sk_notify_posts_info_banner">如果您为某些人启用嘟文通知，他们的新帖子将显示在这里。</string>
     <string name="sk_timelines">时间线</string>
-    <string name="sk_edit_timelines">编辑时间线…</string>
+    <string name="sk_edit_timelines">编辑时间线</string>
     <string name="sk_alt_button">ALT</string>
     <string name="sk_post_edited">编辑</string>
     <string name="sk_notification_type_update">编辑嘟文</string>
