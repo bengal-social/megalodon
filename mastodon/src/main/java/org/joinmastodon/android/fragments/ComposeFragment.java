@@ -967,7 +967,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		publish(false);
 	}
 
-	private void publish(boolean forceWithoutAltTexts){
+	private void publish(boolean force){
 		String text=mainEditText.getText().toString();
 		CreateStatus.Request req=new CreateStatus.Request();
 		req.status=text;
@@ -979,7 +979,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			req.mediaIds=attachments.stream().map(a->a.serverAttachment.id).collect(Collectors.toList());
 			Optional<DraftMediaAttachment> withoutAltText = attachments.stream().filter(a -> a.description == null || a.description.isBlank()).findFirst();
 			boolean isDraft = scheduledAt != null && scheduledAt.isAfter(DRAFTS_AFTER_INSTANT);
-			if (!forceWithoutAltTexts && !GlobalUserPreferences.disableAltTextReminder && !isDraft && withoutAltText.isPresent()) {
+			if (!force && !GlobalUserPreferences.disableAltTextReminder && !isDraft && withoutAltText.isPresent()) {
 				new M3AlertDialogBuilder(getActivity())
 						.setTitle(R.string.sk_alt_text_missing_title)
 						.setMessage(R.string.sk_alt_text_missing)
@@ -988,6 +988,19 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 						.show();
 				return;
 			}
+		}
+		// ask whether to publish now when editing an existing draft
+		if (!force && editingStatus != null && scheduledAt != null && scheduledAt.isAfter(DRAFTS_AFTER_INSTANT)) {
+			new M3AlertDialogBuilder(getActivity())
+					.setTitle(R.string.sk_save_draft)
+					.setMessage(R.string.sk_save_draft_message)
+					.setPositiveButton(R.string.save, (d, w) -> publish(true))
+					.setNegativeButton(R.string.publish, (d, w) -> {
+						updateScheduledAt(null);
+						publish();
+					})
+					.show();
+			return;
 		}
 		if(replyTo!=null || (editingStatus != null && editingStatus.inReplyToId!=null)){
 			req.inReplyToId=editingStatus!=null ? editingStatus.inReplyToId : replyTo.id;
