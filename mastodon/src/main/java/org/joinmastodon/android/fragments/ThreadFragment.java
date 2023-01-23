@@ -126,4 +126,14 @@ public class ThreadFragment extends StatusListFragment{
 	public boolean isItemEnabled(String id){
 		return !id.equals(mainStatus.id);
 	}
+
+	@Override
+	public boolean wantsLightStatusBar(){
+		return !UiUtils.isDarkTheme();
+	}
+
+	@Override
+	public boolean wantsLightNavigationBar(){
+		return !UiUtils.isDarkTheme();
+	}
 }
