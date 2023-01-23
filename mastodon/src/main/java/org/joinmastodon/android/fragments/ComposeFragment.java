@@ -174,7 +174,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private int charCount, charLimit, trimmedCharCount;
 
 	private Button publishButton, languageButton, scheduleTimeBtn, draftsBtn;
-	private PopupMenu languagePopup, visibilityPopup, draftOptionsPopup, attachPopup;
+	private PopupMenu languagePopup, visibilityPopup, draftOptionsPopup;
 	private ImageButton mediaBtn, pollBtn, emojiBtn, spoilerBtn, visibilityBtn, scheduleDraftDismiss;
 	private ImageView sensitiveIcon;
 	private ComposeMediaLayout attachmentsView;
