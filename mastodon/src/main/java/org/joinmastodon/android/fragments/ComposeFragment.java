@@ -1795,10 +1795,13 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			statusVisibility = (StatusPrivacy) savedInstanceState.getSerializable("visibility");
 		}
 
-		Preferences prefs = AccountSessionManager.getInstance().getAccount(accountID).preferences;
-		if (prefs != null) {
+		AccountSessionManager asm = AccountSessionManager.getInstance();
+		Preferences prefs = asm.getAccount(accountID).preferences;
+		if (prefs != null && replyTo != null) {
 			// Only override the reply visibility if our preference is more private
-			if (prefs.postingDefaultVisibility.isLessVisibleThan(statusVisibility)) {
+			// (or we're replying to ourselves)
+			if (prefs.postingDefaultVisibility.isLessVisibleThan(statusVisibility) &&
+					!asm.isSelf(accountID, replyTo.account)) {
 				statusVisibility = switch (prefs.postingDefaultVisibility) {
 					case PUBLIC -> StatusPrivacy.PUBLIC;
 					case UNLISTED -> StatusPrivacy.UNLISTED;
@@ -1806,11 +1809,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 					case DIRECT -> StatusPrivacy.DIRECT;
 				};
 			}
+		}
 
-			// A saved privacy setting from a previous compose session wins over all
-			if(savedInstanceState !=null){
-				statusVisibility = (StatusPrivacy) savedInstanceState.getSerializable("visibility");
-			}
+		// A saved privacy setting from a previous compose session wins over all
+		if(savedInstanceState !=null){
+			statusVisibility = (StatusPrivacy) savedInstanceState.getSerializable("visibility");
 		}
 	}
 
