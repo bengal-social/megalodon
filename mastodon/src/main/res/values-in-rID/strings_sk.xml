@@ -151,7 +151,7 @@
     <string name="sk_do_remove_follower">Hapus</string>
     <string name="sk_remove_follower_success">Berhasil penghapus pengikut</string>
     <string name="sk_changelog">Catatan perubahan</string>
-    <string name="sk_edit_timelines">Sunting lini masa…</string>
+    <string name="sk_edit_timelines">Sunting lini masa</string>
     <string name="sk_alt_text_missing_title">Tidak ada teks alternatif</string>
     <string name="sk_alt_text_missing">Setidaknya satu lampiran tidak memilki deskripsi.</string>
     <string name="sk_publish_anyway">Terbitkan saja</string>
