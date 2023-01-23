@@ -1,5 +1,7 @@
 package org.joinmastodon.android.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.joinmastodon.android.api.RequiredField;
@@ -11,9 +13,9 @@ public class ListTimeline extends BaseModel {
     public String id;
     @RequiredField
     public String title;
-    @RequiredField
     public RepliesPolicy repliesPolicy;
 
+    @NonNull
     @Override
     public String toString() {
         return "List{" +

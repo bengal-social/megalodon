@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.joinmastodon.android.R;
 import org.joinmastodon.android.model.ListTimeline;
 
@@ -37,9 +40,9 @@ public class ListTimelineEditor extends LinearLayout {
         setRepliesPolicy(ListTimeline.RepliesPolicy.LIST);
     }
 
-    public void applyList(String title, ListTimeline.RepliesPolicy policy) {
+    public void applyList(String title, @Nullable ListTimeline.RepliesPolicy policy) {
         input.getEditText().setText(title);
-        setRepliesPolicy(policy);
+        if (policy != null) setRepliesPolicy(policy);
     }
 
     public String getTitle() {
@@ -50,7 +53,7 @@ public class ListTimelineEditor extends LinearLayout {
         return policy;
     }
 
-    public void setRepliesPolicy(ListTimeline.RepliesPolicy policy) {
+    public void setRepliesPolicy(@NonNull ListTimeline.RepliesPolicy policy) {
         this.policy = policy;
         switch (policy) {
             case FOLLOWED -> button.setText(R.string.sk_list_replies_policy_followed);
