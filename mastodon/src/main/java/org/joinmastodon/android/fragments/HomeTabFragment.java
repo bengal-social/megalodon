@@ -362,9 +362,6 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			item.setIcon(tl.getIcon().iconRes);
 		}
 
-		switcherMenu.add(0, R.id.menu_edit, Menu.NONE, R.string.sk_edit_timelines)
-				.setIcon(R.drawable.ic_fluent_edit_24_regular);
-
 		UiUtils.enablePopupMenuIcons(getContext(), switcherPopup);
 	}
 
@@ -377,19 +374,18 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		if (id == R.id.menu_back) {
 			switcher.post(() -> switcherPopup.show());
 			return true;
-		} else if (id == R.id.menu_edit) {
-			Nav.go(getActivity(), EditTimelinesFragment.class, args);
-		} else {
-			TimelineDefinition tl = timelinesByMenuItem.get(id);
-			if (tl != null) {
-				for (int i = 0; i < timelines.length; i++) {
-					if (timelines[i] == tl) {
-						navigateTo(i);
-						return true;
-					}
+		}
+
+		TimelineDefinition tl = timelinesByMenuItem.get(id);
+		if (tl != null) {
+			for (int i = 0; i < timelines.length; i++) {
+				if (timelines[i] == tl) {
+					navigateTo(i);
+					return true;
 				}
 			}
 		}
+
 		return false;
 	}
 	private void navigateTo(int i) {
@@ -422,6 +418,8 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			Nav.go(getActivity(), SettingsFragment.class, args);
 		} else if (id == R.id.announcements || id == R.id.announcements_action) {
 			Nav.goForResult(getActivity(), AnnouncementsFragment.class, args, ANNOUNCEMENTS_RESULT, this);
+		} else if (id == R.id.edit_timelines) {
+			Nav.go(getActivity(), EditTimelinesFragment.class, args);
 		} else if ((list = listItems.get(id)) != null) {
 			args.putString("listID", list.id);
 			args.putString("listTitle", list.title);

@@ -30,6 +30,10 @@
 				android:icon="@drawable/ic_fluent_megaphone_24_regular"
 				android:title="@string/sk_announcements" />
 			<item
+				android:id="@+id/edit_timelines"
+				android:icon="@drawable/ic_fluent_edit_24_regular"
+				android:title="@string/sk_edit_timelines" />
+			<item
 				android:id="@+id/lists"
 				android:icon="@drawable/ic_fluent_people_list_24_regular"
 				android:title="@string/sk_your_lists"
