@@ -7,6 +7,11 @@
 	android:paddingRight="16dp"
 	android:paddingLeft="16dp">
 
+	<!--
+	okay look, i know marginEnd = -9.9dp looks silly, but i was trying *really* hard to align this
+	more button to the overflow button in the action bar and -9.9 was the best i could come up with
+	after trying for way too long
+	-->
 	<ImageView
 		android:id="@+id/more"
 		android:layout_width="36dp"
@@ -14,8 +19,8 @@
 		android:layout_alignParentTop="true"
 		android:layout_alignParentEnd="true"
 		android:layout_marginTop="-6dp"
-		android:layout_marginEnd="-8dp"
-		android:background="?android:selectableItemBackgroundBorderless"
+		android:layout_marginEnd="-9.9dp"
+		android:background="?android:actionBarItemBackground"
 		android:contentDescription="@string/more_options"
 		android:scaleType="center"
 		android:src="@drawable/ic_fluent_more_vertical_20_filled"
@@ -26,10 +31,9 @@
 		android:layout_width="36dp"
 		android:layout_height="36dp"
 		android:layout_marginTop="-6dp"
-		android:layout_marginEnd="2dp"
 		android:layout_toStartOf="@id/more"
 		android:visibility="gone"
-		android:background="?android:selectableItemBackgroundBorderless"
+		android:background="?android:actionBarItemBackground"
 		android:contentDescription="@string/sk_delete_notification"
 		android:scaleType="center"
 		android:src="@drawable/ic_fluent_dismiss_20_filled"
@@ -40,9 +44,8 @@
 		android:layout_width="36dp"
 		android:layout_height="36dp"
 		android:layout_marginTop="-6dp"
-		android:layout_marginEnd="2dp"
 		android:layout_toStartOf="@id/delete_notification"
-		android:background="?android:selectableItemBackgroundBorderless"
+		android:background="?android:actionBarItemBackground"
 		android:scaleType="center"
 		android:src="@drawable/ic_visibility"
 		android:tint="?android:textColorSecondary" />
