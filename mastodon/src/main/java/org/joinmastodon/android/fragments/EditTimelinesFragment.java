@@ -306,7 +306,7 @@ public class EditTimelinesFragment extends BaseRecyclerFragment<TimelineDefiniti
                     .setNegativeButton(R.string.cancel, (d, which) -> {})
                     .show();
 
-            editText.requestFocus();
+            btn.requestFocus();
         }
     }
 
