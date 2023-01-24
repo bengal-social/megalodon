@@ -143,7 +143,7 @@
     <string name="sk_timeline_federated">Fédération</string>
     <string name="sk_timeline_local">Communauté</string>
     <string name="sk_timeline_home">Accueil</string>
-    <string name="sk_recent_searches_placeholder">Tapez quelque chose pour commencer la recherche</string>
+    <string name="sk_recent_searches_placeholder">Écrivez pour lancer la recherche</string>
     <string name="sk_do_remove_follower">Supprimer</string>
     <string name="sk_remove_follower_success">Abonné supprimé avec succès</string>
     <string name="sk_changelog">Journal des modifications</string>
@@ -227,4 +227,12 @@
     <string name="sk_attach_file">Joindre un fichier</string>
     <string name="sk_icon_microscope">Microscope</string>
     <string name="sk_icon_pin">Épingle</string>
+    <string name="sk_searching">Recherche…</string>
+    <string name="sk_no_results">Aucun résultat</string>
+    <string name="sk_save_draft">Enregistrer le brouillon \?</string>
+    <string name="sk_no_alt_text">Aucun texte alternatif disponible</string>
+    <string name="sk_settings_show_alt_indicator">Indicateur pour les textes alternatifs</string>
+    <string name="sk_settings_show_no_alt_indicator">Indicateur de textes alternatifs manquants</string>
+    <string name="sk_updater_enable_pre_releases">Activer les versions préliminaires</string>
+    <string name="sk_save_draft_message">Voulez-vous enregistrer les modifications apportées à ce brouillon ou le publier maintenant \?</string>
 </resources>
