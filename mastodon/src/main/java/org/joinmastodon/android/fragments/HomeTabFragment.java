@@ -1,5 +1,7 @@
 package org.joinmastodon.android.fragments;
 
+import static org.joinmastodon.android.GlobalUserPreferences.reduceMotion;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -173,9 +175,16 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		UiUtils.reduceSwipeSensitivity(pager);
 		pager.setUserInputEnabled(!GlobalUserPreferences.disableSwipe);
 		pager.setAdapter(new HomePagerAdapter());
-		pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback(){
+		pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
 			@Override
 			public void onPageSelected(int position){
+				if (!reduceMotion) {
+					// setting this here because page transformer appears to fire too late so the
+					// animation can appear bumpy, especially when navigating to a further-away tab
+					switcher.setScaleY(0.85f);
+					switcher.setScaleX(0.85f);
+					switcher.setAlpha(0.65f);
+				}
 				updateSwitcherIcon(position);
 				if (!timelines[position].equals(TimelineDefinition.HOME_TIMELINE)) hideNewPostsButton();
 				if (fragments[position] instanceof BaseRecyclerFragment<?> page){
@@ -184,9 +193,9 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 			}
 		});
 
-		if (!GlobalUserPreferences.reduceMotion) {
+		if (!reduceMotion) {
 			pager.setPageTransformer((v, pos) -> {
-				if (tabViews[pager.getCurrentItem()] != v) return;
+				if (reduceMotion || tabViews[pager.getCurrentItem()] != v) return;
 				float scaleFactor = Math.max(0.85f, 1 - Math.abs(pos) * 0.06f);
 				switcher.setScaleY(scaleFactor);
 				switcher.setScaleX(scaleFactor);
@@ -396,7 +405,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		return false;
 	}
 	private void navigateTo(int i) {
-		navigateTo(i, !GlobalUserPreferences.reduceMotion);
+		navigateTo(i, !reduceMotion);
 	}
 
 	private void navigateTo(int i, boolean smooth) {
@@ -463,7 +472,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.SCALE_Y, .8f),
 				ObjectAnimator.ofFloat(collapsedChevron, View.ALPHA, 0f)
 		);
-		set.setDuration(GlobalUserPreferences.reduceMotion ? 0 : 300);
+		set.setDuration(reduceMotion ? 0 : 300);
 		set.setInterpolator(CubicBezierInterpolator.DEFAULT);
 		set.addListener(new AnimatorListenerAdapter(){
 			@Override
@@ -496,7 +505,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 				ObjectAnimator.ofFloat(toolbarShowNewPostsBtn, View.SCALE_Y, 1f),
 				ObjectAnimator.ofFloat(collapsedChevron, View.ALPHA, 1f)
 		);
-		set.setDuration(GlobalUserPreferences.reduceMotion ? 0 : 300);
+		set.setDuration(reduceMotion ? 0 : 300);
 		set.setInterpolator(CubicBezierInterpolator.DEFAULT);
 		set.addListener(new AnimatorListenerAdapter(){
 			@Override
