@@ -19,7 +19,7 @@
     <string name="sk_settings_load_new_posts">Carregar novas postagens automaticamente</string>
     <string name="sk_mark_media_as_sensitive">Marcar mídia como sensível</string>
     <string name="sk_settings_app_version">Megalodon v%1$s (%2$d)</string>
-    <string name="sk_lists_with_user">Editar listas com %s</string>
+    <string name="sk_lists_with_user">Listas com %s</string>
     <string name="sk_user_post_notifications_on">Ativar as notificações de postagem para %s</string>
     <string name="sk_federated_timeline">Federação</string>
     <string name="sk_federated_timeline_info_banner">Estas são as postagens mais recentes das pessoas em sua federação.</string>
@@ -142,7 +142,7 @@
     <string name="sk_timeline_home">Início</string>
     <string name="sk_timeline_local">Local</string>
     <string name="sk_timeline_federated">Federação</string>
-    <string name="sk_recent_searches_placeholder">Digite algo para iniciar a busca</string>
+    <string name="sk_recent_searches_placeholder">Digite para começar a pesquisar</string>
     <string name="sk_remove_follower_confirm">Remover %s como seguidor bloqueando e desbloqueando em seguida\?</string>
     <string name="sk_do_remove_follower">Remover</string>
     <string name="sk_remove_follower_success">Seguidor removido com sucesso</string>
@@ -196,11 +196,21 @@
     <string name="sk_icon_train">Trem</string>
     <string name="sk_alt_text_missing_title">Sem descrição de imagem</string>
     <string name="sk_alt_text_missing">Pelo menos um anexo não contém uma descrição.</string>
-    <string name="sk_settings_disable_alt_text_reminder">Desativar lembrete de descrição de imagem</string>
+    <string name="sk_settings_disable_alt_text_reminder">Desativar lembrete de texto descritivo</string>
     <string name="sk_remove">Remover</string>
     <string name="sk_searching">Procurando…</string>
     <string name="sk_no_results">Sem resultados</string>
     <string name="sk_save_draft">Salvar rascunho\?</string>
     <string name="sk_save_draft_message">Você deseja salvar as alterações do rascunho ou publicar agora\?</string>
     <string name="sk_no_alt_text">Nenhuma descrição disponível</string>
+    <string name="sk_icon_dog">Cachorro</string>
+    <string name="sk_icon_pi">Pi</string>
+    <string name="sk_icon_news">Notícias</string>
+    <string name="sk_icon_laugh">Riso</string>
+    <string name="sk_icon_gavel">Martelo</string>
+    <string name="sk_icon_briefcase">Pasta</string>
+    <string name="sk_icon_chat">Bate-papo</string>
+    <string name="sk_icon_clapper_board">Claquete</string>
+    <string name="sk_alt_button">ALT</string>
+    <string name="sk_updater_enable_pre_releases">Ativar pré-lançamentos</string>
 </resources>
