@@ -7,4 +7,4 @@
 - Zablokowano połączenia z faszystami
 - Naprawiono nie ładujące się obrazki po podłączeniu do instancji Akkoma
 - Poprawki błędów i ulepszenia UI
-- Dodano changelog do akutalizatora dzięki@LucasGGamerM
+- Dodano changelog do aktualizatora dzięki@LucasGGamerM
