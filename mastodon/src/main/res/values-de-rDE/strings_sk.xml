@@ -226,4 +226,12 @@
     <string name="sk_icon_globe">Globus</string>
     <string name="sk_attach_file">Datei anhängen</string>
     <string name="sk_icon_pin">Stecknadel</string>
+    <string name="sk_no_results">Keine Ergebnisse</string>
+    <string name="sk_save_draft">Entwurf speichern\?</string>
+    <string name="sk_no_alt_text">Keine Bildbeschreibung</string>
+    <string name="sk_settings_show_alt_indicator">Indikator für Bildbeschreibungen</string>
+    <string name="sk_settings_show_no_alt_indicator">Indikator für fehlende Bildbeschreibungen</string>
+    <string name="sk_updater_enable_pre_releases">Vorab-Versionen einschalten</string>
+    <string name="sk_searching">Wird gesucht…</string>
+    <string name="sk_save_draft_message">Änderungen speichern oder Entwurf jetzt veröffentlichen\?</string>
 </resources>
