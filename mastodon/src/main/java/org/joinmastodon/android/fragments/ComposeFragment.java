@@ -1797,11 +1797,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 
 		AccountSessionManager asm = AccountSessionManager.getInstance();
 		Preferences prefs = asm.getAccount(accountID).preferences;
-		if (prefs != null && replyTo != null) {
+		if (prefs != null) {
 			// Only override the reply visibility if our preference is more private
-			// (or we're replying to ourselves)
+			// (and we're not replying to ourselves, or not at all)
 			if (prefs.postingDefaultVisibility.isLessVisibleThan(statusVisibility) &&
-					!asm.isSelf(accountID, replyTo.account)) {
+					(replyTo == null || !asm.isSelf(accountID, replyTo.account))) {
 				statusVisibility = switch (prefs.postingDefaultVisibility) {
 					case PUBLIC -> StatusPrivacy.PUBLIC;
 					case UNLISTED -> StatusPrivacy.UNLISTED;
