@@ -128,7 +128,7 @@
     <string name="sk_delete_list">Eliminar lista</string>
     <string name="sk_edit_list_title">Editar lista</string>
     <string name="sk_your_lists">Listas</string>
-    <string name="sk_recent_searches_placeholder">Escribe algo para iniciar a busca</string>
+    <string name="sk_recent_searches_placeholder">Escribe para iniciar a busca</string>
     <string name="sk_remove_follower">Eliminar como seguidora</string>
     <string name="sk_remove_follower_confirm">Eliminar a %s como seguidora bloqueándoa e inmediatamente desbloqueándoa\?</string>
     <string name="sk_do_remove_follower">Eliminar</string>
@@ -153,7 +153,7 @@
     <string name="sk_alt_text_missing_title">Falta o texto descritivo</string>
     <string name="sk_publish_anyway">Publicar igualmente</string>
     <string name="sk_settings_disable_alt_text_reminder">Desactivar aviso de texto alternativo</string>
-    <string name="sk_edit_timelines">Editar cronoloxías…</string>
+    <string name="sk_edit_timelines">Editar cronoloxías</string>
     <string name="sk_alt_button">ALT</string>
     <string name="sk_post_edited">editada</string>
     <string name="sk_notification_type_update">Publicación editada</string>
@@ -226,4 +226,12 @@
     <string name="sk_icon_gauge">Indicador</string>
     <string name="sk_icon_math_formula">Fórmula matemática</string>
     <string name="sk_notify_update">Edita unha publicación promovida</string>
+    <string name="sk_no_results">Sen resultados</string>
+    <string name="sk_save_draft">Gardar borrador\?</string>
+    <string name="sk_no_alt_text">Sen texto descriptivo</string>
+    <string name="sk_settings_show_alt_indicator">Indicador de texto alternativo</string>
+    <string name="sk_settings_show_no_alt_indicator">Indicador para a falta de texto alt</string>
+    <string name="sk_updater_enable_pre_releases">Activar pre-publicacións</string>
+    <string name="sk_searching">Buscando…</string>
+    <string name="sk_save_draft_message">Queres gardar os cambios deste borrador ou publicalo agora\?</string>
 </resources>
