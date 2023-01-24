@@ -142,7 +142,7 @@
     <string name="sk_timeline_home">Головна</string>
     <string name="sk_timeline_local">Локальна</string>
     <string name="sk_timeline_federated">Федерація</string>
-    <string name="sk_recent_searches_placeholder">Введіть щось, щоб почати пошук</string>
+    <string name="sk_recent_searches_placeholder">Почніть вводити, щоб почати пошук</string>
     <string name="sk_remove_follower">Вилучити як підписника</string>
     <string name="sk_remove_follower_confirm">Вилучити %s як підписника заблокувавши й миттєво розблокувавши\?</string>
     <string name="sk_do_remove_follower">Вилучити</string>
@@ -226,4 +226,12 @@
     <string name="sk_icon_math_formula">Математична формула</string>
     <string name="sk_icon_globe">Глобус</string>
     <string name="sk_icon_pin">Шпилька</string>
+    <string name="sk_searching">Пошук…</string>
+    <string name="sk_no_results">Немає результатів</string>
+    <string name="sk_save_draft">Зберегти чернетку\?</string>
+    <string name="sk_save_draft_message">Ви хочете зберегти зміни до цієї чернетки чи опублікувати її зараз\?</string>
+    <string name="sk_no_alt_text">Немає альтернативного тексту</string>
+    <string name="sk_settings_show_no_alt_indicator">Індикатор відсутності альтернативних текстів</string>
+    <string name="sk_updater_enable_pre_releases">Увімкнути попередні випуски</string>
+    <string name="sk_settings_show_alt_indicator">Індикатор для альтернативних текстів</string>
 </resources>
