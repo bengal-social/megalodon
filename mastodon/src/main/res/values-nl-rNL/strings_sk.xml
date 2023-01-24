@@ -143,7 +143,7 @@
     <string name="sk_remove_follower">Verwijder als volger</string>
     <string name="sk_do_remove_follower">Verwijder</string>
     <string name="sk_remove_follower_success">Volger succesvol verwijderd</string>
-    <string name="sk_recent_searches_placeholder">Type iets om te beginnen met zoeken</string>
+    <string name="sk_recent_searches_placeholder">Type om te beginnen met zoeken</string>
     <string name="sk_remove_follower_confirm">Verwijder %s als volger door te blokkeren en meteen te de-blokkeren\?</string>
     <string name="sk_post_edited">bewerkt</string>
     <string name="sk_notify_update">Bewerkt een geboost bericht</string>
@@ -190,7 +190,7 @@
     <string name="sk_icon_shield">Schild</string>
     <string name="sk_icon_book">Boek</string>
     <string name="sk_icon_bicycle">Fiets</string>
-    <string name="sk_icon_math_formula">Wiskundige formule</string>
+    <string name="sk_icon_math_formula">Formule</string>
     <string name="sk_icon_backpack">Rugzak</string>
     <string name="sk_icon_fire">Vuur</string>
     <string name="sk_icon_pizza">Pizza</string>
@@ -199,7 +199,7 @@
     <string name="sk_icon_human">Mens</string>
     <string name="sk_icon_globe">Wereldbol</string>
     <string name="sk_attach_file">Voeg bestand toe</string>
-    <string name="sk_edit_timelines">Bewerk tijdlijnen…</string>
+    <string name="sk_edit_timelines">Bewerk tijdlijnen</string>
     <string name="sk_notification_type_update">Bewerkte berichten</string>
     <string name="sk_timelines">Tijdlijnen</string>
     <string name="sk_timeline">Tijdlijn</string>
@@ -211,4 +211,23 @@
     <string name="sk_icon_heart">Hart</string>
     <string name="sk_icon_rabbit">Konijn</string>
     <string name="sk_icon_news">Nieuws</string>
+    <string name="sk_icon_academic_cap">Afstudeerhoed</string>
+    <string name="sk_icon_chat">Chat</string>
+    <string name="sk_icon_map">Kaart</string>
+    <string name="sk_icon_briefcase">Koffer</string>
+    <string name="sk_icon_bug">Insect</string>
+    <string name="sk_icon_gauge">Meter</string>
+    <string name="sk_icon_aperture">Diafragma</string>
+    <string name="sk_icon_clapper_board">Filmklapper</string>
+    <string name="sk_alt_button">ALT</string>
+    <string name="sk_icon_pin">Punaise</string>
+    <string name="sk_searching">Zoeken…</string>
+    <string name="sk_no_results">Geen resultaten</string>
+    <string name="sk_save_draft">Concept opslaan\?</string>
+    <string name="sk_no_alt_text">Geen alt tekst beschikbaar</string>
+    <string name="sk_settings_show_alt_indicator">Indicator voor alt tekst</string>
+    <string name="sk_settings_show_no_alt_indicator">Indicator voor ontbrekende alt tekst</string>
+    <string name="sk_updater_enable_pre_releases">Pre-releases inschakelen</string>
+    <string name="sk_save_draft_message">Wil je de wijzingen aan dit concept opslaan of dit nu publiceren\?</string>
+    <string name="sk_schedule_or_draft">Inplannen of concept</string>
 </resources>
