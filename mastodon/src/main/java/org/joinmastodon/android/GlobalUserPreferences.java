@@ -12,8 +12,10 @@ import org.joinmastodon.android.model.TimelineDefinition;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class GlobalUserPreferences{
 	public static boolean playGifs;
@@ -45,6 +47,8 @@ public class GlobalUserPreferences{
 	private final static Type pinnedTimelinesType = new TypeToken<Map<String, List<TimelineDefinition>>>() {}.getType();
 	public static Map<String, List<String>> recentLanguages;
 	public static Map<String, List<TimelineDefinition>> pinnedTimelines;
+	public static Set<String> accountsWithLocalOnlySupport;
+	public static Set<String> accountsInGlitchMode;
 
 	private static SharedPreferences getPrefs(){
 		return MastodonApp.context.getSharedPreferences("global", Context.MODE_PRIVATE);
@@ -83,6 +87,8 @@ public class GlobalUserPreferences{
 		theme=ThemePreference.values()[prefs.getInt("theme", 0)];
 		recentLanguages=fromJson(prefs.getString("recentLanguages", null), recentLanguagesType, new HashMap<>());
 		pinnedTimelines=fromJson(prefs.getString("pinnedTimelines", null), pinnedTimelinesType, new HashMap<>());
+		accountsWithLocalOnlySupport=prefs.getStringSet("accountsWithLocalOnlySupport", new HashSet<>());
+		accountsInGlitchMode=prefs.getStringSet("accountsInGlitchMode", new HashSet<>());
 
 		try {
 			color=ColorPreference.valueOf(prefs.getString("color", ColorPreference.PINK.name()));
@@ -119,6 +125,8 @@ public class GlobalUserPreferences{
 				.putString("color", color.name())
 				.putString("recentLanguages", gson.toJson(recentLanguages))
 				.putString("pinnedTimelines", gson.toJson(pinnedTimelines))
+				.putStringSet("accountsWithLocalOnlySupport", accountsWithLocalOnlySupport)
+				.putStringSet("accountsInGlitchMode", accountsInGlitchMode)
 				.apply();
 	}
 

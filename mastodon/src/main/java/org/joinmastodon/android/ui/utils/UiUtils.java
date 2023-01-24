@@ -73,13 +73,11 @@ import org.joinmastodon.android.events.StatusDeletedEvent;
 import org.joinmastodon.android.events.StatusUnpinnedEvent;
 import org.joinmastodon.android.fragments.ComposeFragment;
 import org.joinmastodon.android.fragments.HashtagTimelineFragment;
-import org.joinmastodon.android.fragments.ListTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Emoji;
 import org.joinmastodon.android.model.Instance;
-import org.joinmastodon.android.model.ListTimeline;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.model.ScheduledStatus;
@@ -99,6 +97,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -910,6 +909,22 @@ public class UiUtils{
 		MenuItem back = m.add(0, R.id.menu_back, NONE, R.string.back);
 		back.setIcon(R.drawable.ic_fluent_arrow_left_24_regular);
 		return back;
+	}
+
+	public static boolean setExtraTextInfo(Context ctx, TextView extraText, StatusPrivacy visibility, boolean localOnly) {
+		List<String> extraParts = new ArrayList<>();
+		if (localOnly) extraParts.add(ctx.getString(R.string.sk_inline_local_only));
+		if (visibility != null &&visibility.equals(StatusPrivacy.DIRECT))
+			extraParts.add(ctx.getString(R.string.sk_inline_direct));
+		if (!extraParts.isEmpty()) {
+			String sep = ctx.getString(R.string.sk_separator);
+			extraText.setText(String.join(" " + sep + " ", extraParts));
+			extraText.setVisibility(View.VISIBLE);
+			return true;
+		} else {
+			extraText.setVisibility(View.GONE);
+			return false;
+		}
 	}
 
 	@FunctionalInterface

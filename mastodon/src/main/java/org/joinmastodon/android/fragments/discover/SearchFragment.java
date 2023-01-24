@@ -124,6 +124,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 
 	@Override
 	protected void doLoadData(int offset, int count){
+		if (getActivity() == null) return;
 		resetEmptyText();
 		if(isInRecentMode()){
 			AccountSessionManager.getInstance().getAccount(accountID).getCacheController().getRecentSearches(sr->{

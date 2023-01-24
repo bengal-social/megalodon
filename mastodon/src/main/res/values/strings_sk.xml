@@ -239,4 +239,7 @@
     <string name="sk_inline_local_only">local-only</string>
     <string name="sk_inline_direct">direct</string>
     <string name="sk_separator">·</string>
+    <string name="sk_settings_support_local_only">Instance supports local-only posting</string>
+    <string name="sk_settings_glitch_instance">Use Glitch implementation</string>
+    <string name="sk_local_only">Local-only</string>
 </resources>

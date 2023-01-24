@@ -39,6 +39,7 @@ public class CreateStatus extends MastodonAPIRequest<Status>{
 		public Poll poll;
 		public String inReplyToId;
 		public boolean sensitive;
+		public boolean localOnly;
 		public String spoilerText;
 		public StatusPrivacy visibility;
 		public Instant scheduledAt;

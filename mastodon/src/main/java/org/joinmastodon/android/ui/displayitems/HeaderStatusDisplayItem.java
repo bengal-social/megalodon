@@ -319,17 +319,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			}
 			itemView.setPadding(itemView.getPaddingLeft(), itemView.getPaddingTop(), itemView.getPaddingRight(), item.needBottomPadding ? V.dp(16) : 0);
 			if(TextUtils.isEmpty(item.extraText)){
-				List<String> extraParts = new ArrayList<>();
-				if (item.status != null && item.status.localOnly)
-					extraParts.add(item.parentFragment.getString(R.string.sk_inline_local_only));
-				if (item.status != null && item.status.visibility.equals(StatusPrivacy.DIRECT))
-					extraParts.add(item.parentFragment.getString(R.string.sk_inline_direct));
-				if (!extraParts.isEmpty()) {
-					String sep = item.parentFragment.getString(R.string.sk_separator);
-					extraText.setText(String.join(" " + sep + " ", extraParts));
-					extraText.setVisibility(View.VISIBLE);
-				} else {
-					extraText.setVisibility(View.GONE);
+				if (item.status != null) {
+					UiUtils.setExtraTextInfo(item.parentFragment.getContext(), extraText, item.status.visibility, item.status.localOnly);
 				}
 			}else{
 				extraText.setVisibility(View.VISIBLE);

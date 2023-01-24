@@ -151,6 +151,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private static final int IMAGE_DESCRIPTION_RESULT=363;
 	private static final int SCHEDULED_STATUS_OPENED_RESULT=161;
 	private static final int MAX_ATTACHMENTS=4;
+	private static final String GLITCH_LOCAL_ONLY_SUFFIX = "👁";
 	private static final String TAG="ComposeFragment";
 
 	private static final Pattern MENTION_PATTERN=Pattern.compile("(^|[^\\/\\w])@(([a-z0-9_]+)@[a-z0-9\\.\\-]+[a-z0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -163,7 +164,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private final BreakIterator breakIterator=BreakIterator.getCharacterInstance();
 
 	private SizeListenerLinearLayout contentView;
-	private TextView selfName, selfUsername;
+	private TextView selfName, selfUsername, selfExtraText, extraText;
 	private ImageView selfAvatar;
 	private Account self;
 	private String instanceDomain;
@@ -212,6 +213,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private View sendingOverlay;
 	private WindowManager wm;
 	private StatusPrivacy statusVisibility=StatusPrivacy.PUBLIC;
+	private boolean localOnly;
 	private ComposeAutocompleteSpan currentAutocompleteSpan;
 	private FrameLayout mainEditTextWrap;
 	private ComposeAutocompleteViewController autocompleteViewController;
@@ -242,9 +244,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		instance=AccountSessionManager.getInstance().getInstanceInfo(instanceDomain);
 		languageResolver=new MastodonLanguage.LanguageResolver(instance);
 		redraftStatus=getArguments().getBoolean("redraftStatus", false);
-		if(getArguments().containsKey("editStatus")){
+		if(getArguments().containsKey("editStatus"))
 			editingStatus=Parcels.unwrap(getArguments().getParcelable("editStatus"));
-		}
+		if(getArguments().containsKey("replyTo"))
+			replyTo=Parcels.unwrap(getArguments().getParcelable("replyTo"));
 		if(instance==null){
 			Nav.finish(this);
 			return;
@@ -302,6 +305,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		selfName=view.findViewById(R.id.self_name);
 		selfUsername=view.findViewById(R.id.self_username);
 		selfAvatar=view.findViewById(R.id.self_avatar);
+		selfExtraText=view.findViewById(R.id.self_extra_text);
 		HtmlParser.setTextWithCustomEmoji(selfName, self.displayName, self.emojis);
 		selfUsername.setText('@'+self.username+'@'+instanceDomain);
 		ViewImageLoader.load(selfAvatar, null, new UrlImageLoaderRequest(self.avatar));
@@ -343,6 +347,10 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		pollBtn.setOnClickListener(v->togglePoll());
 		emojiBtn.setOnClickListener(v->emojiKeyboard.toggleKeyboardPopup(mainEditText));
 		spoilerBtn.setOnClickListener(v->toggleSpoiler());
+
+		localOnly = savedInstanceState != null ? savedInstanceState.getBoolean("localOnly") :
+				editingStatus != null ? editingStatus.localOnly : replyTo != null && replyTo.localOnly;
+
 		buildVisibilityPopup(visibilityBtn);
 		visibilityBtn.setOnClickListener(v->visibilityPopup.show());
 		visibilityBtn.setOnTouchListener(visibilityPopup.getDragToOpenListener());
@@ -462,6 +470,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			case PRIVATE -> R.id.vis_followers;
 			case DIRECT -> R.id.vis_private;
 		}).setChecked(true);
+		visibilityPopup.getMenu().findItem(R.id.local_only).setChecked(localOnly);
 
 		autocompleteViewController=new ComposeAutocompleteViewController(getActivity(), accountID);
 		autocompleteViewController.setCompletionSelectedListener(this::onAutocompleteOptionSelected);
@@ -488,6 +497,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			outState.putBoolean("pollAllowMultiple", pollAllowMultipleItem.isSelected());
 		}
 		outState.putBoolean("sensitive", sensitive);
+		outState.putBoolean("localOnly", localOnly);
 		outState.putBoolean("hasSpoiler", hasSpoiler);
 		outState.putString("language", language);
 		if(!attachments.isEmpty()){
@@ -611,6 +621,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				}
 			});
 			View originalPost = view.findViewById(R.id.original_post);
+			extraText = view.findViewById(R.id.extra_text);
 			originalPost.setVisibility(View.VISIBLE);
 			originalPost.setOnClickListener(v->{
 				Bundle args=new Bundle();
@@ -749,6 +760,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		}
 
 		updateSensitive();
+		updateHeaders();
 
 		if(editingStatus!=null){
 			updateCharCounter();
@@ -976,7 +988,11 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private void publish(boolean force){
 		String text=mainEditText.getText().toString();
 		CreateStatus.Request req=new CreateStatus.Request();
+		if (GlobalUserPreferences.accountsInGlitchMode.contains(accountID)) {
+			text += " " + GLITCH_LOCAL_ONLY_SUFFIX;
+		}
 		req.status=text;
+		req.localOnly=localOnly;
 		req.visibility=statusVisibility;
 		req.sensitive=sensitive;
 		req.language=language;
@@ -1758,12 +1774,32 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		return attachments.size();
 	}
 
+	private void updateHeaders() {
+		UiUtils.setExtraTextInfo(getContext(), selfExtraText, statusVisibility, localOnly);
+		if (replyTo != null) UiUtils.setExtraTextInfo(getContext(), extraText, replyTo.visibility, replyTo.localOnly);
+	}
+
 	private void buildVisibilityPopup(View v){
 		visibilityPopup=new PopupMenu(getActivity(), v);
 		visibilityPopup.inflate(R.menu.compose_visibility);
 		Menu m=visibilityPopup.getMenu();
+		MenuItem localOnlyItem = visibilityPopup.getMenu().findItem(R.id.local_only);
+		boolean prefsSaysSupported = GlobalUserPreferences.accountsWithLocalOnlySupport.contains(accountID);
+		if (localOnly || prefsSaysSupported) {
+			localOnlyItem.setChecked(localOnly);
+			Status status = editingStatus != null ? editingStatus : replyTo;
+			if (!prefsSaysSupported) {
+				GlobalUserPreferences.accountsWithLocalOnlySupport.add(accountID);
+				if (status.getStrippedText().matches("[\\s\\S]*" + GLITCH_LOCAL_ONLY_SUFFIX + "[\uFE00-\uFE0F]*")) {
+					GlobalUserPreferences.accountsInGlitchMode.add(accountID);
+				}
+				GlobalUserPreferences.save();
+			}
+		} else {
+			localOnlyItem.setVisible(false);
+		}
 		UiUtils.enablePopupMenuIcons(getActivity(), visibilityPopup);
-		m.setGroupCheckable(0, true, true);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) m.setGroupDividerEnabled(true);
 		visibilityPopup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
 			@Override
 			public boolean onMenuItemClick(MenuItem item){
@@ -1777,18 +1813,21 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				}else if(id==R.id.vis_private){
 					statusVisibility=StatusPrivacy.DIRECT;
 				}
-				item.setChecked(true);
+				if (id == R.id.local_only) {
+					localOnly = !item.isChecked();
+					item.setChecked(localOnly);
+				} else {
+					item.setChecked(true);
+				}
 				updateVisibilityIcon();
+				updateHeaders();
 				return true;
 			}
 		});
 	}
 
 	private void loadDefaultStatusVisibility(Bundle savedInstanceState) {
-		if(getArguments().containsKey("replyTo")){
-			replyTo=Parcels.unwrap(getArguments().getParcelable("replyTo"));
-			statusVisibility = replyTo.visibility;
-		}
+		if(replyTo != null) statusVisibility = replyTo.visibility;
 
 		// A saved privacy setting from a previous compose session wins over the reply visibility
 		if(savedInstanceState !=null){
