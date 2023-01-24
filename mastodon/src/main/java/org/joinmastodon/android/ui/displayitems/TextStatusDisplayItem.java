@@ -141,8 +141,9 @@ public class TextStatusDisplayItem extends StatusDisplayItem{
 			}
 
 			Instance instanceInfo = AccountSessionManager.getInstance().getInstanceInfo(item.session.domain);
-			boolean translateEnabled = !item.disableTranslate && instanceInfo.v2 != null &&
-					instanceInfo.v2.configuration.translation != null && instanceInfo.v2.configuration.translation.enabled;
+			boolean translateEnabled = !item.disableTranslate && instanceInfo != null &&
+					instanceInfo.v2 != null && instanceInfo.v2.configuration.translation != null &&
+					instanceInfo.v2.configuration.translation.enabled;
 
 			translateWrap.setVisibility(
 					(!GlobalUserPreferences.translateButtonOpenedOnly || item.textSelectable) &&
