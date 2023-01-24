@@ -150,7 +150,7 @@ public class HomeTimelineFragment extends FabStatusListFragment {
 						toAdd=toAdd.stream().filter(filterPredicate).collect(Collectors.toList());
 						if(!toAdd.isEmpty()){
 							prependItems(toAdd, true);
-							if (parent != null) parent.showNewPostsButton();
+							if (parent != null && GlobalUserPreferences.showNewPostsButton) parent.showNewPostsButton();
 							AccountSessionManager.getInstance().getAccount(accountID).getCacheController().putHomeTimeline(toAdd, false);
 						}
 					}

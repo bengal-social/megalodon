@@ -77,6 +77,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	private ArrayList<Item> items=new ArrayList<>();
 	private ThemeItem themeItem;
 	private NotificationPolicyItem notificationPolicyItem;
+	private SwitchItem loadNewPostsItem, showNewPostsButtonItem;
 	private String accountID;
 	private boolean needUpdateNotificationSettings;
 	private boolean needAppRestart;
@@ -224,10 +225,21 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.showBoosts=i.checked;
 			GlobalUserPreferences.save();
 		}));
-		items.add(new SwitchItem(R.string.sk_settings_load_new_posts, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.loadNewPosts, i->{
+		items.add(loadNewPostsItem = new SwitchItem(R.string.sk_settings_load_new_posts, R.drawable.ic_fluent_arrow_sync_24_regular, GlobalUserPreferences.loadNewPosts, i->{
 			GlobalUserPreferences.loadNewPosts=i.checked;
+			showNewPostsButtonItem.enabled = i.checked;
+			if (!i.checked) {
+				GlobalUserPreferences.showNewPostsButton = false;
+				showNewPostsButtonItem.checked = false;
+			}
+			if (list.findViewHolderForAdapterPosition(items.indexOf(showNewPostsButtonItem)) instanceof SwitchViewHolder svh) svh.rebind();
 			GlobalUserPreferences.save();
 		}));
+		items.add(showNewPostsButtonItem = new SwitchItem(R.string.sk_settings_show_new_posts_button, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.showNewPostsButton, i->{
+			GlobalUserPreferences.showNewPostsButton=i.checked;
+			GlobalUserPreferences.save();
+		}));
+		showNewPostsButtonItem.enabled = GlobalUserPreferences.loadNewPosts;
 
 		items.add(new HeaderItem(R.string.settings_notifications));
 		items.add(notificationPolicyItem=new NotificationPolicyItem());

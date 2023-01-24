@@ -235,4 +235,5 @@
     <string name="sk_settings_show_alt_indicator">Indicator for alt texts</string>
     <string name="sk_settings_show_no_alt_indicator">Indicator for missing alt texts</string>
     <string name="sk_updater_enable_pre_releases">Enable pre-releases</string>
+    <string name="sk_settings_show_new_posts_button">“Show new posts” button</string>
 </resources>
