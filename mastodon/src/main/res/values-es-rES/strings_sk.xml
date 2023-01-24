@@ -201,7 +201,7 @@
     <string name="sk_icon_backpack">Mochila</string>
     <string name="sk_icon_briefcase">Maletín</string>
     <string name="sk_icon_fire">Fuego</string>
-    <string name="sk_icon_bug">Bicho</string>
+    <string name="sk_icon_bug">Fallo</string>
     <string name="sk_icon_pizza">Pizza</string>
     <string name="sk_icon_gavel">Grava</string>
     <string name="sk_icon_gauge">Calibre</string>
@@ -211,10 +211,10 @@
     <string name="sk_edit_timeline">Editar cronología</string>
     <string name="sk_icon_pin">Pin</string>
     <string name="sk_edit_timelines">Editar cronologías</string>
-    <string name="sk_alt_button">Texto alternativo</string>
+    <string name="sk_alt_button">ALT</string>
     <string name="sk_post_edited">editado</string>
     <string name="sk_notification_type_update">Publicaciones editadas</string>
-    <string name="sk_notify_update">Editas una publicación reblogueada</string>
+    <string name="sk_notify_update">Edita un mensaje reblogueado</string>
     <string name="sk_searching">Buscando…</string>
     <string name="sk_no_results">Sin resultados</string>
     <string name="sk_save_draft">¿Guardar el borrador\?</string>
