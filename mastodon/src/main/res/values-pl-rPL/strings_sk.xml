@@ -150,7 +150,7 @@
     <string name="sk_alt_text_missing_title">Brakujący tekst alternatywny</string>
     <string name="sk_publish_anyway">Opublikuj mimo tego</string>
     <string name="sk_settings_disable_alt_text_reminder">Wyłącz przypomnienie o dodawaniu opisu</string>
-    <string name="sk_edit_timelines">Edytuj osi czasu…</string>
+    <string name="sk_edit_timelines">Edytuj osi czasu</string>
     <string name="sk_alt_button">OPIS</string>
     <string name="sk_post_edited">edytowano</string>
     <string name="sk_notification_type_update">Edytowano wpis</string>
@@ -226,4 +226,12 @@
     <string name="sk_remove_follower_confirm">Usunąć %s z obserwatorów, poprzez zablokowanie i natychmiastowe odblokowanie ich\?</string>
     <string name="sk_icon_health">Zdrowie</string>
     <string name="sk_icon_gavel">Młotek</string>
+    <string name="sk_no_results">Brak wyników</string>
+    <string name="sk_save_draft_message">Czy chcesz zapisać zmiany w tej kopii roboczej czy ją opublikować\?</string>
+    <string name="sk_no_alt_text">Brak opisu alternatywnego</string>
+    <string name="sk_settings_show_alt_indicator">Indykator opisu</string>
+    <string name="sk_updater_enable_pre_releases">Włącz wersje testowe</string>
+    <string name="sk_searching">Szukanie…</string>
+    <string name="sk_save_draft">Zapisać kopię roboczą\?</string>
+    <string name="sk_settings_show_no_alt_indicator">Indykator brakującego opisu</string>
 </resources>
