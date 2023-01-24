@@ -142,7 +142,7 @@
     <string name="sk_edit_list_title">编辑列表</string>
     <string name="sk_your_lists">你的列表</string>
     <string name="sk_timeline_federated">联邦</string>
-    <string name="sk_recent_searches_placeholder">输入内容开始搜索</string>
+    <string name="sk_recent_searches_placeholder">输入开始搜索</string>
     <string name="sk_remove_follower">删除关注者</string>
     <string name="sk_do_remove_follower">删除</string>
     <string name="sk_remove_follower_success">成功删除关注者</string>
@@ -228,4 +228,9 @@
     <string name="sk_remove_follower_confirm">通过屏蔽并立即解除屏蔽以移除%s的关注者身份？</string>
     <string name="sk_icon_clapper_board">拍板</string>
     <string name="sk_icon_math_formula">数学公式</string>
+    <string name="sk_searching">搜索中…</string>
+    <string name="sk_no_results">没结果</string>
+    <string name="sk_no_alt_text">没有可用的ALT文字</string>
+    <string name="sk_updater_enable_pre_releases">启用预发布</string>
+    <string name="sk_save_draft_message">您要保存对此草稿的更改还是立即发布？</string>
 </resources>
