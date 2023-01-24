@@ -39,10 +39,11 @@ public class PollFooterStatusDisplayItem extends StatusDisplayItem{
 		@Override
 		public void onBind(PollFooterStatusDisplayItem item){
 			String text=item.parentFragment.getResources().getQuantityString(R.plurals.x_voters, item.poll.votersCount, item.poll.votersCount);
+			String sep=item.parentFragment.getString(R.string.sk_separator);
 			if(item.poll.expiresAt!=null && !item.poll.isExpired()){
-				text+=" · "+UiUtils.formatTimeLeft(itemView.getContext(), item.poll.expiresAt);
+				text+=" "+sep+" "+UiUtils.formatTimeLeft(itemView.getContext(), item.poll.expiresAt);
 			}else if(item.poll.isExpired()){
-				text+=" · "+item.parentFragment.getString(R.string.poll_closed);
+				text+=" "+sep+" "+item.parentFragment.getString(R.string.poll_closed);
 			}
 			this.text.setText(text);
 			button.setVisibility(item.poll.isExpired() || item.poll.voted || (!item.poll.multiple && !GlobalUserPreferences.voteButtonForSingleChoice) ? View.GONE : View.VISIBLE);

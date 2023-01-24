@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -43,6 +42,7 @@ import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.model.ScheduledStatus;
 import org.joinmastodon.android.model.Status;
+import org.joinmastodon.android.model.StatusPrivacy;
 import org.joinmastodon.android.ui.text.HtmlParser;
 import org.joinmastodon.android.ui.utils.CustomEmojiHelper;
 import org.joinmastodon.android.ui.utils.UiUtils;
@@ -52,6 +52,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -318,7 +319,18 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 			}
 			itemView.setPadding(itemView.getPaddingLeft(), itemView.getPaddingTop(), itemView.getPaddingRight(), item.needBottomPadding ? V.dp(16) : 0);
 			if(TextUtils.isEmpty(item.extraText)){
-				extraText.setVisibility(View.GONE);
+				List<String> extraParts = new ArrayList<>();
+				if (item.status != null && item.status.localOnly)
+					extraParts.add(item.parentFragment.getString(R.string.sk_inline_local_only));
+				if (item.status != null && item.status.visibility.equals(StatusPrivacy.DIRECT))
+					extraParts.add(item.parentFragment.getString(R.string.sk_inline_direct));
+				if (!extraParts.isEmpty()) {
+					String sep = item.parentFragment.getString(R.string.sk_separator);
+					extraText.setText(String.join(" " + sep + " ", extraParts));
+					extraText.setVisibility(View.VISIBLE);
+				} else {
+					extraText.setVisibility(View.GONE);
+				}
 			}else{
 				extraText.setVisibility(View.VISIBLE);
 				extraText.setText(item.extraText);

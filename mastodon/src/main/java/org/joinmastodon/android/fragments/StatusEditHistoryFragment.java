@@ -139,7 +139,8 @@ public class StatusEditHistoryFragment extends StatusListFragment{
 					action=getString(R.string.edit_multiple_changed);
 				}
 			}
-			items.add(0, new ReblogOrReplyLineStatusDisplayItem(s.id, this, action+" · "+date, Collections.emptyList(), 0, null, null));
+			String sep = getString(R.string.sk_separator);
+			items.add(0, new ReblogOrReplyLineStatusDisplayItem(s.id, this, action+" "+sep+" "+date, Collections.emptyList(), 0, null, null));
 		}
 		return items;
 	}
