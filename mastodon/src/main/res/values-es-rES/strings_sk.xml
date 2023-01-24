@@ -32,7 +32,7 @@
     <string name="sk_follow_requests">Solicitudes de seguimiento</string>
     <string name="sk_accept_follow_request">Aceptar solicitud de seguimiento</string>
     <string name="sk_reject_follow_request">Rechazar solicitud de seguimiento</string>
-    <string name="sk_lists_with_user">Editar listas con %s</string>
+    <string name="sk_lists_with_user">Listas con %s</string>
     <string name="sk_settings_always_reveal_content_warnings">Mostrar siempre advertencias de contenido</string>
     <string name="sk_disable_marquee">Desactivar desplazamiento de texto en barras del título</string>
     <string name="sk_settings_contribute">Contribuir a Megalodon</string>
