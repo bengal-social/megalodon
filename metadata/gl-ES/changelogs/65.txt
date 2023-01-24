@@ -1,0 +1,10 @@
+-Esbozos e publicacións planificadas
+-Amosar mensaxes orixinais ao responder
+-Filtros compatíbeis con Mastodon 4.0 (non hai todavía función de "oculta con aviso")
+-Manter pulsado para interactuar coas publicacións (responder, impulsar, gustar, engadir a marcador) desde otras contas rexistradas
+-Iconas en todos os menús
+-Alternar para reenviar denuncias
+-Engadir mencións ao empregar a función "Publicar sobre isto"
+-Opción de empregar iconas de notificación uniformes en troques de distintas iconas
+- Opción para acceder á lista de regras da aplicación desde a configuración
+-Correccións de erros

@@ -1,0 +1,6 @@
+-Opcións para reblogar con visibilidade específica cando se mantén pulsado
+-Mostrar visibilidade dos meus reblogueos
+-Engadida unha lista de hashtags seguidos
+-Manter pulsado para copiar ligazóns
+-Opción de abrir publicacións con outra conta
+-Corrección de errores axustes menores

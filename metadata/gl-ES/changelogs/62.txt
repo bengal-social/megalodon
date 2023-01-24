@@ -1,0 +1,11 @@
+-Botón de publicación personalizable
+-Abrir ligazóns do Fediverso na app
+-Manter pulsado o botón de impulso para citar unha publicación
+-Copiar a URL da publicación cando mantés pulsado o botón de compartir
+-Implementa o borrado de notificacións (deshabilitado por defecto)
+-Iconas dedicadas para diferentes tipos de notificacións
+-Novas cores de gris
+-Engadidos axustes para deshabilitar o paso entre pestanas
+-Engadidas varias ligazóns aos axustes da conta
+-Manter para mostrar/ocultar o botón de traducir na cronoloxía
+-Correccións e axustes

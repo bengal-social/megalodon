@@ -1,0 +1,10 @@
+- Novo separador de inicio con cronoloxías públicas
+- Amosar anuncios do servidor
+- O texto é escalado de acordo aos axustes do sistema
+- Mellora de filtros (non, "Ocultar cun aviso" aínda non funciona) por @thiagojedi
+- Características de xestión de listas
+- Borra seguidores bloqueándoos suavemente
+- Desautoriza conexións con fascistas
+- Arranxado imaxes que non cargan cando estás conectado á instancia Akkoma
+- Corrección de erros e axustes a interfaz de usuario
+- Engade rexistro de cambios de actualización por @LucasGGamerM

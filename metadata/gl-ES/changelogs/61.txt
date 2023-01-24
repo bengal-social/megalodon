@@ -1,5 +1,5 @@
--Novas cores de temas: Material You e Vermello
--Novos tonos gris escuros para todos os temas
-‐Icona de impulso de recheo máis distintivo
--Animación para botóns de interacción
--Correccións de erros (Bloqueo nalgunhas publicacións, "Listas con", linguaxe de publicación por defecto)
+- Novas cores de temas: Material You e Vermello
+- Novos tonos gris escuros para todos os temas
+‐ Icona de impulso de recheo máis distintivo
+- Animación para botóns de interacción
+- Correccións de erros (Bloqueo nalgunhas publicacións, "Listas con", linguaxe de publicación por defecto)
