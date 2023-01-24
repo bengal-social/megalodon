@@ -259,16 +259,20 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new HeaderItem(R.string.sk_settings_about));
 		items.add(new TextItem(R.string.sk_settings_contribute, ()->UiUtils.launchWebBrowser(getActivity(), "https://github.com/sk22/megalodon"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.sk_settings_donate, ()->UiUtils.launchWebBrowser(getActivity(), "https://ko-fi.com/xsk22"), R.drawable.ic_fluent_heart_24_regular));
-		if (GithubSelfUpdater.needSelfUpdating()) {
-			checkForUpdateItem = new TextItem(R.string.sk_check_for_update, GithubSelfUpdater.getInstance()::checkForUpdates);
-			items.add(checkForUpdateItem);
-		}
 		clearImageCacheItem = new TextItem(R.string.settings_clear_cache, UiUtils.formatFileSize(getContext(), imageCache.getDiskCache().size(), true), this::clearImageCache, 0);
 		items.add(clearImageCacheItem);
 		items.add(new TextItem(R.string.sk_clear_recent_languages, ()->UiUtils.showConfirmationAlert(getActivity(), R.string.sk_clear_recent_languages, R.string.sk_confirm_clear_recent_languages, R.string.clear, ()->{
 			GlobalUserPreferences.recentLanguages.remove(accountID);
 			GlobalUserPreferences.save();
 		})));
+		if (GithubSelfUpdater.needSelfUpdating()) {
+			items.add(new SwitchItem(R.string.sk_updater_enable_pre_releases, 0, GlobalUserPreferences.enablePreReleases, i->{
+				GlobalUserPreferences.enablePreReleases=i.checked;
+				GlobalUserPreferences.save();
+			}));
+			checkForUpdateItem = new TextItem(R.string.sk_check_for_update, GithubSelfUpdater.getInstance()::checkForUpdates);
+			items.add(checkForUpdateItem);
+		}
 
 		items.add(new FooterItem(getString(R.string.sk_settings_app_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)));
 	}
@@ -757,7 +761,12 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		@Override
 		public void onBind(SwitchItem item){
 			text.setText(item.text);
-			icon.setImageResource(item.icon);
+			if (item.icon == 0) {
+				icon.setVisibility(View.GONE);
+			} else {
+				icon.setVisibility(View.VISIBLE);
+				icon.setImageResource(item.icon);
+			}
 			checkbox.setChecked(item.checked && item.enabled);
 			checkbox.setEnabled(item.enabled);
 		}
