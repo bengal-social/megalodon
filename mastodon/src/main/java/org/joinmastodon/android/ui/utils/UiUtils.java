@@ -83,6 +83,7 @@ import org.joinmastodon.android.model.Relationship;
 import org.joinmastodon.android.model.ScheduledStatus;
 import org.joinmastodon.android.model.SearchResults;
 import org.joinmastodon.android.model.Status;
+import org.joinmastodon.android.model.StatusPrivacy;
 import org.joinmastodon.android.ui.M3AlertDialogBuilder;
 import org.joinmastodon.android.ui.text.CustomEmojiSpan;
 import org.parceler.Parcels;
@@ -914,7 +915,7 @@ public class UiUtils{
 	public static boolean setExtraTextInfo(Context ctx, TextView extraText, StatusPrivacy visibility, boolean localOnly) {
 		List<String> extraParts = new ArrayList<>();
 		if (localOnly) extraParts.add(ctx.getString(R.string.sk_inline_local_only));
-		if (visibility != null &&visibility.equals(StatusPrivacy.DIRECT))
+		if (visibility != null && visibility.equals(StatusPrivacy.DIRECT))
 			extraParts.add(ctx.getString(R.string.sk_inline_direct));
 		if (!extraParts.isEmpty()) {
 			String sep = ctx.getString(R.string.sk_separator);
