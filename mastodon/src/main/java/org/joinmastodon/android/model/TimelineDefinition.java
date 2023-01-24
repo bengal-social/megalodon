@@ -31,7 +31,7 @@ public class TimelineDefinition {
     private @Nullable String hashtagName;
 
     public static TimelineDefinition ofList(String listId, String listTitle) {
-        TimelineDefinition def = new TimelineDefinition(TimelineType.LIST, listTitle);
+        TimelineDefinition def = new TimelineDefinition(TimelineType.LIST);
         def.listId = listId;
         def.listTitle = listTitle;
         return def;
@@ -42,7 +42,7 @@ public class TimelineDefinition {
     }
 
     public static TimelineDefinition ofHashtag(String hashtag) {
-        TimelineDefinition def = new TimelineDefinition(TimelineType.HASHTAG, hashtag);
+        TimelineDefinition def = new TimelineDefinition(TimelineType.HASHTAG);
         def.hashtagName = hashtag;
         return def;
     }
@@ -56,11 +56,6 @@ public class TimelineDefinition {
 
     public TimelineDefinition(TimelineType type) {
         this.type = type;
-    }
-
-    public TimelineDefinition(TimelineType type, String title) {
-        this.type = type;
-        this.title = title;
     }
 
     public String getTitle(Context ctx) {
@@ -142,7 +137,8 @@ public class TimelineDefinition {
     }
 
     public TimelineDefinition copy() {
-        TimelineDefinition def = new TimelineDefinition(type, title);
+        TimelineDefinition def = new TimelineDefinition(type);
+        def.title = title;
         def.listId = listId;
         def.listTitle = listTitle;
         def.hashtagName = hashtagName;
