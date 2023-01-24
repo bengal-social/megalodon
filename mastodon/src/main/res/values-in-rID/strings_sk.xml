@@ -145,7 +145,7 @@
     <string name="sk_timeline_federated">Federasi</string>
     <string name="sk_timeline_home">Beranda</string>
     <string name="sk_timeline_local">Lokal</string>
-    <string name="sk_recent_searches_placeholder">Ketik sesuatu untuk memulai mencari</string>
+    <string name="sk_recent_searches_placeholder">Ketik untuk memulai mencari</string>
     <string name="sk_remove_follower">Hapus sebagai pengikut</string>
     <string name="sk_remove_follower_confirm">Hapus %s sebagai pengikut dengan memblokir dan membuka blokir secara cepat\?</string>
     <string name="sk_do_remove_follower">Hapus</string>
@@ -229,4 +229,11 @@
     <string name="sk_icon_leaves">Daun</string>
     <string name="sk_icon_backpack">Tas ransel</string>
     <string name="sk_icon_gauge">Ukuran</string>
+    <string name="sk_no_results">Tidak ada hasil</string>
+    <string name="sk_no_alt_text">Tidak ada teks alternatif yang tersedia</string>
+    <string name="sk_settings_show_alt_indicator">Indikator teks alternatif</string>
+    <string name="sk_settings_show_no_alt_indicator">Indikator untuk teks alternatif yang tidak ada</string>
+    <string name="sk_updater_enable_pre_releases">Aktifkan prarilis</string>
+    <string name="sk_searching">Mencari…</string>
+    <string name="sk_save_draft_message">Apakah Anda ingin menyimpan perubahan Anda ke draf ini atau menerbitkannya sekarang\?</string>
 </resources>
