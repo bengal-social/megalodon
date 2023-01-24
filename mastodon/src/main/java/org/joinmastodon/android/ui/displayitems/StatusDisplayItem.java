@@ -13,6 +13,7 @@ import org.joinmastodon.android.fragments.BaseStatusListFragment;
 import org.joinmastodon.android.fragments.HashtagTimelineFragment;
 import org.joinmastodon.android.fragments.HomeTabFragment;
 import org.joinmastodon.android.fragments.HomeTimelineFragment;
+import org.joinmastodon.android.fragments.ListTimelineFragment;
 import org.joinmastodon.android.fragments.ProfileFragment;
 import org.joinmastodon.android.fragments.ThreadFragment;
 import org.joinmastodon.android.model.Account;
@@ -105,8 +106,11 @@ public abstract class StatusDisplayItem{
 				args.putParcelable("profileAccount", Parcels.wrap(account));
 				Nav.go(fragment.getActivity(), ProfileFragment.class, args);
 			}));
-		} else if (!(status.tags.isEmpty() || fragment instanceof HashtagTimelineFragment) &&
-				fragment.getParentFragment() instanceof HomeTabFragment home
+		} else if (
+				!(status.tags.isEmpty() ||
+						fragment instanceof HashtagTimelineFragment ||
+						fragment instanceof ListTimelineFragment
+				) && fragment.getParentFragment() instanceof HomeTabFragment home
 		) {
 			home.getHashtags().stream()
 					.filter(followed -> status.tags.stream()
