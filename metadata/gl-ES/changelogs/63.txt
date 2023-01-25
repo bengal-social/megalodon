@@ -1,6 +1,6 @@
--Opcións para reblogar con visibilidade específica cando se mantén pulsado
--Mostrar visibilidade dos meus reblogueos
--Engadida unha lista de hashtags seguidos
--Manter pulsado para copiar ligazóns
+-Opcións para promover con visibilidade específica cando se mantén preso
+-Mostrar visibilidade das miñas promocións
+-Engadida unha lista de cancelos seguidos
+-Manter preso para copiar ligazóns
 -Opción de abrir publicacións con outra conta
--Corrección de errores axustes menores
+-Corrección de erros e axustes menores
