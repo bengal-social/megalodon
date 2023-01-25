@@ -127,7 +127,7 @@
     <string name="sk_timeline_home">Hasiera</string>
     <string name="sk_timeline_local">Lokala</string>
     <string name="sk_timeline_federated">Federatua</string>
-    <string name="sk_announcements">Iragarkiak</string>
+    <string name="sk_announcements">Iragarpenak</string>
     <string name="sk_settings_about_instance">Instantziari buruz</string>
     <string name="sk_settings_single_notification">Jakinarazpen bakarra erakutsi</string>
     <string name="sk_create">Sortu</string>
