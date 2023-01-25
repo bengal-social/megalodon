@@ -152,6 +152,8 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Display server announcements](https://github.com/sk22/megalodon/commit/84179bc207d6b69cc2a770a3c28fa0a39b0b54e8)
 * [Create](https://github.com/sk22/megalodon/commit/294595513a45037359b31377aafc25ae5b58d8e7), [edit](https://github.com/sk22/megalodon/commit/d47797bf7ac8cff3f9ba1cfee219a1bb2af21da6) and [delete](https://github.com/sk22/megalodon/commit/54c29fd787fc2cd0dfd2787ad796b8190f795973) lists
 * [Soft-blocking (by blocking and immediately unblocking)](https://github.com/sk22/megalodon/commit/e75d350b7a2709259e9fc5138e0e1f361bdb0972)
+* [Pinnable custom timelines](https://github.com/sk22/megalodon/pull/338/commits)
+* Support for local-only posts
 
 
 ### Behavior
@@ -175,6 +177,8 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Preserve whitespaces in HTML](https://github.com/sk22/megalodon/commit/7d876bddc7a07d98f0fecbf62b13bdb9fcce3412)
 * [Long-click to copy links](https://github.com/sk22/megalodon/commit/b32e32274923a94742a9926ef38785f746d41405)
 * Improved filtering using Mastodon 4.0 API: [#202](https://github.com/sk22/megalodon/pull/202), [#212](https://github.com/sk22/megalodon/pull/212), [#255](https://github.com/sk22/megalodon/pull/255) by [@thiagojedi](https://github.com/thiagojedi)
+* [Support admin notifications](https://github.com/sk22/megalodon/commit/c12a6eaee6b609bc53eb0a45d9199f37d5241801) and [notifications for edited reblogged posts](https://github.com/sk22/megalodon/commit/900e8fb2e9353002c16d15e06b78d2731e121601)
+* [Android file opener added back in addition to image picker](https://github.com/sk22/megalodon/commit/3a6ace53d5ab01e28077c9c930cb6ed487b78031)
 
 
 ### Visual
@@ -190,6 +194,8 @@ There's also a handful of custom strings exclusive to this projects that would n
 * [Animations for interaction buttons](https://github.com/mastodon/mastodon-android/compare/master...sk22:megalodon:feature/animate-buttons)
 * [Dedicated icons for different notification types](https://github.com/sk22/megalodon/pull/178) by [@florian-obernberger](https://github.com/florian-obernberger)
 * Scale text according to system settings
+* Header in timeline for followed hashtags
+* [Indicator for missing alt texts](https://github.com/sk22/megalodon/commit/c0c276f03e793b78c478c17dfdef24a66ef7cedb)
 
 
 ## Building

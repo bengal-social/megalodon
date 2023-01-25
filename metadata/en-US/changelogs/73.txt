@@ -1,0 +1,9 @@
+- Timelines can be pinned and rearranged
+- Support local-only posts
+- Indicator for missing alt texts
+- Improved alt text editor
+- Header in timeline for followed hashtags
+- More notification categories
+- Add back file opener
+- Prompt when saving edited draft
+- Option to disable “Show new posts” button
