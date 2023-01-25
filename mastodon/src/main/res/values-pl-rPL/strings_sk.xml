@@ -234,4 +234,18 @@
     <string name="sk_searching">Szukanie…</string>
     <string name="sk_save_draft">Zapisać kopię roboczą\?</string>
     <string name="sk_settings_show_no_alt_indicator">Indykator brakującego opisu</string>
+    <string name="sk_separator">·</string>
+    <string name="sk_local_only">Tylko-lokalne</string>
+    <string name="sk_settings_support_local_only">Serwer zezwala na publikowanie w trybie lokalnym</string>
+    <string name="sk_settings_glitch_instance">Tryb lokalny Glitch</string>
+    <string name="sk_inline_local_only">tylko-lokalnie</string>
+    <string name="sk_inline_direct">tylko-oznaczeni</string>
+    <string name="sk_settings_glitch_mode_explanation">Włącz to jeśli twoja domowa instancja korzysta z Glitch. Nie jest to wymagane w przypadku Hometown oraz Akkoma.</string>
+    <string name="sk_signed_up">zarejestrowano</string>
+    <string name="sk_reported">zareportowano</string>
+    <string name="sk_sign_ups">Rejestrujący się użytkownicy</string>
+    <string name="sk_new_reports">Nowe raporty</string>
+    <string name="sk_settings_show_new_posts_button">Przycisk \"Pokaż nowe wpisy\"</string>
+    <string name="sk_instance_features">Funkcje instancji</string>
+    <string name="sk_settings_local_only_explanation">Twoja instancja domowa musi wspierać publikowanie w trybie lokalnym. Większość zmodyfikowanych wersji Mastodona to wspiera, ale podstawowy Mastodon nie.</string>
 </resources>
