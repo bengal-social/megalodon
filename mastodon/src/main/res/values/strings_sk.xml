@@ -237,9 +237,10 @@
     <string name="sk_updater_enable_pre_releases">Enable pre-releases</string>
     <string name="sk_settings_show_new_posts_button">“Show new posts” button</string>
     <string name="sk_inline_local_only">local-only</string>
-    <string name="sk_inline_direct">direct</string>
+    <string name="sk_inline_direct">mentioned-only</string>
     <string name="sk_separator">·</string>
-    <string name="sk_settings_support_local_only">Instance supports local-only posting</string>
-    <string name="sk_settings_glitch_instance">Use Glitch implementation</string>
     <string name="sk_local_only">Local-only</string>
+    <string name="sk_settings_support_local_only">Server supports local-only posting</string>
+    <string name="sk_settings_glitch_instance">Use Glitch implementation 👁</string>
+    <string name="sk_settings_local_only_explanation">Your instance must support local-only posting for these options to work.</string>
 </resources>
