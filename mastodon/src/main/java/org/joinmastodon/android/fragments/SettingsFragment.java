@@ -166,9 +166,11 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		}));
 		items.add(new SwitchItem(R.string.sk_settings_show_alt_indicator, R.drawable.ic_fluent_scan_text_24_regular, GlobalUserPreferences.showAltIndicator, i->{
 			GlobalUserPreferences.showAltIndicator=i.checked;
+			GlobalUserPreferences.save();
 		}));
 		items.add(new SwitchItem(R.string.sk_settings_show_no_alt_indicator, R.drawable.ic_fluent_important_24_regular, GlobalUserPreferences.showNoAltIndicator, i->{
 			GlobalUserPreferences.showNoAltIndicator=i.checked;
+			GlobalUserPreferences.save();
 		}));
 
 		items.add(new HeaderItem(R.string.settings_behavior));
