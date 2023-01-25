@@ -287,7 +287,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		UiUtils.insetPopupMenuIcon(ctx, UiUtils.makeBackItem(listsMenu));
 		listItems.forEach((id, list) -> {
 			MenuItem item = listsMenu.add(Menu.NONE, id, Menu.NONE, list.title);
-			item.setIcon(R.drawable.ic_fluent_people_list_24_regular);
+			item.setIcon(R.drawable.ic_fluent_people_24_regular);
 			UiUtils.insetPopupMenuIcon(ctx, item);
 		});
 	}

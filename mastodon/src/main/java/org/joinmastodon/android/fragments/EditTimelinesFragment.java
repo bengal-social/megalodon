@@ -157,7 +157,7 @@ public class EditTimelinesFragment extends BaseRecyclerFragment<TimelineDefiniti
         SubMenu timelinesMenu = menu.addSubMenu(R.string.sk_timeline);
         timelinesMenu.getItem().setIcon(R.drawable.ic_fluent_timeline_24_regular);
         SubMenu listsMenu = menu.addSubMenu(R.string.sk_list);
-        listsMenu.getItem().setIcon(R.drawable.ic_fluent_people_list_24_regular);
+        listsMenu.getItem().setIcon(R.drawable.ic_fluent_people_24_regular);
         SubMenu hashtagsMenu = menu.addSubMenu(R.string.sk_hashtag);
         hashtagsMenu.getItem().setIcon(R.drawable.ic_fluent_number_symbol_24_regular);
 

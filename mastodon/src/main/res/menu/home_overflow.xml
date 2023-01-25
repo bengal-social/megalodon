@@ -17,7 +17,7 @@
     <group android:id="@+id/bottom">
         <item
             android:id="@+id/lists"
-            android:icon="@drawable/ic_fluent_people_list_24_regular"
+            android:icon="@drawable/ic_fluent_people_24_regular"
             android:title="@string/sk_your_lists"
             android:visible="false">
             <menu />

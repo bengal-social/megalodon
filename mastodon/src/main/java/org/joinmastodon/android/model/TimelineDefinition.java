@@ -218,7 +218,7 @@ public class TimelineDefinition {
         LOCAL(R.drawable.ic_fluent_people_community_24_regular, R.string.sk_timeline_local, true),
         FEDERATED(R.drawable.ic_fluent_earth_24_regular, R.string.sk_timeline_federated, true),
         POST_NOTIFICATIONS(R.drawable.ic_fluent_chat_24_regular, R.string.sk_timeline_posts, true),
-        LIST(R.drawable.ic_fluent_people_list_24_regular, R.string.sk_list, true),
+        LIST(R.drawable.ic_fluent_people_24_regular, R.string.sk_list, true),
         HASHTAG(R.drawable.ic_fluent_number_symbol_24_regular, R.string.sk_hashtag, true);
 
         public final int iconRes, nameRes;

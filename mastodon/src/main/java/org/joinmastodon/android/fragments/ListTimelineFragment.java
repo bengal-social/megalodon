@@ -89,7 +89,7 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
             editor.applyList(listTitle, repliesPolicy);
             new M3AlertDialogBuilder(getActivity())
                     .setTitle(R.string.sk_edit_list_title)
-                    .setIcon(R.drawable.ic_fluent_people_list_28_regular)
+                    .setIcon(R.drawable.ic_fluent_people_28_regular)
                     .setView(editor)
                     .setPositiveButton(R.string.save, (d, which) -> {
                         String newTitle = editor.getTitle().trim();
