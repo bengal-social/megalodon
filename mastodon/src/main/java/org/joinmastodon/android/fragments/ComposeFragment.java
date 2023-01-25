@@ -152,6 +152,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private static final int SCHEDULED_STATUS_OPENED_RESULT=161;
 	private static final int MAX_ATTACHMENTS=4;
 	private static final String GLITCH_LOCAL_ONLY_SUFFIX = "👁";
+	private static final Pattern GLITCH_LOCAL_ONLY_PATTERN = Pattern.compile("[\\s\\S]*" + GLITCH_LOCAL_ONLY_SUFFIX + "[\uFE00-\uFE0F]*");
 	private static final String TAG="ComposeFragment";
 
 	private static final Pattern MENTION_PATTERN=Pattern.compile("(^|[^\\/\\w])@(([a-z0-9_]+)@[a-z0-9\\.\\-]+[a-z0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -988,7 +989,9 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 	private void publish(boolean force){
 		String text=mainEditText.getText().toString();
 		CreateStatus.Request req=new CreateStatus.Request();
-		if (GlobalUserPreferences.accountsInGlitchMode.contains(accountID)) {
+		if (localOnly &&
+				GlobalUserPreferences.accountsInGlitchMode.contains(accountID) &&
+				!GLITCH_LOCAL_ONLY_PATTERN.matcher(text).matches()) {
 			text += " " + GLITCH_LOCAL_ONLY_SUFFIX;
 		}
 		req.status=text;
@@ -1790,7 +1793,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			Status status = editingStatus != null ? editingStatus : replyTo;
 			if (!prefsSaysSupported) {
 				GlobalUserPreferences.accountsWithLocalOnlySupport.add(accountID);
-				if (status.getStrippedText().matches("[\\s\\S]*" + GLITCH_LOCAL_ONLY_SUFFIX + "[\uFE00-\uFE0F]*")) {
+				if (GLITCH_LOCAL_ONLY_PATTERN.matcher(status.getStrippedText()).matches()) {
 					GlobalUserPreferences.accountsInGlitchMode.add(accountID);
 				}
 				GlobalUserPreferences.save();
