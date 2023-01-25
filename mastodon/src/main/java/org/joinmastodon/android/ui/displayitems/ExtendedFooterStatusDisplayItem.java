@@ -99,6 +99,7 @@ public class ExtendedFooterStatusDisplayItem extends StatusDisplayItem{
 				case UNLISTED -> R.drawable.ic_fluent_people_community_20_regular;
 				case PRIVATE -> R.drawable.ic_fluent_people_checkmark_20_regular;
 				case DIRECT -> R.drawable.ic_fluent_mention_20_regular;
+				case LOCAL -> R.drawable.ic_fluent_eye_20_regular;
 			});
 		}
 

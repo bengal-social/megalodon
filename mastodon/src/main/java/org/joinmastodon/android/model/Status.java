@@ -84,6 +84,7 @@ public class Status extends BaseModel implements DisplayItemsParent{
 			reblog.postprocess();
 
 		spoilerRevealed=GlobalUserPreferences.alwaysExpandContentWarnings || !sensitive;
+		if (visibility.equals(StatusPrivacy.LOCAL)) localOnly = true;
 	}
 
 	@Override

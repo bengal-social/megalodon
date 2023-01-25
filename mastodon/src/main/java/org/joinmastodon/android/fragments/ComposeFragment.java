@@ -470,6 +470,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			case UNLISTED -> R.id.vis_unlisted;
 			case PRIVATE -> R.id.vis_followers;
 			case DIRECT -> R.id.vis_private;
+			case LOCAL -> R.id.local_only;
 		}).setChecked(true);
 		visibilityPopup.getMenu().findItem(R.id.local_only).setChecked(localOnly);
 
@@ -658,6 +659,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				case UNLISTED -> R.drawable.ic_fluent_people_community_20_regular;
 				case PRIVATE -> R.drawable.ic_fluent_people_checkmark_20_regular;
 				case DIRECT -> R.drawable.ic_fluent_mention_20_regular;
+				case LOCAL -> R.drawable.ic_fluent_eye_20_regular;
 			});
 			ImageView moreBtn = view.findViewById(R.id.more);
 			moreBtn.setImageDrawable(visibilityIcon);
@@ -681,6 +683,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 				case UNLISTED -> R.string.sk_visibility_unlisted;
 				case PRIVATE -> R.string.visibility_followers_only;
 				case DIRECT -> R.string.visibility_private;
+				case LOCAL -> R.string.sk_local_only;
 			};
 			replyText.setContentDescription(getString(R.string.in_reply_to, replyTo.account.displayName) + ". " + getString(R.string.post_visibility) + ": " + getString(visibilityNameRes));
 			replyText.setOnClickListener(v->{
@@ -996,7 +999,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		}
 		req.status=text;
 		req.localOnly=localOnly;
-		req.visibility=statusVisibility;
+		req.visibility=localOnly && instance.pleroma != null ? StatusPrivacy.LOCAL : statusVisibility;
 		req.sensitive=sensitive;
 		req.language=language;
 		req.scheduledAt = scheduledAt;
@@ -1844,12 +1847,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			// (and we're not replying to ourselves, or not at all)
 			if (prefs.postingDefaultVisibility.isLessVisibleThan(statusVisibility) &&
 					(replyTo == null || !asm.isSelf(accountID, replyTo.account))) {
-				statusVisibility = switch (prefs.postingDefaultVisibility) {
-					case PUBLIC -> StatusPrivacy.PUBLIC;
-					case UNLISTED -> StatusPrivacy.UNLISTED;
-					case PRIVATE -> StatusPrivacy.PRIVATE;
-					case DIRECT -> StatusPrivacy.DIRECT;
-				};
+				statusVisibility = prefs.postingDefaultVisibility;
 			}
 		}
 
@@ -1868,6 +1866,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			case UNLISTED -> R.drawable.ic_fluent_people_community_24_regular;
 			case PRIVATE -> R.drawable.ic_fluent_people_checkmark_24_regular;
 			case DIRECT -> R.drawable.ic_fluent_mention_24_regular;
+			case LOCAL -> R.drawable.ic_fluent_eye_24_regular;
 		});
 	}
 

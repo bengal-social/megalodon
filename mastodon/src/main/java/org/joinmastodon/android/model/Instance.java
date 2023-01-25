@@ -84,6 +84,8 @@ public class Instance extends BaseModel{
 
 	public V2 v2;
 
+	public Pleroma pleroma;
+
 	@Override
 	public void postprocess() throws ObjectValidationException{
 		super.postprocess();
@@ -192,5 +194,10 @@ public class Instance extends BaseModel{
 		public static class TranslationConfiguration{
 			public boolean enabled;
 		}
+	}
+
+	@Parcel
+	public static class Pleroma extends BaseModel {
+		// metadata etc
 	}
 }
