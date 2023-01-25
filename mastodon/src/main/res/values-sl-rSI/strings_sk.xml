@@ -186,4 +186,6 @@
     <string name="sk_confirm_clear_recent_languages">Ali ste prepričani, da želite počistiti seznam nedavno rabljenih jezikov\?</string>
     <string name="sk_resource_not_found">Vira ni bilo mogoče najti</string>
     <string name="sk_scheduled_too_soon_title">Načrtovani čas je prezgodaj</string>
+    <string name="sk_bookmark_as">Zaznamek z drugim računom</string>
+    <string name="sk_already_favorited">Že dodano med priljubljene</string>
 </resources>
