@@ -127,47 +127,48 @@ import me.grishka.appkit.imageloader.requests.UrlImageLoaderRequest;
 import me.grishka.appkit.utils.V;
 import okhttp3.MediaType;
 
-public class UiUtils{
-	private static Handler mainHandler=new Handler(Looper.getMainLooper());
-	private static final DateTimeFormatter DATE_FORMATTER_SHORT_WITH_YEAR=DateTimeFormatter.ofPattern("d MMM uuuu"), DATE_FORMATTER_SHORT=DateTimeFormatter.ofPattern("d MMM");
-	public static final DateTimeFormatter DATE_TIME_FORMATTER=DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT);
+public class UiUtils {
+	private static Handler mainHandler = new Handler(Looper.getMainLooper());
+	private static final DateTimeFormatter DATE_FORMATTER_SHORT_WITH_YEAR = DateTimeFormatter.ofPattern("d MMM uuuu"), DATE_FORMATTER_SHORT = DateTimeFormatter.ofPattern("d MMM");
+	public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT);
 
-	private UiUtils(){}
+	private UiUtils() {
+	}
 
-	public static void launchWebBrowser(Context context, String url){
-		try{
-			if(GlobalUserPreferences.useCustomTabs){
+	public static void launchWebBrowser(Context context, String url) {
+		try {
+			if (GlobalUserPreferences.useCustomTabs) {
 				new CustomTabsIntent.Builder()
 						.setShowTitle(true)
 						.build()
 						.launchUrl(context, Uri.parse(url));
-			}else{
+			} else {
 				context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 			}
-		}catch(ActivityNotFoundException x){
+		} catch (ActivityNotFoundException x) {
 			Toast.makeText(context, R.string.no_app_to_handle_action, Toast.LENGTH_SHORT).show();
 		}
 	}
 
-	public static String formatRelativeTimestamp(Context context, Instant instant){
-		long t=instant.toEpochMilli();
-		long now=System.currentTimeMillis();
-		long diff=now-t;
-		if(diff<1000L){
+	public static String formatRelativeTimestamp(Context context, Instant instant) {
+		long t = instant.toEpochMilli();
+		long now = System.currentTimeMillis();
+		long diff = now - t;
+		if (diff < 1000L) {
 			return context.getString(R.string.time_now);
-		}else if(diff<60_000L){
-			return context.getString(R.string.time_seconds, diff/1000L);
-		}else if(diff<3600_000L){
-			return context.getString(R.string.time_minutes, diff/60_000L);
-		}else if(diff<3600_000L*24L){
-			return context.getString(R.string.time_hours, diff/3600_000L);
-		}else{
-			int days=(int)(diff/(3600_000L*24L));
-			if(days>30){
-				ZonedDateTime dt=instant.atZone(ZoneId.systemDefault());
-				if(dt.getYear()==ZonedDateTime.now().getYear()){
+		} else if (diff < 60_000L) {
+			return context.getString(R.string.time_seconds, diff / 1000L);
+		} else if (diff < 3600_000L) {
+			return context.getString(R.string.time_minutes, diff / 60_000L);
+		} else if (diff < 3600_000L * 24L) {
+			return context.getString(R.string.time_hours, diff / 3600_000L);
+		} else {
+			int days = (int) (diff / (3600_000L * 24L));
+			if (days > 30) {
+				ZonedDateTime dt = instant.atZone(ZoneId.systemDefault());
+				if (dt.getYear() == ZonedDateTime.now().getYear()) {
 					return DATE_FORMATTER_SHORT.format(dt);
-				}else{
+				} else {
 					return DATE_FORMATTER_SHORT_WITH_YEAR.format(dt);
 				}
 			}
@@ -175,216 +176,220 @@ public class UiUtils{
 		}
 	}
 
-	public static String formatRelativeTimestampAsMinutesAgo(Context context, Instant instant){
-		long t=instant.toEpochMilli();
-		long now=System.currentTimeMillis();
-		long diff=now-t;
-		if(diff<1000L){
+	public static String formatRelativeTimestampAsMinutesAgo(Context context, Instant instant) {
+		long t = instant.toEpochMilli();
+		long now = System.currentTimeMillis();
+		long diff = now - t;
+		if (diff < 1000L) {
 			return context.getString(R.string.time_just_now);
-		}else if(diff<60_000L){
-			int secs=(int)(diff/1000L);
+		} else if (diff < 60_000L) {
+			int secs = (int) (diff / 1000L);
 			return context.getResources().getQuantityString(R.plurals.x_seconds_ago, secs, secs);
-		}else if(diff<3600_000L){
-			int mins=(int)(diff/60_000L);
+		} else if (diff < 3600_000L) {
+			int mins = (int) (diff / 60_000L);
 			return context.getResources().getQuantityString(R.plurals.x_minutes_ago, mins, mins);
-		}else{
+		} else {
 			return DATE_TIME_FORMATTER.format(instant.atZone(ZoneId.systemDefault()));
 		}
 	}
 
-	public static String formatTimeLeft(Context context, Instant instant){
-		long t=instant.toEpochMilli();
-		long now=System.currentTimeMillis();
-		long diff=t-now;
-		if(diff<60_000L){
-			int secs=(int)(diff/1000L);
+	public static String formatTimeLeft(Context context, Instant instant) {
+		long t = instant.toEpochMilli();
+		long now = System.currentTimeMillis();
+		long diff = t - now;
+		if (diff < 60_000L) {
+			int secs = (int) (diff / 1000L);
 			return context.getResources().getQuantityString(R.plurals.x_seconds_left, secs, secs);
-		}else if(diff<3600_000L){
-			int mins=(int)(diff/60_000L);
+		} else if (diff < 3600_000L) {
+			int mins = (int) (diff / 60_000L);
 			return context.getResources().getQuantityString(R.plurals.x_minutes_left, mins, mins);
-		}else if(diff<3600_000L*24L){
-			int hours=(int)(diff/3600_000L);
+		} else if (diff < 3600_000L * 24L) {
+			int hours = (int) (diff / 3600_000L);
 			return context.getResources().getQuantityString(R.plurals.x_hours_left, hours, hours);
-		}else{
-			int days=(int)(diff/(3600_000L*24L));
+		} else {
+			int days = (int) (diff / (3600_000L * 24L));
 			return context.getResources().getQuantityString(R.plurals.x_days_left, days, days);
 		}
 	}
 
 	@SuppressLint("DefaultLocale")
-	public static String abbreviateNumber(int n){
-		if(n<1000){
+	public static String abbreviateNumber(int n) {
+		if (n < 1000) {
 			return String.format("%,d", n);
-		}else if(n<1_000_000){
-			float a=n/1000f;
-			return a>99f ? String.format("%,dK", (int)Math.floor(a)) : String.format("%,.1fK", a);
-		}else{
-			float a=n/1_000_000f;
-			return a>99f ? String.format("%,dM", (int)Math.floor(a)) : String.format("%,.1fM", n/1_000_000f);
+		} else if (n < 1_000_000) {
+			float a = n / 1000f;
+			return a > 99f ? String.format("%,dK", (int) Math.floor(a)) : String.format("%,.1fK", a);
+		} else {
+			float a = n / 1_000_000f;
+			return a > 99f ? String.format("%,dM", (int) Math.floor(a)) : String.format("%,.1fM", n / 1_000_000f);
 		}
 	}
 
 	@SuppressLint("DefaultLocale")
-	public static String abbreviateNumber(long n){
-		if(n<1_000_000_000L)
-			return abbreviateNumber((int)n);
+	public static String abbreviateNumber(long n) {
+		if (n < 1_000_000_000L)
+			return abbreviateNumber((int) n);
 
-		double a=n/1_000_000_000.0;
-		return a>99f ? String.format("%,dB", (int)Math.floor(a)) : String.format("%,.1fB", n/1_000_000_000.0);
+		double a = n / 1_000_000_000.0;
+		return a > 99f ? String.format("%,dB", (int) Math.floor(a)) : String.format("%,.1fB", n / 1_000_000_000.0);
 	}
 
 	/**
 	 * Android 6.0 has a bug where start and end compound drawables don't get tinted.
 	 * This works around it by setting the tint colors directly to the drawables.
+	 *
 	 * @param textView
 	 */
-	public static void fixCompoundDrawableTintOnAndroid6(TextView textView){
-		Drawable[] drawables=textView.getCompoundDrawablesRelative();
-		for(int i=0;i<drawables.length;i++){
-			if(drawables[i]!=null){
-				Drawable tinted=drawables[i].mutate();
+	public static void fixCompoundDrawableTintOnAndroid6(TextView textView) {
+		Drawable[] drawables = textView.getCompoundDrawablesRelative();
+		for (int i = 0; i < drawables.length; i++) {
+			if (drawables[i] != null) {
+				Drawable tinted = drawables[i].mutate();
 				tinted.setTintList(textView.getTextColors());
-				drawables[i]=tinted;
+				drawables[i] = tinted;
 			}
 		}
 		textView.setCompoundDrawablesRelative(drawables[0], drawables[1], drawables[2], drawables[3]);
 	}
 
-	public static void runOnUiThread(Runnable runnable){
+	public static void runOnUiThread(Runnable runnable) {
 		mainHandler.post(runnable);
 	}
 
-	public static void runOnUiThread(Runnable runnable, long delay){
+	public static void runOnUiThread(Runnable runnable, long delay) {
 		mainHandler.postDelayed(runnable, delay);
 	}
 
-	public static void removeCallbacks(Runnable runnable){
+	public static void removeCallbacks(Runnable runnable) {
 		mainHandler.removeCallbacks(runnable);
 	}
 
-	/** Linear interpolation between {@code startValue} and {@code endValue} by {@code fraction}. */
+	/**
+	 * Linear interpolation between {@code startValue} and {@code endValue} by {@code fraction}.
+	 */
 	public static int lerp(int startValue, int endValue, float fraction) {
 		return startValue + Math.round(fraction * (endValue - startValue));
 	}
 
-	public static String getFileName(Uri uri){
-		if(uri.getScheme().equals("content")){
-			try(Cursor cursor=MastodonApp.context.getContentResolver().query(uri, new String[]{OpenableColumns.DISPLAY_NAME}, null, null, null)){
+	public static String getFileName(Uri uri) {
+		if (uri.getScheme().equals("content")) {
+			try (Cursor cursor = MastodonApp.context.getContentResolver().query(uri, new String[]{OpenableColumns.DISPLAY_NAME}, null, null, null)) {
 				cursor.moveToFirst();
-				String name=cursor.getString(0);
-				if(name!=null)
+				String name = cursor.getString(0);
+				if (name != null)
 					return name;
-			}catch(Throwable ignore){}
+			} catch (Throwable ignore) {
+			}
 		}
 		return uri.getLastPathSegment();
 	}
 
-	public static String formatFileSize(Context context, long size, boolean atLeastKB){
-		if(size<1024 && !atLeastKB){
+	public static String formatFileSize(Context context, long size, boolean atLeastKB) {
+		if (size < 1024 && !atLeastKB) {
 			return context.getString(R.string.file_size_bytes, size);
-		}else if(size<1024*1024){
-			return context.getString(R.string.file_size_kb, size/1024.0);
-		}else if(size<1024*1024*1024){
-			return context.getString(R.string.file_size_mb, size/(1024.0*1024.0));
-		}else{
-			return context.getString(R.string.file_size_gb, size/(1024.0*1024.0*1024.0));
+		} else if (size < 1024 * 1024) {
+			return context.getString(R.string.file_size_kb, size / 1024.0);
+		} else if (size < 1024 * 1024 * 1024) {
+			return context.getString(R.string.file_size_mb, size / (1024.0 * 1024.0));
+		} else {
+			return context.getString(R.string.file_size_gb, size / (1024.0 * 1024.0 * 1024.0));
 		}
 	}
 
-	public static MediaType getFileMediaType(File file){
-		String name=file.getName();
-		return MediaType.parse(MimeTypeMap.getSingleton().getMimeTypeFromExtension(name.substring(name.lastIndexOf('.')+1)));
+	public static MediaType getFileMediaType(File file) {
+		String name = file.getName();
+		return MediaType.parse(MimeTypeMap.getSingleton().getMimeTypeFromExtension(name.substring(name.lastIndexOf('.') + 1)));
 	}
 
-	public static void loadCustomEmojiInTextView(TextView view){
-		CharSequence _text=view.getText();
-		if(!(_text instanceof Spanned))
+	public static void loadCustomEmojiInTextView(TextView view) {
+		CharSequence _text = view.getText();
+		if (!(_text instanceof Spanned))
 			return;
-		Spanned text=(Spanned)_text;
-		CustomEmojiSpan[] spans=text.getSpans(0, text.length(), CustomEmojiSpan.class);
-		if(spans.length==0)
+		Spanned text = (Spanned) _text;
+		CustomEmojiSpan[] spans = text.getSpans(0, text.length(), CustomEmojiSpan.class);
+		if (spans.length == 0)
 			return;
-		int emojiSize=V.dp(20);
-		Map<Emoji, List<CustomEmojiSpan>> spansByEmoji=Arrays.stream(spans).collect(Collectors.groupingBy(s->s.emoji));
-		for(Map.Entry<Emoji, List<CustomEmojiSpan>> emoji:spansByEmoji.entrySet()){
-			ViewImageLoader.load(new ViewImageLoader.Target(){
+		int emojiSize = V.dp(20);
+		Map<Emoji, List<CustomEmojiSpan>> spansByEmoji = Arrays.stream(spans).collect(Collectors.groupingBy(s -> s.emoji));
+		for (Map.Entry<Emoji, List<CustomEmojiSpan>> emoji : spansByEmoji.entrySet()) {
+			ViewImageLoader.load(new ViewImageLoader.Target() {
 				@Override
-				public void setImageDrawable(Drawable d){
-					if(d==null)
+				public void setImageDrawable(Drawable d) {
+					if (d == null)
 						return;
-					for(CustomEmojiSpan span:emoji.getValue()){
+					for (CustomEmojiSpan span : emoji.getValue()) {
 						span.setDrawable(d);
 					}
 					view.invalidate();
 				}
 
 				@Override
-				public View getView(){
+				public View getView() {
 					return view;
 				}
 			}, null, new UrlImageLoaderRequest(emoji.getKey().url, emojiSize, emojiSize), null, false, true);
 		}
 	}
 
-	public static int getThemeColor(Context context, @AttrRes int attr){
-		TypedArray ta=context.obtainStyledAttributes(new int[]{attr});
-		int color=ta.getColor(0, 0xff00ff00);
+	public static int getThemeColor(Context context, @AttrRes int attr) {
+		TypedArray ta = context.obtainStyledAttributes(new int[]{attr});
+		int color = ta.getColor(0, 0xff00ff00);
 		ta.recycle();
 		return color;
 	}
 
-	public static void openProfileByID(Context context, String selfID, String id){
-		Bundle args=new Bundle();
+	public static void openProfileByID(Context context, String selfID, String id) {
+		Bundle args = new Bundle();
 		args.putString("account", selfID);
 		args.putString("profileAccountID", id);
-		Nav.go((Activity)context, ProfileFragment.class, args);
+		Nav.go((Activity) context, ProfileFragment.class, args);
 	}
 
-	public static void openHashtagTimeline(Context context, String accountID, String hashtag, @Nullable Boolean following){
-		Bundle args=new Bundle();
+	public static void openHashtagTimeline(Context context, String accountID, String hashtag, @Nullable Boolean following) {
+		Bundle args = new Bundle();
 		args.putString("account", accountID);
 		args.putString("hashtag", hashtag);
 		if (following != null) args.putBoolean("following", following);
-		Nav.go((Activity)context, HashtagTimelineFragment.class, args);
+		Nav.go((Activity) context, HashtagTimelineFragment.class, args);
 	}
 
-	public static void showConfirmationAlert(Context context, @StringRes int title, @StringRes int message, @StringRes int confirmButton, Runnable onConfirmed){
+	public static void showConfirmationAlert(Context context, @StringRes int title, @StringRes int message, @StringRes int confirmButton, Runnable onConfirmed) {
 		showConfirmationAlert(context, title, message, confirmButton, 0, onConfirmed);
 	}
 
-	public static void showConfirmationAlert(Context context, @StringRes int title, @StringRes int message, @StringRes int confirmButton, @DrawableRes int icon, Runnable onConfirmed){
+	public static void showConfirmationAlert(Context context, @StringRes int title, @StringRes int message, @StringRes int confirmButton, @DrawableRes int icon, Runnable onConfirmed) {
 		showConfirmationAlert(context, context.getString(title), context.getString(message), context.getString(confirmButton), icon, onConfirmed);
 	}
 
-	public static void showConfirmationAlert(Context context, CharSequence title, CharSequence message, CharSequence confirmButton, int icon, Runnable onConfirmed){
+	public static void showConfirmationAlert(Context context, CharSequence title, CharSequence message, CharSequence confirmButton, int icon, Runnable onConfirmed) {
 		new M3AlertDialogBuilder(context)
 				.setTitle(title)
 				.setMessage(message)
-				.setPositiveButton(confirmButton, (dlg, i)->onConfirmed.run())
+				.setPositiveButton(confirmButton, (dlg, i) -> onConfirmed.run())
 				.setNegativeButton(R.string.cancel, null)
 				.setIcon(icon)
 				.show();
 	}
 
-	public static void confirmToggleBlockUser(Activity activity, String accountID, Account account, boolean currentlyBlocked, Consumer<Relationship> resultCallback){
+	public static void confirmToggleBlockUser(Activity activity, String accountID, Account account, boolean currentlyBlocked, Consumer<Relationship> resultCallback) {
 		showConfirmationAlert(activity, activity.getString(currentlyBlocked ? R.string.confirm_unblock_title : R.string.confirm_block_title),
 				activity.getString(currentlyBlocked ? R.string.confirm_unblock : R.string.confirm_block, account.displayName),
 				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block),
 				R.drawable.ic_fluent_person_prohibited_28_regular,
-				()->{
+				() -> {
 					new SetAccountBlocked(account.id, !currentlyBlocked)
-							.setCallback(new Callback<>(){
+							.setCallback(new Callback<>() {
 								@Override
-								public void onSuccess(Relationship result){
+								public void onSuccess(Relationship result) {
 									if (activity == null) return;
 									resultCallback.accept(result);
-									if(!currentlyBlocked){
+									if (!currentlyBlocked) {
 										E.post(new RemoveAccountPostsEvent(accountID, account.id, false));
 									}
 								}
 
 								@Override
-								public void onError(ErrorResponse error){
+								public void onError(ErrorResponse error) {
 									error.showToast(activity);
 								}
 							})
@@ -393,55 +398,55 @@ public class UiUtils{
 				});
 	}
 
-	public static void confirmSoftBlockUser(Activity activity, String accountID, Account account, Consumer<Relationship> resultCallback){
+	public static void confirmSoftBlockUser(Activity activity, String accountID, Account account, Consumer<Relationship> resultCallback) {
 		showConfirmationAlert(activity,
 				activity.getString(R.string.sk_remove_follower),
 				activity.getString(R.string.sk_remove_follower_confirm, account.displayName),
 				activity.getString(R.string.sk_do_remove_follower),
 				R.drawable.ic_fluent_person_delete_24_regular,
 				() -> new SetAccountBlocked(account.id, true).setCallback(new Callback<>() {
-						@Override
-						public void onSuccess(Relationship relationship) {
-							new SetAccountBlocked(account.id, false).setCallback(new Callback<>() {
+					@Override
+					public void onSuccess(Relationship relationship) {
+						new SetAccountBlocked(account.id, false).setCallback(new Callback<>() {
+							@Override
+							public void onSuccess(Relationship relationship) {
+								if (activity == null) return;
+								Toast.makeText(activity, R.string.sk_remove_follower_success, Toast.LENGTH_SHORT).show();
+								resultCallback.accept(relationship);
+							}
+
+							@Override
+							public void onError(ErrorResponse error) {
+								error.showToast(activity);
+								resultCallback.accept(relationship);
+							}
+						}).exec(accountID);
+					}
+
+					@Override
+					public void onError(ErrorResponse error) {
+						error.showToast(activity);
+					}
+				}).exec(accountID)
+		);
+	}
+
+	public static void confirmToggleBlockDomain(Activity activity, String accountID, String domain, boolean currentlyBlocked, Runnable resultCallback) {
+		showConfirmationAlert(activity, activity.getString(currentlyBlocked ? R.string.confirm_unblock_domain_title : R.string.confirm_block_domain_title),
+				activity.getString(currentlyBlocked ? R.string.confirm_unblock : R.string.confirm_block, domain),
+				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block),
+				R.drawable.ic_fluent_shield_28_regular,
+				() -> {
+					new SetDomainBlocked(domain, !currentlyBlocked)
+							.setCallback(new Callback<>() {
 								@Override
-								public void onSuccess(Relationship relationship) {
-									if (activity == null) return;
-									Toast.makeText(activity, R.string.sk_remove_follower_success, Toast.LENGTH_SHORT).show();
-									resultCallback.accept(relationship);
+								public void onSuccess(Object result) {
+									resultCallback.run();
 								}
 
 								@Override
 								public void onError(ErrorResponse error) {
 									error.showToast(activity);
-									resultCallback.accept(relationship);
-								}
-							}).exec(accountID);
-						}
-
-						@Override
-						public void onError(ErrorResponse error) {
-							error.showToast(activity);
-						}
-					}).exec(accountID)
-		);
-	}
-
-	public static void confirmToggleBlockDomain(Activity activity, String accountID, String domain, boolean currentlyBlocked, Runnable resultCallback){
-		showConfirmationAlert(activity, activity.getString(currentlyBlocked ? R.string.confirm_unblock_domain_title : R.string.confirm_block_domain_title),
-				activity.getString(currentlyBlocked ? R.string.confirm_unblock : R.string.confirm_block, domain),
-				activity.getString(currentlyBlocked ? R.string.do_unblock : R.string.do_block),
-				R.drawable.ic_fluent_shield_28_regular,
-				()->{
-					new SetDomainBlocked(domain, !currentlyBlocked)
-							.setCallback(new Callback<>(){
-								@Override
-								public void onSuccess(Object result){
-									resultCallback.run();
-								}
-
-								@Override
-								public void onError(ErrorResponse error){
-									error.showToast(activity);
 								}
 							})
 							.wrapProgress(activity, R.string.loading, false)
@@ -449,24 +454,24 @@ public class UiUtils{
 				});
 	}
 
-	public static void confirmToggleMuteUser(Activity activity, String accountID, Account account, boolean currentlyMuted, Consumer<Relationship> resultCallback){
+	public static void confirmToggleMuteUser(Activity activity, String accountID, Account account, boolean currentlyMuted, Consumer<Relationship> resultCallback) {
 		showConfirmationAlert(activity, activity.getString(currentlyMuted ? R.string.confirm_unmute_title : R.string.confirm_mute_title),
 				activity.getString(currentlyMuted ? R.string.confirm_unmute : R.string.confirm_mute, account.displayName),
 				activity.getString(currentlyMuted ? R.string.do_unmute : R.string.do_mute),
 				currentlyMuted ? R.drawable.ic_fluent_speaker_0_28_regular : R.drawable.ic_fluent_speaker_off_28_regular,
-				()->{
+				() -> {
 					new SetAccountMuted(account.id, !currentlyMuted)
-							.setCallback(new Callback<>(){
+							.setCallback(new Callback<>() {
 								@Override
-								public void onSuccess(Relationship result){
+								public void onSuccess(Relationship result) {
 									resultCallback.accept(result);
-									if(!currentlyMuted){
+									if (!currentlyMuted) {
 										E.post(new RemoveAccountPostsEvent(accountID, account.id, false));
 									}
 								}
 
 								@Override
-								public void onError(ErrorResponse error){
+								public void onError(ErrorResponse error) {
 									error.showToast(activity);
 								}
 							})
@@ -474,27 +479,28 @@ public class UiUtils{
 							.exec(accountID);
 				});
 	}
-	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback){
+
+	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback) {
 		confirmDeletePost(activity, accountID, status, resultCallback, false);
 	}
 
-	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback, boolean forRedraft){
+	public static void confirmDeletePost(Activity activity, String accountID, Status status, Consumer<Status> resultCallback, boolean forRedraft) {
 		showConfirmationAlert(activity,
 				forRedraft ? R.string.sk_confirm_delete_and_redraft_title : R.string.confirm_delete_title,
 				forRedraft ? R.string.sk_confirm_delete_and_redraft : R.string.confirm_delete,
 				forRedraft ? R.string.sk_delete_and_redraft : R.string.delete,
 				forRedraft ? R.drawable.ic_fluent_arrow_clockwise_28_regular : R.drawable.ic_fluent_delete_28_regular,
 				() -> new DeleteStatus(status.id)
-						.setCallback(new Callback<>(){
+						.setCallback(new Callback<>() {
 							@Override
-							public void onSuccess(Status result){
+							public void onSuccess(Status result) {
 								resultCallback.accept(result);
 								AccountSessionManager.getInstance().getAccount(accountID).getCacheController().deleteStatus(status.id);
 								E.post(new StatusDeletedEvent(status.id, accountID));
 							}
 
 							@Override
-							public void onError(ErrorResponse error){
+							public void onError(ErrorResponse error) {
 								error.showToast(activity);
 							}
 						})
@@ -503,7 +509,7 @@ public class UiUtils{
 		);
 	}
 
-	public static void confirmDeleteScheduledPost(Activity activity, String accountID, ScheduledStatus status, Runnable resultCallback){
+	public static void confirmDeleteScheduledPost(Activity activity, String accountID, ScheduledStatus status, Runnable resultCallback) {
 		boolean isDraft = status.scheduledAt.isAfter(CreateStatus.DRAFTS_AFTER_INSTANT);
 		showConfirmationAlert(activity,
 				isDraft ? R.string.sk_confirm_delete_draft_title : R.string.sk_confirm_delete_scheduled_post_title,
@@ -511,15 +517,15 @@ public class UiUtils{
 				R.string.delete,
 				R.drawable.ic_fluent_delete_28_regular,
 				() -> new DeleteStatus.Scheduled(status.id)
-						.setCallback(new Callback<>(){
+						.setCallback(new Callback<>() {
 							@Override
-							public void onSuccess(Object o){
+							public void onSuccess(Object o) {
 								resultCallback.run();
 								E.post(new ScheduledStatusDeletedEvent(status.id, accountID));
 							}
 
 							@Override
-							public void onError(ErrorResponse error){
+							public void onError(ErrorResponse error) {
 								error.showToast(activity);
 							}
 						})
@@ -528,13 +534,13 @@ public class UiUtils{
 		);
 	}
 
-	public static void confirmPinPost(Activity activity, String accountID, Status status, boolean pinned, Consumer<Status> resultCallback){
+	public static void confirmPinPost(Activity activity, String accountID, Status status, boolean pinned, Consumer<Status> resultCallback) {
 		showConfirmationAlert(activity,
 				pinned ? R.string.sk_confirm_pin_post_title : R.string.sk_confirm_unpin_post_title,
 				pinned ? R.string.sk_confirm_pin_post : R.string.sk_confirm_unpin_post,
 				pinned ? R.string.sk_pin_post : R.string.sk_unpin_post,
 				pinned ? R.drawable.ic_fluent_pin_28_regular : R.drawable.ic_fluent_pin_off_28_regular,
-				()->{
+				() -> {
 					new SetStatusPinned(status.id, pinned)
 							.setCallback(new Callback<>() {
 								@Override
@@ -597,42 +603,42 @@ public class UiUtils{
 						.exec(accountID));
 	}
 
-	public static void setRelationshipToActionButton(Relationship relationship, Button button){
+	public static void setRelationshipToActionButton(Relationship relationship, Button button) {
 		setRelationshipToActionButton(relationship, button, false);
 	}
 
-	public static void setRelationshipToActionButton(Relationship relationship, Button button, boolean keepText){
+	public static void setRelationshipToActionButton(Relationship relationship, Button button, boolean keepText) {
 		CharSequence textBefore = keepText ? button.getText() : null;
 		boolean secondaryStyle;
-		if(relationship.blocking){
+		if (relationship.blocking) {
 			button.setText(R.string.button_blocked);
-			secondaryStyle=true;
-		}else if(relationship.blockedBy){
+			secondaryStyle = true;
+		} else if (relationship.blockedBy) {
 			button.setText(R.string.button_follow);
-			secondaryStyle=false;
-		}else if(relationship.requested){
+			secondaryStyle = false;
+		} else if (relationship.requested) {
 			button.setText(R.string.button_follow_pending);
-			secondaryStyle=true;
-		}else if(!relationship.following){
+			secondaryStyle = true;
+		} else if (!relationship.following) {
 			button.setText(relationship.followedBy ? R.string.follow_back : R.string.button_follow);
-			secondaryStyle=false;
-		}else{
+			secondaryStyle = false;
+		} else {
 			button.setText(R.string.button_following);
-			secondaryStyle=true;
+			secondaryStyle = true;
 		}
 
 		if (keepText) button.setText(textBefore);
 
 		button.setEnabled(!relationship.blockedBy);
-		int attr=secondaryStyle ? R.attr.secondaryButtonStyle : android.R.attr.buttonStyle;
-		TypedArray ta=button.getContext().obtainStyledAttributes(new int[]{attr});
-		int styleRes=ta.getResourceId(0, 0);
+		int attr = secondaryStyle ? R.attr.secondaryButtonStyle : android.R.attr.buttonStyle;
+		TypedArray ta = button.getContext().obtainStyledAttributes(new int[]{attr});
+		int styleRes = ta.getResourceId(0, 0);
 		ta.recycle();
-		ta=button.getContext().obtainStyledAttributes(styleRes, new int[]{android.R.attr.background});
+		ta = button.getContext().obtainStyledAttributes(styleRes, new int[]{android.R.attr.background});
 		button.setBackground(ta.getDrawable(0));
 		ta.recycle();
-		ta=button.getContext().obtainStyledAttributes(styleRes, new int[]{android.R.attr.textColor});
-		if(relationship.blocking)
+		ta = button.getContext().obtainStyledAttributes(styleRes, new int[]{android.R.attr.textColor});
+		if (relationship.blocking)
 			button.setTextColor(button.getResources().getColorStateList(R.color.error_600));
 		else
 			button.setTextColor(ta.getColorStateList(0));
@@ -647,7 +653,7 @@ public class UiUtils{
 					public void onSuccess(Relationship result) {
 						resultCallback.accept(result);
 						progressCallback.accept(false);
-						Toast.makeText(activity, activity.getString(result.notifying ? R.string.sk_user_post_notifications_on : R.string.sk_user_post_notifications_off, '@'+account.username), Toast.LENGTH_SHORT).show();
+						Toast.makeText(activity, activity.getString(result.notifying ? R.string.sk_user_post_notifications_on : R.string.sk_user_post_notifications_off, '@' + account.username), Toast.LENGTH_SHORT).show();
 					}
 
 					@Override
@@ -658,26 +664,26 @@ public class UiUtils{
 				}).exec(accountID);
 	}
 
-	public static void performAccountAction(Activity activity, Account account, String accountID, Relationship relationship, Button button, Consumer<Boolean> progressCallback, Consumer<Relationship> resultCallback){
-		if(relationship.blocking){
+	public static void performAccountAction(Activity activity, Account account, String accountID, Relationship relationship, Button button, Consumer<Boolean> progressCallback, Consumer<Relationship> resultCallback) {
+		if (relationship.blocking) {
 			confirmToggleBlockUser(activity, accountID, account, true, resultCallback);
-		}else if(relationship.muting){
+		} else if (relationship.muting) {
 			confirmToggleMuteUser(activity, accountID, account, true, resultCallback);
-		}else{
+		} else {
 			progressCallback.accept(true);
 			new SetAccountFollowed(account.id, !relationship.following && !relationship.requested, true, false)
-					.setCallback(new Callback<>(){
+					.setCallback(new Callback<>() {
 						@Override
-						public void onSuccess(Relationship result){
+						public void onSuccess(Relationship result) {
 							resultCallback.accept(result);
 							progressCallback.accept(false);
-							if(!result.following){
+							if (!result.following) {
 								E.post(new RemoveAccountPostsEvent(accountID, account.id, true));
 							}
 						}
 
 						@Override
-						public void onError(ErrorResponse error){
+						public void onError(ErrorResponse error) {
 							error.showToast(activity);
 							progressCallback.accept(false);
 						}
@@ -707,7 +713,8 @@ public class UiUtils{
 				@Override
 				public void onSuccess(Relationship rel) {
 					E.post(new FollowRequestHandledEvent(accountID, false, account, rel));
-					if (notificationID != null) E.post(new NotificationDeletedEvent(notificationID));
+					if (notificationID != null)
+						E.post(new NotificationDeletedEvent(notificationID));
 					resultCallback.accept(rel);
 				}
 
@@ -720,34 +727,34 @@ public class UiUtils{
 		}
 	}
 
-	public static <T> void updateList(List<T> oldList, List<T> newList, RecyclerView list, RecyclerView.Adapter<?> adapter, BiPredicate<T, T> areItemsSame){
+	public static <T> void updateList(List<T> oldList, List<T> newList, RecyclerView list, RecyclerView.Adapter<?> adapter, BiPredicate<T, T> areItemsSame) {
 		// Save topmost item position and offset because for some reason RecyclerView would scroll the list to weird places when you insert items at the top
 		int topItem, topItemOffset;
-		if(list.getChildCount()==0){
-			topItem=topItemOffset=0;
-		}else{
-			View child=list.getChildAt(0);
-			topItem=list.getChildAdapterPosition(child);
-			topItemOffset=child.getTop();
+		if (list.getChildCount() == 0) {
+			topItem = topItemOffset = 0;
+		} else {
+			View child = list.getChildAt(0);
+			topItem = list.getChildAdapterPosition(child);
+			topItemOffset = child.getTop();
 		}
-		DiffUtil.calculateDiff(new DiffUtil.Callback(){
+		DiffUtil.calculateDiff(new DiffUtil.Callback() {
 			@Override
-			public int getOldListSize(){
+			public int getOldListSize() {
 				return oldList.size();
 			}
 
 			@Override
-			public int getNewListSize(){
+			public int getNewListSize() {
 				return newList.size();
 			}
 
 			@Override
-			public boolean areItemsTheSame(int oldItemPosition, int newItemPosition){
+			public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 				return areItemsSame.test(oldList.get(oldItemPosition), newList.get(newItemPosition));
 			}
 
 			@Override
-			public boolean areContentsTheSame(int oldItemPosition, int newItemPosition){
+			public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
 				return true;
 			}
 		}).dispatchUpdatesTo(adapter);
@@ -755,77 +762,80 @@ public class UiUtils{
 		list.scrollBy(0, topItemOffset);
 	}
 
-	public static Bitmap getBitmapFromDrawable(Drawable d){
-		if(d instanceof BitmapDrawable)
+	public static Bitmap getBitmapFromDrawable(Drawable d) {
+		if (d instanceof BitmapDrawable)
 			return ((BitmapDrawable) d).getBitmap();
-		Bitmap bitmap=Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+		Bitmap bitmap = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
 		d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
 		d.draw(new Canvas(bitmap));
 		return bitmap;
 	}
 
 	public static void insetPopupMenuIcon(Context context, MenuItem item) {
-		ColorStateList iconTint=ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
+		ColorStateList iconTint = ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
 		insetPopupMenuIcon(item, iconTint);
 	}
+
 	public static void insetPopupMenuIcon(MenuItem item, ColorStateList iconTint) {
-		Drawable icon=item.getIcon().mutate();
-		if(Build.VERSION.SDK_INT>=26) item.setIconTintList(iconTint);
+		Drawable icon = item.getIcon().mutate();
+		if (Build.VERSION.SDK_INT >= 26) item.setIconTintList(iconTint);
 		else icon.setTintList(iconTint);
-		icon=new InsetDrawable(icon, V.dp(8), 0, V.dp(8), 0);
+		icon = new InsetDrawable(icon, V.dp(8), 0, V.dp(8), 0);
 		item.setIcon(icon);
-		SpannableStringBuilder ssb=new SpannableStringBuilder(item.getTitle());
+		SpannableStringBuilder ssb = new SpannableStringBuilder(item.getTitle());
 		item.setTitle(ssb);
 	}
 
 	public static void resetPopupItemTint(MenuItem item) {
-		if(Build.VERSION.SDK_INT>=26) {
+		if (Build.VERSION.SDK_INT >= 26) {
 			item.setIconTintList(null);
 		} else {
-			Drawable icon=item.getIcon().mutate();
+			Drawable icon = item.getIcon().mutate();
 			icon.setTintList(null);
 			item.setIcon(icon);
 		}
 	}
 
 	public static void enableOptionsMenuIcons(Context context, Menu menu, @IdRes int... asAction) {
-		if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+		if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
 			try {
 				Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
 				m.setAccessible(true);
 				m.invoke(menu, true);
 				enableMenuIcons(context, menu, asAction);
+			} catch (Exception ignored) {
 			}
-			catch(Exception ignored){}
 		}
 	}
 
 	public static void enableMenuIcons(Context context, Menu m, @IdRes int... exclude) {
-		ColorStateList iconTint=ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
-		for(int i=0;i<m.size();i++){
-			MenuItem item=m.getItem(i);
+		ColorStateList iconTint = ColorStateList.valueOf(UiUtils.getThemeColor(context, android.R.attr.textColorSecondary));
+		for (int i = 0; i < m.size(); i++) {
+			MenuItem item = m.getItem(i);
 			SubMenu subMenu = item.getSubMenu();
 			if (subMenu != null) enableMenuIcons(context, subMenu, exclude);
-			if (item.getIcon() == null || Arrays.stream(exclude).anyMatch(id -> id == item.getItemId())) continue;
+			if (item.getIcon() == null || Arrays.stream(exclude).anyMatch(id -> id == item.getItemId()))
+				continue;
 			insetPopupMenuIcon(item, iconTint);
 		}
 	}
 
-	public static void enablePopupMenuIcons(Context context, PopupMenu menu){
-		Menu m=menu.getMenu();
-		if(Build.VERSION.SDK_INT>=29){
+	public static void enablePopupMenuIcons(Context context, PopupMenu menu) {
+		Menu m = menu.getMenu();
+		if (Build.VERSION.SDK_INT >= 29) {
 			menu.setForceShowIcon(true);
-		}else{
-			try{
-				Method setOptionalIconsVisible=m.getClass().getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+		} else {
+			try {
+				Method setOptionalIconsVisible = m.getClass().getDeclaredMethod("setOptionalIconsVisible", boolean.class);
 				setOptionalIconsVisible.setAccessible(true);
 				setOptionalIconsVisible.invoke(m, true);
-			}catch(Exception ignore){}
+			} catch (Exception ignore) {
+			}
 		}
 		enableMenuIcons(context, m);
 	}
 
-	public static void setUserPreferredTheme(Context context){
+	public static void setUserPreferredTheme(Context context) {
 		context.setTheme(switch (theme) {
 			case LIGHT -> R.style.Theme_Mastodon_Light;
 			case DARK -> trueBlackTheme ? R.style.Theme_Mastodon_Dark_TrueBlack : R.style.Theme_Mastodon_Dark;
@@ -835,10 +845,11 @@ public class UiUtils{
 		ColorPalette palette = ColorPalette.palettes.get(GlobalUserPreferences.color);
 		if (palette != null) palette.apply(context);
 	}
-	public static boolean isDarkTheme(){
-		if(theme==GlobalUserPreferences.ThemePreference.AUTO)
-			return (MastodonApp.context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)==Configuration.UI_MODE_NIGHT_YES;
-		return theme==GlobalUserPreferences.ThemePreference.DARK;
+
+	public static boolean isDarkTheme() {
+		if (theme == GlobalUserPreferences.ThemePreference.AUTO)
+			return (MastodonApp.context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+		return theme == GlobalUserPreferences.ThemePreference.DARK;
 	}
 
 	// https://mastodon.foo.bar/@User
@@ -865,7 +876,8 @@ public class UiUtils{
 			return false;
 		}
 
-		if (uri.getQuery() != null || uri.getFragment() != null || uri.getPath() == null) return false;
+		if (uri.getQuery() != null || uri.getFragment() != null || uri.getPath() == null)
+			return false;
 
 		String it = uri.getPath();
 		return it.matches("^/@[^/]+$") ||
@@ -890,8 +902,8 @@ public class UiUtils{
 	}
 
 	public static void pickAccount(Context context, String exceptFor, @StringRes int titleRes, @DrawableRes int iconRes, Consumer<AccountSession> sessionConsumer, Consumer<AlertDialog.Builder> transformDialog) {
-		List<AccountSession> sessions=AccountSessionManager.getInstance().getLoggedInAccounts()
-				.stream().filter(s->!s.getID().equals(exceptFor)).collect(Collectors.toList());
+		List<AccountSession> sessions = AccountSessionManager.getInstance().getLoggedInAccounts()
+				.stream().filter(s -> !s.getID().equals(exceptFor)).collect(Collectors.toList());
 
 		AlertDialog.Builder builder = new M3AlertDialogBuilder(context)
 				.setItems(
@@ -963,18 +975,19 @@ public class UiUtils{
 		}
 
 		new GetSearchResults(queryStatus.url, GetSearchResults.Type.STATUSES, true).setCallback(new Callback<>() {
-			@Override
-			public void onSuccess(SearchResults results) {
-				if (!results.statuses.isEmpty()) statusConsumer.accept(results.statuses.get(0));
-				else Toast.makeText(context, R.string.sk_resource_not_found, Toast.LENGTH_SHORT).show();
-			}
+					@Override
+					public void onSuccess(SearchResults results) {
+						if (!results.statuses.isEmpty()) statusConsumer.accept(results.statuses.get(0));
+						else
+							Toast.makeText(context, R.string.sk_resource_not_found, Toast.LENGTH_SHORT).show();
+					}
 
-			@Override
-			public void onError(ErrorResponse error) {
-				error.showToast(context);
-			}
-		})
-				.wrapProgress((Activity)context, R.string.loading, true,
+					@Override
+					public void onError(ErrorResponse error) {
+						error.showToast(context);
+					}
+				})
+				.wrapProgress((Activity) context, R.string.loading, true,
 						d -> transformDialogForLookup(context, targetAccountID, null, d))
 				.exec(targetAccountID);
 	}
@@ -998,28 +1011,28 @@ public class UiUtils{
 		}
 	}
 
-	public static void openURL(Context context, String accountID, String url, boolean launchBrowser){
-		Uri uri=Uri.parse(url);
-		List<String> path=uri.getPathSegments();
-		if(accountID!=null && "https".equals(uri.getScheme())){
-			if(path.size()==2 && path.get(0).matches("^@[a-zA-Z0-9_]+$") && path.get(1).matches("^[0-9]+$") && AccountSessionManager.getInstance().getAccount(accountID).domain.equalsIgnoreCase(uri.getAuthority())){
+	public static void openURL(Context context, String accountID, String url, boolean launchBrowser) {
+		Uri uri = Uri.parse(url);
+		List<String> path = uri.getPathSegments();
+		if (accountID != null && "https".equals(uri.getScheme())) {
+			if (path.size() == 2 && path.get(0).matches("^@[a-zA-Z0-9_]+$") && path.get(1).matches("^[0-9]+$") && AccountSessionManager.getInstance().getAccount(accountID).domain.equalsIgnoreCase(uri.getAuthority())) {
 				new GetStatusByID(path.get(1))
-						.setCallback(new Callback<>(){
+						.setCallback(new Callback<>() {
 							@Override
-							public void onSuccess(Status result){
-								Bundle args=new Bundle();
+							public void onSuccess(Status result) {
+								Bundle args = new Bundle();
 								args.putString("account", accountID);
 								args.putParcelable("status", Parcels.wrap(result));
 								Nav.go((Activity) context, ThreadFragment.class, args);
 							}
 
 							@Override
-							public void onError(ErrorResponse error){
+							public void onError(ErrorResponse error) {
 								error.showToast(context);
 								if (launchBrowser) launchWebBrowser(context, url);
 							}
 						})
-						.wrapProgress((Activity)context, R.string.loading, true,
+						.wrapProgress((Activity) context, R.string.loading, true,
 								d -> transformDialogForLookup(context, accountID, url, d))
 						.exec(accountID);
 				return;
@@ -1028,7 +1041,7 @@ public class UiUtils{
 						.setCallback(new Callback<>() {
 							@Override
 							public void onSuccess(SearchResults results) {
-								Bundle args=new Bundle();
+								Bundle args = new Bundle();
 								args.putString("account", accountID);
 								if (!results.statuses.isEmpty()) {
 									args.putParcelable("status", Parcels.wrap(results.statuses.get(0)));
@@ -1038,7 +1051,8 @@ public class UiUtils{
 									Nav.go((Activity) context, ProfileFragment.class, args);
 								} else {
 									if (launchBrowser) launchWebBrowser(context, url);
-									else Toast.makeText(context, R.string.sk_resource_not_found, Toast.LENGTH_SHORT).show();
+									else
+										Toast.makeText(context, R.string.sk_resource_not_found, Toast.LENGTH_SHORT).show();
 								}
 							}
 
@@ -1048,7 +1062,7 @@ public class UiUtils{
 								if (launchBrowser) launchWebBrowser(context, url);
 							}
 						})
-						.wrapProgress((Activity)context, R.string.loading, true,
+						.wrapProgress((Activity) context, R.string.loading, true,
 								d -> transformDialogForLookup(context, accountID, url, d))
 						.exec(accountID);
 				return;
@@ -1060,36 +1074,45 @@ public class UiUtils{
 	public static void copyText(View v, String text) {
 		Context context = v.getContext();
 		context.getSystemService(ClipboardManager.class).setPrimaryClip(ClipData.newPlainText(null, text));
-		if(Build.VERSION.SDK_INT<Build.VERSION_CODES.TIRAMISU || UiUtils.isMIUI()){ // Android 13+ SystemUI shows its own thing when you put things into the clipboard
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || UiUtils.isMIUI()) { // Android 13+ SystemUI shows its own thing when you put things into the clipboard
 			Toast.makeText(context, R.string.text_copied, Toast.LENGTH_SHORT).show();
 		}
 		v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
 	}
 
-	private static String getSystemProperty(String key){
-		try{
-			Class<?> props=Class.forName("android.os.SystemProperties");
-			Method get=props.getMethod("get", String.class);
-			return (String)get.invoke(null, key);
-		}catch(Exception ignore){}
+	private static String getSystemProperty(String key) {
+		try {
+			Class<?> props = Class.forName("android.os.SystemProperties");
+			Method get = props.getMethod("get", String.class);
+			return (String) get.invoke(null, key);
+		} catch (Exception ignore) {
+		}
 		return null;
 	}
 
-	public static boolean isMIUI(){
+	public static boolean isMIUI() {
 		return !TextUtils.isEmpty(getSystemProperty("ro.miui.ui.version.code"));
 	}
 
-	public static boolean pickAccountForCompose(Activity activity, String accountID, String prefilledText){
+	public static int alphaBlendColors(int color1, int color2, float alpha) {
+		float alpha0 = 1f - alpha;
+		int r = Math.round(((color1 >> 16) & 0xFF) * alpha0 + ((color2 >> 16) & 0xFF) * alpha);
+		int g = Math.round(((color1 >> 8) & 0xFF) * alpha0 + ((color2 >> 8) & 0xFF) * alpha);
+		int b = Math.round((color1 & 0xFF) * alpha0 + (color2 & 0xFF) * alpha);
+		return 0xFF000000 | (r << 16) | (g << 8) | b;
+	}
+
+	public static boolean pickAccountForCompose(Activity activity, String accountID, String prefilledText) {
 		Bundle args = new Bundle();
 		if (prefilledText != null) args.putString("prefilledText", prefilledText);
 		return pickAccountForCompose(activity, accountID, args);
 	}
 
-	public static boolean pickAccountForCompose(Activity activity, String accountID){
+	public static boolean pickAccountForCompose(Activity activity, String accountID) {
 		return pickAccountForCompose(activity, accountID, (String) null);
 	}
 
-	public static boolean pickAccountForCompose(Activity activity, String accountID, Bundle args){
+	public static boolean pickAccountForCompose(Activity activity, String accountID, Bundle args) {
 		if (AccountSessionManager.getInstance().getLoggedInAccounts().size() > 1) {
 			UiUtils.pickAccount(activity, accountID, 0, 0, session -> {
 				args.putString("account", session.getID());
