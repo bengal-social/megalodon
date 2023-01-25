@@ -43,7 +43,7 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 		private final ImageView noAltTextButton;
 		private final View altTextScroller;
 		private final ImageButton altTextClose;
-		private final TextView altText;
+		private final TextView altText, noAltText;
 
 		private View altOrNoAltButton;
 		private boolean altTextShown;
@@ -57,6 +57,7 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 			altTextScroller=findViewById(R.id.alt_text_scroller);
 			altTextClose=findViewById(R.id.alt_text_close);
 			altText=findViewById(R.id.alt_text);
+			noAltText=findViewById(R.id.no_alt_text);
 
 			altTextButton.setOnClickListener(this::onShowHideClick);
 			noAltTextButton.setOnClickListener(this::onShowHideClick);
@@ -84,19 +85,21 @@ public class PhotoStatusDisplayItem extends ImageStatusDisplayItem{
 			if (altTextMissing){
 				if (GlobalUserPreferences.showNoAltIndicator) {
 					noAltTextButton.setVisibility(View.VISIBLE);
+					noAltText.setVisibility(View.VISIBLE);
 					altTextWrapper.setBackgroundResource(R.drawable.bg_image_no_alt_overlay);
 					altTextButton.setVisibility(View.GONE);
-					altText.setText(R.string.sk_no_alt_text);
-					altText.setPadding(V.dp(8), 0, 0, 0);
+					altText.setVisibility(View.GONE);
 				} else {
 					altTextWrapper.setVisibility(View.GONE);
 				}
 			}else{
 				if (GlobalUserPreferences.showAltIndicator) {
 					noAltTextButton.setVisibility(View.GONE);
+					noAltText.setVisibility(View.GONE);
 					altTextWrapper.setBackgroundResource(R.drawable.bg_image_alt_overlay);
 					altTextButton.setVisibility(View.VISIBLE);
 					altTextButton.setText(R.string.sk_alt_button);
+					altText.setVisibility(View.VISIBLE);
 					altText.setText(item.attachment.description);
 					altText.setPadding(0, 0, 0, 0);
 				} else {
