@@ -95,8 +95,8 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	private TimelineDefinition[] timelines;
 	private final Map<Integer, TimelineDefinition> timelinesByMenuItem = new HashMap<>();
 	private SubMenu hashtagsMenu, listsMenu;
-	private Menu optionsMenu;
-	private MenuInflater optionsMenuInflater;
+	private PopupMenu overflowPopup;
+	private View overflowActionView = null;
 	private boolean announcementsBadged, settingsBadged;
 
 	@Override
@@ -152,6 +152,12 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		}
 
 		view.addView(pager, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+		overflowActionView = UiUtils.makeOverflowActionView(getContext());
+		overflowPopup = new PopupMenu(getContext(), overflowActionView);
+		overflowPopup.setOnMenuItemClickListener(this::onOptionsItemSelected);
+		overflowActionView.setOnClickListener(l -> overflowPopup.show());
+		overflowActionView.setOnTouchListener(overflowPopup.getDragToOpenListener());
 
 		return view;
 	}
@@ -231,9 +237,49 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		if(GithubSelfUpdater.needSelfUpdating()){
 			updateUpdateState(GithubSelfUpdater.getInstance().getState());
 		}
+
+		new GetLists().setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(List<ListTimeline> lists) {
+				updateList(lists, listItems);
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {
+				error.showToast(getContext());
+			}
+		}).exec(accountID);
+
+		new GetFollowedHashtags().setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(HeaderPaginationList<Hashtag> hashtags) {
+				updateList(hashtags, hashtagsItems);
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {
+				error.showToast(getContext());
+			}
+		}).exec(accountID);
+
+		new GetAnnouncements(false).setCallback(new Callback<>() {
+			@Override
+			public void onSuccess(List<Announcement> result) {
+				if (result.stream().anyMatch(a -> !a.read)) {
+					announcementsBadged = true;
+					announcements.setVisible(false);
+					announcementsAction.setVisible(true);
+				}
+			}
+
+			@Override
+			public void onError(ErrorResponse error) {
+				error.showToast(getActivity());
+			}
+		}).exec(accountID);
 	}
 
-	private void addListsToOptionsMenu() {
+	private void addListsToOverflowMenu() {
 		Context ctx = getContext();
 		listsMenu.clear();
 		listsMenu.getItem().setVisible(listItems.size() > 0);
@@ -245,7 +291,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		});
 	}
 
-	private void addHashtagsToOptionsMenu() {
+	private void addHashtagsToOverflowMenu() {
 		Context ctx = getContext();
 		hashtagsMenu.clear();
 		hashtagsMenu.getItem().setVisible(hashtagsItems.size() > 0);
@@ -291,79 +337,45 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		}
 	}
 
-	private void createOptionsMenu() {
-		optionsMenu.clear();
-		optionsMenuInflater.inflate(R.menu.home, optionsMenu);
-		announcements = optionsMenu.findItem(R.id.announcements);
-		announcementsAction = optionsMenu.findItem(R.id.announcements_action);
-		settings = optionsMenu.findItem(R.id.settings);
-		settingsAction = optionsMenu.findItem(R.id.settings_action);
-		hashtagsMenu = optionsMenu.findItem(R.id.hashtags).getSubMenu();
-		listsMenu = optionsMenu.findItem(R.id.lists).getSubMenu();
+	private void updateOverflowMenu() {
+		Menu m = overflowPopup.getMenu();
+		m.clear();
+		overflowPopup.inflate(R.menu.home_overflow);
+		announcements = m.findItem(R.id.announcements);
+		settings = m.findItem(R.id.settings);
+		hashtagsMenu = m.findItem(R.id.hashtags).getSubMenu();
+		listsMenu = m.findItem(R.id.lists).getSubMenu();
 
 		announcements.setVisible(!announcementsBadged);
 		announcementsAction.setVisible(announcementsBadged);
 		settings.setVisible(!settingsBadged);
 		settingsAction.setVisible(settingsBadged);
 
-		UiUtils.enableOptionsMenuIcons(getContext(), optionsMenu,
-				R.id.overflow, R.id.announcements_action, R.id.settings_action);
+		UiUtils.enablePopupMenuIcons(getContext(), overflowPopup);
 
-		addListsToOptionsMenu();
-		addHashtagsToOptionsMenu();
+		addListsToOverflowMenu();
+		addHashtagsToOverflowMenu();
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			m.setGroupDividerEnabled(true);
+		}
 	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-		this.optionsMenu = menu;
-		this.optionsMenuInflater = inflater;
-		createOptionsMenu();
+		inflater.inflate(R.menu.home, menu);
 
-		new GetLists().setCallback(new Callback<>() {
-			@Override
-			public void onSuccess(List<ListTimeline> lists) {
-				updateList(lists, listItems);
-			}
+		menu.findItem(R.id.overflow).setActionView(overflowActionView);
+		announcementsAction = menu.findItem(R.id.announcements_action);
+		settingsAction = menu.findItem(R.id.settings_action);
 
-			@Override
-			public void onError(ErrorResponse error) {
-				error.showToast(getContext());
-			}
-		}).exec(accountID);
-
-		new GetFollowedHashtags().setCallback(new Callback<>() {
-			@Override
-			public void onSuccess(HeaderPaginationList<Hashtag> hashtags) {
-				updateList(hashtags, hashtagsItems);
-			}
-
-			@Override
-			public void onError(ErrorResponse error) {
-				error.showToast(getContext());
-			}
-		}).exec(accountID);
-
-		new GetAnnouncements(false).setCallback(new Callback<>() {
-			@Override
-			public void onSuccess(List<Announcement> result) {
-				if (result.stream().anyMatch(a -> !a.read)) {
-					announcementsBadged = true;
-					announcements.setVisible(false);
-					announcementsAction.setVisible(true);
-				}
-			}
-
-			@Override
-			public void onError(ErrorResponse error) {
-				error.showToast(getActivity());
-			}
-		}).exec(accountID);
+		updateOverflowMenu();
 	}
 
 	private <T> void updateList(List<T> addItems, Map<Integer, T> items) {
 		if (addItems.size() == 0) return;
 		for (int i = 0; i < addItems.size(); i++) items.put(View.generateViewId(), addItems.get(i));
-		createOptionsMenu();
+		updateOverflowMenu();
 	}
 
 	private void updateSwitcherMenu() {
@@ -427,8 +439,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		Hashtag hashtag;
 
 		if (item.getItemId() == R.id.menu_back) {
-			createOptionsMenu();
-			optionsMenu.performIdentifierAction(R.id.overflow, 0);
+			getToolbar().post(() -> overflowPopup.show());
 			return true;
 		} else if (id == R.id.settings || id == R.id.settings_action) {
 			Nav.go(getActivity(), SettingsFragment.class, args);
@@ -563,6 +574,14 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	@Override
 	public void onDestroyView(){
 		super.onDestroyView();
+		if (overflowPopup != null) {
+			overflowPopup.dismiss();
+			overflowPopup = null;
+		}
+		if (switcherPopup != null) {
+			switcherPopup.dismiss();
+			switcherPopup = null;
+		}
 		if(GithubSelfUpdater.needSelfUpdating()){
 			E.unregister(this);
 		}
@@ -625,10 +644,10 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		if (shouldBeInList) {
 			existingThings.put(existingThing.isPresent()
 					? existingThing.get().getKey() : View.generateViewId(), makeNewThing.get());
-			createOptionsMenu();
+			updateOverflowMenu();
 		} else if (existingThing.isPresent() && !shouldBeInList) {
 			existingThings.remove(existingThing.get().getKey());
-			createOptionsMenu();
+			updateOverflowMenu();
 		}
 	}
 

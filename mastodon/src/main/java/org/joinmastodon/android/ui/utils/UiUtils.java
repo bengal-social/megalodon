@@ -40,6 +40,8 @@ import android.view.SubMenu;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -1110,5 +1112,43 @@ public class UiUtils{
 		} catch (Exception ex) {
 			Log.e("reduceSwipeSensitivity", Log.getStackTraceString(ex));
 		}
+	}
+
+	public static View makeOverflowActionView(Context ctx) {
+		// container needs tooltip, content description
+		LinearLayout container = new LinearLayout(ctx, null, 0, R.style.Widget_Mastodon_ActionButton_Overflow) {
+			@Override
+			public CharSequence getAccessibilityClassName() {
+				return Button.class.getName();
+			}
+		};
+		// image needs, well, the image, and the paddings
+		ImageView image = new ImageView(ctx, null, 0, R.style.Widget_Mastodon_ActionButton_Overflow);
+
+		image.setDuplicateParentStateEnabled(true);
+		image.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+		image.setClickable(false);
+		image.setFocusable(false);
+		image.setEnabled(false);
+
+		// problem: as per overflow action button defaults, the padding on left and right is unequal
+		// so (however the native overflow button manages this), the ripple background is off-center
+
+		// workaround: set both paddings to the smaller one…
+		int end = image.getPaddingEnd();
+		int start = image.getPaddingStart();
+		int paddingDiff = end - start; // what's missing to the long padding
+		image.setPaddingRelative(start, image.getPaddingTop(), start, image.getPaddingBottom());
+
+		// …and make up for the additional padding using a negative margin in a container
+		container.setPaddingRelative(0, 0, paddingDiff, 0);
+		container.setBackground(null);
+		container.setClickable(true);
+		container.setFocusable(true);
+
+		container.addView(image);
+
+		// fucking finally
+		return container;
 	}
 }
