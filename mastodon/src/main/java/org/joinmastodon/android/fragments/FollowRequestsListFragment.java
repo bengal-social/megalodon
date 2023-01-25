@@ -80,6 +80,7 @@ public class FollowRequestsListFragment extends BaseRecyclerFragment<FollowReque
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(HeaderPaginationList<Account> result){
+						if (getActivity() == null) return;
 						if(result.nextPageUri!=null)
 							nextMaxID=result.nextPageUri.getQueryParameter("max_id");
 						else

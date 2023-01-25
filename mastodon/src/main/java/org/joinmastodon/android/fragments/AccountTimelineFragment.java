@@ -56,8 +56,7 @@ public class AccountTimelineFragment extends StatusListFragment{
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(List<Status> result){
-						if(getActivity()==null)
-							return;
+						if(getActivity()==null) return;
 						onDataLoaded(result, !result.isEmpty());
 					}
 				})

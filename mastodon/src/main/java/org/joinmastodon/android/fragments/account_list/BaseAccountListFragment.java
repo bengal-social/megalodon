@@ -101,6 +101,7 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 						for(Relationship rel:result){
 							relationships.put(rel.id, rel);
 						}
+						if (getActivity() == null) return;
 						if(list==null)
 							return;
 						for(int i=0;i<list.getChildCount();i++){
@@ -370,6 +371,7 @@ public abstract class BaseAccountListFragment extends BaseRecyclerFragment<BaseA
 							@Override
 							public void onSuccess(Relationship result){
 								relationships.put(AccountViewHolder.this.item.account.id, result);
+								if (getActivity() == null) return;
 								bindRelationship();
 							}
 

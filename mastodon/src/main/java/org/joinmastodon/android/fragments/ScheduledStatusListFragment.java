@@ -109,6 +109,7 @@ public class ScheduledStatusListFragment extends BaseStatusListFragment<Schedule
 							nextMaxID=result.nextPageUri.getQueryParameter("max_id");
 						else
 							nextMaxID=null;
+						if (getActivity() == null) return;
 						onDataLoaded(result, nextMaxID!=null);
 					}
 				})

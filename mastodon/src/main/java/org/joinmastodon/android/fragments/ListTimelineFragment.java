@@ -59,6 +59,7 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
         new GetList(listID).setCallback(new Callback<>() {
             @Override
             public void onSuccess(ListTimeline listTimeline) {
+                if (getActivity() == null) return;
                 // TODO: save updated info
                 if (!listTimeline.title.equals(listTitle)) setTitle(listTimeline.title);
                 if (listTimeline.repliesPolicy != null && !listTimeline.repliesPolicy.equals(repliesPolicy)) {
@@ -96,6 +97,7 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
                         new UpdateList(listID, newTitle, editor.getRepliesPolicy()).setCallback(new Callback<>() {
                             @Override
                             public void onSuccess(ListTimeline list) {
+                                if (getActivity() == null) return;
                                 setTitle(list.title);
                                 listTitle = list.title;
                                 repliesPolicy = list.repliesPolicy;
@@ -131,6 +133,7 @@ public class ListTimelineFragment extends PinnableStatusListFragment {
                 .setCallback(new SimpleCallback<>(this) {
                     @Override
                     public void onSuccess(List<Status> result) {
+                        if (getActivity() == null) return;
                         onDataLoaded(result, !result.isEmpty());
                     }
                 })

@@ -25,6 +25,7 @@ public class BookmarkedStatusListFragment extends StatusListFragment{
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(HeaderPaginationList<Status> result){
+						if (getActivity() == null) return;
 						if(result.nextPageUri!=null)
 							nextMaxID=result.nextPageUri.getQueryParameter("max_id");
 						else

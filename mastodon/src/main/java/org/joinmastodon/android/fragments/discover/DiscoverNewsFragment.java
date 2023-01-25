@@ -59,6 +59,7 @@ public class DiscoverNewsFragment extends BaseRecyclerFragment<Card> implements 
 						imageRequests=result.stream()
 								.map(card->TextUtils.isEmpty(card.image) ? null : new UrlImageLoaderRequest(card.image, V.dp(150), V.dp(150)))
 								.collect(Collectors.toList());
+						if (getActivity() == null) return;
 						onDataLoaded(result, false);
 					}
 				})

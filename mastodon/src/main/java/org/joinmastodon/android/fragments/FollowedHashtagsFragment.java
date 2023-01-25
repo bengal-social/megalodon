@@ -55,6 +55,7 @@ public class FollowedHashtagsFragment extends BaseRecyclerFragment<Hashtag> impl
                 .setCallback(new SimpleCallback<>(this){
                     @Override
                     public void onSuccess(HeaderPaginationList<Hashtag> result){
+                        if (getActivity() == null) return;
                         if(result.nextPageUri!=null)
                             nextMaxID=result.nextPageUri.getQueryParameter("max_id");
                         else

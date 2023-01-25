@@ -533,6 +533,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 	}
 
 	private void onLoggedOut(){
+		if (getActivity() == null) return;
 		AccountSessionManager.getInstance().removeAccount(accountID);
 		getActivity().finish();
 		Intent intent=new Intent(getActivity(), MainActivity.class);

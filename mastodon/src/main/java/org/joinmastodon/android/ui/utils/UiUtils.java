@@ -376,6 +376,7 @@ public class UiUtils{
 							.setCallback(new Callback<>(){
 								@Override
 								public void onSuccess(Relationship result){
+									if (activity == null) return;
 									resultCallback.accept(result);
 									if(!currentlyBlocked){
 										E.post(new RemoveAccountPostsEvent(accountID, account.id, false));
@@ -404,6 +405,7 @@ public class UiUtils{
 							new SetAccountBlocked(account.id, false).setCallback(new Callback<>() {
 								@Override
 								public void onSuccess(Relationship relationship) {
+									if (activity == null) return;
 									Toast.makeText(activity, R.string.sk_remove_follower_success, Toast.LENGTH_SHORT).show();
 									resultCallback.accept(relationship);
 								}
@@ -511,7 +513,7 @@ public class UiUtils{
 				() -> new DeleteStatus.Scheduled(status.id)
 						.setCallback(new Callback<>(){
 							@Override
-							public void onSuccess(Object nothing){
+							public void onSuccess(Object o){
 								resultCallback.run();
 								E.post(new ScheduledStatusDeletedEvent(status.id, accountID));
 							}

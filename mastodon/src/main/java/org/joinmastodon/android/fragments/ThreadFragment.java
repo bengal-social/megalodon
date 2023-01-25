@@ -61,8 +61,7 @@ public class ThreadFragment extends StatusListFragment{
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(StatusContext result){
-						if(getActivity()==null)
-							return;
+						if (getActivity() == null) return;
 						if(refreshing){
 							data.clear();
 							displayItems.clear();

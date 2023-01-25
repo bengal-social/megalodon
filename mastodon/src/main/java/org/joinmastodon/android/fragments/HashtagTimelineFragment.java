@@ -70,6 +70,7 @@ public class HashtagTimelineFragment extends PinnableStatusListFragment {
 		new GetHashtag(hashtag).setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(Hashtag hashtag) {
+				if (getActivity() == null) return;
 				updateTitle(hashtag.name);
 				updateFollowingState(hashtag.following);
 			}
@@ -91,6 +92,7 @@ public class HashtagTimelineFragment extends PinnableStatusListFragment {
 			new SetHashtagFollowed(hashtag, following).setCallback(new Callback<>() {
 				@Override
 				public void onSuccess(Hashtag i) {
+					if (getActivity() == null) return;
 					if (i.following == following) Toast.makeText(getActivity(), getString(i.following ? R.string.followed_user : R.string.unfollowed_user, "#" + i.name), Toast.LENGTH_SHORT).show();
 					updateFollowingState(i.following);
 				}
@@ -117,6 +119,7 @@ public class HashtagTimelineFragment extends PinnableStatusListFragment {
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(List<Status> result){
+						if (getActivity() == null) return;
 						onDataLoaded(result, !result.isEmpty());
 					}
 				})

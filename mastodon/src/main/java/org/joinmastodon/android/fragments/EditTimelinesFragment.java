@@ -146,6 +146,7 @@ public class EditTimelinesFragment extends BaseRecyclerFragment<TimelineDefiniti
     }
 
     private void updateOptionsMenu() {
+        if (getActivity() == null) return;
         optionsMenu.clear();
         timelineByMenuItem.clear();
 

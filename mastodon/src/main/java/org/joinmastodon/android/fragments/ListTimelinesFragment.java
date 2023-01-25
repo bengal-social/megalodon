@@ -140,24 +140,26 @@ public class ListTimelinesFragment extends BaseRecyclerFragment<ListTimeline> im
 					 .setCallback(new SimpleCallback<>(this) {
 						  @Override
 						  public void onSuccess(List<ListTimeline> lists) {
+								if (getActivity() == null) return;
 								for (ListTimeline l : lists) userInListBefore.put(l.id, true);
 								userInList.putAll(userInListBefore);
 								if (profileAccountId == null || !lists.isEmpty()) onDataLoaded(lists, false);
 								if (profileAccountId == null) return;
 
 								currentRequest=new GetLists().setCallback(new SimpleCallback<>(ListTimelinesFragment.this) {
-									 @Override
-									 public void onSuccess(List<ListTimeline> allLists) {
-										  List<ListTimeline> newLists = new ArrayList<>();
-										  for (ListTimeline l : allLists) {
-												if (lists.stream().noneMatch(e -> e.id.equals(l.id))) newLists.add(l);
-												if (!userInListBefore.containsKey(l.id)) {
-													 userInListBefore.put(l.id, false);
-												}
-										  }
-										  userInList.putAll(userInListBefore);
-										  onDataLoaded(newLists, false);
-									 }
+									@Override
+									public void onSuccess(List<ListTimeline> allLists) {
+										if (getActivity() == null) return;
+										List<ListTimeline> newLists = new ArrayList<>();
+										for (ListTimeline l : allLists) {
+											if (lists.stream().noneMatch(e -> e.id.equals(l.id))) newLists.add(l);
+											if (!userInListBefore.containsKey(l.id)) {
+													userInListBefore.put(l.id, false);
+											}
+										}
+										userInList.putAll(userInListBefore);
+										onDataLoaded(newLists, false);
+									}
 								}).exec(accountId);
 						  }
 					 })

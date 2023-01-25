@@ -265,6 +265,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 		new GetAnnouncements(false).setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(List<Announcement> result) {
+				if (getActivity() == null) return;
 				if (result.stream().anyMatch(a -> !a.read)) {
 					announcementsBadged = true;
 					announcements.setVisible(false);
@@ -338,6 +339,7 @@ public class HomeTabFragment extends MastodonToolbarFragment implements Scrollab
 	}
 
 	private void updateOverflowMenu() {
+		if (getActivity() == null) return;
 		Menu m = overflowPopup.getMenu();
 		m.clear();
 		overflowPopup.inflate(R.menu.home_overflow);

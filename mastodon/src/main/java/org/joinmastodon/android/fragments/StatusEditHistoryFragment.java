@@ -46,6 +46,7 @@ public class StatusEditHistoryFragment extends StatusListFragment{
 					@Override
 					public void onSuccess(List<Status> result){
 						Collections.sort(result, Comparator.comparing((Status s)->s.createdAt).reversed());
+						if (getActivity() == null) return;
 						onDataLoaded(result, false);
 					}
 				})

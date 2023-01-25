@@ -44,6 +44,7 @@ public class TrendingHashtagsFragment extends BaseRecyclerFragment<Hashtag> impl
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(List<Hashtag> result){
+						if (getActivity() == null) return;
 						onDataLoaded(result, false);
 					}
 				})

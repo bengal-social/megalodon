@@ -187,6 +187,7 @@ public class NotificationsFragment extends MastodonToolbarFragment implements Sc
 		new GetFollowRequests(null, 1).setCallback(new Callback<>() {
 			@Override
 			public void onSuccess(HeaderPaginationList<Account> accounts) {
+				if (getActivity() == null) return;
 				getToolbar().getMenu().findItem(R.id.follow_requests).setVisible(!accounts.isEmpty());
 			}
 

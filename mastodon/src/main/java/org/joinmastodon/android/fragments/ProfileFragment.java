@@ -312,6 +312,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 				.setCallback(new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(Account result){
+						if (getActivity() == null) return;
 						account=result;
 						isOwnProfile=AccountSessionManager.getInstance().isSelf(accountID, account);
 						bindHeaderView();
@@ -679,6 +680,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 	}
 
 	private void updateRelationship(){
+		if (getActivity() == null) return;
 		invalidateOptionsMenu();
 		actionButton.setVisibility(View.VISIBLE);
 		notifyButton.setVisibility(relationship.following ? View.VISIBLE : View.GONE);
@@ -688,7 +690,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 		notifyProgress.setIndeterminateTintList(notifyButton.getTextColors());
 		followsYouView.setVisibility(relationship.followedBy ? View.VISIBLE : View.GONE);
 		notifyButton.setSelected(relationship.notifying);
-		if (getActivity() != null) notifyButton.setContentDescription(getString(relationship.notifying ? R.string.sk_user_post_notifications_on : R.string.sk_user_post_notifications_off, '@'+account.username));
+		notifyButton.setContentDescription(getString(relationship.notifying ? R.string.sk_user_post_notifications_on : R.string.sk_user_post_notifications_off, '@'+account.username));
 	}
 
 	private void onScrollChanged(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY){
@@ -771,8 +773,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 					@Override
 					public void onSuccess(Account result){
 						editModeLoading=false;
-						if(getActivity()==null)
-							return;
+						if (getActivity() == null) return;
 						enterEditMode(result);
 						setActionProgressVisible(false);
 					}
@@ -780,8 +781,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 					@Override
 					public void onError(ErrorResponse error){
 						editModeLoading=false;
-						if(getActivity()==null)
-							return;
+						if (getActivity() == null) return;
 						error.showToast(getActivity());
 						setActionProgressVisible(false);
 					}
@@ -884,6 +884,7 @@ public class ProfileFragment extends LoaderFragment implements OnBackPressedList
 					public void onSuccess(Account result){
 						account=result;
 						AccountSessionManager.getInstance().updateAccountInfo(accountID, account);
+						if (getActivity() == null) return;
 						exitEditMode();
 						setActionProgressVisible(false);
 					}

@@ -355,6 +355,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 						public void onSuccess(Object o) {
 							item.consumeReadAnnouncement.accept(item.announcement.id);
 							item.announcement.read = true;
+							if (item.parentFragment.getActivity() == null) return;
 							rebind();
 						}
 
@@ -427,6 +428,7 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 		}
 
 		private void updateOptionsMenu(){
+			if (item.parentFragment.getActivity() == null) return;
 			if (item.announcement != null) return;
 			boolean hasMultipleAccounts = AccountSessionManager.getInstance().getLoggedInAccounts().size() > 1;
 			Menu menu=optionsMenu.getMenu();

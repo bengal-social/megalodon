@@ -157,6 +157,7 @@ public class SearchFragment extends BaseStatusListFragment<SearchResult> impleme
 							}
 							prevDisplayItems=new ArrayList<>(displayItems);
 							unfilteredResults=results;
+							if (getActivity() == null) return;
 							onDataLoaded(filterSearchResults(results), false);
 						}
 

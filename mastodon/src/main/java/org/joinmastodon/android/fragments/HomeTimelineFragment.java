@@ -58,8 +58,7 @@ public class HomeTimelineFragment extends FabStatusListFragment {
 				.getHomeTimeline(offset>0 ? maxID : null, count, refreshing, new SimpleCallback<>(this){
 					@Override
 					public void onSuccess(CacheablePaginatedResponse<List<Status>> result){
-						if(getActivity()==null)
-							return;
+						if (getActivity() == null) return;
 						List<Status> filteredItems = filterPosts(result.items);
 						onDataLoaded(filteredItems, !result.items.isEmpty());
 						maxID=result.maxID;
