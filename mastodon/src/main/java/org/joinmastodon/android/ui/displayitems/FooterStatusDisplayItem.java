@@ -137,7 +137,7 @@ public class FooterStatusDisplayItem extends StatusDisplayItem{
 			boost.setSelected(item.status.reblogged);
 			favorite.setSelected(item.status.favourited);
 			bookmark.setSelected(item.status.bookmarked);
-			boost.setEnabled(item.status.visibility==StatusPrivacy.PUBLIC || item.status.visibility==StatusPrivacy.UNLISTED
+			boost.setEnabled(item.status.visibility==StatusPrivacy.PUBLIC || item.status.visibility==StatusPrivacy.UNLISTED || item.status.visibility==StatusPrivacy.LOCAL
 					|| (item.status.visibility==StatusPrivacy.PRIVATE && item.status.account.id.equals(AccountSessionManager.getInstance().getAccount(item.accountID).self.id)));
 		}
 
