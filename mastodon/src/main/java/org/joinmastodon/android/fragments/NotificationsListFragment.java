@@ -2,6 +2,7 @@ package org.joinmastodon.android.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.squareup.otto.Subscribe;
@@ -12,15 +13,19 @@ import org.joinmastodon.android.api.requests.markers.SaveMarkers;
 import org.joinmastodon.android.api.session.AccountSessionManager;
 import org.joinmastodon.android.events.PollUpdatedEvent;
 import org.joinmastodon.android.events.RemoveAccountPostsEvent;
+import org.joinmastodon.android.model.Account;
 import org.joinmastodon.android.model.Notification;
 import org.joinmastodon.android.model.PaginatedResponse;
 import org.joinmastodon.android.model.Status;
 import org.joinmastodon.android.ui.displayitems.AccountCardStatusDisplayItem;
+import org.joinmastodon.android.ui.displayitems.AccountStatusDisplayItem;
 import org.joinmastodon.android.ui.displayitems.HeaderStatusDisplayItem;
 import org.joinmastodon.android.ui.displayitems.ImageStatusDisplayItem;
 import org.joinmastodon.android.ui.displayitems.StatusDisplayItem;
+import org.joinmastodon.android.ui.displayitems.TextStatusDisplayItem;
 import org.joinmastodon.android.ui.utils.DiscoverInfoBannerHelper;
 import org.joinmastodon.android.ui.utils.InsetStatusItemDecoration;
+import org.joinmastodon.android.ui.utils.UiUtils;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -71,6 +76,8 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 
 	@Override
 	protected List<StatusDisplayItem> buildDisplayItems(Notification n){
+		Account reportTarget = n.report == null ? null : n.report.targetAccount == null ? null :
+				n.report.targetAccount;
 		String extraText=switch(n.type){
 			case FOLLOW -> getString(R.string.user_followed_you);
 			case FOLLOW_REQUEST -> getString(R.string.user_sent_follow_request);
@@ -79,6 +86,8 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 			case FAVORITE -> getString(R.string.user_favorited);
 			case POLL -> getString(R.string.poll_ended);
 			case UPDATE -> getString(R.string.sk_post_edited);
+			case SIGN_UP -> getString(R.string.sk_signed_up);
+			case REPORT -> getString(R.string.sk_reported);
 		};
 		HeaderStatusDisplayItem titleItem=extraText!=null ? new HeaderStatusDisplayItem(n.id, n.account, n.createdAt, this, accountID, n.status, extraText, n, null) : null;
 		if(n.status!=null){
@@ -94,8 +103,13 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 				items.add(0, titleItem);
 			return items;
 		}else if(titleItem!=null){
-			AccountCardStatusDisplayItem card=new AccountCardStatusDisplayItem(n.id, this, n.account, n);
-			return Arrays.asList(titleItem, card);
+			AccountCardStatusDisplayItem card=new AccountCardStatusDisplayItem(n.id, this,
+					reportTarget != null ? reportTarget : n.account, n);
+			TextStatusDisplayItem text = n.report != null && !TextUtils.isEmpty(n.report.comment) ?
+					new TextStatusDisplayItem(n.id, n.report.comment, this,
+							Status.ofFake(n.id, n.report.comment, n.createdAt), true) :
+					null;
+			return text == null ? Arrays.asList(titleItem, card) : Arrays.asList(titleItem, text, card);
 		}else{
 			return Collections.emptyList();
 		}
@@ -164,6 +178,9 @@ public class NotificationsListFragment extends BaseStatusListFragment<Notificati
 			if(status.inReplyToAccountId!=null && knownAccounts.containsKey(status.inReplyToAccountId))
 				args.putParcelable("inReplyToAccount", Parcels.wrap(knownAccounts.get(status.inReplyToAccountId)));
 			Nav.go(getActivity(), ThreadFragment.class, args);
+		}else if(n.report != null){
+			String domain = AccountSessionManager.getInstance().getAccount(accountID).domain;
+			UiUtils.launchWebBrowser(getActivity(), "https://"+domain+"/admin/reports/"+n.report.id);
 		}else{
 			Bundle args=new Bundle();
 			args.putString("account", accountID);

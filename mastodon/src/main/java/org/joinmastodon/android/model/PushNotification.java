@@ -47,7 +47,11 @@ public class PushNotification extends BaseModel{
 		@SerializedName("status")
 		STATUS(R.string.sk_notification_type_status),
 		@SerializedName("update")
-		UPDATE(R.string.sk_notification_type_update);
+		UPDATE(R.string.sk_notification_type_update),
+		@SerializedName("admin.sign_up")
+		SIGN_UP(R.string.sk_sign_ups),
+		@SerializedName("admin.report")
+		REPORT(R.string.sk_new_reports);
 
 		@StringRes
 		public final int localizedName;

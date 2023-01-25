@@ -153,6 +153,8 @@ public class PushNotificationReceiver extends BroadcastReceiver{
 				case POLL -> R.drawable.ic_fluent_poll_24_filled;
 				case STATUS -> R.drawable.ic_fluent_chat_24_filled;
 				case UPDATE -> R.drawable.ic_fluent_history_24_filled;
+				case REPORT -> R.drawable.ic_fluent_warning_24_filled;
+				case SIGN_UP -> R.drawable.ic_fluent_person_available_24_filled;
 			});
 		}
 

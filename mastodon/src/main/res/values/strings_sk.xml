@@ -245,4 +245,8 @@
     <string name="sk_settings_local_only_explanation">Your home instance must support local-only posting for this to work. Most modified versions of Mastodon do, but Mastodon doesn’t.</string>
     <string name="sk_settings_glitch_instance">Glitch local-only mode</string>
     <string name="sk_settings_glitch_mode_explanation">Enable this if your home instance runs on Glitch. Not needed for Hometown or Akkoma.</string>
+    <string name="sk_signed_up">signed up</string>
+    <string name="sk_reported">reported</string>
+    <string name="sk_sign_ups">Users signing up</string>
+    <string name="sk_new_reports">New reports</string>
 </resources>

@@ -326,7 +326,8 @@ public class HeaderStatusDisplayItem extends StatusDisplayItem{
 				extraText.setVisibility(View.VISIBLE);
 				extraText.setText(item.extraText);
 			}
-			more.setVisibility(item.inset ? View.GONE : View.VISIBLE);
+			more.setVisibility(item.inset || (item.notification != null && item.notification.report != null)
+					? View.GONE : View.VISIBLE);
 			avatar.setClickable(!item.inset);
 			avatar.setContentDescription(item.parentFragment.getString(R.string.avatar_description, item.user.acct));
 			if(currentRelationshipRequest!=null){

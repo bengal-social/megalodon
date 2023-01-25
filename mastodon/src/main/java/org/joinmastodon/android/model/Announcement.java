@@ -42,17 +42,9 @@ public class Announcement extends BaseModel implements DisplayItemsParent {
     }
 
     public Status toStatus() {
-        Status s = new Status();
-        s.id = id;
-        s.mediaAttachments = List.of();
+        Status s = Status.ofFake(id, content, publishedAt);
         s.createdAt = startsAt != null ? startsAt : publishedAt;
         if (updatedAt != null) s.editedAt = updatedAt;
-        s.content = s.text = content;
-        s.spoilerText = "";
-        s.visibility = StatusPrivacy.PUBLIC;
-        s.mentions = List.of();
-        s.tags = List.of();
-        s.emojis = List.of();
         return s;
     }
 
