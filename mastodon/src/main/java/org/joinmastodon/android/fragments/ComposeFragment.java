@@ -470,7 +470,7 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			case UNLISTED -> R.id.vis_unlisted;
 			case PRIVATE -> R.id.vis_followers;
 			case DIRECT -> R.id.vis_private;
-			case LOCAL -> R.id.local_only;
+			case LOCAL -> R.id.vis_local;
 		}).setChecked(true);
 		visibilityPopup.getMenu().findItem(R.id.local_only).setChecked(localOnly);
 
