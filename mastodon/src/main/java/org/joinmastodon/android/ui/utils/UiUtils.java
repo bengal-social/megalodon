@@ -914,7 +914,8 @@ public class UiUtils{
 
 	public static boolean setExtraTextInfo(Context ctx, TextView extraText, StatusPrivacy visibility, boolean localOnly) {
 		List<String> extraParts = new ArrayList<>();
-		if (localOnly) extraParts.add(ctx.getString(R.string.sk_inline_local_only));
+		if (localOnly || (visibility != null && visibility.equals(StatusPrivacy.LOCAL)))
+			extraParts.add(ctx.getString(R.string.sk_inline_local_only));
 		if (visibility != null && visibility.equals(StatusPrivacy.DIRECT))
 			extraParts.add(ctx.getString(R.string.sk_inline_direct));
 		if (!extraParts.isEmpty()) {
