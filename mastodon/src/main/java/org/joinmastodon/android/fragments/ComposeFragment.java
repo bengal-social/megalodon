@@ -656,8 +656,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 			view.findViewById(R.id.visibility).setVisibility(View.GONE);
 			Drawable visibilityIcon = getActivity().getDrawable(switch(replyTo.visibility){
 				case PUBLIC -> R.drawable.ic_fluent_earth_20_regular;
-				case UNLISTED -> R.drawable.ic_fluent_people_community_20_regular;
-				case PRIVATE -> R.drawable.ic_fluent_people_checkmark_20_regular;
+				case UNLISTED -> R.drawable.ic_fluent_lock_open_20_regular;
+				case PRIVATE -> R.drawable.ic_fluent_lock_closed_20_filled;
 				case DIRECT -> R.drawable.ic_fluent_mention_20_regular;
 				case LOCAL -> R.drawable.ic_fluent_eye_20_regular;
 			});
@@ -1869,8 +1869,8 @@ public class ComposeFragment extends MastodonToolbarFragment implements OnBackPr
 		}
 		visibilityBtn.setImageResource(switch(statusVisibility){
 			case PUBLIC -> R.drawable.ic_fluent_earth_24_regular;
-			case UNLISTED -> R.drawable.ic_fluent_people_community_24_regular;
-			case PRIVATE -> R.drawable.ic_fluent_people_checkmark_24_regular;
+			case UNLISTED -> R.drawable.ic_fluent_lock_open_24_regular;
+			case PRIVATE -> R.drawable.ic_fluent_lock_closed_24_filled;
 			case DIRECT -> R.drawable.ic_fluent_mention_24_regular;
 			case LOCAL -> R.drawable.ic_fluent_eye_24_regular;
 		});
