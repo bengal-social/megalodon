@@ -1,0 +1,6 @@
+- Dodana izbira jezika
+- Dodana funkcija prevajanja
+- Izboljšana semantika za ankete (izbirni gumbi, potrditvena polja)
+- Večkratna izbira kot možnost v anketah
+- Nov prijavni zaslon
+- Popravljene napake

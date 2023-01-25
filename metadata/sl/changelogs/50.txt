@@ -1,0 +1,4 @@
+- Priprava datotek za objavo na F-Droid
+- Popravi samodejno posodabljanje
+- Enobarvni simboli za ikone zaganjalnika
+- Zamenjana napačna ikona, ki ni navedena
