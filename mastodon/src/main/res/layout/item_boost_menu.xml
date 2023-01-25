@@ -57,7 +57,7 @@
         android:drawablePadding="16dp"
         android:background="?android:selectableItemBackground"
         android:text="@string/sk_visibility_unlisted"
-        android:drawableStart="@drawable/ic_fluent_people_community_24_regular" />
+        android:drawableStart="@drawable/ic_fluent_lock_open_24_regular" />
     <TextView
         android:id="@+id/vis_followers"
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
         android:drawablePadding="16dp"
         android:background="?android:selectableItemBackground"
         android:text="@string/visibility_followers_only"
-        android:drawableStart="@drawable/ic_fluent_people_checkmark_24_regular" />
+        android:drawableStart="@drawable/ic_fluent_lock_closed_24_regular" />
     <View
         android:id="@+id/separator"
         android:layout_height="1dp"
