@@ -1159,13 +1159,13 @@ public class UiUtils {
 		// problem: as per overflow action button defaults, the padding on left and right is unequal
 		// so (however the native overflow button manages this), the ripple background is off-center
 
-		// workaround: set both paddings to the smaller one…
+		// workaround: set both paddings to the smaller, left one…
 		int end = image.getPaddingEnd();
 		int start = image.getPaddingStart();
 		int paddingDiff = end - start; // what's missing to the long padding
 		image.setPaddingRelative(start, image.getPaddingTop(), start, image.getPaddingBottom());
 
-		// …and make up for the additional padding using a negative margin in a container
+		// …and add the missing padding to the right on the container
 		container.setPaddingRelative(0, 0, paddingDiff, 0);
 		container.setBackground(null);
 		container.setClickable(true);
