@@ -240,7 +240,9 @@
     <string name="sk_inline_direct">mentioned-only</string>
     <string name="sk_separator">·</string>
     <string name="sk_local_only">Local-only</string>
+    <string name="sk_instance_features">Instance features</string>
     <string name="sk_settings_support_local_only">Server supports local-only posting</string>
-    <string name="sk_settings_glitch_instance">Use Glitch implementation 👁</string>
-    <string name="sk_settings_local_only_explanation">Your instance must support local-only posting for these options to work.</string>
+    <string name="sk_settings_local_only_explanation">Your home instance must support local-only posting for this to work. Most modified versions of Mastodon do, but Mastodon doesn’t.</string>
+    <string name="sk_settings_glitch_instance">Glitch local-only mode</string>
+    <string name="sk_settings_glitch_mode_explanation">Enable this if your home instance runs on Glitch. Not needed for Hometown or Akkoma.</string>
 </resources>
