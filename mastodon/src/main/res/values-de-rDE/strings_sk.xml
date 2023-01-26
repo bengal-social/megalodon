@@ -162,7 +162,7 @@
     <string name="sk_icon_city">Stadt</string>
     <string name="sk_icon_book">Buch</string>
     <string name="sk_alt_text_missing_title">Fehlende Bildbeschreibung</string>
-    <string name="sk_settings_disable_alt_text_reminder">Bildbeschreibungs-Erinnerung deaktivieren</string>
+    <string name="sk_settings_disable_alt_text_reminder">Erinnerung zum Hinzufügen von Bildbeschreibungen ausschalten</string>
     <string name="sk_alt_button">ALT</string>
     <string name="sk_notify_update">Bearbeitet einen geteilten Beitrag</string>
     <string name="sk_timelines">Timelines</string>
@@ -248,4 +248,6 @@
     <string name="sk_sign_ups">Registrierungen</string>
     <string name="sk_new_reports">Neue Meldungen</string>
     <string name="sk_settings_see_new_posts_button">“Neue Beiträge anzeigen”-Button</string>
+    <string name="sk_settings_server_version">Server-Version: %s</string>
+    <string name="sk_notify_poll_results">Umfrage-Ergebnisse</string>
 </resources>
