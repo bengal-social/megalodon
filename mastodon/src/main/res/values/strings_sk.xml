@@ -250,4 +250,5 @@
     <string name="sk_sign_ups">Users signing up</string>
     <string name="sk_new_reports">New reports</string>
     <string name="sk_settings_server_version">Server version: %s</string>
+    <string name="sk_notify_poll_results">Poll results</string>
 </resources>
