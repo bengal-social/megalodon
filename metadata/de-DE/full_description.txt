@@ -4,8 +4,8 @@ Megalodon ist eine modifizierte Version der <a href="https://github.com/mastodon
 
 - <b>Ungelistet posten</b>: Öffentlich posten, ohne dass der Beitrag in Trends, Hashtags oder öffentlichen Timelines angezeigt wird.
 - <b>Föderierte Timeline</b>: Alle öffentlichen Beiträge aller anderen Fediverse-Nachbarschaften, mit denen deine Heim-Instanz verbunden ist.
+- <b>Eigene Timelines</b>: Pinne beliebige Listen und Hashtags an deinen Home-Tab an, um zu deinen Lieblingsthemen einfach rüber wischen zu können.
 - <b>Entwürfe und geplante Beiträge</b>: Ermöglicht das Vorbereiten eines Posts und das Planen des automatischen Versands zu einem bestimmten Zeitpunkt.
-- <b>Bildbeschreibungen anzeigen</b>: Unkompliziert prüfen, ob Bilder und Videos Alternativ-Texte beinhalten.
 - <b>Beiträge anpinnen</b>: Pinne deine wichtigsten Beiträge an dein Profil an und sieh im “Angepinnt”-Tab nach, was andere User_innen angepinnt haben.
 - <b>Hashtags folgen</b>: Bringt neue Beiträge bestimmter Hashtags direkt in deine Home-Timeline.
 - <b>Folgeanfragen beantworten</b>: Folgeanfragen lassen sich nun direkt über die Benachrichtigungen-Liste oder über die Folgeanfragen-Liste akzeptieren oder ablehnen.
