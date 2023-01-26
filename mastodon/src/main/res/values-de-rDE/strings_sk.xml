@@ -234,4 +234,18 @@
     <string name="sk_updater_enable_pre_releases">Vorab-Versionen einschalten</string>
     <string name="sk_searching">Wird gesucht…</string>
     <string name="sk_save_draft_message">Änderungen speichern oder Entwurf jetzt veröffentlichen\?</string>
+    <string name="sk_inline_local_only">nur lokal</string>
+    <string name="sk_inline_direct">an Erwähnte</string>
+    <string name="sk_separator">·</string>
+    <string name="sk_local_only">Nur lokale Instanz</string>
+    <string name="sk_instance_features">Instanz-Features</string>
+    <string name="sk_settings_support_local_only">Server unterstützt lokales Posten</string>
+    <string name="sk_settings_local_only_explanation">Deine Heim-Instanz muss hierzu lokales Posten unterstützen. Die meisten modifizierten Versionen von Mastodon tun das, Mastodon selbst allerdings nicht.</string>
+    <string name="sk_settings_glitch_instance">Glitch-kompatibles Nur-lokal-Posten</string>
+    <string name="sk_settings_glitch_mode_explanation">Nur einschalten, wenn deine Heim-Instanz auf Glitch läuft. Nicht benötigt für Hometown oder Akkoma.</string>
+    <string name="sk_signed_up">hat sich registriert</string>
+    <string name="sk_reported">hat gemeldet</string>
+    <string name="sk_sign_ups">Registrierungen</string>
+    <string name="sk_new_reports">Neue Meldungen</string>
+    <string name="sk_settings_see_new_posts_button">“Neue Beiträge anzeigen”-Button</string>
 </resources>
