@@ -6,4 +6,4 @@
 - More notification categories
 - Add back file opener
 - Prompt when saving edited draft
-- Option to disable “Show new posts” button
+- Option to disable “See new posts” button
