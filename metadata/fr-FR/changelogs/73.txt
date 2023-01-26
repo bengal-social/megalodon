@@ -1,0 +1,9 @@
+- Les chronologies peuvent être épinglées et réorganisées
+- Prise en charge des messages locaux uniquement
+- Indicateur de textes alternatifs manquants
+- Éditeur de texte alternatif amélioré
+- En-tête dans la chronologie pour les hashtags suivis
+- Plus de catégories de notification
+- Ajout d'un menu pour l'ouverture des fichiers
+- Invite lors de l'enregistrement du brouillon modifié
+- Option pour désactiver le bouton "Voir les nouveaux messages"

@@ -1,0 +1,10 @@
+- Nouvel onglet d'accueil avec timeline publique
+- Affichage des annonces du serveur
+- Le texte est mis à l'échelle en fonction des paramètres du système
+- Filtrage amélioré ("Masquer avec un avertissement" ne fonctionne pas encore) par @thiagojedi
+- Fonctionnalités de gestion de liste
+- Supprimer les abonnés en les bloquant en douceur
+- Interdiction des relations avec les fascistes
+- Correction des images qui ne se chargent pas lorsqu'elles sont connectées à l'instance Akkoma
+- Corrections de bugs et ajustements de l'interface utilisateur
+- Ajout d'un journal des modifications lors de la mise à jour par @LucasGGamerM
