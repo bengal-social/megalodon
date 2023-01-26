@@ -230,4 +230,7 @@
     <string name="sk_updater_enable_pre_releases">Pre-releases inschakelen</string>
     <string name="sk_save_draft_message">Wil je de wijzingen aan dit concept opslaan of dit nu publiceren\?</string>
     <string name="sk_schedule_or_draft">Inplannen of concept</string>
+    <string name="sk_separator">·</string>
+    <string name="sk_sign_ups">Gebruikers die zich aanmelden</string>
+    <string name="sk_settings_see_new_posts_button">\"Zie nieuwe berichten\" knop</string>
 </resources>
