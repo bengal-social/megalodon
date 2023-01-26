@@ -234,4 +234,5 @@
     <string name="sk_icon_pin">Alfinete</string>
     <string name="sk_settings_show_alt_indicator">Indicador para textos descritivos</string>
     <string name="sk_settings_show_no_alt_indicator">Indicador para ausência de textos descritivos</string>
+    <string name="sk_instance_features">Recursos da instância</string>
 </resources>

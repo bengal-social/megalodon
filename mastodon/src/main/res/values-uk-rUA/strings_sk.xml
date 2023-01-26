@@ -234,4 +234,18 @@
     <string name="sk_settings_show_no_alt_indicator">Індикатор відсутності альтернативних текстів</string>
     <string name="sk_updater_enable_pre_releases">Увімкнути попередні випуски</string>
     <string name="sk_settings_show_alt_indicator">Індикатор для альтернативних текстів</string>
+    <string name="sk_inline_local_only">лише локальні</string>
+    <string name="sk_inline_direct">лише згадки</string>
+    <string name="sk_separator">·</string>
+    <string name="sk_local_only">Лише локальні</string>
+    <string name="sk_instance_features">Особливості сервера</string>
+    <string name="sk_settings_glitch_mode_explanation">Увімкніть, якщо ваш домашній сервер працює на Glitch. Не потрібно для Hometown або Akkoma.</string>
+    <string name="sk_settings_glitch_instance">Локальний режим Glitch</string>
+    <string name="sk_signed_up">зареєстровано</string>
+    <string name="sk_reported">зі скаргою</string>
+    <string name="sk_sign_ups">Користувачі реєструються</string>
+    <string name="sk_new_reports">Нові скарги</string>
+    <string name="sk_settings_show_new_posts_button">Кнопка «Показати нові дописи»</string>
+    <string name="sk_settings_support_local_only">Сервер підтримує лише локальні публікації</string>
+    <string name="sk_settings_local_only_explanation">Щоб це спрацювало, ваш домашній сервер має підтримувати лише локальну публікацію. Більшість модифікованих версій Mastodon підтримують її, але Mastodon не підтримує.</string>
 </resources>
