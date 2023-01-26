@@ -270,9 +270,13 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			list.getAdapter().notifyItemChanged(index);
 		}
 		if((prevPolicy==PushSubscription.Policy.NONE)!=(policy==PushSubscription.Policy.NONE)){
+			boolean newState=policy!=PushSubscription.Policy.NONE;
+			for(PushNotification.Type value : PushNotification.Type.values()){
+				onNotificationsChanged(value, newState);
+			}
 			index++;
 			while(items.get(index) instanceof SwitchItem si){
-				si.enabled=si.checked=policy!=PushSubscription.Policy.NONE;
+				si.enabled=si.checked=newState;
 				RecyclerView.ViewHolder holder=list.findViewHolderForAdapterPosition(index);
 				if(holder!=null)
 					((BindableViewHolder<?>)holder).rebind();
