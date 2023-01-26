@@ -1,0 +1,9 @@
+- Las líneas de tiempo se pueden fijar y reorganizar
+- Compatible con publicaciones locales
+- Indicador de textos alternativos ausentes
+- Editor de textos alternativos mejorado
+- Cabecera en la línea de tiempo para los hashtags seguidos
+- Más categorías de notificaciones
+- Volver a abrir archivos
+- Aviso al guardar un borrador editado
+- Opción para desactivar el botón "Ver nuevas publicaciones
