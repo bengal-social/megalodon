@@ -238,7 +238,7 @@
     <string name="sk_inline_local_only">local uniquement</string>
     <string name="sk_inline_direct">uniquement mentionné</string>
     <string name="sk_separator">·</string>
-    <string name="sk_local_only">Local uniquement</string>
+    <string name="sk_local_only">Instance locale uniquement</string>
     <string name="sk_settings_support_local_only">Le serveur prend uniquement en charge la publication locale</string>
     <string name="sk_settings_glitch_mode_explanation">Activez cette option si votre instance domestique s\'exécute sur Glitch. Non nécessaire pour Hometown ou Akkoma.</string>
     <string name="sk_settings_glitch_instance">Glitch mode local uniquement</string>
