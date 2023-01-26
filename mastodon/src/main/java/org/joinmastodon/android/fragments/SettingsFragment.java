@@ -166,14 +166,6 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.reduceMotion=i.checked;
 			GlobalUserPreferences.save();
 		}));
-		items.add(new SwitchItem(R.string.sk_settings_show_alt_indicator, R.drawable.ic_fluent_scan_text_24_regular, GlobalUserPreferences.showAltIndicator, i->{
-			GlobalUserPreferences.showAltIndicator=i.checked;
-			GlobalUserPreferences.save();
-		}));
-		items.add(new SwitchItem(R.string.sk_settings_show_no_alt_indicator, R.drawable.ic_fluent_important_24_regular, GlobalUserPreferences.showNoAltIndicator, i->{
-			GlobalUserPreferences.showNoAltIndicator=i.checked;
-			GlobalUserPreferences.save();
-		}));
 
 		items.add(new HeaderItem(R.string.settings_behavior));
 		items.add(new SwitchItem(R.string.settings_gif, R.drawable.ic_fluent_gif_24_regular, GlobalUserPreferences.playGifs, i->{
@@ -210,17 +202,8 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.keepOnlyLatestNotification=i.checked;
 			GlobalUserPreferences.save();
 		}));
-		items.add(new SwitchItem(R.string.sk_settings_translate_only_opened, R.drawable.ic_fluent_translate_24_regular, GlobalUserPreferences.translateButtonOpenedOnly, i->{
-			GlobalUserPreferences.translateButtonOpenedOnly=i.checked;
-			GlobalUserPreferences.save();
-			needAppRestart=true;
-		}));
-		boolean translationAvailable = instance.v2 != null && instance.v2.configuration.translation != null && instance.v2.configuration.translation.enabled;
-		items.add(new SmallTextItem(getString(translationAvailable ?
-				R.string.sk_settings_translation_availability_note_available :
-				R.string.sk_settings_translation_availability_note_unavailable, instanceName)));
 
-		items.add(new HeaderItem(R.string.home_timeline));
+		items.add(new HeaderItem(R.string.sk_timelines));
 		items.add(new SwitchItem(R.string.sk_settings_show_replies, R.drawable.ic_fluent_chat_multiple_24_regular, GlobalUserPreferences.showReplies, i->{
 			GlobalUserPreferences.showReplies=i.checked;
 			GlobalUserPreferences.save();
@@ -243,6 +226,23 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			GlobalUserPreferences.showNewPostsButton=i.checked;
 			GlobalUserPreferences.save();
 		}));
+		items.add(new SwitchItem(R.string.sk_settings_show_alt_indicator, R.drawable.ic_fluent_scan_text_24_regular, GlobalUserPreferences.showAltIndicator, i->{
+			GlobalUserPreferences.showAltIndicator=i.checked;
+			GlobalUserPreferences.save();
+		}));
+		items.add(new SwitchItem(R.string.sk_settings_show_no_alt_indicator, R.drawable.ic_fluent_important_24_regular, GlobalUserPreferences.showNoAltIndicator, i->{
+			GlobalUserPreferences.showNoAltIndicator=i.checked;
+			GlobalUserPreferences.save();
+		}));
+		items.add(new SwitchItem(R.string.sk_settings_translate_only_opened, R.drawable.ic_fluent_translate_24_regular, GlobalUserPreferences.translateButtonOpenedOnly, i->{
+			GlobalUserPreferences.translateButtonOpenedOnly=i.checked;
+			GlobalUserPreferences.save();
+			needAppRestart=true;
+		}));
+		boolean translationAvailable = instance.v2 != null && instance.v2.configuration.translation != null && instance.v2.configuration.translation.enabled;
+		items.add(new SmallTextItem(getString(translationAvailable ?
+				R.string.sk_settings_translation_availability_note_available :
+				R.string.sk_settings_translation_availability_note_unavailable, instanceName)));
 
 		items.add(new HeaderItem(R.string.settings_notifications));
 		items.add(notificationPolicyItem=new NotificationPolicyItem());
