@@ -1,0 +1,9 @@
+- Timelines lassen sich anpinnen und umsortieren
+- Nur-lokales Posten wird unterstützt
+- Indikator für fehlende Bildbeschreibungen
+- Verbesserter Bildbeschreibungs-Editor
+- Kopfzeile in der Timeline für gefolgte Hashtags
+- Mehr Benachrichtigungs-Kategorien
+- Alte Variante zum Dateien anhängen wiederhergestellt
+- Nachfrage beim Speichern von bearbeiteten Entwürfen
+- Option, um den “Neue Beiträge anzeigen”-Button auszuschalten
