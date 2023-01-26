@@ -94,9 +94,9 @@ public class ElevationOnScrollListener extends RecyclerView.OnScrollListener imp
 			if(fragmentRootLayout!=null){
 				int color;
 				if(isAtTop){
-					color=UiUtils.getThemeColor(context, R.attr.colorM3Background);
+					color=UiUtils.getThemeColor(context, R.attr.toolbarBackground);
 				}else{
-					color=UiUtils.alphaBlendColors(UiUtils.getThemeColor(context, R.attr.colorM3Background), UiUtils.getThemeColor(context, R.attr.colorM3Primary), 0.07843137f);
+					color=UiUtils.alphaBlendColors(UiUtils.getThemeColor(context, R.attr.toolbarBackground), UiUtils.getThemeColor(context, R.attr.colorWindowBackground), 0.07843137f);
 				}
 				anims.add(ObjectAnimator.ofArgb(fragmentRootLayout, "statusBarColor", color));
 			}
