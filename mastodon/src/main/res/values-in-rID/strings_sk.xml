@@ -247,7 +247,7 @@
     <string name="sk_reported">dilaporkan</string>
     <string name="sk_sign_ups">Pendaftaran pengguna</string>
     <string name="sk_new_reports">Laporan baru</string>
-    <string name="sk_settings_show_new_posts_button">Tombol “Lihat kiriman baru”</string>
+    <string name="sk_settings_see_new_posts_button">Tombol “Lihat kiriman baru”</string>
     <string name="sk_settings_local_only_explanation">Server rumah Anda harus mendukung pengiriman hanya lokal untuk ini bekerja. Kebanyakan versi Mastodon yang dimodifikasi bisa, tetapi Mastodon tidak.</string>
     <string name="sk_settings_support_local_only">Server hanya mendukung pengiriman hanya lokal</string>
 </resources>

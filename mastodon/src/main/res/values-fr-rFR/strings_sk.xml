@@ -246,7 +246,7 @@
     <string name="sk_reported">signalé</string>
     <string name="sk_sign_ups">Utilisateurs s\'inscrivant</string>
     <string name="sk_new_reports">Nouveaux signalements</string>
-    <string name="sk_settings_show_new_posts_button">Bouton \"Afficher les nouveaux messages\"</string>
+    <string name="sk_settings_see_new_posts_button">Bouton \"Afficher les nouveaux messages\"</string>
     <string name="sk_instance_features">Fonctionnalités des instances</string>
     <string name="sk_settings_local_only_explanation">Votre instance locale doit prendre en charge la publication locale uniquement pour que cela fonctionne. La plupart des versions modifiées de Mastodon le font, mais pas Mastodon.</string>
 </resources>

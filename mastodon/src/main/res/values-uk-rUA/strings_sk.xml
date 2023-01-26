@@ -245,7 +245,7 @@
     <string name="sk_reported">зі скаргою</string>
     <string name="sk_sign_ups">Користувачі реєструються</string>
     <string name="sk_new_reports">Нові скарги</string>
-    <string name="sk_settings_show_new_posts_button">Кнопка «Показати нові дописи»</string>
+    <string name="sk_settings_see_new_posts_button">Кнопка «Показати нові дописи»</string>
     <string name="sk_settings_support_local_only">Сервер підтримує лише локальні публікації</string>
     <string name="sk_settings_local_only_explanation">Щоб це спрацювало, ваш домашній сервер має підтримувати лише локальну публікацію. Більшість модифікованих версій Mastodon підтримують її, але Mastodon не підтримує.</string>
 </resources>

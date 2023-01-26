@@ -238,7 +238,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 			if (list.findViewHolderForAdapterPosition(items.indexOf(showNewPostsButtonItem)) instanceof SwitchViewHolder svh) svh.rebind();
 			GlobalUserPreferences.save();
 		}));
-		items.add(showNewPostsButtonItem = new SwitchItem(R.string.sk_settings_show_new_posts_button, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.showNewPostsButton, i->{
+		items.add(showNewPostsButtonItem = new SwitchItem(R.string.sk_settings_see_new_posts_button, R.drawable.ic_fluent_arrow_up_24_regular, GlobalUserPreferences.showNewPostsButton, i->{
 			GlobalUserPreferences.showNewPostsButton=i.checked;
 			GlobalUserPreferences.save();
 		}));

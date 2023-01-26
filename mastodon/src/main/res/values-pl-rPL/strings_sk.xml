@@ -245,7 +245,7 @@
     <string name="sk_reported">zareportowano</string>
     <string name="sk_sign_ups">Rejestrujący się użytkownicy</string>
     <string name="sk_new_reports">Nowe raporty</string>
-    <string name="sk_settings_show_new_posts_button">Przycisk \"Pokaż nowe wpisy\"</string>
+    <string name="sk_settings_see_new_posts_button">Przycisk \"Pokaż nowe wpisy\"</string>
     <string name="sk_instance_features">Funkcje instancji</string>
     <string name="sk_settings_local_only_explanation">Twoja instancja domowa musi wspierać publikowanie w trybie lokalnym. Większość zmodyfikowanych wersji Mastodona to wspiera, ale podstawowy Mastodon nie.</string>
 </resources>
