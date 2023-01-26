@@ -1,0 +1,9 @@
+- As cronoloxías poden ser fixadas e reorganizadas
+- Soporte para publicacións só locais
+- Indicador para ausencia de textos alternativos
+- Editor de textos alternativos mellorado
+- Cabeceira na cronoloxía para os hashtags seguidos
+- Máis categorías de notificacións
+- Engade un abridor de ficheiros de volta
+- Diálogo cando gardas esbozos editados
+- Opción para deshabilitar o botón "Ver novas publicacións"

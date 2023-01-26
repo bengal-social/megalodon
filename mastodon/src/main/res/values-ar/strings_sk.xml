@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sk_confirm_delete_and_redraft">هل أنت متأكد أنك تريد حذف وإعادة صياغة هذا المنشور؟</string>
+    <string name="sk_pin_post">تثبيت في الملف الشخصي</string>
+    <string name="sk_pinned_posts">مثبت</string>
+    <string name="sk_delete_and_redraft">حذف وإعادة صياغة</string>
+    <string name="sk_confirm_delete_and_redraft_title">حذف وإعادة صياغة المنشور</string>
+</resources>

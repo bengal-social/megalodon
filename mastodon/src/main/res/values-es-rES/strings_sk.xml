@@ -234,4 +234,18 @@
     <string name="sk_timeline_icon">Icono</string>
     <string name="sk_icon_star">Estrella</string>
     <string name="sk_save_draft_message">¿Quieres guardar los cambios para este borrador o publicarlo ahora\?</string>
+    <string name="sk_inline_local_only">sólo local</string>
+    <string name="sk_inline_direct">sólo mencionado</string>
+    <string name="sk_settings_see_new_posts_button">Botón “Ver nuevas publicaciones”</string>
+    <string name="sk_separator">·</string>
+    <string name="sk_local_only">Sólo instancia local</string>
+    <string name="sk_instance_features">Funciones de la instancia</string>
+    <string name="sk_settings_support_local_only">El servidor admite la publicación sólo local</string>
+    <string name="sk_settings_local_only_explanation">Para que esto funcione, su instancia de origen debe soportar la publicación sólo local. La mayoría de las versiones modificadas de Mastodon lo hacen, pero Mastodon no.</string>
+    <string name="sk_settings_glitch_instance">Glitch modo sólo local</string>
+    <string name="sk_settings_glitch_mode_explanation">Habilita esta opción si tu instancia local funciona con Glitch. No es necesario para Hometown o Akkoma.</string>
+    <string name="sk_signed_up">inscrito</string>
+    <string name="sk_reported">reportado</string>
+    <string name="sk_sign_ups">Registro de usuarios</string>
+    <string name="sk_new_reports">Nuevos informes</string>
 </resources>

@@ -235,7 +235,7 @@
     <string name="sk_save_draft">Zapisać kopię roboczą\?</string>
     <string name="sk_settings_show_no_alt_indicator">Indykator brakującego opisu</string>
     <string name="sk_separator">·</string>
-    <string name="sk_local_only">Tylko-lokalne</string>
+    <string name="sk_local_only">Publikowanie lokalne</string>
     <string name="sk_settings_support_local_only">Serwer zezwala na publikowanie w trybie lokalnym</string>
     <string name="sk_settings_glitch_instance">Tryb lokalny Glitch</string>
     <string name="sk_inline_local_only">tylko-lokalnie</string>

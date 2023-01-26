@@ -1,0 +1,10 @@
+- Ny startflik med offentliga tidslinjer
+- Visa servermeddelanden
+- Text skalas enligt systeminställningar
+- Förbättrad filtrering (nej, "Göm med en varning" fungerar inte än) av @thiagojedi
+- Listhanteringsfunktioner
+- Ta bort följare genom att mjukblockera dem
+- Förbjud kopplingar till fascister
+- Åtgärda bilder som inte laddas när de är anslutna till Akkoma-instans
+- Bugfixar och UI-justeringar
+- Lägg till ändringslogg i uppdateringsprogrammet av @LucasGGamerM

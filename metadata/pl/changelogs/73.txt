@@ -1,0 +1,9 @@
+- Osie czasu można przypinać i zmieniać ich kolejność
+- Obsługa publikacji w trybie lokalnym
+- Wskaźnik brakujących opisów obrazków
+- Ulepszony edytor opisu obrazków
+- Nagłówek na osi czasu dla śledzonych hashtagów
+- Więcej kategorii powiadomień
+- Ponownie dodano otwieracz plików
+- Monit przy zapisywaniu edytowanej wersji roboczej
+- Opcja wyłączenia przycisku "Zobacz nowe wpisy"

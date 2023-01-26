@@ -1,0 +1,9 @@
+- Lini masa dapat disemat dan diurut ulang
+- Dukungan kiriman hanya lokal
+- Penanda untuk teks alternatif yang tidak ada
+- Ditingkatkan penyunting teks alternatif
+- Tajuk di lini masa untuk tagar yang diikuti
+- Kategori notifikasi lebih banyak
+- Ditambahkan kembali pembuka berkas
+- Perintah ketika menyimpan draf yang disunting
+- Opsi untuk menonaktifkan tombol “Lihat kiriman baru”

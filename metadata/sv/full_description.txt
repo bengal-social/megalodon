@@ -1,12 +1,16 @@
-Megalodon är en modifierad version av den <a href="https://github.com/mastodon/mastodon-android">officialla Mastodon Android appen</a> som lägger till viktiga funktioner som saknas i den officiella appen, som den federerade tidslinjen, olistade inlägg, bokmärken och bildbeskrivningsvisning.
+Megalodon är en modifierad version av den <a href="https://github.com/mastodon/mastodon-android">officiella Mastodon Android-appen</a> som lägger till viktiga funktioner som saknas i den officiella appen, till exempel den federerade appen tidslinje, olistat inlägg och en bildbeskrivningsvisare.
 
 <b>Nyckelfunktioner</b>
 
-- <b>Olistade inlägg</b>: Posta inlägg offentligt utan att de dyker upp under trender, hashtaggar eller offentliga tidslinjer.
-- <b>Federerad tidslinje</b>: Visa alla offentliga inlägg från folk på alla andra Fediverse grannskap din heminstans är ansluten till.
-- <b>Bildbeskrivningsvisare</b>: Kolla snabbt huruvida en bild eller video har en bifogad bild-/videobeskrivning.
-- <b>Nåla fast inlägg</b>: Nåla fast dina viktigaste inlägg på din profil och se vad andra har nålat fast under "Nålad" fliken.
-- <b>Bokmärken</b>: Spara snabbt inlägg och hitta dem senare i Bokmärkelistan.
-- <b>Följ hashtaggar</b>: Visa nya inlägg från specifika hashtaggar direkt i den hem tidslinje genom att följa dem.
-- <b>Svara på följarbegäranden</b>: Acceptera eller avböj följarbegäranden från dina notifieringar eller i den dedikerade Följarbegäran listan.
-- <b>Ta bort och skriv om</b>: Den mycket älskade funktionen som gjorde det möjligt att redigera inlägg utan en faktisk redigeringsfunktion.
+- <b>Olistat inlägg</b>: Lägg upp offentligt utan att ditt inlägg visas i trender, hashtaggar eller offentliga tidslinjer.
+- <b>Federerad tidslinje</b>: Se alla offentliga inlägg från personer i alla andra Fediverse-kvarter som din heminstans är ansluten till.
+- <b>Utkast och schemalagda inlägg</b>: Gör det möjligt att förbereda ett inlägg och schemalägga det så att det skickas automatiskt vid en viss tidpunkt.
+- <b>Visare för bildbeskrivningar</b>: Kontrollera snabbt om en bild eller video har en alternativ text bifogad.
+- <b>Fästa inlägg</b>: Fäst dina viktigaste inlägg i din profil och se vad andra har fäst med fliken "Fäst".
+- <b>Följ hashtags</b>: Se nya inlägg från specifika hashtaggar direkt på din hemtidslinje genom att följa dem.
+- <b>Besvara följförfrågningar</b>: Acceptera eller avvisa följförfrågningar från dina meddelanden eller den dedikerade listan med följförfrågningar.
+- <b>Ta bort och skapa om</b>: Den mycket älskade funktionen som gjorde redigering möjlig utan en egentlig redigeringsfunktion.
+- <b>Språkväljare</b>: Välj språk för varje inlägg du gör smärtfritt så att filter och översättning fungerar korrekt.
+- <b>Översättning</b>: Översätt enkelt inlägg direkt i Megalodon! Fungerar bara om funktionen även är tillgänglig på din Mastodon Web.
+- <b>Synlighetsindikator för inlägg</b>: När du öppnar eller svarar på ett inlägg kommer en praktisk ikon som anger inläggets synlighet att visas.
+- <b>Färgteman</b>: Om du inte skulle gilla standardfärgen Rosa (hajen dömer dig tyst), täckte Moshidons färgteman dig.

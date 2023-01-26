@@ -38,4 +38,6 @@
     <string name="sk_confirm_unpin_post">Är du säker på att du vill ta bort detta inlägg\?</string>
     <string name="sk_user_post_notifications_on">Slå på inläggsnotifieringar för %s</string>
     <string name="sk_update_ready">Megalodon %s är nerladdad och redo att installeras.</string>
+    <string name="sk_settings_translation_availability_note_unavailable">%s verkar inte stödja översättning.</string>
+    <string name="sk_clear_recent_languages">Rensa nyligen använda språk</string>
 </resources>
