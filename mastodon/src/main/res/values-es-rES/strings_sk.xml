@@ -234,4 +234,7 @@
     <string name="sk_timeline_icon">Icono</string>
     <string name="sk_icon_star">Estrella</string>
     <string name="sk_save_draft_message">¿Quieres guardar los cambios para este borrador o publicarlo ahora\?</string>
+    <string name="sk_inline_local_only">sólo local</string>
+    <string name="sk_inline_direct">sólo mencionado</string>
+    <string name="sk_settings_see_new_posts_button">Botón “Ver nuevas publicaciones”</string>
 </resources>
