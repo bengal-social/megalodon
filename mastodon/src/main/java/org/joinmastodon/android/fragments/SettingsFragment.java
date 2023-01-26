@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.LruCache;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -269,6 +270,7 @@ public class SettingsFragment extends MastodonToolbarFragment{
 		items.add(new TextItem(R.string.settings_tos, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.settings_privacy_policy, ()->UiUtils.launchWebBrowser(getActivity(), "https://"+session.domain+"/terms"), R.drawable.ic_fluent_open_24_regular));
 		items.add(new TextItem(R.string.log_out, this::confirmLogOut, R.drawable.ic_fluent_sign_out_24_regular));
+		if (!TextUtils.isEmpty(instance.version)) items.add(new SmallTextItem(getString(R.string.sk_settings_server_version, instance.version)));
 
 		items.add(new HeaderItem(R.string.sk_instance_features));
 		items.add(new SwitchItem(R.string.sk_settings_support_local_only, 0, GlobalUserPreferences.accountsWithLocalOnlySupport.contains(accountID), i->{
