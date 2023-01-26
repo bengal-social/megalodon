@@ -237,7 +237,7 @@
     <string name="sk_inline_local_only">лише локальні</string>
     <string name="sk_inline_direct">лише згадки</string>
     <string name="sk_separator">·</string>
-    <string name="sk_local_only">Лише локальні</string>
+    <string name="sk_local_only">Лише локальні сервери</string>
     <string name="sk_instance_features">Особливості сервера</string>
     <string name="sk_settings_glitch_mode_explanation">Увімкніть, якщо ваш домашній сервер працює на Glitch. Не потрібно для Hometown або Akkoma.</string>
     <string name="sk_settings_glitch_instance">Локальний режим Glitch</string>
