@@ -239,7 +239,7 @@
     <string name="sk_inline_local_only">hanya lokal</string>
     <string name="sk_inline_direct">hanya tersebut</string>
     <string name="sk_separator">·</string>
-    <string name="sk_local_only">Hanya lokal</string>
+    <string name="sk_local_only">Hanya server lokal</string>
     <string name="sk_instance_features">Fitur server</string>
     <string name="sk_settings_glitch_instance">Mode hanya lokal Glitch</string>
     <string name="sk_settings_glitch_mode_explanation">Aktifkan ini jika server rumah Anda berjalan pada Glitch. Tidak dibutuhkan untuk Hometown atau Akkoma.</string>
